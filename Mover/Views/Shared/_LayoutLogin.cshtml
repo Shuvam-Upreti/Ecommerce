@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="~/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/css/toastr.min.css" rel="stylesheet" />
+    <link href="~/css/site.css" rel="stylesheet" />
+    <link href="~/css/main-login.css" rel="stylesheet" />
+    <link rel="shortcut icon" type="image/svg" href="~/image/muktinathlogo.jpg" />
+    
+   
+    
+    
+
+</head>
+<body>
+    @*<div class="header clearfix1" id="header">
+    <a href="@Xmart.Implementation.Helper.LinkUtils.AppName/">
+    <img src="~/Content/@Xmart.Implementation.Models.Report.Common.BankInformation.Logo" class="logo" />
+    </a>
+    </div>*@
+    <script src="~/js/jquery-3.3.1.js"></script>
+    <script src="~/js/jquery.validate.js"></script>
+    <script src="~/js/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/js/toastr.min.js"></script>
+    <script src="~/js/site.js"></script>
+
+    <div class="login_bg login_main">
+        @RenderBody()
+      
+        <div id="clearfix"></div>
+    </div>
+    
+
+
+</body>
+</html>

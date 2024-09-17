@@ -1,0 +1,70 @@
+﻿@using Mover.ViewModel.Account
+@model LoginViewModel
+@{
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+    ViewBag.Title = "Log in";
+}
+
+
+<div class="left-login">
+    <div class="clearfix">
+        @* <img class="left-login_logo" src="~/image/muktinathlogo.jpg" /> *@
+        <h1> Log in</h1>
+         @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post,true, new { @class = "login-form" })) 
+        {
+           @*  @Html.AntiForgeryToken()  *@
+
+             @* <input type="hidden" name="ReturnUrl" value="@ViewBag.returnUrl" id="return-url-input" />  *@
+
+            <p>
+
+                @*@Html.LabelFor(m => m.Username)*@
+                @Html.TextBoxFor(m => m.Username, new { placeholder = "Username", @class = "login-user" })
+                <span style="color:red; display:block; font-family: roboto;"> @Html.ValidationMessageFor(m => m.Username)</span><br />
+            </p>
+            <p>
+
+                @*@Html.LabelFor(m => m.Password)*@
+                @Html.PasswordFor(m => m.Password, new { placeholder = "Password", @class = "login-pass" })
+                <span style="color:red; display:block; font-family: roboto;"> @Html.ValidationMessageFor(m => m.Password)</span><br />
+            </p>
+             @* <input type="submit"  value="Login" />  *@
+            <input  type="submit" class="login_btn" value="Login" />
+            <a href="/Account/ForgotPassword" id="forgetPwd">Forgot Password?</a>
+            <div style="margin-top:10px; margin-bottom:10px;color:red">
+                @Html.ValidationSummary(true)
+            </div>
+           
+
+           
+          
+
+
+        }
+       
+    </div>
+</div>
+
+<div class="right-login" style="align-items:center">
+  @* <img id="imagecredit" src="~/image/logo.svg" />  *@
+    <h3 style="text-align:center"><br />A Complete <br />  Delivery Solution</h3>
+    
+</div>
+
+<script>
+    $(document).ready(function () {
+        let url = window.location.href;
+        let indexOfFirstQuery = url.indexOf('?');
+        let urlHasQueryString = indexOfFirstQuery != -1;
+
+        if (urlHasQueryString) {
+            let allQueryString = url.substring(indexOfFirstQuery + 1);
+
+            let returnUrl = allQueryString.replace("ReturnUrl=", "");
+
+            $('#return-url-input').val(returnUrl);
+        }
+
+    });
+</script>
+<script src="~/js/login/login.js" asp-append-version="true"></script>

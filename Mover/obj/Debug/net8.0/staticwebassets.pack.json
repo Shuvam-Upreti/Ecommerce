@@ -1,0 +1,1685 @@
+{
+  "Files": [
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\Mover.bundle.scp.css",
+      "PackagePath": "staticwebassets\\Mover.bundle.scp.css"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\css\\DevExpressCss\\dx.common.css",
+      "PackagePath": "staticwebassets\\css\\DevExpressCss\\dx.common.css"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\css\\DevExpressCss\\dx.light.css",
+      "PackagePath": "staticwebassets\\css\\DevExpressCss\\dx.light.css"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\css\\DevExpressCss\\icons\\dxicons.woff",
+      "PackagePath": "staticwebassets\\css\\DevExpressCss\\icons\\dxicons.woff"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\css\\DevExpressCss\\icons\\dxicons.woff2",
+      "PackagePath": "staticwebassets\\css\\DevExpressCss\\icons\\dxicons.woff2"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\css\\ajax-login.css",
+      "PackagePath": "staticwebassets\\css\\ajax-login.css"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\css\\bootstrap-select.min.css",
+      "PackagePath": "staticwebassets\\css\\bootstrap-select.min.css"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\css\\bootstrap-toggle.css",
+      "PackagePath": "staticwebassets\\css\\bootstrap-toggle.css"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\css\\bootstrap.css",
+      "PackagePath": "staticwebassets\\css\\bootstrap.css"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\css\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\css\\bootstrap.min.css"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\css\\dx.common.css",
+      "PackagePath": "staticwebassets\\css\\dx.common.css"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\css\\dx.light.css",
+      "PackagePath": "staticwebassets\\css\\dx.light.css"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\css\\jquery-confirm.min.css",
+      "PackagePath": "staticwebassets\\css\\jquery-confirm.min.css"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\css\\jquery-editable-select.css",
+      "PackagePath": "staticwebassets\\css\\jquery-editable-select.css"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\css\\jquery-ui.css",
+      "PackagePath": "staticwebassets\\css\\jquery-ui.css"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\css\\main-login.css",
+      "PackagePath": "staticwebassets\\css\\main-login.css"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\css\\select2.css",
+      "PackagePath": "staticwebassets\\css\\select2.css"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\css\\select2.min.css",
+      "PackagePath": "staticwebassets\\css\\select2.min.css"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\css\\site.css",
+      "PackagePath": "staticwebassets\\css\\site.css"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\css\\toastr.min.css",
+      "PackagePath": "staticwebassets\\css\\toastr.min.css"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\favicon.ico",
+      "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\fonts\\Calibri Bold.TTF",
+      "PackagePath": "staticwebassets\\fonts\\Calibri Bold.TTF"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\fonts\\Calibri Light.ttf",
+      "PackagePath": "staticwebassets\\fonts\\Calibri Light.ttf"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\fonts\\Calibri Regular.ttf",
+      "PackagePath": "staticwebassets\\fonts\\Calibri Regular.ttf"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\fonts\\FontAwesome.otf",
+      "PackagePath": "staticwebassets\\fonts\\FontAwesome.otf"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\fonts\\Montserrat-Black.woff",
+      "PackagePath": "staticwebassets\\fonts\\Montserrat-Black.woff"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\fonts\\Montserrat-Black.woff2",
+      "PackagePath": "staticwebassets\\fonts\\Montserrat-Black.woff2"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\fonts\\Montserrat-Bold.woff",
+      "PackagePath": "staticwebassets\\fonts\\Montserrat-Bold.woff"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\fonts\\Montserrat-Bold.woff2",
+      "PackagePath": "staticwebassets\\fonts\\Montserrat-Bold.woff2"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\fonts\\Montserrat-Light.woff",
+      "PackagePath": "staticwebassets\\fonts\\Montserrat-Light.woff"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\fonts\\Montserrat-Light.woff2",
+      "PackagePath": "staticwebassets\\fonts\\Montserrat-Light.woff2"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\fonts\\Montserrat-Medium.woff",
+      "PackagePath": "staticwebassets\\fonts\\Montserrat-Medium.woff"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\fonts\\Montserrat-Medium.woff2",
+      "PackagePath": "staticwebassets\\fonts\\Montserrat-Medium.woff2"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\fonts\\Montserrat-Regular.woff",
+      "PackagePath": "staticwebassets\\fonts\\Montserrat-Regular.woff"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\fonts\\Montserrat-Regular.woff2",
+      "PackagePath": "staticwebassets\\fonts\\Montserrat-Regular.woff2"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\fonts\\Montserrat-SemiBold.woff",
+      "PackagePath": "staticwebassets\\fonts\\Montserrat-SemiBold.woff"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\fonts\\Montserrat-SemiBold.woff2",
+      "PackagePath": "staticwebassets\\fonts\\Montserrat-SemiBold.woff2"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\fonts\\OpenSans-Regular.ttf",
+      "PackagePath": "staticwebassets\\fonts\\OpenSans-Regular.ttf"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\fonts\\PREETI.TTF",
+      "PackagePath": "staticwebassets\\fonts\\PREETI.TTF"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\fonts\\Raleway-Black.ttf",
+      "PackagePath": "staticwebassets\\fonts\\Raleway-Black.ttf"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\fonts\\Raleway-Bold.ttf",
+      "PackagePath": "staticwebassets\\fonts\\Raleway-Bold.ttf"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\fonts\\Roboto-Regular.ttf",
+      "PackagePath": "staticwebassets\\fonts\\Roboto-Regular.ttf"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\fonts\\RobotoCondensed-Bold.ttf",
+      "PackagePath": "staticwebassets\\fonts\\RobotoCondensed-Bold.ttf"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\fonts\\RobotoCondensed-Regular.ttf",
+      "PackagePath": "staticwebassets\\fonts\\RobotoCondensed-Regular.ttf"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\fonts\\fontawesome-webfont.eot",
+      "PackagePath": "staticwebassets\\fonts\\fontawesome-webfont.eot"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\fonts\\fontawesome-webfont.svg",
+      "PackagePath": "staticwebassets\\fonts\\fontawesome-webfont.svg"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\fonts\\fontawesome-webfont.ttf",
+      "PackagePath": "staticwebassets\\fonts\\fontawesome-webfont.ttf"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\fonts\\fontawesome-webfont.woff",
+      "PackagePath": "staticwebassets\\fonts\\fontawesome-webfont.woff"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\fonts\\fontawesome-webfont.woff2",
+      "PackagePath": "staticwebassets\\fonts\\fontawesome-webfont.woff2"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\fonts\\glyphicons-halflings-regular.eot",
+      "PackagePath": "staticwebassets\\fonts\\glyphicons-halflings-regular.eot"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\fonts\\glyphicons-halflings-regular.svg",
+      "PackagePath": "staticwebassets\\fonts\\glyphicons-halflings-regular.svg"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\fonts\\glyphicons-halflings-regular.ttf",
+      "PackagePath": "staticwebassets\\fonts\\glyphicons-halflings-regular.ttf"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\fonts\\glyphicons-halflings-regular.woff",
+      "PackagePath": "staticwebassets\\fonts\\glyphicons-halflings-regular.woff"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\fonts\\glyphicons-halflings-regular.woff2",
+      "PackagePath": "staticwebassets\\fonts\\glyphicons-halflings-regular.woff2"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\fonts\\times new roman bold italic.ttf",
+      "PackagePath": "staticwebassets\\fonts\\times new roman bold italic.ttf"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\fonts\\times new roman bold.ttf",
+      "PackagePath": "staticwebassets\\fonts\\times new roman bold.ttf"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\fonts\\times new roman italic.ttf",
+      "PackagePath": "staticwebassets\\fonts\\times new roman italic.ttf"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\fonts\\times new roman.ttf",
+      "PackagePath": "staticwebassets\\fonts\\times new roman.ttf"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\image\\logo.svg",
+      "PackagePath": "staticwebassets\\image\\logo.svg"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\image\\logo_credit.svg",
+      "PackagePath": "staticwebassets\\image\\logo_credit.svg"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\image\\progress.gif",
+      "PackagePath": "staticwebassets\\image\\progress.gif"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\js\\ChartsHelper.js",
+      "PackagePath": "staticwebassets\\js\\ChartsHelper.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\js\\Charts\\ChartsHelper.js",
+      "PackagePath": "staticwebassets\\js\\Charts\\ChartsHelper.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\js\\DevExpress\\FileSaver.2.0.2.min.js",
+      "PackagePath": "staticwebassets\\js\\DevExpress\\FileSaver.2.0.2.min.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\js\\DevExpress\\dx.all.js",
+      "PackagePath": "staticwebassets\\js\\DevExpress\\dx.all.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\js\\DevExpress\\exceljs.4.1.1.min.js",
+      "PackagePath": "staticwebassets\\js\\DevExpress\\exceljs.4.1.1.min.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\js\\DevExpress\\jquery-3.1.0.min.js",
+      "PackagePath": "staticwebassets\\js\\DevExpress\\jquery-3.1.0.min.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\js\\DevExpress\\jszip.min.js",
+      "PackagePath": "staticwebassets\\js\\DevExpress\\jszip.min.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\js\\DevExpress\\polyfill.7.4.0.min.js",
+      "PackagePath": "staticwebassets\\js\\DevExpress\\polyfill.7.4.0.min.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\js\\Index.js",
+      "PackagePath": "staticwebassets\\js\\Index.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\js\\Letter.js",
+      "PackagePath": "staticwebassets\\js\\Letter.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\js\\Loading.js",
+      "PackagePath": "staticwebassets\\js\\Loading.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\js\\Login\\Login.js",
+      "PackagePath": "staticwebassets\\js\\Login\\Login.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\js\\bootbox.js",
+      "PackagePath": "staticwebassets\\js\\bootbox.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\js\\bootbox.min.js",
+      "PackagePath": "staticwebassets\\js\\bootbox.min.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\js\\bootstrap-select.min.js",
+      "PackagePath": "staticwebassets\\js\\bootstrap-select.min.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\js\\bootstrap-slider.js",
+      "PackagePath": "staticwebassets\\js\\bootstrap-slider.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\js\\bootstrap-toggle.js",
+      "PackagePath": "staticwebassets\\js\\bootstrap-toggle.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\js\\bootstrap-toggle.min.js",
+      "PackagePath": "staticwebassets\\js\\bootstrap-toggle.min.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\js\\bootstrap.js",
+      "PackagePath": "staticwebassets\\js\\bootstrap.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\js\\bootstrap.min.js",
+      "PackagePath": "staticwebassets\\js\\bootstrap.min.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\js\\bootstrap2-toggle.min.js",
+      "PackagePath": "staticwebassets\\js\\bootstrap2-toggle.min.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\js\\chart.js",
+      "PackagePath": "staticwebassets\\js\\chart.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\js\\dataTables.bootstrap.min.js",
+      "PackagePath": "staticwebassets\\js\\dataTables.bootstrap.min.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\js\\designs.js",
+      "PackagePath": "staticwebassets\\js\\designs.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\js\\jquery-3.3.1.js",
+      "PackagePath": "staticwebassets\\js\\jquery-3.3.1.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\js\\jquery-3.7.1.min.js",
+      "PackagePath": "staticwebassets\\js\\jquery-3.7.1.min.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\js\\jquery-confirm.min.js",
+      "PackagePath": "staticwebassets\\js\\jquery-confirm.min.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\js\\jquery-editable-select.js",
+      "PackagePath": "staticwebassets\\js\\jquery-editable-select.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\js\\jquery-ui.min.js",
+      "PackagePath": "staticwebassets\\js\\jquery-ui.min.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\js\\jquery.blockUI.js",
+      "PackagePath": "staticwebassets\\js\\jquery.blockUI.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\js\\jquery.validate.js",
+      "PackagePath": "staticwebassets\\js\\jquery.validate.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\js\\jquery.validate.min.js",
+      "PackagePath": "staticwebassets\\js\\jquery.validate.min.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\js\\jquery.validate.unobtrusive.min.js",
+      "PackagePath": "staticwebassets\\js\\jquery.validate.unobtrusive.min.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\js\\respond.js",
+      "PackagePath": "staticwebassets\\js\\respond.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\js\\select2.js",
+      "PackagePath": "staticwebassets\\js\\select2.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\js\\site.js",
+      "PackagePath": "staticwebassets\\js\\site.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\js\\throttle-debounce.js",
+      "PackagePath": "staticwebassets\\js\\throttle-debounce.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\js\\toastr.min.js",
+      "PackagePath": "staticwebassets\\js\\toastr.min.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\bootstrap\\LICENSE",
+      "PackagePath": "staticwebassets\\lib\\bootstrap"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css.map"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js.map"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\fontawesome\\css\\all.css",
+      "PackagePath": "staticwebassets\\lib\\fontawesome\\css\\all.css"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\fontawesome\\css\\all.min.css",
+      "PackagePath": "staticwebassets\\lib\\fontawesome\\css\\all.min.css"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\fontawesome\\css\\brands.css",
+      "PackagePath": "staticwebassets\\lib\\fontawesome\\css\\brands.css"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\fontawesome\\css\\brands.min.css",
+      "PackagePath": "staticwebassets\\lib\\fontawesome\\css\\brands.min.css"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\fontawesome\\css\\fontawesome.css",
+      "PackagePath": "staticwebassets\\lib\\fontawesome\\css\\fontawesome.css"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\fontawesome\\css\\fontawesome.min.css",
+      "PackagePath": "staticwebassets\\lib\\fontawesome\\css\\fontawesome.min.css"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\fontawesome\\css\\regular.css",
+      "PackagePath": "staticwebassets\\lib\\fontawesome\\css\\regular.css"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\fontawesome\\css\\regular.min.css",
+      "PackagePath": "staticwebassets\\lib\\fontawesome\\css\\regular.min.css"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\fontawesome\\css\\solid.css",
+      "PackagePath": "staticwebassets\\lib\\fontawesome\\css\\solid.css"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\fontawesome\\css\\solid.min.css",
+      "PackagePath": "staticwebassets\\lib\\fontawesome\\css\\solid.min.css"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\fontawesome\\css\\svg-with-js.css",
+      "PackagePath": "staticwebassets\\lib\\fontawesome\\css\\svg-with-js.css"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\fontawesome\\css\\svg-with-js.min.css",
+      "PackagePath": "staticwebassets\\lib\\fontawesome\\css\\svg-with-js.min.css"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\fontawesome\\css\\v4-font-face.css",
+      "PackagePath": "staticwebassets\\lib\\fontawesome\\css\\v4-font-face.css"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\fontawesome\\css\\v4-font-face.min.css",
+      "PackagePath": "staticwebassets\\lib\\fontawesome\\css\\v4-font-face.min.css"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\fontawesome\\css\\v4-shims.css",
+      "PackagePath": "staticwebassets\\lib\\fontawesome\\css\\v4-shims.css"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\fontawesome\\css\\v4-shims.min.css",
+      "PackagePath": "staticwebassets\\lib\\fontawesome\\css\\v4-shims.min.css"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\fontawesome\\css\\v5-font-face.css",
+      "PackagePath": "staticwebassets\\lib\\fontawesome\\css\\v5-font-face.css"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\fontawesome\\css\\v5-font-face.min.css",
+      "PackagePath": "staticwebassets\\lib\\fontawesome\\css\\v5-font-face.min.css"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\fontawesome\\js\\all.js",
+      "PackagePath": "staticwebassets\\lib\\fontawesome\\js\\all.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\fontawesome\\js\\all.min.js",
+      "PackagePath": "staticwebassets\\lib\\fontawesome\\js\\all.min.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\fontawesome\\js\\brands.js",
+      "PackagePath": "staticwebassets\\lib\\fontawesome\\js\\brands.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\fontawesome\\js\\brands.min.js",
+      "PackagePath": "staticwebassets\\lib\\fontawesome\\js\\brands.min.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\fontawesome\\js\\conflict-detection.js",
+      "PackagePath": "staticwebassets\\lib\\fontawesome\\js\\conflict-detection.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\fontawesome\\js\\conflict-detection.min.js",
+      "PackagePath": "staticwebassets\\lib\\fontawesome\\js\\conflict-detection.min.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\fontawesome\\js\\fontawesome.js",
+      "PackagePath": "staticwebassets\\lib\\fontawesome\\js\\fontawesome.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\fontawesome\\js\\fontawesome.min.js",
+      "PackagePath": "staticwebassets\\lib\\fontawesome\\js\\fontawesome.min.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\fontawesome\\js\\regular.js",
+      "PackagePath": "staticwebassets\\lib\\fontawesome\\js\\regular.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\fontawesome\\js\\regular.min.js",
+      "PackagePath": "staticwebassets\\lib\\fontawesome\\js\\regular.min.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\fontawesome\\js\\solid.js",
+      "PackagePath": "staticwebassets\\lib\\fontawesome\\js\\solid.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\fontawesome\\js\\solid.min.js",
+      "PackagePath": "staticwebassets\\lib\\fontawesome\\js\\solid.min.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\fontawesome\\js\\v4-shims.js",
+      "PackagePath": "staticwebassets\\lib\\fontawesome\\js\\v4-shims.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\fontawesome\\js\\v4-shims.min.js",
+      "PackagePath": "staticwebassets\\lib\\fontawesome\\js\\v4-shims.min.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\fontawesome\\webfonts\\fa-brands-400.ttf",
+      "PackagePath": "staticwebassets\\lib\\fontawesome\\webfonts\\fa-brands-400.ttf"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\fontawesome\\webfonts\\fa-brands-400.woff2",
+      "PackagePath": "staticwebassets\\lib\\fontawesome\\webfonts\\fa-brands-400.woff2"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\fontawesome\\webfonts\\fa-regular-400.ttf",
+      "PackagePath": "staticwebassets\\lib\\fontawesome\\webfonts\\fa-regular-400.ttf"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\fontawesome\\webfonts\\fa-regular-400.woff2",
+      "PackagePath": "staticwebassets\\lib\\fontawesome\\webfonts\\fa-regular-400.woff2"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\fontawesome\\webfonts\\fa-solid-900.ttf",
+      "PackagePath": "staticwebassets\\lib\\fontawesome\\webfonts\\fa-solid-900.ttf"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\fontawesome\\webfonts\\fa-solid-900.woff2",
+      "PackagePath": "staticwebassets\\lib\\fontawesome\\webfonts\\fa-solid-900.woff2"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\fontawesome\\webfonts\\fa-v4compatibility.ttf",
+      "PackagePath": "staticwebassets\\lib\\fontawesome\\webfonts\\fa-v4compatibility.ttf"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\fontawesome\\webfonts\\fa-v4compatibility.woff2",
+      "PackagePath": "staticwebassets\\lib\\fontawesome\\webfonts\\fa-v4compatibility.woff2"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\LICENSE.md"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.min.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.min.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\jquery\\LICENSE.txt",
+      "PackagePath": "staticwebassets\\lib\\jquery\\LICENSE.txt"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\jquery\\dist\\jquery.js",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\sweetalert\\LICENSE",
+      "PackagePath": "staticwebassets\\lib\\sweetalert"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\sweetalert\\README.md",
+      "PackagePath": "staticwebassets\\lib\\sweetalert\\README.md"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\sweetalert\\dist\\sweetalert2.all.js",
+      "PackagePath": "staticwebassets\\lib\\sweetalert\\dist\\sweetalert2.all.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\sweetalert\\dist\\sweetalert2.all.min.js",
+      "PackagePath": "staticwebassets\\lib\\sweetalert\\dist\\sweetalert2.all.min.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\sweetalert\\dist\\sweetalert2.css",
+      "PackagePath": "staticwebassets\\lib\\sweetalert\\dist\\sweetalert2.css"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\sweetalert\\dist\\sweetalert2.js",
+      "PackagePath": "staticwebassets\\lib\\sweetalert\\dist\\sweetalert2.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\sweetalert\\dist\\sweetalert2.min.css",
+      "PackagePath": "staticwebassets\\lib\\sweetalert\\dist\\sweetalert2.min.css"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\sweetalert\\dist\\sweetalert2.min.js",
+      "PackagePath": "staticwebassets\\lib\\sweetalert\\dist\\sweetalert2.min.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\sweetalert\\package.json",
+      "PackagePath": "staticwebassets\\lib\\sweetalert\\package.json"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\sweetalert\\src\\SweetAlert.js",
+      "PackagePath": "staticwebassets\\lib\\sweetalert\\src\\SweetAlert.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\sweetalert\\src\\buttons-handlers.js",
+      "PackagePath": "staticwebassets\\lib\\sweetalert\\src\\buttons-handlers.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\sweetalert\\src\\constants.js",
+      "PackagePath": "staticwebassets\\lib\\sweetalert\\src\\constants.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\sweetalert\\src\\globalState.js",
+      "PackagePath": "staticwebassets\\lib\\sweetalert\\src\\globalState.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\sweetalert\\src\\instanceMethods.js",
+      "PackagePath": "staticwebassets\\lib\\sweetalert\\src\\instanceMethods.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\sweetalert\\src\\instanceMethods\\_destroy.js",
+      "PackagePath": "staticwebassets\\lib\\sweetalert\\src\\instanceMethods\\_destroy.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\sweetalert\\src\\instanceMethods\\close.js",
+      "PackagePath": "staticwebassets\\lib\\sweetalert\\src\\instanceMethods\\close.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\sweetalert\\src\\instanceMethods\\enable-disable-elements.js",
+      "PackagePath": "staticwebassets\\lib\\sweetalert\\src\\instanceMethods\\enable-disable-elements.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\sweetalert\\src\\instanceMethods\\getInput.js",
+      "PackagePath": "staticwebassets\\lib\\sweetalert\\src\\instanceMethods\\getInput.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\sweetalert\\src\\instanceMethods\\hideLoading.js",
+      "PackagePath": "staticwebassets\\lib\\sweetalert\\src\\instanceMethods\\hideLoading.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\sweetalert\\src\\instanceMethods\\update.js",
+      "PackagePath": "staticwebassets\\lib\\sweetalert\\src\\instanceMethods\\update.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\sweetalert\\src\\instanceMethods\\validation-message.js",
+      "PackagePath": "staticwebassets\\lib\\sweetalert\\src\\instanceMethods\\validation-message.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\sweetalert\\src\\keydown-handler.js",
+      "PackagePath": "staticwebassets\\lib\\sweetalert\\src\\keydown-handler.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\sweetalert\\src\\popup-click-handler.js",
+      "PackagePath": "staticwebassets\\lib\\sweetalert\\src\\popup-click-handler.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\sweetalert\\src\\privateMethods.js",
+      "PackagePath": "staticwebassets\\lib\\sweetalert\\src\\privateMethods.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\sweetalert\\src\\privateProps.js",
+      "PackagePath": "staticwebassets\\lib\\sweetalert\\src\\privateProps.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\sweetalert\\src\\scss\\_animations.scss",
+      "PackagePath": "staticwebassets\\lib\\sweetalert\\src\\scss\\_animations.scss"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\sweetalert\\src\\scss\\_body.scss",
+      "PackagePath": "staticwebassets\\lib\\sweetalert\\src\\scss\\_body.scss"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\sweetalert\\src\\scss\\_core.scss",
+      "PackagePath": "staticwebassets\\lib\\sweetalert\\src\\scss\\_core.scss"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\sweetalert\\src\\scss\\_icons.scss",
+      "PackagePath": "staticwebassets\\lib\\sweetalert\\src\\scss\\_icons.scss"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\sweetalert\\src\\scss\\_mixins.scss",
+      "PackagePath": "staticwebassets\\lib\\sweetalert\\src\\scss\\_mixins.scss"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\sweetalert\\src\\scss\\_theming.scss",
+      "PackagePath": "staticwebassets\\lib\\sweetalert\\src\\scss\\_theming.scss"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\sweetalert\\src\\scss\\_toasts-animations.scss",
+      "PackagePath": "staticwebassets\\lib\\sweetalert\\src\\scss\\_toasts-animations.scss"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\sweetalert\\src\\scss\\_toasts-body.scss",
+      "PackagePath": "staticwebassets\\lib\\sweetalert\\src\\scss\\_toasts-body.scss"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\sweetalert\\src\\scss\\_toasts.scss",
+      "PackagePath": "staticwebassets\\lib\\sweetalert\\src\\scss\\_toasts.scss"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\sweetalert\\src\\staticMethods.js",
+      "PackagePath": "staticwebassets\\lib\\sweetalert\\src\\staticMethods.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\sweetalert\\src\\staticMethods\\argsToParams.js",
+      "PackagePath": "staticwebassets\\lib\\sweetalert\\src\\staticMethods\\argsToParams.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\sweetalert\\src\\staticMethods\\bindClickHandler.js",
+      "PackagePath": "staticwebassets\\lib\\sweetalert\\src\\staticMethods\\bindClickHandler.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\sweetalert\\src\\staticMethods\\dom.js",
+      "PackagePath": "staticwebassets\\lib\\sweetalert\\src\\staticMethods\\dom.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\sweetalert\\src\\staticMethods\\fire.js",
+      "PackagePath": "staticwebassets\\lib\\sweetalert\\src\\staticMethods\\fire.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\sweetalert\\src\\staticMethods\\mixin.js",
+      "PackagePath": "staticwebassets\\lib\\sweetalert\\src\\staticMethods\\mixin.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\sweetalert\\src\\staticMethods\\showLoading.js",
+      "PackagePath": "staticwebassets\\lib\\sweetalert\\src\\staticMethods\\showLoading.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\sweetalert\\src\\staticMethods\\timer.js",
+      "PackagePath": "staticwebassets\\lib\\sweetalert\\src\\staticMethods\\timer.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\sweetalert\\src\\sweetalert2.js",
+      "PackagePath": "staticwebassets\\lib\\sweetalert\\src\\sweetalert2.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\sweetalert\\src\\sweetalert2.scss",
+      "PackagePath": "staticwebassets\\lib\\sweetalert\\src\\sweetalert2.scss"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\sweetalert\\src\\types.js",
+      "PackagePath": "staticwebassets\\lib\\sweetalert\\src\\types.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\sweetalert\\src\\utils\\DismissReason.js",
+      "PackagePath": "staticwebassets\\lib\\sweetalert\\src\\utils\\DismissReason.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\sweetalert\\src\\utils\\Timer.js",
+      "PackagePath": "staticwebassets\\lib\\sweetalert\\src\\utils\\Timer.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\sweetalert\\src\\utils\\aria.js",
+      "PackagePath": "staticwebassets\\lib\\sweetalert\\src\\utils\\aria.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\sweetalert\\src\\utils\\classes.js",
+      "PackagePath": "staticwebassets\\lib\\sweetalert\\src\\utils\\classes.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\sweetalert\\src\\utils\\defaultInputValidators.js",
+      "PackagePath": "staticwebassets\\lib\\sweetalert\\src\\utils\\defaultInputValidators.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\sweetalert\\src\\utils\\dom\\animationEndEvent.js",
+      "PackagePath": "staticwebassets\\lib\\sweetalert\\src\\utils\\dom\\animationEndEvent.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\sweetalert\\src\\utils\\dom\\domUtils.js",
+      "PackagePath": "staticwebassets\\lib\\sweetalert\\src\\utils\\dom\\domUtils.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\sweetalert\\src\\utils\\dom\\getters.js",
+      "PackagePath": "staticwebassets\\lib\\sweetalert\\src\\utils\\dom\\getters.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\sweetalert\\src\\utils\\dom\\index.js",
+      "PackagePath": "staticwebassets\\lib\\sweetalert\\src\\utils\\dom\\index.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\sweetalert\\src\\utils\\dom\\init.js",
+      "PackagePath": "staticwebassets\\lib\\sweetalert\\src\\utils\\dom\\init.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\sweetalert\\src\\utils\\dom\\inputUtils.js",
+      "PackagePath": "staticwebassets\\lib\\sweetalert\\src\\utils\\dom\\inputUtils.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\sweetalert\\src\\utils\\dom\\parseHtmlToContainer.js",
+      "PackagePath": "staticwebassets\\lib\\sweetalert\\src\\utils\\dom\\parseHtmlToContainer.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\sweetalert\\src\\utils\\dom\\renderers\\render.js",
+      "PackagePath": "staticwebassets\\lib\\sweetalert\\src\\utils\\dom\\renderers\\render.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\sweetalert\\src\\utils\\dom\\renderers\\renderActions.js",
+      "PackagePath": "staticwebassets\\lib\\sweetalert\\src\\utils\\dom\\renderers\\renderActions.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\sweetalert\\src\\utils\\dom\\renderers\\renderCloseButton.js",
+      "PackagePath": "staticwebassets\\lib\\sweetalert\\src\\utils\\dom\\renderers\\renderCloseButton.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\sweetalert\\src\\utils\\dom\\renderers\\renderContainer.js",
+      "PackagePath": "staticwebassets\\lib\\sweetalert\\src\\utils\\dom\\renderers\\renderContainer.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\sweetalert\\src\\utils\\dom\\renderers\\renderContent.js",
+      "PackagePath": "staticwebassets\\lib\\sweetalert\\src\\utils\\dom\\renderers\\renderContent.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\sweetalert\\src\\utils\\dom\\renderers\\renderFooter.js",
+      "PackagePath": "staticwebassets\\lib\\sweetalert\\src\\utils\\dom\\renderers\\renderFooter.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\sweetalert\\src\\utils\\dom\\renderers\\renderIcon.js",
+      "PackagePath": "staticwebassets\\lib\\sweetalert\\src\\utils\\dom\\renderers\\renderIcon.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\sweetalert\\src\\utils\\dom\\renderers\\renderImage.js",
+      "PackagePath": "staticwebassets\\lib\\sweetalert\\src\\utils\\dom\\renderers\\renderImage.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\sweetalert\\src\\utils\\dom\\renderers\\renderInput.js",
+      "PackagePath": "staticwebassets\\lib\\sweetalert\\src\\utils\\dom\\renderers\\renderInput.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\sweetalert\\src\\utils\\dom\\renderers\\renderPopup.js",
+      "PackagePath": "staticwebassets\\lib\\sweetalert\\src\\utils\\dom\\renderers\\renderPopup.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\sweetalert\\src\\utils\\dom\\renderers\\renderProgressSteps.js",
+      "PackagePath": "staticwebassets\\lib\\sweetalert\\src\\utils\\dom\\renderers\\renderProgressSteps.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\sweetalert\\src\\utils\\dom\\renderers\\renderTitle.js",
+      "PackagePath": "staticwebassets\\lib\\sweetalert\\src\\utils\\dom\\renderers\\renderTitle.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\sweetalert\\src\\utils\\getTemplateParams.js",
+      "PackagePath": "staticwebassets\\lib\\sweetalert\\src\\utils\\getTemplateParams.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\sweetalert\\src\\utils\\iosFix.js",
+      "PackagePath": "staticwebassets\\lib\\sweetalert\\src\\utils\\iosFix.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\sweetalert\\src\\utils\\isNodeEnv.js",
+      "PackagePath": "staticwebassets\\lib\\sweetalert\\src\\utils\\isNodeEnv.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\sweetalert\\src\\utils\\openPopup.js",
+      "PackagePath": "staticwebassets\\lib\\sweetalert\\src\\utils\\openPopup.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\sweetalert\\src\\utils\\params.js",
+      "PackagePath": "staticwebassets\\lib\\sweetalert\\src\\utils\\params.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\sweetalert\\src\\utils\\scrollbar.js",
+      "PackagePath": "staticwebassets\\lib\\sweetalert\\src\\utils\\scrollbar.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\sweetalert\\src\\utils\\setParameters.js",
+      "PackagePath": "staticwebassets\\lib\\sweetalert\\src\\utils\\setParameters.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\sweetalert\\src\\utils\\utils.js",
+      "PackagePath": "staticwebassets\\lib\\sweetalert\\src\\utils\\utils.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\sweetalert\\src\\variables.scss",
+      "PackagePath": "staticwebassets\\lib\\sweetalert\\src\\variables.scss"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\sweetalert\\sweetalert2.d.ts",
+      "PackagePath": "staticwebassets\\lib\\sweetalert\\sweetalert2.d.ts"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\tinymce\\icons\\default\\icons.min.js",
+      "PackagePath": "staticwebassets\\lib\\tinymce\\icons\\default\\icons.min.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\tinymce\\langs\\README.md",
+      "PackagePath": "staticwebassets\\lib\\tinymce\\langs\\README.md"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\tinymce\\license.txt",
+      "PackagePath": "staticwebassets\\lib\\tinymce\\license.txt"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\tinymce\\models\\dom\\model.min.js",
+      "PackagePath": "staticwebassets\\lib\\tinymce\\models\\dom\\model.min.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\tinymce\\plugins\\advlist\\plugin.min.js",
+      "PackagePath": "staticwebassets\\lib\\tinymce\\plugins\\advlist\\plugin.min.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\tinymce\\plugins\\anchor\\plugin.min.js",
+      "PackagePath": "staticwebassets\\lib\\tinymce\\plugins\\anchor\\plugin.min.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\tinymce\\plugins\\autolink\\plugin.min.js",
+      "PackagePath": "staticwebassets\\lib\\tinymce\\plugins\\autolink\\plugin.min.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\tinymce\\plugins\\autoresize\\plugin.min.js",
+      "PackagePath": "staticwebassets\\lib\\tinymce\\plugins\\autoresize\\plugin.min.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\tinymce\\plugins\\autosave\\plugin.min.js",
+      "PackagePath": "staticwebassets\\lib\\tinymce\\plugins\\autosave\\plugin.min.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\tinymce\\plugins\\charmap\\plugin.min.js",
+      "PackagePath": "staticwebassets\\lib\\tinymce\\plugins\\charmap\\plugin.min.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\tinymce\\plugins\\code\\plugin.min.js",
+      "PackagePath": "staticwebassets\\lib\\tinymce\\plugins\\code\\plugin.min.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\tinymce\\plugins\\codesample\\plugin.min.js",
+      "PackagePath": "staticwebassets\\lib\\tinymce\\plugins\\codesample\\plugin.min.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\tinymce\\plugins\\directionality\\plugin.min.js",
+      "PackagePath": "staticwebassets\\lib\\tinymce\\plugins\\directionality\\plugin.min.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\tinymce\\plugins\\emoticons\\js\\emojiimages.js",
+      "PackagePath": "staticwebassets\\lib\\tinymce\\plugins\\emoticons\\js\\emojiimages.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\tinymce\\plugins\\emoticons\\js\\emojiimages.min.js",
+      "PackagePath": "staticwebassets\\lib\\tinymce\\plugins\\emoticons\\js\\emojiimages.min.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\tinymce\\plugins\\emoticons\\js\\emojis.js",
+      "PackagePath": "staticwebassets\\lib\\tinymce\\plugins\\emoticons\\js\\emojis.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\tinymce\\plugins\\emoticons\\js\\emojis.min.js",
+      "PackagePath": "staticwebassets\\lib\\tinymce\\plugins\\emoticons\\js\\emojis.min.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\tinymce\\plugins\\emoticons\\plugin.min.js",
+      "PackagePath": "staticwebassets\\lib\\tinymce\\plugins\\emoticons\\plugin.min.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\tinymce\\plugins\\fullscreen\\plugin.min.js",
+      "PackagePath": "staticwebassets\\lib\\tinymce\\plugins\\fullscreen\\plugin.min.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\tinymce\\plugins\\help\\plugin.min.js",
+      "PackagePath": "staticwebassets\\lib\\tinymce\\plugins\\help\\plugin.min.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\tinymce\\plugins\\image\\plugin.min.js",
+      "PackagePath": "staticwebassets\\lib\\tinymce\\plugins\\image\\plugin.min.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\tinymce\\plugins\\importcss\\plugin.min.js",
+      "PackagePath": "staticwebassets\\lib\\tinymce\\plugins\\importcss\\plugin.min.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\tinymce\\plugins\\insertdatetime\\plugin.min.js",
+      "PackagePath": "staticwebassets\\lib\\tinymce\\plugins\\insertdatetime\\plugin.min.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\tinymce\\plugins\\link\\plugin.min.js",
+      "PackagePath": "staticwebassets\\lib\\tinymce\\plugins\\link\\plugin.min.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\tinymce\\plugins\\lists\\plugin.min.js",
+      "PackagePath": "staticwebassets\\lib\\tinymce\\plugins\\lists\\plugin.min.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\tinymce\\plugins\\media\\plugin.min.js",
+      "PackagePath": "staticwebassets\\lib\\tinymce\\plugins\\media\\plugin.min.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\tinymce\\plugins\\nonbreaking\\plugin.min.js",
+      "PackagePath": "staticwebassets\\lib\\tinymce\\plugins\\nonbreaking\\plugin.min.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\tinymce\\plugins\\pagebreak\\plugin.min.js",
+      "PackagePath": "staticwebassets\\lib\\tinymce\\plugins\\pagebreak\\plugin.min.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\tinymce\\plugins\\preview\\plugin.min.js",
+      "PackagePath": "staticwebassets\\lib\\tinymce\\plugins\\preview\\plugin.min.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\tinymce\\plugins\\quickbars\\plugin.min.js",
+      "PackagePath": "staticwebassets\\lib\\tinymce\\plugins\\quickbars\\plugin.min.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\tinymce\\plugins\\save\\plugin.min.js",
+      "PackagePath": "staticwebassets\\lib\\tinymce\\plugins\\save\\plugin.min.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\tinymce\\plugins\\searchreplace\\plugin.min.js",
+      "PackagePath": "staticwebassets\\lib\\tinymce\\plugins\\searchreplace\\plugin.min.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\tinymce\\plugins\\table\\plugin.min.js",
+      "PackagePath": "staticwebassets\\lib\\tinymce\\plugins\\table\\plugin.min.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\tinymce\\plugins\\template\\plugin.min.js",
+      "PackagePath": "staticwebassets\\lib\\tinymce\\plugins\\template\\plugin.min.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\tinymce\\plugins\\visualblocks\\plugin.min.js",
+      "PackagePath": "staticwebassets\\lib\\tinymce\\plugins\\visualblocks\\plugin.min.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\tinymce\\plugins\\visualchars\\plugin.min.js",
+      "PackagePath": "staticwebassets\\lib\\tinymce\\plugins\\visualchars\\plugin.min.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\tinymce\\plugins\\wordcount\\plugin.min.js",
+      "PackagePath": "staticwebassets\\lib\\tinymce\\plugins\\wordcount\\plugin.min.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\tinymce\\skins\\content\\dark\\content.min.css",
+      "PackagePath": "staticwebassets\\lib\\tinymce\\skins\\content\\dark\\content.min.css"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\tinymce\\skins\\content\\default\\content.min.css",
+      "PackagePath": "staticwebassets\\lib\\tinymce\\skins\\content\\default\\content.min.css"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\tinymce\\skins\\content\\document\\content.min.css",
+      "PackagePath": "staticwebassets\\lib\\tinymce\\skins\\content\\document\\content.min.css"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\tinymce\\skins\\content\\tinymce-5-dark\\content.min.css",
+      "PackagePath": "staticwebassets\\lib\\tinymce\\skins\\content\\tinymce-5-dark\\content.min.css"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\tinymce\\skins\\content\\tinymce-5\\content.min.css",
+      "PackagePath": "staticwebassets\\lib\\tinymce\\skins\\content\\tinymce-5\\content.min.css"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\tinymce\\skins\\content\\writer\\content.min.css",
+      "PackagePath": "staticwebassets\\lib\\tinymce\\skins\\content\\writer\\content.min.css"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\tinymce\\skins\\ui\\oxide-dark\\content.inline.min.css",
+      "PackagePath": "staticwebassets\\lib\\tinymce\\skins\\ui\\oxide-dark\\content.inline.min.css"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\tinymce\\skins\\ui\\oxide-dark\\content.min.css",
+      "PackagePath": "staticwebassets\\lib\\tinymce\\skins\\ui\\oxide-dark\\content.min.css"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\tinymce\\skins\\ui\\oxide-dark\\skin.min.css",
+      "PackagePath": "staticwebassets\\lib\\tinymce\\skins\\ui\\oxide-dark\\skin.min.css"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\tinymce\\skins\\ui\\oxide-dark\\skin.shadowdom.min.css",
+      "PackagePath": "staticwebassets\\lib\\tinymce\\skins\\ui\\oxide-dark\\skin.shadowdom.min.css"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\tinymce\\skins\\ui\\oxide\\content.inline.min.css",
+      "PackagePath": "staticwebassets\\lib\\tinymce\\skins\\ui\\oxide\\content.inline.min.css"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\tinymce\\skins\\ui\\oxide\\content.min.css",
+      "PackagePath": "staticwebassets\\lib\\tinymce\\skins\\ui\\oxide\\content.min.css"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\tinymce\\skins\\ui\\oxide\\skin.min.css",
+      "PackagePath": "staticwebassets\\lib\\tinymce\\skins\\ui\\oxide\\skin.min.css"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\tinymce\\skins\\ui\\oxide\\skin.shadowdom.min.css",
+      "PackagePath": "staticwebassets\\lib\\tinymce\\skins\\ui\\oxide\\skin.shadowdom.min.css"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\tinymce\\skins\\ui\\tinymce-5-dark\\content.inline.min.css",
+      "PackagePath": "staticwebassets\\lib\\tinymce\\skins\\ui\\tinymce-5-dark\\content.inline.min.css"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\tinymce\\skins\\ui\\tinymce-5-dark\\content.min.css",
+      "PackagePath": "staticwebassets\\lib\\tinymce\\skins\\ui\\tinymce-5-dark\\content.min.css"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\tinymce\\skins\\ui\\tinymce-5-dark\\skin.min.css",
+      "PackagePath": "staticwebassets\\lib\\tinymce\\skins\\ui\\tinymce-5-dark\\skin.min.css"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\tinymce\\skins\\ui\\tinymce-5-dark\\skin.shadowdom.min.css",
+      "PackagePath": "staticwebassets\\lib\\tinymce\\skins\\ui\\tinymce-5-dark\\skin.shadowdom.min.css"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\tinymce\\skins\\ui\\tinymce-5\\content.inline.min.css",
+      "PackagePath": "staticwebassets\\lib\\tinymce\\skins\\ui\\tinymce-5\\content.inline.min.css"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\tinymce\\skins\\ui\\tinymce-5\\content.min.css",
+      "PackagePath": "staticwebassets\\lib\\tinymce\\skins\\ui\\tinymce-5\\content.min.css"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\tinymce\\skins\\ui\\tinymce-5\\skin.min.css",
+      "PackagePath": "staticwebassets\\lib\\tinymce\\skins\\ui\\tinymce-5\\skin.min.css"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\tinymce\\skins\\ui\\tinymce-5\\skin.shadowdom.min.css",
+      "PackagePath": "staticwebassets\\lib\\tinymce\\skins\\ui\\tinymce-5\\skin.shadowdom.min.css"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\tinymce\\themes\\silver\\theme.min.js",
+      "PackagePath": "staticwebassets\\lib\\tinymce\\themes\\silver\\theme.min.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\tinymce\\tinymce.d.ts",
+      "PackagePath": "staticwebassets\\lib\\tinymce\\tinymce.d.ts"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\lib\\tinymce\\tinymce.min.js",
+      "PackagePath": "staticwebassets\\lib\\tinymce\\tinymce.min.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\sweetalert\\LICENSE",
+      "PackagePath": "staticwebassets\\sweetalert"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\sweetalert\\README.md",
+      "PackagePath": "staticwebassets\\sweetalert\\README.md"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\sweetalert\\dist\\sweetalert2.all.js",
+      "PackagePath": "staticwebassets\\sweetalert\\dist\\sweetalert2.all.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\sweetalert\\dist\\sweetalert2.all.min.js",
+      "PackagePath": "staticwebassets\\sweetalert\\dist\\sweetalert2.all.min.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\sweetalert\\dist\\sweetalert2.css",
+      "PackagePath": "staticwebassets\\sweetalert\\dist\\sweetalert2.css"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\sweetalert\\dist\\sweetalert2.js",
+      "PackagePath": "staticwebassets\\sweetalert\\dist\\sweetalert2.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\sweetalert\\dist\\sweetalert2.min.css",
+      "PackagePath": "staticwebassets\\sweetalert\\dist\\sweetalert2.min.css"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\sweetalert\\dist\\sweetalert2.min.js",
+      "PackagePath": "staticwebassets\\sweetalert\\dist\\sweetalert2.min.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\sweetalert\\package.json",
+      "PackagePath": "staticwebassets\\sweetalert\\package.json"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\sweetalert\\src\\SweetAlert.js",
+      "PackagePath": "staticwebassets\\sweetalert\\src\\SweetAlert.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\sweetalert\\src\\buttons-handlers.js",
+      "PackagePath": "staticwebassets\\sweetalert\\src\\buttons-handlers.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\sweetalert\\src\\constants.js",
+      "PackagePath": "staticwebassets\\sweetalert\\src\\constants.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\sweetalert\\src\\globalState.js",
+      "PackagePath": "staticwebassets\\sweetalert\\src\\globalState.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\sweetalert\\src\\instanceMethods.js",
+      "PackagePath": "staticwebassets\\sweetalert\\src\\instanceMethods.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\sweetalert\\src\\instanceMethods\\_destroy.js",
+      "PackagePath": "staticwebassets\\sweetalert\\src\\instanceMethods\\_destroy.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\sweetalert\\src\\instanceMethods\\close.js",
+      "PackagePath": "staticwebassets\\sweetalert\\src\\instanceMethods\\close.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\sweetalert\\src\\instanceMethods\\enable-disable-elements.js",
+      "PackagePath": "staticwebassets\\sweetalert\\src\\instanceMethods\\enable-disable-elements.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\sweetalert\\src\\instanceMethods\\getInput.js",
+      "PackagePath": "staticwebassets\\sweetalert\\src\\instanceMethods\\getInput.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\sweetalert\\src\\instanceMethods\\hideLoading.js",
+      "PackagePath": "staticwebassets\\sweetalert\\src\\instanceMethods\\hideLoading.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\sweetalert\\src\\instanceMethods\\update.js",
+      "PackagePath": "staticwebassets\\sweetalert\\src\\instanceMethods\\update.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\sweetalert\\src\\instanceMethods\\validation-message.js",
+      "PackagePath": "staticwebassets\\sweetalert\\src\\instanceMethods\\validation-message.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\sweetalert\\src\\keydown-handler.js",
+      "PackagePath": "staticwebassets\\sweetalert\\src\\keydown-handler.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\sweetalert\\src\\popup-click-handler.js",
+      "PackagePath": "staticwebassets\\sweetalert\\src\\popup-click-handler.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\sweetalert\\src\\privateMethods.js",
+      "PackagePath": "staticwebassets\\sweetalert\\src\\privateMethods.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\sweetalert\\src\\privateProps.js",
+      "PackagePath": "staticwebassets\\sweetalert\\src\\privateProps.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\sweetalert\\src\\scss\\_animations.scss",
+      "PackagePath": "staticwebassets\\sweetalert\\src\\scss\\_animations.scss"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\sweetalert\\src\\scss\\_body.scss",
+      "PackagePath": "staticwebassets\\sweetalert\\src\\scss\\_body.scss"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\sweetalert\\src\\scss\\_core.scss",
+      "PackagePath": "staticwebassets\\sweetalert\\src\\scss\\_core.scss"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\sweetalert\\src\\scss\\_icons.scss",
+      "PackagePath": "staticwebassets\\sweetalert\\src\\scss\\_icons.scss"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\sweetalert\\src\\scss\\_mixins.scss",
+      "PackagePath": "staticwebassets\\sweetalert\\src\\scss\\_mixins.scss"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\sweetalert\\src\\scss\\_theming.scss",
+      "PackagePath": "staticwebassets\\sweetalert\\src\\scss\\_theming.scss"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\sweetalert\\src\\scss\\_toasts-animations.scss",
+      "PackagePath": "staticwebassets\\sweetalert\\src\\scss\\_toasts-animations.scss"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\sweetalert\\src\\scss\\_toasts-body.scss",
+      "PackagePath": "staticwebassets\\sweetalert\\src\\scss\\_toasts-body.scss"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\sweetalert\\src\\scss\\_toasts.scss",
+      "PackagePath": "staticwebassets\\sweetalert\\src\\scss\\_toasts.scss"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\sweetalert\\src\\staticMethods.js",
+      "PackagePath": "staticwebassets\\sweetalert\\src\\staticMethods.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\sweetalert\\src\\staticMethods\\argsToParams.js",
+      "PackagePath": "staticwebassets\\sweetalert\\src\\staticMethods\\argsToParams.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\sweetalert\\src\\staticMethods\\bindClickHandler.js",
+      "PackagePath": "staticwebassets\\sweetalert\\src\\staticMethods\\bindClickHandler.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\sweetalert\\src\\staticMethods\\dom.js",
+      "PackagePath": "staticwebassets\\sweetalert\\src\\staticMethods\\dom.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\sweetalert\\src\\staticMethods\\fire.js",
+      "PackagePath": "staticwebassets\\sweetalert\\src\\staticMethods\\fire.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\sweetalert\\src\\staticMethods\\mixin.js",
+      "PackagePath": "staticwebassets\\sweetalert\\src\\staticMethods\\mixin.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\sweetalert\\src\\staticMethods\\showLoading.js",
+      "PackagePath": "staticwebassets\\sweetalert\\src\\staticMethods\\showLoading.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\sweetalert\\src\\staticMethods\\timer.js",
+      "PackagePath": "staticwebassets\\sweetalert\\src\\staticMethods\\timer.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\sweetalert\\src\\sweetalert2.js",
+      "PackagePath": "staticwebassets\\sweetalert\\src\\sweetalert2.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\sweetalert\\src\\sweetalert2.scss",
+      "PackagePath": "staticwebassets\\sweetalert\\src\\sweetalert2.scss"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\sweetalert\\src\\types.js",
+      "PackagePath": "staticwebassets\\sweetalert\\src\\types.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\sweetalert\\src\\utils\\DismissReason.js",
+      "PackagePath": "staticwebassets\\sweetalert\\src\\utils\\DismissReason.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\sweetalert\\src\\utils\\Timer.js",
+      "PackagePath": "staticwebassets\\sweetalert\\src\\utils\\Timer.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\sweetalert\\src\\utils\\aria.js",
+      "PackagePath": "staticwebassets\\sweetalert\\src\\utils\\aria.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\sweetalert\\src\\utils\\classes.js",
+      "PackagePath": "staticwebassets\\sweetalert\\src\\utils\\classes.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\sweetalert\\src\\utils\\defaultInputValidators.js",
+      "PackagePath": "staticwebassets\\sweetalert\\src\\utils\\defaultInputValidators.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\sweetalert\\src\\utils\\dom\\animationEndEvent.js",
+      "PackagePath": "staticwebassets\\sweetalert\\src\\utils\\dom\\animationEndEvent.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\sweetalert\\src\\utils\\dom\\domUtils.js",
+      "PackagePath": "staticwebassets\\sweetalert\\src\\utils\\dom\\domUtils.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\sweetalert\\src\\utils\\dom\\getters.js",
+      "PackagePath": "staticwebassets\\sweetalert\\src\\utils\\dom\\getters.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\sweetalert\\src\\utils\\dom\\index.js",
+      "PackagePath": "staticwebassets\\sweetalert\\src\\utils\\dom\\index.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\sweetalert\\src\\utils\\dom\\init.js",
+      "PackagePath": "staticwebassets\\sweetalert\\src\\utils\\dom\\init.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\sweetalert\\src\\utils\\dom\\inputUtils.js",
+      "PackagePath": "staticwebassets\\sweetalert\\src\\utils\\dom\\inputUtils.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\sweetalert\\src\\utils\\dom\\parseHtmlToContainer.js",
+      "PackagePath": "staticwebassets\\sweetalert\\src\\utils\\dom\\parseHtmlToContainer.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\sweetalert\\src\\utils\\dom\\renderers\\render.js",
+      "PackagePath": "staticwebassets\\sweetalert\\src\\utils\\dom\\renderers\\render.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\sweetalert\\src\\utils\\dom\\renderers\\renderActions.js",
+      "PackagePath": "staticwebassets\\sweetalert\\src\\utils\\dom\\renderers\\renderActions.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\sweetalert\\src\\utils\\dom\\renderers\\renderCloseButton.js",
+      "PackagePath": "staticwebassets\\sweetalert\\src\\utils\\dom\\renderers\\renderCloseButton.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\sweetalert\\src\\utils\\dom\\renderers\\renderContainer.js",
+      "PackagePath": "staticwebassets\\sweetalert\\src\\utils\\dom\\renderers\\renderContainer.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\sweetalert\\src\\utils\\dom\\renderers\\renderContent.js",
+      "PackagePath": "staticwebassets\\sweetalert\\src\\utils\\dom\\renderers\\renderContent.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\sweetalert\\src\\utils\\dom\\renderers\\renderFooter.js",
+      "PackagePath": "staticwebassets\\sweetalert\\src\\utils\\dom\\renderers\\renderFooter.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\sweetalert\\src\\utils\\dom\\renderers\\renderIcon.js",
+      "PackagePath": "staticwebassets\\sweetalert\\src\\utils\\dom\\renderers\\renderIcon.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\sweetalert\\src\\utils\\dom\\renderers\\renderImage.js",
+      "PackagePath": "staticwebassets\\sweetalert\\src\\utils\\dom\\renderers\\renderImage.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\sweetalert\\src\\utils\\dom\\renderers\\renderInput.js",
+      "PackagePath": "staticwebassets\\sweetalert\\src\\utils\\dom\\renderers\\renderInput.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\sweetalert\\src\\utils\\dom\\renderers\\renderPopup.js",
+      "PackagePath": "staticwebassets\\sweetalert\\src\\utils\\dom\\renderers\\renderPopup.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\sweetalert\\src\\utils\\dom\\renderers\\renderProgressSteps.js",
+      "PackagePath": "staticwebassets\\sweetalert\\src\\utils\\dom\\renderers\\renderProgressSteps.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\sweetalert\\src\\utils\\dom\\renderers\\renderTitle.js",
+      "PackagePath": "staticwebassets\\sweetalert\\src\\utils\\dom\\renderers\\renderTitle.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\sweetalert\\src\\utils\\getTemplateParams.js",
+      "PackagePath": "staticwebassets\\sweetalert\\src\\utils\\getTemplateParams.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\sweetalert\\src\\utils\\iosFix.js",
+      "PackagePath": "staticwebassets\\sweetalert\\src\\utils\\iosFix.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\sweetalert\\src\\utils\\isNodeEnv.js",
+      "PackagePath": "staticwebassets\\sweetalert\\src\\utils\\isNodeEnv.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\sweetalert\\src\\utils\\openPopup.js",
+      "PackagePath": "staticwebassets\\sweetalert\\src\\utils\\openPopup.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\sweetalert\\src\\utils\\params.js",
+      "PackagePath": "staticwebassets\\sweetalert\\src\\utils\\params.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\sweetalert\\src\\utils\\scrollbar.js",
+      "PackagePath": "staticwebassets\\sweetalert\\src\\utils\\scrollbar.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\sweetalert\\src\\utils\\setParameters.js",
+      "PackagePath": "staticwebassets\\sweetalert\\src\\utils\\setParameters.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\sweetalert\\src\\utils\\utils.js",
+      "PackagePath": "staticwebassets\\sweetalert\\src\\utils\\utils.js"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\sweetalert\\src\\variables.scss",
+      "PackagePath": "staticwebassets\\sweetalert\\src\\variables.scss"
+    },
+    {
+      "Id": "D:\\Projects\\.Net\\Mover\\Mover\\wwwroot\\sweetalert\\sweetalert2.d.ts",
+      "PackagePath": "staticwebassets\\sweetalert\\sweetalert2.d.ts"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.Mover.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.Mover.props",
+      "PackagePath": "build\\Mover.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.Mover.props",
+      "PackagePath": "buildMultiTargeting\\Mover.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.Mover.props",
+      "PackagePath": "buildTransitive\\Mover.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

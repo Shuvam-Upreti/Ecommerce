@@ -1,0 +1,14 @@
+﻿<script>
+    var msg = @( TempData["Message"] != null ? Html.Raw(TempData["Message"]) : Html.Raw("undefined"));
+
+    if (msg) {
+        if (msg.status == "info")
+            toastr.info(msg.message);
+        if (msg.status == "error")
+            toastr.error(msg.message);
+        if (msg.status == "success")
+            toastr.success(msg.message);
+
+    @(TempData["Message"] = null)
+    }
+</script>

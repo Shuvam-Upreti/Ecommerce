@@ -1,0 +1,13 @@
+D:\Projects\.Net\Mover\Mover.Logging\bin\Debug\net8.0\Mover.Logging.deps.json
+D:\Projects\.Net\Mover\Mover.Logging\bin\Debug\net8.0\Mover.Logging.dll
+D:\Projects\.Net\Mover\Mover.Logging\bin\Debug\net8.0\Mover.Logging.pdb
+D:\Projects\.Net\Mover\Mover.Logging\obj\Debug\net8.0\Mover.Logging.csproj.AssemblyReference.cache
+D:\Projects\.Net\Mover\Mover.Logging\obj\Debug\net8.0\Mover.Logging.GeneratedMSBuildEditorConfig.editorconfig
+D:\Projects\.Net\Mover\Mover.Logging\obj\Debug\net8.0\Mover.Logging.AssemblyInfoInputs.cache
+D:\Projects\.Net\Mover\Mover.Logging\obj\Debug\net8.0\Mover.Logging.AssemblyInfo.cs
+D:\Projects\.Net\Mover\Mover.Logging\obj\Debug\net8.0\Mover.Logging.csproj.CoreCompileInputs.cache
+D:\Projects\.Net\Mover\Mover.Logging\obj\Debug\net8.0\Mover.Logging.sourcelink.json
+D:\Projects\.Net\Mover\Mover.Logging\obj\Debug\net8.0\Mover.Logging.dll
+D:\Projects\.Net\Mover\Mover.Logging\obj\Debug\net8.0\refint\Mover.Logging.dll
+D:\Projects\.Net\Mover\Mover.Logging\obj\Debug\net8.0\Mover.Logging.pdb
+D:\Projects\.Net\Mover\Mover.Logging\obj\Debug\net8.0\ref\Mover.Logging.dll
