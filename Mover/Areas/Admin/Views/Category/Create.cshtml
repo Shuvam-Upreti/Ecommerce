@@ -1,0 +1,35 @@
+﻿@model Mover.Areas.Admin.ViewModel.Category.CategoryViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Create Order";
+}
+
+<div class="container mt-5">
+    <div class="card shadow-lg">
+        <div class="card-header bg-secondary text-black">
+            <h5 class="mb-0">Create Order</h5>
+        </div>
+        <div class="card-body">
+            <form asp-action="Create" method="post">
+                @Html.AntiForgeryToken()
+                <div class="row">
+                    <!-- Receiver Information -->
+                    <div class="col-md-6 mb-3">
+                        <label for="Name" class="form-label fw-bold">Name</label>
+                        @Html.TextBoxFor(model => model.Name, new { @class = "form-control", placeholder = "Enter category name" })
+                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="mt-4 text-left">
+                    <button type="submit" class="btn btn-success btn-md px-5">Create</button>
+                    <a asp-action="Index" class="btn btn-secondary btn-md px-5 ms-3">Back to List</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

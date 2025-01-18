@@ -8,7 +8,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Mover.Infrastructure.Repository.Implementation
+namespace Mover.Infrastructure.Repository.Implementations
 {
     /// <summary>
     /// Common Repository class to manipulate / extract data from any table in database 
@@ -120,7 +120,7 @@ namespace Mover.Infrastructure.Repository.Implementation
             IQueryable<T> queryable = GetAllQueryable();
             foreach (Expression<Func<T, object>> includeProperty in includeProperties)
             {
-                queryable = queryable.Include<T, object>(includeProperty);
+                queryable = queryable.Include(includeProperty);
             }
 
             return queryable;
@@ -207,13 +207,13 @@ namespace Mover.Infrastructure.Repository.Implementation
         private bool disposed = false;
         protected virtual void Dispose(bool disposing)
         {
-            if (!this.disposed)
+            if (!disposed)
             {
                 if (disposing)
                 {
                     _context.Dispose();
                 }
-                this.disposed = true;
+                disposed = true;
             }
         }
 

@@ -1,6 +1,5 @@
 ﻿using Mover.Core.Entities;
 using Mover.Core.Repository.Interfaces;
-using Mover.Infrastructure.Repository.Implementation;
 using System;
 using System.Collections.Generic;
 using System.Linq;

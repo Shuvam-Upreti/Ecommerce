@@ -1,15 +1,14 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using Mover.Core.Dto.User;
+using Mover.Logging;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Mover.Core.Dto.User;
 using Mover.Core.Entities.UserManagement;
 using Mover.Core.Enums.Account;
 using Mover.Core.Exceptions;
 using Mover.Core.Services.Interfaces;
 using Mover.HttpUtility;
-using Mover.Logging;
 using Mover.ViewModel.Account;
-using Npgsql.Replication.PgOutput.Messages;
 
 namespace Mover.Controllers
 {

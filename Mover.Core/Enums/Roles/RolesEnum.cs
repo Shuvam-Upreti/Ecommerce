@@ -8,9 +8,8 @@ namespace Mover.Core.Enums.Roles
 {
     public enum RolesEnum
     {
-        SuperAdmin,
-        admin,
-        Rider,
+        Admin,
+        Employee,
         Customer
     }
 }

@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34408.163
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mover", "Mover\Mover.csproj", "{7FE7BFA2-BBC7-4822-AC22-D8DEA8EA48B9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mover", "Mover\Mover.csproj", "{7FE7BFA2-BBC7-4822-AC22-D8DEA8EA48B9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mover.Core", "Mover.Core\Mover.Core.csproj", "{D5C5E0F7-3535-42DA-BACD-4F2DB7532303}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mover.Core", "Mover.Core\Mover.Core.csproj", "{D5C5E0F7-3535-42DA-BACD-4F2DB7532303}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mover.Infrastructure", "Mover.Infrastructure\Mover.Infrastructure.csproj", "{31D913BB-194D-4799-A9E9-D8D9F51501D0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mover.Infrastructure", "Mover.Infrastructure\Mover.Infrastructure.csproj", "{31D913BB-194D-4799-A9E9-D8D9F51501D0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mover.Logging", "Mover.Logging\Mover.Logging.csproj", "{2E9CD8FA-CC30-4FC2-A5AB-6D01DD6713CA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mover.Logging", "Mover.Logging\Mover.Logging.csproj", "{2E9CD8FA-CC30-4FC2-A5AB-6D01DD6713CA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

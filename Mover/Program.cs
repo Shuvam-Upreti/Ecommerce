@@ -4,10 +4,11 @@ using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.EntityFrameworkCore;
 using Mover.Core.Entities;
 using Mover.Core.Entities.UserManagement;
+using Mover.Core.Enums.Roles;
 using Mover.Core.Repository.Interfaces;
 using Mover.HttpUtility;
 using Mover.Infrastructure.Context;
-using Mover.Infrastructure.Repository.Implementation;
+using Mover.Infrastructure.Repository.Implementations;
 using Mover.Logging;
 using Mover.Middleware;
 using Mover.SeedData;
@@ -16,15 +17,23 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<IdentityUserDbContext>(options =>
 {
-    options.UseLazyLoadingProxies().UseNpgsql(builder.Configuration.GetConnectionString("MoverConnection"), b => b.MigrationsAssembly("Mover.Infrastructure"));
+    options.UseLazyLoadingProxies().UseSqlServer(builder.Configuration.GetConnectionString("EcomConnection"), b => b.MigrationsAssembly("Ecommerce.Infrastructure"));
 });
 
-builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = false)
-    .AddEntityFrameworkStores<IdentityUserDbContext>();
 builder.Services.AddDbContext<MoverContext>(options =>
 {
-    options.UseLazyLoadingProxies().UseNpgsql(builder.Configuration.GetConnectionString("MoverConnection"), b => b.MigrationsAssembly("Mover.Infrastructure"));
+    options.UseLazyLoadingProxies().UseSqlServer(builder.Configuration.GetConnectionString("EcomConnection"), b => b.MigrationsAssembly("Ecommerce.Infrastructure"));
     // options.ConfigureWarnings(x => x.Ignore(RelationalEventId.AmbientTransactionWarning));
+});
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = false)
+    .AddEntityFrameworkStores<IdentityUserDbContext>();
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("RequireAdminRole", policy => policy.RequireRole(RolesEnum.Admin.ToString()));
+});
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    options.AccessDeniedPath = "/Account/AccessDenied";
 });
 
 RegisterServices(builder.Services);
@@ -34,7 +43,7 @@ builder.Services.Configure<IdentityOptions>(options =>
     options.Password.RequireDigit = true;
     options.Password.RequireLowercase = true;
     options.Password.RequireNonAlphanumeric = false;
-    options.Password.RequireUppercase = true;
+    options.Password.RequireUppercase = false;
     options.Password.RequiredLength = 8;
     options.Password.RequiredUniqueChars = 1;
 

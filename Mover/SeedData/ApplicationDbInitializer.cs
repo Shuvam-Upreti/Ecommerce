@@ -1,18 +1,18 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Mover.Core.Entities;
+﻿using Mover.Core.Entities;
+using Mover.Logging;
+using Microsoft.AspNetCore.Identity;
 using Mover.Core.Entities.UserManagement;
 using Mover.Core.Enums.Roles;
 using Mover.Infrastructure.Context;
-using Mover.Logging;
 
 namespace Mover.SeedData
 {
     public static class ApplicationDbInitializer
     {
-        static string _SUPERADMINROLE = RolesEnum.SuperAdmin.ToString();
-        static string _SUPERADMINUSERNAME = RolesEnum.admin.ToString();
+        static string _SUPERADMINROLE = RolesEnum.Admin.ToString();
+        static string _SUPERADMINUSERNAME = "admin";
         static string _CUSTOMERROLE = RolesEnum.Customer.ToString();
-        static string _RIDERROLE = RolesEnum.Rider.ToString();
+        static string _EMPLOYEEROLE = RolesEnum.Employee.ToString();
 
         static string _roleId = Guid.NewGuid().ToString();
         static string _customerRoleId = Guid.NewGuid().ToString();
@@ -66,7 +66,7 @@ namespace Mover.SeedData
                     // Check if roles exist before adding them
                     AddRoleIfNotExists(context, _SUPERADMINROLE, _customerRoleId);
                     AddRoleIfNotExists(context, _CUSTOMERROLE);
-                    AddRoleIfNotExists(context, _RIDERROLE);
+                    AddRoleIfNotExists(context, _EMPLOYEEROLE);
 
                     context.SaveChanges();
 

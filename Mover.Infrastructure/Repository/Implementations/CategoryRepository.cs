@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace Mover.Infrastructure.Repository.Implementations
 {
-    public class UserDetailRepository : BaseRepository<UserDetail>, IUserDetailRepository
+    public class CategoryRepository : BaseRepository<Category>, ICategoryRepository
     {
-        public UserDetailRepository(MoverContext context) : base(context)
+        public CategoryRepository(MoverContext context) : base(context)
         {
 
         }

@@ -34,7 +34,7 @@ namespace Mover.Middleware
 
             var response = new
             {
-                StatusCode = context.Response.StatusCode,
+                context.Response.StatusCode,
                 Message = "Internal Server Error. An unexpected error occurred."
             };
 

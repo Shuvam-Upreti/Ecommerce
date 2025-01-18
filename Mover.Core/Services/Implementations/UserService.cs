@@ -38,7 +38,7 @@ namespace Mover.Core.Services.Implementations
                 FullName = getUserId.FullName,
                 Role = roles
             };
-            return (userDetail);
+            return userDetail;
 
         }
     }

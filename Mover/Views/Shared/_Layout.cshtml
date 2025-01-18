@@ -32,9 +32,9 @@
     @* <input type="hidden" id="nepali-text-font" value="@nepaliTextFont" /> *@
 
     <nav class="navbar navbar-fixed-top" id="header">
-        @*<button type="button" id="sidebarCollapse" class="sideArrow">
+        <button type="button" id="sidebarCollapse" class="sideArrow">
         <i class="fas fa-angle-double-left"></i>
-        </button>*@
+        </button>
         <div class="navbar-inverse">
             <div class="container-fluid">
                 <div class="navbar-header">
@@ -82,20 +82,12 @@
                 </div>
                 <div class="pull-right" style="display: inline-block; vertical-align: middle;">
 
-                    <a href="/Home/RecoveryProcess" style="display: inline-block; color:inherit;">
-                        <i class="fa fa-file-invoice-dollar"></i> Order
+                    <a href="/admin/category/index" style="display: inline-block; color:inherit;">
+                        <i class="fa fa-file-invoice-dollar"></i> Category
                     </a>
-                    @*  <a href="/Loan/Customer/Index" style="display: inline-block; margin-right: 10px;color:inherit;">
-                    <i class="fa fa-users"></i> Customer
-                    </a>   *@
-
-                    @* <a href="/Home/ACL" style="display: inline-block; margin-right: 10px;color:inherit;">
-                    <i class="fa fa-user"></i> ACL
-                    </a> *@
                     <a href="/Home/GlobalSetting" style="display: inline-block; color:inherit;">
                         <i class="fa fa-cogs"></i> Rider
                     </a>
-
                     <a href="/Account/Logout" style="display: inline-block; vertical-align: middle;color:inherit;">
                         <i class="fas fa-sign-out-alt faSize"></i> Log Out
                     </a>
@@ -125,31 +117,18 @@
         </a>
     </div>
 
-
-    @*<div class="overlay"></div>*@
     <div class="body-content space1" id="cBody">
         <div class="container-fluid">
             <div class="mt-5 mb-5">
                 @RenderBody()
-
-                @* <div id="license"></div>
-                <div id="clearfix"></div> *@
-                <!-- used in adding modal popup html in below div. -->
-                @* <div id="modalPopupOfLayout"></div> *@
             </div>
         </div>
     </div>
 
     <footer class="page-footer font-small blue pt-5 pb-5">
         <div style="text-align:center">
-            <span>&copy;@DateTime.Now.Year - Mover <i> (A Complete End to End Delivery Solution) </i></span>
+            <span>&copy;@DateTime.Now.Year - Ecommerce <i> (A Complete End to End Ecommerce Solution) </i></span>
         </div>
-        @*  <div style="text-align:center">
-        Developed By:
-        <a href="https://xmartpoint.com/" target="_blank">
-        <img style="height: 25px" src="~/image/xmart_footer.png" />
-        </a>
-        </div> *@
     </footer>
     <div class="block-window">
         <div>
@@ -185,6 +164,7 @@
     <script src="~/js/jquery-confirm.min.js"></script>
     @RenderSection("scripts", required: false)
     @await Html.PartialAsync("_NotificationPartial")
+    @await Html.PartialAsync("_ValidationScriptsPartial")
 </body>
 </html>
 
