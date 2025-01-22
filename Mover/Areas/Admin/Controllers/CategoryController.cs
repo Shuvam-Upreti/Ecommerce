@@ -163,6 +163,7 @@ namespace Mover.Areas.Admin.Controllers
             }
         }
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(int id)
         {
             try

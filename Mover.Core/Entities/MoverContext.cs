@@ -60,7 +60,8 @@ public partial class MoverContext : DbContext
 
             entity.HasOne(d => d.User).WithMany(p => p.Addresses)
                 .HasForeignKey(d => d.UserId)
-                .HasConstraintName("FK__Address__UserID__5BAD9CC8");
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName("FK_Address_UserDetail");
         });
 
         modelBuilder.Entity<AspNetRole>(entity =>
@@ -156,7 +157,8 @@ public partial class MoverContext : DbContext
 
             entity.HasOne(d => d.Product).WithMany(p => p.Inventories)
                 .HasForeignKey(d => d.ProductId)
-                .HasConstraintName("FK__Inventory__Produ__74794A92");
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName("FK_Inventory_Products");
         });
 
         modelBuilder.Entity<Order>(entity =>
@@ -182,7 +184,8 @@ public partial class MoverContext : DbContext
 
             entity.HasOne(d => d.User).WithMany(p => p.Orders)
                 .HasForeignKey(d => d.UserId)
-                .HasConstraintName("FK__Orders__UserID__6166761E");
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName("FK_Orders_UserDetail");
         });
 
         modelBuilder.Entity<OrderItem>(entity =>
@@ -197,11 +200,13 @@ public partial class MoverContext : DbContext
 
             entity.HasOne(d => d.Order).WithMany(p => p.OrderItems)
                 .HasForeignKey(d => d.OrderId)
-                .HasConstraintName("FK__OrderItem__Order__6442E2C9");
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName("FK_OrderItems_Orders");
 
             entity.HasOne(d => d.Product).WithMany(p => p.OrderItems)
                 .HasForeignKey(d => d.ProductId)
-                .HasConstraintName("FK__OrderItem__Produ__65370702");
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName("FK_OrderItems_Products");
         });
 
         modelBuilder.Entity<Product>(entity =>
@@ -233,7 +238,8 @@ public partial class MoverContext : DbContext
 
             entity.HasOne(d => d.Product).WithMany(p => p.ProductImages)
                 .HasForeignKey(d => d.ProductId)
-                .HasConstraintName("FK__ProductIm__Produ__58D1301D");
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName("FK_ProductImages_Products");
         });
 
         modelBuilder.Entity<ProductReview>(entity =>
@@ -249,11 +255,13 @@ public partial class MoverContext : DbContext
 
             entity.HasOne(d => d.Product).WithMany(p => p.ProductReviews)
                 .HasForeignKey(d => d.ProductId)
-                .HasConstraintName("FK__ProductRe__Produ__6FB49575");
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName("FK_ProductReviews_Products");
 
             entity.HasOne(d => d.User).WithMany(p => p.ProductReviews)
                 .HasForeignKey(d => d.UserId)
-                .HasConstraintName("FK__ProductRe__UserI__70A8B9AE");
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName("FK_ProductReviews_UserDetail");
         });
 
         modelBuilder.Entity<ShoppingCart>(entity =>
@@ -261,8 +269,6 @@ public partial class MoverContext : DbContext
             entity.HasKey(e => e.CartId).HasName("PK__Shopping__51BCD797E2265125");
 
             entity.ToTable("ShoppingCart");
-
-            entity.HasIndex(e => new { e.UserId, e.ProductId }, "UserProduct").IsUnique();
 
             entity.Property(e => e.CartId).HasColumnName("CartID");
             entity.Property(e => e.AddedAt)
@@ -273,11 +279,11 @@ public partial class MoverContext : DbContext
 
             entity.HasOne(d => d.Product).WithMany(p => p.ShoppingCarts)
                 .HasForeignKey(d => d.ProductId)
-                .HasConstraintName("FK__ShoppingC__Produ__6AEFE058");
+                .HasConstraintName("FK_ShoppingCart_Products");
 
             entity.HasOne(d => d.User).WithMany(p => p.ShoppingCarts)
                 .HasForeignKey(d => d.UserId)
-                .HasConstraintName("FK__ShoppingC__UserI__69FBBC1F");
+                .HasConstraintName("FK_ShoppingCart_UserDetail");
         });
 
         modelBuilder.Entity<UserDetail>(entity =>
@@ -293,8 +299,7 @@ public partial class MoverContext : DbContext
 
             entity.HasOne(d => d.AspUser).WithMany(p => p.UserDetails)
                 .HasForeignKey(d => d.AspUserId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("fk_aspuserid");
+                .HasConstraintName("fk_AspUserId");
         });
 
         OnModelCreatingPartial(modelBuilder);

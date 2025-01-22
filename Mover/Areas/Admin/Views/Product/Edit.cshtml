@@ -1,0 +1,59 @@
+﻿@model Mover.Areas.Admin.ViewModel.Product.ProductViewModel
+
+@{
+    ViewData["Title"] = "Edit Product";
+}
+
+<h2>Edit Product</h2>
+
+<form asp-action="Edit" method="post" enctype="multipart/form-data">
+    @Html.AntiForgeryToken()
+    <input type="hidden" class="form-control" id="ProductId" name="ProductId" value="@Model.ProductId" />
+
+    <div class="form-group">
+        <label for="ProductName">Product Name</label>
+        <input type="text" class="form-control" id="ProductName" name="ProductName" value="@Model.ProductName" required />
+    </div>
+
+    <div class="form-group">
+        <label for="Description">Description</label>
+        <textarea class="form-control" id="Description" name="Description">@Model.Description</textarea>
+    </div>
+
+    <div class="form-group">
+        <label for="OriginalPrice">Original Price</label>
+        <input type="number" class="form-control" id="OriginalPrice" name="OriginalPrice" value="@Model.OriginalPrice" required />
+    </div>
+
+    <div class="form-group">
+        <label for="DiscountedPrice">Discounted Price</label>
+        <input type="number" class="form-control" id="DiscountedPrice" name="DiscountedPrice" value="@Model.DiscountedPrice" />
+    </div>
+
+    <div class="form-group">
+        <label for="Category">Category</label>
+        <select asp-for="CategoryId" asp-items="ViewBag.Categories" class="form-control">
+            <option value="">--Select Category--</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label>Existing Images</label>
+        @foreach (var imageUrl in Model.ImageUrls)
+        {
+            <div>
+                <img src="~/@imageUrl" alt="Product Image" width="100" height="100" />
+                <label>
+                    <input type="checkbox" name="DeleteImages" value="@imageUrl" /> Delete
+                </label>
+            </div>
+        }
+    </div>
+
+    <div class="form-group">
+        <label for="Images">Upload New Images</label>
+        <input type="file" class="form-control" id="Images" name="Images" multiple />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Update Product</button>
+</form>

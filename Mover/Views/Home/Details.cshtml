@@ -1,0 +1,75 @@
+﻿@using Mover.ViewModel.Carts
+@model CartViewModel
+
+<form method="post" asp-controller="Home" asp-action="AddToCart">
+    <input type="hidden" asp-for="ProductId" />
+
+    <div class="card container p-4">
+        <!-- Card Header -->
+        <div class="card-header bg-primary text-white row">
+            <div class="col-md-8">
+                <h2 class="mb-1">@Model.ProductName</h2>
+                <p class="mb-0">By: <span>@Model.Description</span></p>
+                <span class="badge bg-secondary mt-2">Category: @Model.Category</span>
+            </div>
+            <div class="col-md-4 text-end">
+                <h3 class="text-warning">Price: @Model.OriginalPrice.ToString("C")</h3>
+                @if (Model.DiscountedPrice.HasValue)
+                {
+                    <p class="text-muted">Discounted: <strike>@Model.DiscountedPrice.Value.ToString("C")</strike></p>
+                }
+            </div>
+        </div>
+
+        <!-- Card Body -->
+        <div class="card-body row">
+            <div class="col-md-8">
+                <h5 class="mb-3">Discount: @Model.DiscountPercentage% off</h5>
+                <label for="quantity" class="form-label">Select Quantity:</label>
+                <input type="number" asp-for="Quantity" class="form-control mb-3" id="quantity" min="1" value="1" />
+                <p class="fw-bold">Total Price: <span id="total-price" style="color: darkgreen">@Model.TotalPrice.ToString("C")</span></p>
+            </div>
+
+            <div class="col-md-4">
+                <h5>Product Images</h5>
+                @if (Model.ImageUrls.Any())
+                {
+                    foreach (var image in Model.ImageUrls)
+                    {
+                        <img src="~/@image" alt="Product Image" class="img-thumbnail mb-2" style="width: 100%; height: auto;" />
+                    }
+                }
+                else
+                {
+                    <p class="text-muted">No images available.</p>
+                }
+            </div>
+        </div>
+
+        <!-- Card Footer -->
+        <div class="card-footer row">
+            <div class="col-md-6">
+                <a class="btn btn-secondary w-100" asp-action="Index">Back to Home</a>
+            </div>
+            <div class="col-md-6">
+                <button type="submit" class="btn btn-success w-100">Add to Cart</button>
+            </div>
+        </div>
+    </div>
+</form>
+
+<script>
+    document.getElementById('quantity').addEventListener('input', function () {
+        const price = @Model.ProductPrice ?? @Model.OriginalPrice;
+        const quantity = parseInt(this.value) || 1;
+        const totalPrice = price * quantity;
+        document.getElementById('total-price').textContent = totalPrice.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+    });
+</script>
+
+@section Scripts {
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}
+

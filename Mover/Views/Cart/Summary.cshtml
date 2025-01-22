@@ -1,0 +1,87 @@
+﻿@using Mover.ViewModel.Carts
+@model SummaryViewModel
+
+@{
+    ViewBag.Title = "Order Summary";
+}
+
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Order Summary</h2>
+
+    <!-- Shipping Details Section -->
+    <div class="card shadow mb-4">
+        <div class="card-header bg-primary text-white">
+            <h5 class="mb-0">Shipping Details</h5>
+        </div>
+        <div class="card-body">
+            @if (Model.ShippingDetails != null)
+            {
+                <dl class="row">
+                    <dt class="col-sm-4">Name:</dt>
+                    <dd class="col-sm-8">@Model.ShippingDetails.CreaterName</dd>
+
+                    <dt class="col-sm-4">Address Line:</dt>
+                    <dd class="col-sm-8">@Model.ShippingDetails.ShippingAddressLine</dd>
+
+                    <dt class="col-sm-4">City:</dt>
+                    <dd class="col-sm-8">@Model.ShippingDetails.ShippingCity</dd>
+
+                    <dt class="col-sm-4">State:</dt>
+                    <dd class="col-sm-8">@Model.ShippingDetails.ShippingState</dd>
+
+                    <dt class="col-sm-4">Zip Code:</dt>
+                    <dd class="col-sm-8">@Model.ShippingDetails.ShippingZipCode</dd>
+                </dl>
+            }
+            else
+            {
+                <p class="text-danger">No shipping details available.</p>
+            }
+        </div>
+    </div>
+
+    <!-- Cart Items Section -->
+    <div class="card shadow">
+        <div class="card-header bg-success text-white">
+            <h5 class="mb-0">Cart Items</h5>
+        </div>
+        <div class="card-body">
+            @if (Model.CartViewModel.Any())
+            {
+                <table class="table table-bordered">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Product Name</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.CartViewModel)
+                        {
+                            <tr>
+                                <td>@item.ProductName</td>
+                                <td>@item.ProductPrice</td>
+                                <td>@item.Quantity</td>
+                                <td>@item.TotalPrice</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+            else
+            {
+                <p class="text-danger">Your cart is empty.</p>
+            }
+        </div>
+    </div>
+
+    <!-- Total Price Section -->
+    <div class="text-end mt-3">
+        <h4>Total Price: <span class="text-success">@Model.SummaryTotalPrice</span></h4>
+    </div>
+    <div class="col-lg-4 offset-lg-8 col-md-6 offset-md-6 mt-3">
+        <a asp-action="Summary" class="btn btn-success form-control">Place Order</a>
+    </div>
+</div>
