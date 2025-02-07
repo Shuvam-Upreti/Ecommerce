@@ -5,6 +5,7 @@ namespace Mover.Areas.Admin.ViewModel.Product
     public class ProductViewModel
     {
         public int ProductId { get; set; }
+        public int? InStock { get; set; }
 
         public string ProductName { get; set; } = null!;
 

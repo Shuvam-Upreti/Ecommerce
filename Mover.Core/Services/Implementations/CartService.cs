@@ -120,6 +120,7 @@ namespace Mover.Core.Services.Implementations
                     ProductName = a.Product.ProductName,
                     Quantity = a.Quantity,
                     ProductPrice = a.Product.DiscountedPrice,
+                    DiscountPercentage=a.Product.DiscountPercentage,
                     TotalPrice = a.Quantity * (a.Product.DiscountedPrice ?? 0),
                 }).ToList()
             };

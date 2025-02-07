@@ -16,5 +16,7 @@ namespace Mover.Core.Services.Interfaces
         Task<ProductDto> GetProduct(int id);
         Task Edit(ProductDto model,string? imagePath);
         Task Delete(int id);
+        Task<List<ProductDto>> GetProductsByCategories(List<int> categoryIds);
+
     }
 }

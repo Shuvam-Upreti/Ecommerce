@@ -1,75 +1,461 @@
 ﻿@using Mover.ViewModel.Carts
 @model CartViewModel
+@{
+    ViewData["Title"] = "Product Details";
+}
 
-<form method="post" asp-controller="Home" asp-action="AddToCart">
-    <input type="hidden" asp-for="ProductId" />
+<style>
+    /* Breadcrumb */
+    .breadcrumb {
+        padding: 20px 0;
+        margin-bottom: 0;
+    }
 
-    <div class="card container p-4">
-        <!-- Card Header -->
-        <div class="card-header bg-primary text-white row">
-            <div class="col-md-8">
-                <h2 class="mb-1">@Model.ProductName</h2>
-                <p class="mb-0">By: <span>@Model.Description</span></p>
-                <span class="badge bg-secondary mt-2">Category: @Model.Category</span>
-            </div>
-            <div class="col-md-4 text-end">
-                <h3 class="text-warning">Price: @Model.OriginalPrice.ToString("C")</h3>
-                @if (Model.DiscountedPrice.HasValue)
-                {
-                    <p class="text-muted">Discounted: <strike>@Model.DiscountedPrice.Value.ToString("C")</strike></p>
-                }
-            </div>
-        </div>
+    /* Product Images */
+    .product-main-image {
+        width: 100%;
+        margin-bottom: 20px;
+        border-radius: 8px;
+    }
 
-        <!-- Card Body -->
-        <div class="card-body row">
-            <div class="col-md-8">
-                <h5 class="mb-3">Discount: @Model.DiscountPercentage% off</h5>
-                <label for="quantity" class="form-label">Select Quantity:</label>
-                <input type="number" asp-for="Quantity" class="form-control mb-3" id="quantity" min="1" value="1" />
-                <p class="fw-bold">Total Price: <span id="total-price" style="color: darkgreen">@Model.TotalPrice.ToString("C")</span></p>
-            </div>
+    .product-thumbnails {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 20px;
+    }
 
-            <div class="col-md-4">
-                <h5>Product Images</h5>
-                @if (Model.ImageUrls.Any())
-                {
-                    foreach (var image in Model.ImageUrls)
+    .thumbnail {
+        width: 80px;
+        height: 80px;
+        border-radius: 8px;
+        cursor: pointer;
+        opacity: 0.6;
+        transition: opacity 0.3s;
+    }
+
+    .thumbnail:hover, .thumbnail.active {
+        opacity: 1;
+    }
+
+    /* Product Info */
+    .product-title {
+        font-size: 24px;
+        margin-bottom: 10px;
+    }
+
+    .product-rating {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 15px;
+    }
+
+    .stars {
+        color: #FFD700;
+    }
+
+    .review-count {
+        color: #666;
+    }
+
+    .product-price {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 20px;
+    }
+
+    .current-price {
+        font-size: 24px;
+        font-weight: 600;
+    }
+
+    .original-price {
+        color: #999;
+        text-decoration: line-through;
+    }
+
+    .product-description {
+        color: #666;
+        margin-bottom: 30px;
+        line-height: 1.6;
+    }
+
+    /* Color & Size Selection */
+    .color-options, .size-options {
+        margin-bottom: 25px;
+    }
+
+    .option-title {
+        font-size: 16px;
+        margin-bottom: 10px;
+    }
+
+    .color-buttons {
+        display: flex;
+        gap: 10px;
+    }
+
+    .color-button {
+        width: 35px;
+        height: 35px;
+        border-radius: 8px;
+        border: 2px solid transparent;
+        cursor: pointer;
+        transition: all 0.3s;
+    }
+
+    .color-button:hover, .color-button.active {
+        border-color: #000;
+    }
+
+    .size-buttons {
+        display: flex;
+        gap: 10px;
+    }
+
+    .size-button {
+        padding: 8px 15px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        background: none;
+        cursor: pointer;
+        transition: all 0.3s;
+    }
+
+    .size-button:hover, .size-button.active {
+        background: #000;
+        color: #fff;
+    }
+
+    /* Quantity and Actions */
+    .quantity-wrapper {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin-bottom: 20px;
+    }
+
+    .quantity-input {
+        width: 100px;
+        text-align: center;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 8px;
+    }
+
+    .action-buttons {
+        display: flex;
+        gap: 15px;
+    }
+
+    .btn-add-cart {
+        flex: 1;
+        background: #000;
+        color: #fff;
+        border: none;
+        padding: 12px;
+        border-radius: 8px;
+        transition: all 0.3s;
+    }
+
+    .btn-add-cart:hover {
+        background: #333;
+    }
+
+    .btn-wishlist {
+        width: 45px;
+        background: none;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        transition: all 0.3s;
+    }
+
+    .btn-wishlist:hover {
+        background: #f5f5f5;
+    }
+
+    /* Product Tabs */
+    .product-tabs {
+        margin: 50px 0;
+    }
+
+    .nav-tabs {
+        border: none;
+        margin-bottom: 20px;
+    }
+
+    .nav-tabs .nav-link {
+        border: none;
+        color: #666;
+        padding: 10px 20px;
+    }
+
+    .nav-tabs .nav-link.active {
+        color: #000;
+        font-weight: 600;
+        border-bottom: 2px solid #000;
+    }
+
+    /* Related Products */
+    .related-products {
+        margin: 50px 0;
+    }
+
+    .related-product-card {
+        text-decoration: none;
+        color: inherit;
+    }
+
+    .related-product-image {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 8px;
+        margin-bottom: 10px;
+    }
+
+    /* Features Section */
+    .features-section {
+        background: #f8f9fa;
+        padding: 50px 0;
+    }
+
+    .feature-item {
+        text-align: center;
+    }
+
+    .feature-icon {
+        font-size: 24px;
+        margin-bottom: 15px;
+    }
+
+    /* Responsive */
+    @@media (max-width: 768px) {
+        .product-thumbnails {
+            justify-content: center;
+        }
+
+        .action-buttons {
+            flex-direction: column;
+        }
+
+        .btn-wishlist {
+            width: 100%;
+        }
+    }
+</style>
+
+<div class="container">
+    <!-- Breadcrumb -->
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Home</a></li>
+            @* <li class="breadcrumb-item"><a href="/shop">Shop</a></li> *@
+            <li class="breadcrumb-item active">@Model.ProductName</li>
+        </ol>
+    </nav>
+
+    <form method="post" asp-controller="Home" asp-action="AddToCart">
+        <input type="hidden" asp-for="ProductId" />
+
+        <div class="row">
+            <!-- Product Images -->
+            <div class="col-md-6">
+                <img src="@Url.Content($"~/{Model.ImageUrls.FirstOrDefault()}")" class="product-main-image" id="mainImage" alt="@Model.ProductName">
+                <div class="product-thumbnails">
+                    @foreach (var image in Model.ImageUrls)
                     {
-                        <img src="~/@image" alt="Product Image" class="img-thumbnail mb-2" style="width: 100%; height: auto;" />
+                        <img src="@Url.Content($"~/{image}")" class="thumbnail" onclick="changeMainImage(this.src)" alt="Product thumbnail">
                     }
-                }
-                else
-                {
-                    <p class="text-muted">No images available.</p>
-                }
+                </div>
+            </div>
+
+            <!-- Product Info -->
+            <div class="col-md-6">
+                <h1 class="product-title">@Model.ProductName</h1>
+                
+                <div class="product-rating">
+                    <div class="stars">
+                        @for (int i = 0; i < 5; i++)
+                        {
+                            <i class="bi bi-star-fill"></i>
+                        }
+                    </div>
+                    <span class="review-count">5.0 (121 Reviews)</span>
+                </div>
+
+                <div class="product-price">
+                    <span class="current-price">$@Model.DiscountedPrice</span>
+                    <span class="original-price">$@Model.OriginalPrice</span>
+                </div>
+
+                <p class="product-description">@Model.Description</p>
+
+                <!-- Color Selection -->
+                <div class="color-options">
+                    <h3 class="option-title">Color</h3>
+                    <div class="color-buttons">
+                        <button type="button" class="color-button active" style="background-color: #e74c3c;"></button>
+                        <button type="button" class="color-button" style="background-color: #3498db;"></button>
+                        <button type="button" class="color-button" style="background-color: #f1c40f;"></button>
+                        <button type="button" class="color-button" style="background-color: #000;"></button>
+                        <button type="button" class="color-button" style="background-color: #2ecc71;"></button>
+                    </div>
+                </div>
+
+                <!-- Size Selection -->
+                <div class="size-options">
+                    <h3 class="option-title">Size</h3>
+                    <div class="size-buttons">
+                        <button type="button" class="size-button">S</button>
+                        <button type="button" class="size-button active">M</button>
+                        <button type="button" class="size-button">L</button>
+                        <button type="button" class="size-button">XL</button>
+                        <button type="button" class="size-button">XXL</button>
+                    </div>
+                </div>
+
+                <!-- Quantity and Actions -->
+                <div class="quantity-wrapper">
+                    <button type="button" class="btn btn-outline-secondary" onclick="decrementQuantity()">-</button>
+                    <input type="number" asp-for="Quantity" class="quantity-input" id="quantity" min="1" value="1">
+                    <button type="button" class="btn btn-outline-secondary" onclick="incrementQuantity()">+</button>
+                </div>
+
+                <div class="action-buttons">
+                    <button type="submit" class="btn-add-cart">Add to Cart</button>
+                    <button type="button" class="btn-wishlist">
+                        <i class="bi bi-heart"></i>
+                    </button>
+                </div>
             </div>
         </div>
+    </form>
 
-        <!-- Card Footer -->
-        <div class="card-footer row">
-            <div class="col-md-6">
-                <a class="btn btn-secondary w-100" asp-action="Index">Back to Home</a>
+    <!-- Product Tabs -->
+    <div class="product-tabs">
+        <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" data-bs-toggle="tab" href="#description">Descriptions</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" href="#additional">Additional Information</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" href="#reviews">Reviews</a>
+            </li>
+        </ul>
+
+        <div class="tab-content">
+            <div class="tab-pane fade show active" id="description">
+                <p>@Model.Description</p>
             </div>
-            <div class="col-md-6">
-                <button type="submit" class="btn btn-success w-100">Add to Cart</button>
+            <div class="tab-pane fade" id="additional">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p><strong>Color:</strong> Red, Blue, Orange, Black, Green, Yellow</p>
+                        <p><strong>Size:</strong> S, M, L, XL, XXL</p>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="reviews">
+                <!-- Add reviews content here -->
             </div>
         </div>
     </div>
-</form>
 
-<script>
-    document.getElementById('quantity').addEventListener('input', function () {
-        const price = @Model.ProductPrice ?? @Model.OriginalPrice;
-        const quantity = parseInt(this.value) || 1;
-        const totalPrice = price * quantity;
-        document.getElementById('total-price').textContent = totalPrice.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
-    });
-</script>
+</div>
 
+@* <!-- Features Section -->
+<div class="features-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 col-6 mb-4">
+                <div class="feature-item">
+                    <i class="bi bi-truck feature-icon"></i>
+                    <h5>Free Shipping</h5>
+                    <p class="mb-0">Free shipping for order above $150</p>
+                </div>
+            </div>
+            <div class="col-md-3 col-6 mb-4">
+                <div class="feature-item">
+                    <i class="bi bi-arrow-repeat feature-icon"></i>
+                    <h5>Money Guarantee</h5>
+                    <p class="mb-0">Within 30 days for an exchange</p>
+                </div>
+            </div>
+            <div class="col-md-3 col-6 mb-4">
+                <div class="feature-item">
+                    <i class="bi bi-headset feature-icon"></i>
+                    <h5>Online Support</h5>
+                    <p class="mb-0">24 hours a day, 7 days a week</p>
+                </div>
+            </div>
+            <div class="col-md-3 col-6 mb-4">
+                <div class="feature-item">
+                    <i class="bi bi-credit-card feature-icon"></i>
+                    <h5>Flexible Payment</h5>
+                    <p class="mb-0">Pay with multiple credit cards</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+ *@
 @section Scripts {
+    <script>
+        function changeMainImage(src) {
+            document.getElementById('mainImage').src = src;
+            document.querySelectorAll('.thumbnail').forEach(thumb => {
+                thumb.classList.remove('active');
+                if (thumb.src === src) {
+                    thumb.classList.add('active');
+                }
+            });
+        }
+
+        function incrementQuantity() {
+            const input = document.getElementById('quantity');
+            input.value = parseInt(input.value) + 1;
+            updateTotalPrice();
+        }
+
+        function decrementQuantity() {
+            const input = document.getElementById('quantity');
+            if (parseInt(input.value) > 1) {
+                input.value = parseInt(input.value) - 1;
+                updateTotalPrice();
+            }
+        }
+
+        function updateTotalPrice() {
+            const price = @Model.DiscountedPrice ?? @Model.OriginalPrice;
+            const quantity = parseInt(document.getElementById('quantity').value) || 1;
+            const totalPrice = price * quantity;
+            document.getElementById('total-price').textContent = totalPrice.toLocaleString('en-US', { 
+                style: 'currency', 
+                currency: 'USD' 
+            });
+        }
+
+        // Initialize color and size buttons
+        document.querySelectorAll('.color-button').forEach(button => {
+            button.addEventListener('click', function() {
+                document.querySelectorAll('.color-button').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        document.querySelectorAll('.size-button').forEach(button => {
+            button.addEventListener('click', function() {
+                document.querySelectorAll('.size-button').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+    </script>
+
     @{
-        <partial name="_ValidationScriptsPartial" />
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
 }
-

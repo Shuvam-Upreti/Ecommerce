@@ -15,7 +15,7 @@ using System.Diagnostics;
 
 namespace Mover.Controllers
 {
-    [Authorize]
+
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -32,21 +32,37 @@ namespace Mover.Controllers
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            var products = await _productService.GetAllProducts();
-            var vm = products.Select(a => new ProductViewModel
+            try
             {
-                ProductId = a.ProductId,
-                Description = a.Description,
-                ProductName = a.ProductName,
-                DiscountedPrice = a.DiscountedPrice,
-                Category = a.Category,
-                DiscountPercentage = a.DiscountPercentage,
-                OriginalPrice = a.OriginalPrice,
-                ImageUrls = a.ImageUrls,
-            }).ToList();
-            return View(vm);
+                var products = await _productService.GetAllProducts();
+                var vm = products.Select(a => new ProductViewModel
+                {
+                    ProductId = a.ProductId,
+                    Description = a.Description,
+                    ProductName = a.ProductName,
+                    DiscountedPrice = a.DiscountedPrice,
+                    Category = a.Category,
+                    DiscountPercentage = a.DiscountPercentage,
+                    OriginalPrice = a.OriginalPrice,
+                    ImageUrls = a.ImageUrls,
+                }).ToList();
+                return View(vm);
+            }
+            catch (CustomException ex)
+            {
+                new SeriLogger().Error(ex.Message, ex);
+                this.NotifyError(ex.Message);
+                return RedirectToAction(nameof(Index));
+            }
+            catch (Exception ex)
+            {
+                new SeriLogger().Error(ex.Message, ex);
+                this.NotifyError("Something went wrong.Please try again");
+                return RedirectToAction(nameof(Index));
+            }
         }
         [HttpGet]
+        [Authorize]
         public async Task<IActionResult> Details(int id)
         {
             try
@@ -117,12 +133,12 @@ namespace Mover.Controllers
                 return RedirectToAction(nameof(Index));
             }
         }
-
+        [Authorize]
         public IActionResult Privacy()
         {
             return View();
         }
-
+        [Authorize]
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

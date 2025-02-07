@@ -10,6 +10,7 @@ namespace Mover.Core.Dto.Product
     public class ProductDto
     {
         public int ProductId { get; set; }
+        public int? InStock { get; set; }
 
         public string ProductName { get; set; } = null!;
 

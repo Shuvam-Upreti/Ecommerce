@@ -71,6 +71,11 @@ namespace Mover.Core.Services.Implementations
                 });
                 isFirstImage = false;
             }
+            product.Inventories.Add(new Inventory
+            {
+                QuantityInStock = model.InStock,
+                LastStockUpdate = DateTime.Now
+            });
 
             await _productRepository.InsertAsync(product);
 
@@ -89,15 +94,17 @@ namespace Mover.Core.Services.Implementations
                 DiscountedPrice = product.DiscountedPrice,
                 DiscountPercentage = product.DiscountPercentage,
                 CategoryId = product.CategoryId,
+                InStock = product.Inventories.Select(a => a.QuantityInStock).FirstOrDefault(),
                 ImageUrls = product.ProductImages.Select(img => img.ImageUrl).ToList()
             };
             return dto;
         }
-        public async Task Edit(ProductDto productDto,string? imagePath)
+        public async Task Edit(ProductDto productDto, string? imagePath)
         {
             using var tx = TransactionScopeHelper.GetInstance();
             var toSaveImagePaths = _configuration["ImageSettings:DestinationFolder"];
             var product = await _productRepository.GetByIdAsync(productDto.ProductId) ?? throw new CustomException("No Category Found");
+            var inventories = product.Inventories?.FirstOrDefault();
             if (productDto.DeleteImages != null && productDto.DeleteImages.Any())
             {
                 foreach (var imageUrl in productDto.DeleteImages)
@@ -123,7 +130,7 @@ namespace Mover.Core.Services.Implementations
                     var imageUrl = await _fileHelper.SaveImageAndGetFileName(image, imagePath); // Save the new image and get the URL
                     product.ProductImages.Add(new ProductImage
                     {
-                        ImageUrl = Path.Combine(toSaveImagePaths,imageUrl),
+                        ImageUrl = Path.Combine(toSaveImagePaths, imageUrl),
                         IsMainImage = false
                     });
                 }
@@ -136,7 +143,11 @@ namespace Mover.Core.Services.Implementations
             product.OriginalPrice = productDto.OriginalPrice;
             product.DiscountedPrice = productDto.DiscountedPrice;
             product.DiscountPercentage = productDto.DiscountPercentage;
-
+            if (inventories is not null)
+            {
+                inventories.QuantityInStock = productDto.InStock;
+                inventories.LastStockUpdate = DateTime.Now;
+            }
             _productRepository.Update(product);
 
             tx.Complete();
@@ -151,5 +162,25 @@ namespace Mover.Core.Services.Implementations
 
             tx.Complete();
         }
+        public async Task<List<ProductDto>> GetProductsByCategories(List<int> categoryIds)
+        {
+            var products = await _productRepository.GetQueryable()
+                .Where(p => p.CategoryId.HasValue && categoryIds.Contains(p.CategoryId.Value))
+                .ToListAsync();
+            var dto = products.Select(a => new ProductDto()
+            {
+                ProductId = a.ProductId,
+                ProductName = a.ProductName,
+                Description = a.Description,
+                DiscountedPrice = a.DiscountedPrice,
+                DiscountPercentage = a.DiscountPercentage,
+                OriginalPrice = a.OriginalPrice,
+                Category = a.Category?.Name,
+                ImageUrls = a.ProductImages?.Where(img => img.IsMainImage == true)
+                       .Select(img => img.ImageUrl).ToList()
+            }).ToList();
+            return dto;
+        }
+
     }
 }

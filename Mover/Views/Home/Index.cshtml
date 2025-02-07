@@ -5,34 +5,276 @@
     ViewBag.Title = "Home";
 }
 
-<div class="row pb-2">
-    @foreach (var product in Model)
-    {
-        <div class="col-lg-3 col-md-6">
-            <div class="row pt-2">
-                <div class="col-12 p-1" style="border:1px solid #008cba; border-radius:5px;">
-                    <div class="card">
-                        <img src="@product.ImageUrls.FirstOrDefault()" class="card-img-top-rounded" height="350px" />
-                        <div class="card-body">
-                            <div class="pl-1">
-                                <p class="card-title h5 text-primary"><b>@product.ProductName</b></p>
-                                <p class="card-title h5 text-info"> <strike><b> @product.OriginalPrice</b></strike></p>
+<style>
+    /* Reset & Base Styles */
+    :root {
+        --primary-color: #333;
+        --accent-color: #f44336;
+        --gray-light: #f5f5f5;
+    }
+
+    /* Hero Banner */
+    .hero-banner {
+        position: relative;
+        background: var(--gray-light);
+        padding: 60px 0;
+        overflow: hidden;
+    }
+
+    .hero-content {
+        max-width: 500px;
+        position: relative;
+        z-index: 2;
+    }
+
+    .hero-image {
+        position: absolute;
+        right: 0;
+        top: 0;
+        height: 100%;
+        width: 50%;
+        object-fit: cover;
+    }
+
+    /* Categories Section */
+    .categories-section {
+        padding: 60px 0;
+    }
+
+    .category-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 30px;
+    }
+
+    .category-card {
+        position: relative;
+        border-radius: 10px;
+        overflow: hidden;
+        height: 200px;
+        margin: 10px;
+    }
+
+    .category-card img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+    }
+
+    .category-card:hover img {
+        transform: scale(1.1);
+    }
+
+    .category-overlay {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 20px;
+        background: linear-gradient(transparent, rgba(0,0,0,0.7));
+        color: white;
+    }
+
+    /* Products Section */
+    .product-card {
+        border: none;
+        border-radius: 10px;
+        overflow: hidden;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        margin-bottom: 30px;
+    }
+
+    .product-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .product-image {
+        height: 300px;
+        object-fit: cover;
+    }
+
+    .product-details {
+        padding: 15px;
+    }
+
+    .product-title {
+        font-size: 16px;
+        font-weight: 600;
+        margin-bottom: 10px;
+    }
+
+    .product-price {
+        color: var(--accent-color);
+        font-weight: 600;
+        font-size: 18px;
+    }
+
+    .original-price {
+        text-decoration: line-through;
+        color: #999;
+        margin-right: 10px;
+    }
+
+    /* Deals Section */
+    .deals-section {
+        background: var(--gray-light);
+        padding: 60px 0;
+        margin: 60px 0;
+    }
+
+    .countdown-box {
+        display: inline-block;
+        background: white;
+        padding: 15px;
+        margin: 5px;
+        min-width: 80px;
+        text-align: center;
+        border-radius: 5px;
+    }
+
+    /* Responsive Design */
+    @@media (max-width: 768px) {
+        .hero-image {
+            position: relative;
+            width: 100%;
+            height: 300px;
+            margin-top: 30px;
+        }
+
+        .category-card {
+            height: 150px;
+        }
+
+        .product-image {
+            height: 200px;
+        }
+    }
+</style>
+
+<!-- Hero Banner -->
+<section class="hero-banner">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 hero-content">
+                <h6 class="text-uppercase mb-3">Classic Exclusive</h6>
+                <h1 class="display-4 fw-bold mb-4">Derm Shine's Collection</h1>
+                <p class="lead mb-4">UPTO 40% OFF</p>
+                <a href="#categories" class="btn btn-dark btn-lg">Shop Now</a>
+            </div>
+            <div class="col-md-6">
+                <img src="~/image/banner.jpeg" alt="Derm Shine" class="hero-image">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Categories Section -->
+<section class="categories-section" id="categories">
+    <div class="container">
+        <div class="category-header">
+            <h3>Shop by Categories</h3>
+            <div class="category-nav">
+                <button class="btn btn-outline-dark me-2" data-bs-target="#categoryCarousel" data-bs-slide="prev">
+                    <i class="bi bi-arrow-left"></i>
+                </button>
+                <button class="btn btn-outline-dark" data-bs-target="#categoryCarousel" data-bs-slide="next">
+                    <i class="bi bi-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+
+        <div id="categoryCarousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="row">
+                        @foreach (var category in new[] { "Men's Wear", "Women's Wear", "Kids Wear", "Accessories" })
+                        {
+                            <div class="col-md-3 col-6">
+                                <div class="category-card">
+                                    <img src="~/image/logo.jpg" alt="@category">
+                                    <div class="category-overlay">
+                                        <h5 class="mb-0">@category</h5>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="pl-1">
-                                <p>As Low as: <b>$@product.DiscountPercentage</b></p>
-                            </div>
-                            <div class="pl-1">
-                                <p>List Price: <b>$@product.DiscountedPrice</b> </p>
-                            </div>
-                        </div>
-                        <div>
-                            <a asp-action="Details" class="btn btn-primary" style="width:100%;" asp-route-id="@product.ProductId">Details</a>
-                        </div>
+                        }
                     </div>
                 </div>
             </div>
         </div>
+    </div>
+</section>
 
+<!-- Products Section -->
+<section class="products-section">
+    <div class="container">
+        <h3 class="mb-4 text-center">Our Products</h3>
+        <div class="row">
+            @foreach (var product in Model)
+            {
+                <div class="col-lg-3 col-md-4 col-6">
+                    <div class="product-card">
+                        <img src="@Url.Content($"~/{product.ImageUrls.FirstOrDefault()}")" class="product-image" alt="@product.ProductName">
+                        <div class="product-details">
+                            <h3 class="product-title">@product.ProductName</h3>
+                            <h4 class="product-title">@product.Description</h4>
+                            <div class="d-flex align-items-center">
+                                <span class="original-price">$@product.OriginalPrice</span>
+                                <span class="product-price">$@product.DiscountedPrice</span>
+                            </div>
+                            <a asp-action="Details" asp-route-id="@product.ProductId" class="btn btn-outline-dark w-100 mt-3">View Details</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
 
-    }
-</div>
+<!-- Deals Section -->
+<section class="deals-section">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-6">
+                <h2 class="mb-4">Deals of the Month</h2>
+                <p class="mb-4">It's a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
+                <div class="countdown-timer mb-4">
+                    <div class="countdown-box">
+                        <h3 class="mb-0">120</h3>
+                        <small>Days</small>
+                    </div>
+                    <div class="countdown-box">
+                        <h3 class="mb-0">18</h3>
+                        <small>Hours</small>
+                    </div>
+                    <div class="countdown-box">
+                        <h3 class="mb-0">15</h3>
+                        <small>Mins</small>
+                    </div>
+                    <div class="countdown-box">
+                        <h3 class="mb-0">10</h3>
+                        <small>Secs</small>
+                    </div>
+                </div>
+                <a href="#" class="btn btn-dark btn-lg">View All Products</a>
+            </div>
+            <div class="col-md-6">
+                <img src="/placeholder.svg?height=400&width=400" alt="Deal of the Month" class="img-fluid rounded">
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <script>
+        // Initialize Bootstrap components
+        document.addEventListener('DOMContentLoaded', function() {
+            var categoryCarousel = new bootstrap.Carousel(document.getElementById('categoryCarousel'), {
+                interval: false
+            });
+        });
+    </script>
+}

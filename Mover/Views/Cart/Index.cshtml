@@ -5,85 +5,362 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "Shopping Cart";
 }
-<div>
-    <form method="post">
-        <div class="card">
-            <div class="card-header bg-dark text-light">
-                <div class="row">
-                    <div class="col-6 pt-2">
-                        <i class="fa fa-shopping-cart"></i> Shopping Cart
+
+<style>
+    .cart-container {
+        max-width: 1200px;
+        margin: 50px auto;
+        padding: 0 20px;
+    }
+
+    .cart-header {
+        margin-bottom: 30px;
+    }
+
+    .cart-title {
+        font-size: 32px;
+        font-weight: 600;
+        color: #18181B;
+    }
+
+    .cart-table {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0 15px;
+    }
+
+        .cart-table th {
+            font-size: 14px;
+            color: #666;
+            font-weight: 500;
+            padding: 10px;
+            text-align: left;
+            border: none;
+        }
+
+    .cart-item {
+        background: white;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+    }
+
+        .cart-item:hover {
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .cart-item td {
+            padding: 20px;
+            vertical-align: middle;
+            border: none;
+        }
+
+    .product-image {
+        width: 80px;
+        height: 80px;
+        object-fit: cover;
+        border-radius: 8px;
+    }
+
+    .product-name {
+        font-size: 16px;
+        font-weight: 500;
+        margin-bottom: 5px;
+    }
+
+    .product-size {
+        font-size: 14px;
+        color: #666;
+    }
+
+    .quantity-control {
+        display: inline-flex;
+        align-items: center;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 5px;
+    }
+
+    .quantity-btn {
+        background: none;
+        border: none;
+        padding: 5px 10px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+        .quantity-btn:hover {
+            color: #007bff;
+        }
+
+    .quantity-input {
+        width: 40px;
+        text-align: center;
+        border: none;
+        padding: 0 5px;
+    }
+
+    .remove-btn {
+        background: none;
+        border: none;
+        color: #dc3545;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+        .remove-btn:hover {
+            color: #c82333;
+        }
+
+    .cart-summary {
+        background: white;
+        border-radius: 8px;
+        padding: 30px;
+    }
+
+    .summary-row {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 15px;
+    }
+
+    .summary-label {
+        color: #666;
+    }
+
+    .summary-value {
+        font-weight: 500;
+    }
+
+    .discount-input {
+        display: flex;
+        gap: 10px;
+        margin: 20px 0;
+    }
+
+    .discount-code {
+        flex: 1;
+        padding: 10px 15px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+    }
+
+    .apply-btn {
+        background: #18181B;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+        .apply-btn:hover {
+            background: #333;
+        }
+
+    .checkout-btn {
+        display: block;
+        text-decoration: none;
+        text-align: center;
+        width: 100%;
+        background: #18181B;
+        color: white;
+        border: none;
+        padding: 15px;
+        border-radius: 8px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+        .checkout-btn:hover {
+            background: #333;
+        }
+
+    .cart-item {
+        border-bottom: 1px solid #eee;
+        padding: 20px 0;
+    }
+
+    /* Subtotal Product Cards */
+    .subtotal-product {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        padding: 15px 0;
+        border-bottom: 1px solid #eee;
+    }
+
+        .subtotal-product:last-child {
+            border-bottom: none;
+        }
+
+    .subtotal-product-image {
+        width: 60px;
+        height: 60px;
+        object-fit: cover;
+        border-radius: 8px;
+    }
+
+    .subtotal-product-info {
+        flex: 1;
+    }
+
+    .subtotal-product-name {
+        font-size: 14px;
+        font-weight: 500;
+        margin-bottom: 4px;
+    }
+
+    .subtotal-product-size {
+        font-size: 12px;
+        color: #666;
+    }
+
+    .subtotal-product-price {
+        font-size: 14px;
+        font-weight: 500;
+    }
+
+    .cart-summary {
+        background: white;
+        border-radius: 8px;
+        padding: 30px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+
+    .summary-products {
+        margin-bottom: 25px;
+    }
+
+    .summary-divider {
+        height: 1px;
+        background: #eee;
+        margin: 20px 0;
+    }
+
+    @@media (max-width: 768px) {
+        .cart-table thead {
+            display: none;
+        }
+
+        .cart-item {
+            display: grid;
+            grid-template-columns: 80px 1fr;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+            .cart-item td {
+                display: block;
+                padding: 5px 15px;
+            }
+
+                .cart-item td:first-child {
+                    grid-row: 1 / span 4;
+                }
+
+        .product-price, .quantity-control, .subtotal {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+            .product-price::before,
+            .quantity-control::before,
+            .subtotal::before {
+                content: attr(data-label);
+                font-weight: 500;
+            }
+    }
+</style>
+
+<div class="cart-container">
+    <div class="cart-header">
+        <h1 class="cart-title">Checkout</h1>
+    </div>
+
+    @if (Model.Count <= 0)
+    {
+        <p>Your cart is empty</p>
+    }
+    else
+    {
+        <div class="row">
+            <div class="col-lg-8">
+                <table class="cart-table">
+                    <thead>
+                        <tr>
+                            <th>Products</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Subtotal</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr class="cart-item">
+                                <td>
+                                    <div class="d-flex align-items-center gap-3">
+                                        <img src="@Url.Content($"~/{item.ImageUrls.FirstOrDefault()}")" class="product-image" alt="@item.ProductName">
+                                        <div>
+                                            <h3 class="product-name">@item.ProductName</h3>
+                                         </div>
+                                    </div>
+                                </td>
+                                <td data-label="Price">$@item.ProductPrice</td>
+                                <td data-label="Quantity">
+                                    <div class="quantity-control">
+                                        <a asp-action="decrementitemcount" asp-route-id="@item.CartId" class="quantity-btn">-</a>
+                                        <input type="text" class="quantity-input" value="@item.Quantity" readonly>
+                                        <a asp-action="incrementitemcount" asp-route-id="@item.CartId" class="quantity-btn">+</a>
+                                    </div>
+                                </td>
+                                <td data-label="Subtotal">$@(item.ProductPrice * item.Quantity)</td>
+                                <td>
+                                    <a asp-action="remove" asp-route-cartId="@item.CartId" class="remove-btn">
+                                        <i class="bi bi-trash"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="cart-summary">
+
+                    @* <div class="summary-divider"></div> *@
+
+                    <div class="summary-row">
+                        <span class="summary-label"><b>Subtotal</b></span>
+                        <span class="summary-value">$@ViewBag.TotalPrice</span>
                     </div>
-                    <div class="col-6 text-end">
-                        <a asp-area="Customer" asp-controller="Home" asp-action="Index" class="btn btn-outline-info btn-sm">Continue Shopping</a>
+
+                  @*   <div class="discount-input">
+                        <input type="text" class="discount-code" placeholder="Enter Discount Code">
+                        <button class="apply-btn">Apply</button>
+                    </div> *@
+
+                    <div class="summary-row">
+                        <span class="summary-label">Delivery Charge</span>
+                        <span class="summary-value">$5.00</span>
                     </div>
+
+                    <div class="summary-divider"></div>
+
+                    <div class="summary-row">
+                        <span class="summary-label"><b>Grand Total</b></span>
+                        <span class="summary-value">$@(ViewBag.TotalPrice + 5)</span>
+                    </div>
+
+                    <a asp-action="Summary" class="checkout-btn mt-4">Proceed to Checkout</a>
                 </div>
             </div>
-
-            <div class="card-body">
-                @if (Model.Count <= 0)
-                {
-                    <span>Cart is Empty. Please continue shopping.</span>
-                }
-                else
-                {
-
-
-                    @foreach (var item in Model)
-                    {
-                        <div class="row mb-3">
-                            <div class="col-12 col-lg-1 text-center py-2 d-none d-lg-block">
-                                <img src="~/@item.ImageUrls.FirstOrDefault()" class="rounded" width="100%" alt="Product Image">
-                            </div>
-                            <div class="col-12 col-lg-6 pt-md-3">
-                                <h5><strong>@item.ProductName</strong></h5>
-                                <p>@item.Description</p>
-                            </div>
-                            <div class="col-12 col-lg-5 row text-center">
-                                <div class="col-4 text-md-right pt-4">
-                                    <h6>
-                                        <strong>@item.ProductPrice <span class="text-muted">x</span> @item.Quantity</strong>
-                                    </h6>
-                                </div>
-                                <div class="col-6 col-sm-4 col-lg-6 pt-2">
-                                    <div class="btn-group" role="group">
-                                        <a asp-action="incrementitemcount" asp-route-id="@item.CartId" class="btn btn-primary btn-sm">
-                                            <i class="fas fa-plus-square"></i>
-                                        </a>
-                                        <a asp-action="decrementitemcount" asp-route-id="@item.CartId" class="btn btn-warning btn-sm">
-                                            <i class="fas fa-minus-square"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="col-2 col-sm-4 col-lg-2 pt-2 text-right">
-                                    <a asp-action="remove" asp-route-cartId="@item.CartId" class="btn btn-danger btn-sm">
-                                        <i class="fas fa-trash"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <hr />
-                    }
-
-
-                    <div class="card-footer">
-                        <div class="row">
-                            <div class="col-lg-8 text-end">
-                                <h5>
-                                    <strong>Total Price:</strong>
-                                </h5>
-                            </div>
-                            <div class="col-lg-4 text-end">
-                                <h5>
-                                    <strong>@(ViewBag.TotalPrice ?? 0)</strong>
-                                </h5>
-                            </div>
-                            <div class="col-lg-4 offset-lg-8 col-md-6 offset-md-6 mt-3">
-                                <a asp-action="Summary" class="btn btn-success form-control">Proceed to Summary</a>
-                            </div>
-                        </div>
-                    </div>
-                }
-            </div>
         </div>
-    </form>
+    }
 </div>

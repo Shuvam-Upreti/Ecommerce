@@ -28,9 +28,10 @@ namespace Mover.Core.Dto.Order
 
         public string? ShippingZipCode { get; set; }
 
-        public List<OrderItemDto> OrderItemsViewModel { get; set; } = new List<OrderItemDto>();
+        public List<OrderItemDto> OrderItemsDto{ get; set; } = new List<OrderItemDto>();
 
         public string? CreatedBy { get; set; }
+        public string? PhoneNumber { get; set; }
     }
     public class OrderItemDto
     {

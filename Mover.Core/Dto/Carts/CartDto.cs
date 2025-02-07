@@ -17,6 +17,7 @@ namespace Mover.Core.Dto.Carts
 		public int CreatedBy { get; set; }
 		public decimal? ProductPrice { get; set; }
 		public decimal TotalPrice { get; set; }
+		public decimal? DiscountPercentage { get; set; }
 		public List<string> ImageUrl { get; set; } = new List<string>();
 	}
     public class SummaryDto

@@ -15,6 +15,7 @@ namespace Mover.Controllers
     public class CartController : Controller
     {
         private readonly ICartService _cartService;
+
         public CartController(ICartService cartService)
         {
             _cartService = cartService;
@@ -88,6 +89,7 @@ namespace Mover.Controllers
             }
 
         }
+        [HttpGet]
         public async Task<IActionResult> Summary()
         {
             try
@@ -113,8 +115,9 @@ namespace Mover.Controllers
                         Quantity = a.Quantity,
                         ProductPrice = a.ProductPrice,
                         TotalPrice = a.TotalPrice,
+                        DiscountPercentage = a.DiscountPercentage
                     }).ToList(),
-                    SummaryTotalPrice=summary.CartDto.Sum(a => a.TotalPrice)
+                    SummaryTotalPrice = summary.CartDto.Sum(a => a.TotalPrice)
                 };
 
 
@@ -134,5 +137,6 @@ namespace Mover.Controllers
             }
 
         }
+
     }
 }

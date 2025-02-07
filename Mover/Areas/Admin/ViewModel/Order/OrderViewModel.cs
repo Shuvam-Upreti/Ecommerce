@@ -27,6 +27,7 @@ namespace Mover.Areas.Admin.ViewModel.Order
         public List<OrderItemViewModel> OrderItemsViewModel { get; set; } = new List<OrderItemViewModel>();
 
         public string? CreatedBy { get; set; }
+        public string? PhoneNumber { get; set; }
     }   
     public class OrderItemViewModel
     {

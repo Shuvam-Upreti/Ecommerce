@@ -7,10 +7,13 @@ using Mover.Core.Exceptions;
 using Mover.Core.Services.Interfaces;
 using Mover.Extension;
 using Mover.Areas.Admin.ViewModel.Category;
+using Microsoft.AspNetCore.Authorization;
+using Mover.Core.Enums.Roles;
 
 namespace Mover.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles ="Admin")]
     public class CategoryController : Controller
     {
         private readonly ICategoryService _categoryService;

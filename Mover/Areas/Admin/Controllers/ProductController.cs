@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Hosting;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Mover.Areas.Admin.ViewModel.Product;
@@ -13,6 +14,7 @@ using Mover.Logging;
 namespace Mover.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "Admin")]
     public class ProductController : Controller
     {
         private readonly IProductService _productService;
@@ -61,6 +63,7 @@ namespace Mover.Areas.Admin.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Create()
         {
             try
@@ -68,8 +71,8 @@ namespace Mover.Areas.Admin.Controllers
                 var categories = await _categoryService.GetAllCategories();
                 ViewBag.Categories = categories.Select(a => new SelectListItem
                 {
-                    Value=a.Id.ToString(),
-                    Text=a.Name,
+                    Value = a.Id.ToString(),
+                    Text = a.Name,
                 });
                 return View();
             }
@@ -136,7 +139,8 @@ namespace Mover.Areas.Admin.Controllers
                     DiscountedPrice = model.DiscountedPrice,
                     DiscountPercentage = model.DiscountPercentage,
                     CategoryId = model.CategoryId,
-                    ImageUrls = savedFileNames
+                    ImageUrls = savedFileNames,
+                    InStock = model.InStock
                 };
 
                 await _productService.Save(dto);
@@ -172,6 +176,7 @@ namespace Mover.Areas.Admin.Controllers
                     DiscountedPrice = product.DiscountedPrice,
                     DiscountPercentage = product.DiscountPercentage,
                     CategoryId = product.CategoryId,
+                    InStock = product.InStock,
                     // If product has images, map them to the view model
                     ImageUrls = product.ImageUrls
                 };
@@ -215,6 +220,7 @@ namespace Mover.Areas.Admin.Controllers
                     Description = model.Description,
                     OriginalPrice = model.OriginalPrice,
                     DiscountedPrice = model.DiscountedPrice,
+                    InStock = model.InStock,
                     DiscountPercentage = model.DiscountPercentage,
                     CategoryId = model.CategoryId,
                     ImageUrls = model.ImageUrls, // Existing images
@@ -232,7 +238,7 @@ namespace Mover.Areas.Admin.Controllers
                 this.NotifyError(ex.Message);
                 return View(model);
             }
-            
+
             catch (Exception ex)
             {
                 new SeriLogger().Error(ex.Message, ex);
@@ -262,5 +268,76 @@ namespace Mover.Areas.Admin.Controllers
                 return RedirectToAction(nameof(Index));
             }
         }
+
+        [HttpGet]
+        public async Task<IActionResult> ViewProducts([FromQuery] int? categoryId)
+        {
+            try
+            {
+                var categories = await _categoryService.GetAllCategories();
+                var products = categoryId is not null
+                    ? await _productService.GetProductsByCategories(new List<int> { categoryId.Value })
+                    : await _productService.GetAllProducts();
+
+                var vm = products.Select(a => new ProductViewModel
+                {
+                    ProductId = a.ProductId,
+                    Description = a.Description,
+                    ProductName = a.ProductName,
+                    DiscountedPrice = a.DiscountedPrice,
+                    Category = a.Category,
+                    DiscountPercentage = a.DiscountPercentage,
+                    OriginalPrice = a.OriginalPrice,
+                    ImageUrls = a.ImageUrls,
+                }).ToList();
+                ViewBag.SelectedCategoryId = categoryId;
+                ViewBag.Categories = categories;
+                return View(vm);
+
+            }
+            catch (CustomException ex)
+            {
+                new SeriLogger().Error(ex.Message, ex);
+                this.NotifyError(ex.Message);
+                return RedirectToAction(nameof(Index));
+            }
+            catch (Exception ex)
+            {
+                new SeriLogger().Error(ex.Message, ex);
+                this.NotifyError("Something went wrong.Please try again");
+                return RedirectToAction(nameof(Index));
+            }
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetProductsByCategories([FromQuery] List<int> categoryIds)
+        {
+            if (categoryIds.Count <= 0)
+            {
+                return Json(new { success = false, message = "No catergory" });
+            }
+            try
+            {
+                var products = await _productService.GetProductsByCategories(categoryIds);
+                var productList = products.Select(a => new
+                {
+                    a.ProductId,
+                    a.ProductName,
+                    a.Description,
+                    a.DiscountedPrice,
+                    a.OriginalPrice,
+                    ImageUrl = a.ImageUrls.FirstOrDefault(), // Assuming one image per product
+                    a.Category
+                });
+
+                return Json(productList);
+            }
+            catch (Exception ex)
+            {
+                new SeriLogger().Error(ex.Message, ex);
+                return Json(new { success = false, message = "Something went wrong. Please try again." });
+            }
+        }
+
     }
 }
