@@ -6,7 +6,23 @@
 @{
     ViewData["Title"] = "Orders";
 }
+<style>
+    #editOrderStatusModal .modal-content {
+        background-color: white !important; /* Ensures background is visible */
+        color: black !important; /* Makes text readable */
+        border-radius: 8px;
+        padding: 20px;
+    }
 
+    #editOrderStatusModal .modal-dialog {
+        max-width: 500px; /* Adjust width */
+    }
+
+    .modal-backdrop {
+        background-color: rgba(0, 0, 0, 0.5) !important; /* Ensures backdrop is visible */
+    }
+ 
+</style>
 <h2>Orders</h2>
 
 <table class="table table-bordered table-striped">
@@ -64,9 +80,17 @@
         }
     </tbody>
 </table>
-
+<div class="searchBar">
+    <div class="loHead">
+        <span>Orders</span>
+        <div class="col-12">
+         
+        </div>
+    </div>
+</div>
+<div id="orderGrid" class="panel" style="min-height:500px"></div>
 @* Order status popup *@
-<div class="modal fade" id="editOrderStatusModal" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade" id="editOrderStatusModal" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-body text-center">
@@ -77,11 +101,15 @@
 </div>
 
 @section Scripts {
+
+    <script src="~/js/Order/Order.js" asp-append-version="true"></script>
+
     <script>
         $(document).on('click', '.open-edit-modal', function () {
             var url = $(this).data('url');
             $('#editOrderStatusModal .modal-content').load(url, function () {
-                $('#editOrderStatusModal').modal('show');
+               var a= $('#editOrderStatusModal').modal('show');
+                console.log("shown",a)
             });
         });
 

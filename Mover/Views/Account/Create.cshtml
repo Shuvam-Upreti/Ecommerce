@@ -1,0 +1,90 @@
+﻿@model Mover.ViewModel.User.UserDetailViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Create User";
+}
+
+<div class="container mt-5">
+    <div class="card shadow-lg">
+        <div class="card-header bg-secondary text-black">
+            <h5 class="mb-0">Create User</h5>
+        </div>
+        <div class="card-body">
+            <form asp-action="Create" method="post">
+                <div class="row">
+                    <!-- Full Name -->
+                    <div class="col-md-6 mb-3">
+                        <label for="FullName" class="form-label fw-bold">Full Name</label>
+                        @Html.TextBoxFor(model => model.FullName, new { @class = "form-control", placeholder = "Enter full name" })
+                        @Html.ValidationMessageFor(model => model.FullName, "", new { @class = "text-danger" })
+                    </div>
+
+                    <!-- AspNetUser Email -->
+                    <div class="col-md-6 mb-3">
+                        <label for="AspUser.Email" class="form-label fw-bold">Email</label>
+                        @Html.TextBoxFor(model => model.Email, new { @class = "form-control", placeholder = "Enter email" })
+                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="row">
+                    <!-- Password -->
+                    <div class="col-md-6 mb-3">
+                        <label for="Password" class="form-label fw-bold">Password</label>
+                        @Html.PasswordFor(model => model.Password, new { @class = "form-control", placeholder = "Enter password" })
+                        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                    </div>
+
+                    <!-- Confirm Password -->
+                    <div class="col-md-6 mb-3">
+                        <label for="ConfirmPassword" class="form-label fw-bold">Confirm Password</label>
+                        @Html.PasswordFor(model => model.ConfirmPassword, new { @class = "form-control", placeholder = "Confirm password" })
+                        @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="row">
+                    <!-- Department -->
+                    <div class="col-md-6 mb-3">
+                        <label for="Department" class="form-label fw-bold">Department</label>
+                        @Html.TextBoxFor(model => model.Department, new { @class = "form-control", placeholder = "Enter department" })
+                        @Html.ValidationMessageFor(model => model.Department, "", new { @class = "text-danger" })
+                    </div>
+
+                    <!-- Date of Joining -->
+                    <div class="col-md-6 mb-3">
+                        <label for="DateOfJoin" class="form-label fw-bold">Date of Join</label>
+                        @Html.TextBoxFor(model => model.DateOfJoin, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date", max = DateTime.Now.ToString("yyyy-MM-dd") })
+                        @Html.ValidationMessageFor(model => model.DateOfJoin, "", new { @class = "text-danger" })
+                    </div>
+
+                </div> 
+                
+                <div class="row">
+                    <!-- Phone Number -->
+                    <div class="col-md-6 mb-3">
+                        <label for="PhoneNumber" class="form-label fw-bold">Phone Number</label>
+                        @Html.TextBoxFor(model => model.PhoneNumber, new { @class = "form-control", placeholder = "Enter phone number" })
+                        @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
+                    </div>
+                    
+                    <div class="col-md-6 mb-3">
+                        <label for="Role" class="form-label fw-bold">Roles</label>
+                        @Html.DropDownListFor(model => model.Role, (SelectList)ViewBag.Roles, "--Select Role--", new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Role, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+
+                <div class="mt-4 text-left">
+                    <button type="submit" class="btn btn-success btn-md px-5">Create User</button>
+                    <a asp-action="Index" class="btn btn-secondary btn-md px-5 ms-3">Back to List</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" asp-append-version="true" />
+}

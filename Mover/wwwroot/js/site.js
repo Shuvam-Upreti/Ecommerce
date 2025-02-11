@@ -127,3 +127,20 @@ function ShowDialogWithTextInput(title, text, status) {
         cancelButtonText: 'Cancel',
     });
 }
+function ConvertJavascriptDateDigitToDateFormat(dateToConvert) {
+    if (dateToConvert != null) {
+        var date = null;
+
+        if (dateToConvert.indexOf("/Date(") == 0) {
+            date = (new Date(parseInt(dateToConvert.replace("/Date(", "").replace(")/", ""))));
+        }
+        else {
+            date = new Date(dateToConvert);
+        }
+        var dd = date.getDate();
+        var mm = date.getMonth() + 1;
+        var yyyy = date.getFullYear();
+        return `${yyyy}/${mm}/${dd}`;
+    }
+    return "";
+}

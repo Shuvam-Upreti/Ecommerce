@@ -5,6 +5,7 @@ using Mover.Areas.Admin.ViewModel.Order;
 using Mover.Areas.Admin.ViewModel.Product;
 using Mover.Controllers;
 using Mover.Core.Dto.Category;
+using Mover.Core.Dto.Filter;
 using Mover.Core.Dto.Order;
 using Mover.Core.Exceptions;
 using Mover.Core.Services.Implementations;
@@ -13,6 +14,7 @@ using Mover.Extension;
 using Mover.HttpUtility;
 using Mover.Logging;
 using Mover.ViewModel.Carts;
+using Mover.ViewModel.Filter;
 using static Mover.Core.Enums.Orders.OrderStatus;
 
 namespace Mover.Areas.Admin.Controllers
@@ -57,7 +59,44 @@ namespace Mover.Areas.Admin.Controllers
                 return RedirectToAction(nameof(Index));
             }
         }
+        public async Task<IActionResult> LoadOrders(FilterViewModel model)
+        {
+            try
+            {
+                var dto = new FilterDto()
+                {
+                    Search = model.Search,
+                    PageSize = model.PageSize,
+                    PageIndex = model.PageIndex
+                }; 
+                var currentUser = SessionInfo.GetCurrentUser();
+                var (orderList, totalCount) = await _orderService.GetAllOrdersForGrid(dto, currentUser);
+                var datas = orderList.Select(a => new OrderViewModel
+                {
+                    OrderId = a.OrderId,
+                    CreatedBy = a.CreatedBy,
+                    PhoneNumber = a.PhoneNumber,
+                    TotalAmount = a.TotalAmount,
+                    OrderDate = a.OrderDate,
+                    OrderStatus = a.OrderStatus,
+                }).ToList();
+                var result = Json(new { data = datas, totalCount = totalCount });
+                return result;
 
+            }
+            catch (CustomException ex)
+            {
+                new SeriLogger().Error(ex.Message, ex);
+                this.NotifyError(ex.Message);
+                return View();
+            }
+            catch (Exception ex)
+            {
+                new SeriLogger().Error(ex.Message, ex);
+                this.NotifyError("Something went wrong.Please try again");
+                return View();
+            }
+        }
         [HttpPost]
         public async Task<IActionResult> PlaceOrder(SummaryViewModel model)
         {

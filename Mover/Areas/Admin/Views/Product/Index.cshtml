@@ -5,7 +5,7 @@
     ViewBag.Title = "Index";
 }
 
-
+@* 
 <div class="container p-3">
     <div class="row pt-4">
         <div class="col-6">
@@ -57,4 +57,22 @@
 
         </tbody>
     </table>
+</div> *@
+<div class="searchBar">
+    <div class="loHead">
+        <span>Products</span>
+        <div class="col-12">
+            <a href="/admin/product/create" class="btn btn-primary pull-right">
+                <i class="fa fa-plus"></i> Create New Product
+            </a>
+        </div>
+    </div>
 </div>
+<div id="productGrid" class="panel" style="min-height:500px"></div>
+
+
+@section scripts {
+
+    <script src="~/js/Product/Product.js" asp-append-version="true"></script>
+
+}

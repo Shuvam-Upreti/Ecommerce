@@ -2,7 +2,9 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Mover.Areas.Admin.ViewModel.Category;
 using Mover.Areas.Admin.ViewModel.Product;
+using Mover.Core.Dto.Filter;
 using Mover.Core.Dto.Product;
 using Mover.Core.Exceptions;
 using Mover.Core.Helpers;
@@ -10,6 +12,7 @@ using Mover.Core.Services.Interfaces;
 using Mover.Extension;
 using Mover.HttpUtility;
 using Mover.Logging;
+using Mover.ViewModel.Filter;
 
 namespace Mover.Areas.Admin.Controllers
 {
@@ -61,7 +64,44 @@ namespace Mover.Areas.Admin.Controllers
                 return View();
             }
         }
+        public async Task<IActionResult> LoadProducts(FilterViewModel model)
+        {
+            try
+            {
+                var dto = new FilterDto()
+                {
+                    Search = model.Search,
+                    PageSize = model.PageSize,
+                    PageIndex = model.PageIndex
+                };
+                var (productList, totalCount) = await _productService.GetAllProductsForGrid(dto);
+                var datas = productList.Select(a => new ProductViewModel
+                {
+                    ProductId = a.ProductId,
+                    Description = a.Description,
+                    ProductName = a.ProductName,
+                    DiscountedPrice = a.DiscountedPrice,
+                    Category = a.Category,
+                    DiscountPercentage = a.DiscountPercentage,
+                    OriginalPrice = a.OriginalPrice
+                }).ToList();
+                var result = Json(new { data = datas, totalCount = totalCount });
+                return result;
 
+            }
+            catch (CustomException ex)
+            {
+                new SeriLogger().Error(ex.Message, ex);
+                this.NotifyError(ex.Message);
+                return View();
+            }
+            catch (Exception ex)
+            {
+                new SeriLogger().Error(ex.Message, ex);
+                this.NotifyError("Something went wrong.Please try again");
+                return View();
+            }
+        }
         [HttpGet]
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Create()
@@ -247,7 +287,7 @@ namespace Mover.Areas.Admin.Controllers
             }
         }
         [HttpPost]
-        [ValidateAntiForgeryToken]
+
         public async Task<IActionResult> Delete(int productId)
         {
             try
@@ -312,13 +352,17 @@ namespace Mover.Areas.Admin.Controllers
         [HttpGet]
         public async Task<IActionResult> GetProductsByCategories([FromQuery] List<int> categoryIds)
         {
-            if (categoryIds.Count <= 0)
-            {
-                return Json(new { success = false, message = "No catergory" });
-            }
             try
             {
-                var products = await _productService.GetProductsByCategories(categoryIds);
+                var products = new List<ProductDto>();
+                if (categoryIds.Count <= 0)
+                {
+                    products = await _productService.GetAllProducts();
+                }
+                else
+                {
+                    products = await _productService.GetProductsByCategories(categoryIds);
+                }
                 var productList = products.Select(a => new
                 {
                     a.ProductId,

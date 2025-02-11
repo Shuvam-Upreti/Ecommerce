@@ -13,6 +13,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Mover.Core.Exceptions;
+using Mover.Core.Dto.Filter;
 
 namespace Mover.Core.Services.Implementations
 {
@@ -35,6 +36,19 @@ namespace Mover.Core.Services.Implementations
             }).ToList();
             return dto;
         }
+        public async Task<(List<CategoryDto>, int TotalCount)> GetAllCategoriesForGrid(FilterDto filter)
+        {
+            var categories = await _categoryRepository.GetQueryable().ToListAsync();
+            int totalCount = categories.Count;
+            var pagedData = categories.Skip(filter.PageIndex).Take(filter.PageSize);
+            var dto = pagedData.Select(a => new CategoryDto()
+            {
+                CreatedOn = a.CreatedOn,
+                Name = a.Name,
+                Id = a.Id,
+            }).ToList();
+            return (dto, totalCount);
+        }
         public async Task Save(CategoryDto model)
         {
             using var tx = TransactionScopeHelper.GetInstance();
@@ -55,7 +69,7 @@ namespace Mover.Core.Services.Implementations
             var categories = await _categoryRepository.GetByIdAsync(id);
             var dto = new CategoryDto()
             {
-                Id= categories.Id,
+                Id = categories.Id,
                 Name = categories.Name,
                 CreatedOn = categories.CreatedOn
             };
@@ -68,7 +82,7 @@ namespace Mover.Core.Services.Implementations
 
             category.Name = model.Name;
             category.CreatedOn = DateTime.Now;
-         
+
             _categoryRepository.Update(category);
 
             tx.Complete();

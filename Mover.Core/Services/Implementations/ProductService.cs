@@ -14,6 +14,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Mover.Core.Exceptions;
 using Microsoft.Extensions.Configuration;
+using Mover.Core.Dto.Filter;
+using Mover.Core.Dto.Category;
 
 namespace Mover.Core.Services.Implementations
 {
@@ -45,6 +47,23 @@ namespace Mover.Core.Services.Implementations
                         .Select(img => img.ImageUrl).ToList()
             }).ToList();
             return dto;
+        }
+        public async Task<(List<ProductDto>, int TotalCount)> GetAllProductsForGrid(FilterDto filter)
+        {
+            var products = await _productRepository.GetQueryable().ToListAsync();
+            int totalCount = products.Count;
+            var pagedData = products.Skip(filter.PageIndex).Take(filter.PageSize);
+            var dto = pagedData.Select(a => new ProductDto()
+            {
+                ProductId = a.ProductId,
+                Category = a.Category?.Name,
+                ProductName = a.ProductName,
+                Description = a.Description,
+                DiscountedPrice = a.DiscountedPrice,
+                DiscountPercentage = a.DiscountPercentage,
+                OriginalPrice = a.OriginalPrice
+            }).ToList();
+            return (dto, totalCount);
         }
         public async Task Save(ProductDto model)
         {
@@ -139,6 +158,7 @@ namespace Mover.Core.Services.Implementations
 
             // Update other product properties
             product.ProductName = productDto.ProductName;
+            product.CategoryId = productDto.CategoryId;
             product.Description = productDto.Description;
             product.OriginalPrice = productDto.OriginalPrice;
             product.DiscountedPrice = productDto.DiscountedPrice;

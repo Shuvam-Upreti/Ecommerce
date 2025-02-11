@@ -4,122 +4,480 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "View Products";
 }
+
 <style>
-    :root {
-        --primary-color: #333;
-        --accent-color: #f44336;
-        --gray-light: #f5f5f5;
+    .shop-container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 20px;
     }
 
-    /* Products Section */
-    .product-card {
-        border: none;
-        border-radius: 10px;
-        overflow: hidden;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    /* Breadcrumb */
+    .breadcrumb {
+        margin-bottom: 30px;
+        font-size: 14px;
+    }
+
+    .breadcrumb a {
+        color: #6B7280;
+        text-decoration: none;
+    }
+
+    /* Filter Sidebar */
+    .filter-section {
+        margin-bottom: 24px;
+    }
+
+    .filter-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        cursor: pointer;
+        padding: 12px 0;
+        border-bottom: 1px solid #E5E7EB;
+    }
+
+    .filter-title {
+        font-size: 15px;
+        font-weight: 500;
+        color: #111;
+    }
+
+    .filter-content {
+        padding-top: 16px;
+    }
+
+    .filter-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 12px;
+        color: #4B5563;
+        font-size: 14px;
+    }
+
+    .filter-checkbox {
+        width: 16px;
+        height: 16px;
+        border: 1px solid #D1D5DB;
+        border-radius: 3px;
+    }
+
+    /* Shop Header */
+    .shop-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
         margin-bottom: 30px;
     }
 
-        .product-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
+    .view-options {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .view-toggle {
+        display: flex;
+        gap: 8px;
+    }
+
+    .view-btn {
+        padding: 8px;
+        border: 1px solid #E5E7EB;
+        background: white;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .view-btn.active {
+        background: #111;
+        color: white;
+    }
+
+    .results-count {
+        color: #6B7280;
+        font-size: 14px;
+    }
+
+    .sort-select {
+        padding: 8px 32px 8px 12px;
+        border: 1px solid #E5E7EB;
+        border-radius: 4px;
+        font-size: 14px;
+        color: #111;
+        background: white;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%236B7280'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 8px center;
+        background-size: 16px;
+        appearance: none;
+    }
+
+    /* Product Grid */
+    .products-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 24px;
+    }
+
+    .product-card {
+        background: white;
+        border: 1px solid #E5E7EB;
+        border-radius: 8px;
+        overflow: hidden;
+        transition: all 0.3s ease;
+    }
+
+    .product-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 4px 25px rgba(0,0,0,0.1);
+    }
+
+    .product-image-wrapper {
+        position: relative;
+        padding-top: 100%;
+        background: #F9FAFB;
+    }
 
     .product-image {
-        height: 300px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
         object-fit: cover;
     }
 
-    .product-details {
-        padding: 15px;
+    .wishlist-btn {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background: white;
+        border: none;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        opacity: 0;
+        transition: opacity 0.3s ease;
     }
 
-    .product-title {
-        font-size: 16px;
-        font-weight: 600;
-        margin-bottom: 10px;
+    .product-card:hover .wishlist-btn {
+        opacity: 1;
+    }
+
+    .product-details {
+        padding: 16px;
+    }
+
+    .product-brand {
+        font-size: 14px;
+        color: #6B7280;
+        margin-bottom: 4px;
+    }
+
+    .product-name {
+        font-size: 15px;
+        font-weight: 500;
+        color: #111;
+        margin-bottom: 8px;
+        line-height: 1.4;
     }
 
     .product-price {
-        color: var(--accent-color);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .current-price {
         font-weight: 600;
-        font-size: 18px;
+        color: #111;
     }
 
     .original-price {
+        color: #6B7280;
         text-decoration: line-through;
-        color: #999;
-        margin-right: 10px;
+        font-size: 14px;
     }
 
-    /* Responsive Design */
-    @@media (max-width: 768px) {
+    .add-to-cart {
+        margin-top: 12px;
+        width: 100%;
+        padding: 8px;
+        background: #111;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        font-size: 14px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
 
-        .category-card {
-            height: 150px;
+    .add-to-cart:hover {
+        background: #000;
+    }
+
+    /* Pagination */
+    .pagination {
+        display: flex;
+        justify-content: center;
+        gap: 4px;
+        margin-top: 40px;
+    }
+
+    .page-btn {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid #E5E7EB;
+        background: white;
+        color: #111;
+        font-size: 14px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .page-btn.active {
+        background: #111;
+        color: white;
+        border-color: #111;
+    }
+
+    .page-btn:hover:not(.active) {
+        background: #F9FAFB;
+    }
+
+    @@media (max-width: 768px) {
+        .products-grid {
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 16px;
         }
 
-        .product-image {
-            height: 200px;
+        .shop-header {
+            flex-direction: column;
+            gap: 16px;
+            align-items: flex-start;
+        }
+
+        .view-options {
+            width: 100%;
+            justify-content: space-between;
+        }
+
+        .sort-select {
+            width: 100%;
         }
     }
 </style>
-<h3>Product List</h3>
 
-<div class="row">
-    <!-- Sidebar for Categories -->
-    <div class="col-md-3">
-        <h5>Filter by Category</h5>
-        <form id="categoryFilterForm">
-            @foreach (var category in ViewBag.Categories)
-            {
-                bool isChecked = ViewBag.SelectedCategoryId != null && ViewBag.SelectedCategoryId == category.Id;
-                <div class="form-check">
-                    <input class="form-check-input category-checkbox" type="checkbox" value="@category.Id" id="category_@category.Id" @(isChecked ? "checked" : "")>
-                    <label class="form-check-label" for="category_@category.Id">@category.Name</label>
+<div class="shop-container">
+    <!-- Breadcrumb -->
+    <!-- Breadcrumb -->
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Home</a></li>
+            @* <li class="breadcrumb-item"><a href="/shop">Shop</a></li> *@
+            
+        </ol>
+    </nav>
+
+    <div class="row">
+        <!-- Filter Sidebar -->
+        <div class="col-lg-3">
+            <!-- Categories Filter -->
+            <div class="filter-section">
+                <div class="filter-header">
+                    <span class="filter-title">Product Categories</span>
+                    <i class="fas fa-chevron-down"></i>
                 </div>
-            }
-        </form>
-    </div>
+                <div class="filter-content">
+                    @foreach (var category in ViewBag.Categories)
+                    {
+                        <label class="filter-item">
+                            <input type="checkbox" class="filter-checkbox category-checkbox" value="@category.Id" 
+                                   @(ViewBag.SelectedCategoryId != null && ViewBag.SelectedCategoryId == category.Id ? "checked" : "")>
+                            <span>@category.Name</span>
+                        </label>
+                    }
+                </div>
+            </div>
 
-    <!-- Product List -->
+            <!-- Price Filter -->
+            <div class="filter-section">
+                <div class="filter-header">
+                    <span class="filter-title">Filter by Price</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="filter-content">
+                    <label class="filter-item">
+                        <input type="checkbox" class="filter-checkbox">
+                        <span>Under $50</span>
+                    </label>
+                    <label class="filter-item">
+                        <input type="checkbox" class="filter-checkbox">
+                        <span>$50 - $100</span>
+                    </label>
+                    <label class="filter-item">
+                        <input type="checkbox" class="filter-checkbox">
+                        <span>$100 - $200</span>
+                    </label>
+                    <label class="filter-item">
+                        <input type="checkbox" class="filter-checkbox">
+                        <span>Over $200</span>
+                    </label>
+                </div>
+            </div>
+@* 
+            <!-- Color Filter -->
+            <div class="filter-section">
+                <div class="filter-header">
+                    <span class="filter-title">Filter by Color</span>
+                    <i class="bi bi-chevron-down"></i>
+                </div>
+                <div class="filter-content">
+                    <label class="filter-item">
+                        <input type="checkbox" class="filter-checkbox">
+                        <span>Black</span>
+                    </label>
+                    <label class="filter-item">
+                        <input type="checkbox" class="filter-checkbox">
+                        <span>White</span>
+                    </label>
+                    <label class="filter-item">
+                        <input type="checkbox" class="filter-checkbox">
+                        <span>Red</span>
+                    </label>
+                    <label class="filter-item">
+                        <input type="checkbox" class="filter-checkbox">
+                        <span>Blue</span>
+                    </label>
+                </div>
+            </div>
 
-    <div class="container">
-        <h3 class="mb-4 text-center">Our Products</h3>
-        <div class="row" id="productList">
+            <!-- Size Filter -->
+            <div class="filter-section">
+                <div class="filter-header">
+                    <span class="filter-title">Filter by Size</span>
+                    <i class="bi bi-chevron-down"></i>
+                </div>
+                <div class="filter-content">
+                    <label class="filter-item">
+                        <input type="checkbox" class="filter-checkbox">
+                        <span>XS</span>
+                    </label>
+                    <label class="filter-item">
+                        <input type="checkbox" class="filter-checkbox">
+                        <span>S</span>
+                    </label>
+                    <label class="filter-item">
+                        <input type="checkbox" class="filter-checkbox">
+                        <span>M</span>
+                    </label>
+                    <label class="filter-item">
+                        <input type="checkbox" class="filter-checkbox">
+                        <span>L</span>
+                    </label>
+                    <label class="filter-item">
+                        <input type="checkbox" class="filter-checkbox">
+                        <span>XL</span>
+                    </label>
+                </div>
+            </div> *@
+        </div>
 
-            @foreach (var product in Model)
-            {
-                <div class="col-lg-3 col-md-4 col-6">
+        <!-- Products Grid -->
+        <div class="col-lg-9">
+            <div class="shop-header">
+                <div class="view-options">
+                    <div class="view-toggle">
+                        <button class="view-btn active">
+                            <i class="fas fa-th"></i>
+                        </button>
+                        <button class="view-btn">
+                            <i class="fas fa-list"></i>
+                        </button>
+                    </div>
+                    <span class="results-count">Showing 1-12 of @Model.Count results</span>
+                </div>
+                <select class="sort-select">
+                    <option>Sort by latest</option>
+                    <option>Sort by price: low to high</option>
+                    <option>Sort by price: high to low</option>
+                </select>
+            </div>
+
+            <div class="products-grid" id="productList">
+                @foreach (var product in Model)
+                {
                     <div class="product-card">
-                        <img src="@Url.Content($"~/{product.ImageUrls.FirstOrDefault()}")" class="product-image" alt="@product.ProductName">
+                        <div class="product-image-wrapper">
+                            <img src="@Url.Content($"~/{product.ImageUrls.FirstOrDefault()}")" class="product-image" alt="@product.ProductName">
+                            <button class="wishlist-btn">
+                                <i class="fas fa-heart"></i>
+                            </button>
+                        </div>
                         <div class="product-details">
-                            <h3 class="product-title">@product.ProductName</h3>
-                            <h4 class="product-title">@product.Description</h4>
-                            <div class="d-flex align-items-center">
-                                <span class="original-price">$@product.OriginalPrice</span>
-                                <span class="product-price">$@product.DiscountedPrice</span>
-                            </div>Home/Details
-                            <a asp-area="" asp-controller="Home" asp-action="Details" asp-route-id="@product.ProductId" class="btn btn-outline-dark w-100 mt-3">View Details</a>
+                            <div class="product-brand">Brand Name</div>
+                            <h3 class="product-name">@product.ProductName</h3>
+                            <div class="product-price">
+                                <span class="current-price">$@product.DiscountedPrice</span>
+                                @if (product.OriginalPrice > product.DiscountedPrice)
+                                {
+                                    <span class="original-price">$@product.OriginalPrice</span>
+                                }
+                            </div>
+                            <button class="add-to-cart">Add to Cart</button>
                         </div>
                     </div>
-                </div>
-            }
+                }
+            </div>
+
+          @*   <div class="pagination">
+                <button class="page-btn active">1</button>
+                <button class="page-btn">2</button>
+                <button class="page-btn">3</button>
+                <button class="page-btn">4</button>
+                <button class="page-btn">5</button>
+                <button class="page-btn">
+                    <i class="bi bi-chevron-right"></i>
+                </button>
+            </div> *@
         </div>
     </div>
 </div>
 
 @section Scripts {
-
     <script>
         $(document).ready(function () {
+            // Toggle filter sections
+            $('.filter-header').click(function() {
+                $(this).next('.filter-content').slideToggle();
+                $(this).find('i').toggleClass('bi-chevron-up bi-chevron-down');
+            });
+
+            // Toggle view buttons
+            $('.view-btn').click(function() {
+                $('.view-btn').removeClass('active');
+                $(this).addClass('active');
+            });
+
+            // Your existing category filter code
             $(".category-checkbox").on("change", function () {
                 var selectedCategories = [];
                 $(".category-checkbox:checked").each(function () {
                     selectedCategories.push($(this).val());
                 });
-                console.log("CatId", selectedCategories);
-                // Make AJAX call to filter products
+
                 $.ajax({
                     url: "/admin/product/getproductsbycategories",
                     type: "GET",
@@ -127,35 +485,37 @@
                     dataType: "json",
                     traditional: true,
                     success: function (data) {
-                        $("#productList").empty(); // Clear current product list
+                        $("#productList").empty();
 
                         if (data.length > 0) {
                             $.each(data, function (index, product) {
                                 let imageUrl = `/${product.imageUrl}`;
                                 $("#productList").append(`
-                                <div class="col-lg-3 col-md-4 col-6">
                                     <div class="product-card">
-                                        <img src="${imageUrl}" class="product-image" alt="${product.productName}">
+                                        <div class="product-image-wrapper">
+                                            <img src="${imageUrl}" class="product-image" alt="${product.productName}">
+                                            <button class="wishlist-btn">
+                                                <i class="bi bi-heart"></i>
+                                            </button>
+                                        </div>
                                         <div class="product-details">
-                                            <h3 class="product-title">${product.productName}</h3>
-                                            <h4 class="product-title">${product.description}</h4>
-                                            <div class="d-flex align-items-center">
-                                                <span class="original-price">$${product.originalPrice}</span>
-                                                <span class="product-price">$${product.discountedPrice}</span>
+                                            <div class="product-brand">Brand Name</div>
+                                            <h3 class="product-name">${product.productName}</h3>
+                                            <div class="product-price">
+                                                <span class="current-price">$${product.discountedPrice}</span>
+                                                ${product.originalPrice > product.discountedPrice ? 
+                                                    `<span class="original-price">$${product.originalPrice}</span>` : ''}
                                             </div>
-                                            <a href="/Admin/Product/Details/${product.productId}" class="btn btn-outline-dark w-100 mt-3">View Details</a>
+                                            <button class="add-to-cart">Add to Cart</button>
                                         </div>
                                     </div>
-                                </div>
-                            `);
+                                `);
                             });
                         } else {
                             if (data.message === "No catergory") {
                                 window.location.href = '/admin/product/viewproducts'
-                            }
-                            else {
+                            } else {
                                 $("#productList").html("<p>No products found.</p>");
-
                             }
                         }
                     },
@@ -166,5 +526,4 @@
             });
         });
     </script>
-
 }

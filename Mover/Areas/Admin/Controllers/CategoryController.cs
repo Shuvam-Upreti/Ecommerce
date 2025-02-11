@@ -9,11 +9,13 @@ using Mover.Extension;
 using Mover.Areas.Admin.ViewModel.Category;
 using Microsoft.AspNetCore.Authorization;
 using Mover.Core.Enums.Roles;
+using Mover.ViewModel.Filter;
+using Mover.Core.Dto.Filter;
 
 namespace Mover.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [Authorize(Roles ="Admin")]
+    [Authorize(Roles = "Admin")]
     public class CategoryController : Controller
     {
         private readonly ICategoryService _categoryService;
@@ -33,6 +35,40 @@ namespace Mover.Areas.Admin.Controllers
                     Id = a.Id,
                 }).ToList();
                 return View(vm);
+
+            }
+            catch (CustomException ex)
+            {
+                new SeriLogger().Error(ex.Message, ex);
+                this.NotifyError(ex.Message);
+                return View();
+            }
+            catch (Exception ex)
+            {
+                new SeriLogger().Error(ex.Message, ex);
+                this.NotifyError("Something went wrong.Please try again");
+                return View();
+            }
+        }
+        public async Task<IActionResult> LoadCategories(FilterViewModel model)
+        {
+            try
+            {
+                var dto = new FilterDto()
+                {
+                    Search = model.Search,
+                    PageSize = model.PageSize,
+                    PageIndex = model.PageIndex
+                };
+                var (categoryList, totalCount) = await _categoryService.GetAllCategoriesForGrid(dto);
+                var datas = categoryList.Select(a => new CategoryViewModel
+                {
+                    CreatedOn = a.CreatedOn,
+                    Name = a.Name,
+                    Id = a.Id,
+                }).ToList();
+                var result = Json(new { data = datas, totalCount = totalCount });
+                return result;
 
             }
             catch (CustomException ex)
@@ -166,12 +202,11 @@ namespace Mover.Areas.Admin.Controllers
             }
         }
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> Delete([FromForm] int categoryId)
         {
             try
             {
-                await _categoryService.Delete(id);
+                await _categoryService.Delete(categoryId);
                 return RedirectToAction(nameof(Index));
             }
             catch (CustomException ex)

@@ -1396,13 +1396,13 @@ th {
     }
 
 html {
-    font-size: 10px;
+    font-size: 16px;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
 body {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 14px;
+    font-size: 16px;
     line-height: 1.42857143;
     color: #333;
     background-color: #fff;
@@ -8179,3 +8179,36 @@ button.close {
     }
 }
 /*# sourceMappingURL=bootstrap.css.map */
+.nochangeonhover {
+    pointer-events: auto;
+    text-decoration: none !important;
+}
+
+    .nochangeonhover:hover {
+        color: inherit !important;
+        background: none !important;
+        text-decoration: none !important;
+    }
+/* Default success color */
+.toast-success {
+    background-color: #218838 !important; /* Green */
+    color: white;
+}
+
+/* Default error color */
+.toast-error {
+    background-color: #dc3545 !important; /* Red */
+    color: white;
+}
+
+/* Default info color */
+.toast-info {
+    background-color: #17a2b8 !important; /* Blue */
+    color: white;
+}
+
+/* Default warning color */
+.toast-warning {
+    background-color: #ffc107 !important; /* Yellow */
+    color: black;
+}

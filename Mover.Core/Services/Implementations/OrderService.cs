@@ -16,6 +16,8 @@ using Mover.Core.Exceptions;
 using Mover.Core.Dto.Carts;
 using Mover.Core.Dto.Order;
 using Mover.Core.Enums.Roles;
+using Mover.Core.Dto.Filter;
+using Mover.Core.Dto.Product;
 
 namespace Mover.Core.Services.Implementations
 {
@@ -49,7 +51,28 @@ namespace Mover.Core.Services.Implementations
             }).ToList();
             return dto;
         }
+        public async Task<(List<OrderDto>, int TotalCount)> GetAllOrdersForGrid(FilterDto filter, UserSessionDto currentUser)
+        {
+            var orders = _orderRepository.GetQueryable();
+            if (currentUser.Role != RolesEnum.Admin.ToString())
+            {
+                orders = orders.Where(a => a.UserId == currentUser.Id);
 
+            }
+            orders = orders.OrderByDescending(a => a.OrderDate);
+            int totalCount = await orders.CountAsync();
+            var pagedData = orders.Skip(filter.PageIndex).Take(filter.PageSize);
+            var dto = pagedData.Select(a => new OrderDto()
+            {
+                OrderId = a.OrderId,
+                CreatedBy = a.User.FullName,
+                PhoneNumber = a.User.AspUser.PhoneNumber,
+                TotalAmount = a.TotalAmount,
+                OrderDate = a.OrderDate,
+                OrderStatus = a.OrderStatus,
+            }).ToList();
+            return (dto, totalCount);
+        }
         public async Task Save(OrderDto model)
         {
             using var tx = TransactionScopeHelper.GetInstance();
