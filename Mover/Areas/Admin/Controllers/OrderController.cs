@@ -68,7 +68,7 @@ namespace Mover.Areas.Admin.Controllers
                     Search = model.Search,
                     PageSize = model.PageSize,
                     PageIndex = model.PageIndex
-                }; 
+                };
                 var currentUser = SessionInfo.GetCurrentUser();
                 var (orderList, totalCount) = await _orderService.GetAllOrdersForGrid(dto, currentUser);
                 var datas = orderList.Select(a => new OrderViewModel
@@ -79,6 +79,8 @@ namespace Mover.Areas.Admin.Controllers
                     TotalAmount = a.TotalAmount,
                     OrderDate = a.OrderDate,
                     OrderStatus = a.OrderStatus,
+                    CurrentUserRole = currentUser.Role
+
                 }).ToList();
                 var result = Json(new { data = datas, totalCount = totalCount });
                 return result;
@@ -165,7 +167,7 @@ namespace Mover.Areas.Admin.Controllers
                     OrderId = id
                 };
 
-                return PartialView("~/Areas/Admin/Views/Order/Partial/_EditOrderStatus.cshtml",vm);
+                return PartialView("~/Areas/Admin/Views/Order/Partial/_EditOrderStatus.cshtml", vm);
 
             }
             catch (CustomException ex)
@@ -208,8 +210,55 @@ namespace Mover.Areas.Admin.Controllers
                 return RedirectToAction(nameof(Index));
             }
         }
+
+        public async Task<IActionResult> Details(int id)
+        {
+            try
+            {
+                var order = await _orderService.GetOrderById(id);
+
+                var vm = new OrderViewModel()
+                {
+                    OrderId = order.OrderId,
+                    CreatedBy = order.CreatedBy,
+                    PhoneNumber = order.PhoneNumber,
+                    TotalAmount = order.TotalAmount,
+                    OrderDate = order.OrderDate,
+                    OrderStatus = order.OrderStatus,
+                    ShippingAddressLine = order.ShippingAddressLine,
+                    ShippingCity = order.ShippingCity,
+                    ShippingZipCode = order.ShippingZipCode,
+                    PaymentStatus = order.PaymentStatus,
+                    ShippingState = order.ShippingState,
+                    OrderItemsViewModel = order.OrderItemsDto.Select(a => new OrderItemViewModel()
+                    {
+                        DiscountAtPurchase = a.DiscountAtPurchase,
+                        PriceAtPurchase = a.PriceAtPurchase,
+                        Quantity = a.Quantity,
+                        OrderItemId = a.OrderItemId,
+                        ProductId = a.ProductId,
+                        ProductName=a.ProductName
+                    }).ToList()
+                };
+
+                return View(vm);
+
+            }
+            catch (CustomException ex)
+            {
+                new SeriLogger().Error(ex.Message, ex);
+                this.NotifyInfo(ex.Message);
+                return RedirectToAction(nameof(Index));
+            }
+            catch (Exception ex)
+            {
+                new SeriLogger().Error(ex.Message, ex);
+                this.NotifyError("Something went wrong.Please try again");
+                return RedirectToAction(nameof(Index));
+            }
+        }
+
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(int id)
         {
             try

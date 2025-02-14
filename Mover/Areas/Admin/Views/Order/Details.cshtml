@@ -1,0 +1,46 @@
+﻿@using Mover.Areas.Admin.ViewModel.Order
+@model OrderViewModel
+
+@{
+    ViewData["Title"] = "Order Details";
+}
+
+<h2 class="mb-4">Order Details</h2>
+
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">Order #@Model.OrderId</h4>
+        <p><strong>Created By:</strong> @Model.CreatedBy</p>
+        <p><strong>Phone Number:</strong> @Model.PhoneNumber</p>
+        <p><strong>Total Amount:</strong> $@Model.TotalAmount</p>
+        <p><strong>Order Date:</strong> @Model.OrderDate</p>
+        <p><strong>Order Status:</strong> @Model.OrderStatus</p>
+        <p><strong>Payment Status:</strong> @Model.PaymentStatus</p>
+        <p><strong>Shipping Address:</strong> @Model.ShippingAddressLine, @Model.ShippingCity, @Model.ShippingState, @Model.ShippingZipCode</p>
+    </div>
+</div>
+
+<h3 class="mt-4">Order Items</h3>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Product Name</th>
+            <th>Quantity</th>
+            <th>Price at Purchase</th>
+            <th>Discount at Purchase</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.OrderItemsViewModel)
+        {
+            <tr>
+                <td>@item.ProductName</td>
+                <td>@item.Quantity</td>
+                <td>$@item.PriceAtPurchase</td>
+                <td>$@item.DiscountAtPurchase</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a href="@Url.Action("Index")" class="btn btn-secondary">Back to Orders</a>

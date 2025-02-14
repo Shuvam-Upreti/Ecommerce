@@ -23,6 +23,7 @@ namespace Mover.Areas.Admin.ViewModel.Order
         public string? ShippingState { get; set; }
 
         public string? ShippingZipCode { get; set; }
+        public string? CurrentUserRole { get; set; }
 
         public List<OrderItemViewModel> OrderItemsViewModel { get; set; } = new List<OrderItemViewModel>();
 
@@ -36,6 +37,7 @@ namespace Mover.Areas.Admin.ViewModel.Order
         public int? OrderId { get; set; }
 
         public int? ProductId { get; set; }
+        public string? ProductName { get; set; }
 
         public int? Quantity { get; set; }
 

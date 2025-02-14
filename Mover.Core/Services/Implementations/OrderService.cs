@@ -103,7 +103,7 @@ namespace Mover.Core.Services.Implementations
         }
         public async Task UpdateOrderStatus(OrderStatusDto model)
         {
-            using var tx = TransactionScopeHelper.GetInstance() ;
+            using var tx = TransactionScopeHelper.GetInstance();
 
             var entity = await _orderRepository.GetByIdAsync(model.OrderId) ?? throw new CustomException("No Order Found");
 
@@ -113,7 +113,35 @@ namespace Mover.Core.Services.Implementations
             tx.Complete();
 
         }
+        public async Task<OrderDto> GetOrderById(int orderId)
+        {
+            var order = await _orderRepository.GetQueryable().Where(a => a.OrderId == orderId).FirstOrDefaultAsync() ?? throw new CustomException("No order found.");
 
+            var dto = new OrderDto()
+            {
+                OrderId = order.OrderId,
+                CreatedBy = order.User?.FullName,
+                PhoneNumber = order.User?.AspUser.PhoneNumber,
+                TotalAmount = order.TotalAmount,
+                OrderDate = order.OrderDate,
+                OrderStatus = order.OrderStatus,
+                ShippingAddressLine = order.ShippingAddressLine,
+                ShippingCity = order.ShippingCity,
+                ShippingZipCode = order.ShippingZipCode,
+                PaymentStatus = order.PaymentStatus,
+                ShippingState = order.ShippingState,
+                OrderItemsDto= order.OrderItems.Select(a => new OrderItemDto()
+                {
+                    DiscountAtPurchase = a.DiscountAtPurchase,
+                    PriceAtPurchase = a.PriceAtPurchase,
+                    Quantity = a.Quantity,
+                    OrderItemId=a.OrderItemId,
+                    ProductId=a.ProductId,
+                    ProductName=a.Product?.ProductName
+                }).ToList()
+            };
+            return dto;
+        }
 
         public async Task Delete(int id)
         {

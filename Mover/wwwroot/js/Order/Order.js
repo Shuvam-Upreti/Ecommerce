@@ -4,9 +4,8 @@ let _totalRowsCount = 0;
 
 $(document).ready(function () {
     OrderGrid("#orderGrid", "OrderDetails");
-    console.log("Product ID:"); // Add this log to confirm the value of productId
 
-    $(document).on('click', '#deleteOrder', function () {
+    $(document).on('click', ".deleteOrder", function () {
         var orderId = $(this).data('orderOrderid'); // This should correctly retrieve the productId
         console.log("Product ID:", orderId); // Add this log to confirm the value of productId
 
@@ -121,15 +120,21 @@ function OrderGrid(onLoadElement, exportFileName) {
 }
 function orderActionButtons(dataObj) {
     var html = '';
-    var EditDetailUrl = "/admin/product/Edit?id=" + dataObj.productId;
-    console.log(dataObj.productId);
-    // Edit button
-    html += '<a href="' + EditDetailUrl + '" class="glyphicon glyphicon-edit nochangeonhover" data-toggle="tooltip" title="Edit Product"></a>';
-    html += ' |&nbsp;';
-
-    // Delete button
-    html += '<button type="button" id="deleteProduct" class="glyphicon glyphicon-trash nochangeonhover" data-toggle="tooltip" title="Delete Product" style="background:none; border:none; color:red;" data-product-productId="' + dataObj.productId + '"></button>';
-    //html += '<button type="button" id="deleteProduct" class="glyphicon glyphicon-trash nochangeonhover" data-toggle="tooltip" title="Delete Product" style="background:none; border:none; color:red;" data-product-productId="' + dataObj.productId + '"></button>';
+    if (dataObj.currentUserRole == "Admin") {
+        var EditDetailUrl = "/admin/order/editorderstatus?id=" + dataObj.orderId;
+        // Edit button
+        html += '<a href="' + EditDetailUrl + '" class="glyphicon glyphicon-edit nochangeonhover" data-toggle="tooltip" title="Edit Product"></a>';
+        html += ' |&nbsp;';
+    }
+    var viewUrl = "/admin/order/details/" + dataObj.orderId;
+    html += '<a href="' + viewUrl + '" class="glyphicon glyphicon-eye-open nochangeonhover" data-toggle="tooltip" title="View Detail">' +
+        '</a>';
+    if (dataObj.orderStatus == "Pending") {
+        html += ' |&nbsp;';
+        // Delete button
+        html += '<a class="glyphicon glyphicon-trash nochangeonhover deleteOrder" data-toggle="tooltip" title="Delete Product" style="background:none; border:none; color:red;" data-order-orderId="' + dataObj.orderId + '"></a>';
+        //html += '<button type="button" id="deleteProduct" class="glyphicon glyphicon-trash nochangeonhover" data-toggle="tooltip" title="Delete Product" style="background:none; border:none; color:red;" data-product-productId="' + dataObj.productId + '"></button>';
+    }
 
     return html;
 }
@@ -174,30 +179,30 @@ function OrderDataSorce() {
         }
     });
 }
-function DeleteProduct(productId) {
-    console.log("cat", productId);
+function DeleteOrder(orderId) {
+    console.log("cat", orderId);
 
-    if (!productId) {
+    if (!orderId) {
         return;
     }
 
     console.log("Calling ShowDialog"); // Debugging line
 
-    ShowDialog("Confirm Delivered", "Are you sure you want to delete the product?", "warning")
+    ShowDialog("Confirm Delivered", "Are you sure you want to delete the order?", "warning")
         .then((result) => {
             console.log("Dialog result:", result); // Debugging line
             if (result.isConfirmed) {
                 BlockWindow("Confirming delete...");
 
                 $.ajax({
-                    url: '/admin/product/delete',
-                    method: 'POSt',
-                    data: { productId: productId },
+                    url: '/admin/order/delete',
+                    method: 'POST',
+                    data: { id: orderId },
                     traditional: true,
                     success: function (data) {
                         UnBlockWindow();
                         toastr.success("Product deleted successfully!");
-                        window.location.href = '/admin/product/index';
+                        window.location.href = '/admin/order/index';
                     },
                     error: function () {
                         UnBlockWindow();

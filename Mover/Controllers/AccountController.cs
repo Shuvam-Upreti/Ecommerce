@@ -322,7 +322,7 @@ namespace Mover.Controllers
                         UserName = userDetails.UserName,
                         FullName = userDetails.FullName,
                         Id = userDetails.Id,
-                        //Role = XmartRecovery.Core.Enums.RolesEnums.Roles.SuperAdmin.ToString()
+                        Role = userDetails.Role,
                     };
 
                     HttpContext.Session.SetSessionObject(checkUser);

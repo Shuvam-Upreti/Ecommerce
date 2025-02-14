@@ -17,6 +17,7 @@ namespace Mover.Core.Services.Interfaces
         Task<(List<OrderDto>, int TotalCount)> GetAllOrdersForGrid(FilterDto filter, UserSessionDto currentUser);
         Task Save(OrderDto model);
         Task UpdateOrderStatus(OrderStatusDto model);
+        Task<OrderDto> GetOrderById(int orderId);
         Task Delete(int id);
 
     }
