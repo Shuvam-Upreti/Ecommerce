@@ -1,4 +1,6 @@
 ﻿ @using Mover.Core.Dto
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
 @using Mover.HttpUtility
 @{
     var currentUser = SessionInfo.GetCurrentUser();
@@ -126,11 +128,17 @@
                     </a>
                     <a href="#"><i class="fas fa-heart mt-2"></i></a>
                     <a href="/Cart/Index"><i class="fas fa-shopping-cart mt-2"></i></a>
-                    <a href="#" class="btn btn-login text-white">Login</a>
-                    
-                    <a href="/Account/Logout" style="display: inline-block; vertical-align: middle;color:inherit;">
-                        <i class="fas fa-sign-out-alt faSize"></i> Log Out
-                    </a>
+
+
+
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <a href="/Account/Logout" class="btn btn-login text-white">Logout</a>                     
+                    }
+                    else
+                    {
+                        <a href="/Account/Login" class="btn btn-login text-white">Login</a>
+                    }
                 </div>
             </div>
         </div>
