@@ -16,9 +16,10 @@ namespace Mover.Core.Services.Interfaces
         Task<(List<ProductDto>, int TotalCount)> GetAllProductsForGrid(FilterDto filter);
         Task Save(ProductDto model);
         Task<ProductDto> GetProduct(int id);
-        Task Edit(ProductDto model,string? imagePath);
+        Task Edit(ProductDto model, string? imagePath);
         Task Delete(int id);
         Task<List<ProductDto>> GetProductsByCategories(List<int> categoryIds);
+        Task<List<ProductDto>> SearchProductsByNameOrDescription(string searchTerm);
 
     }
 }

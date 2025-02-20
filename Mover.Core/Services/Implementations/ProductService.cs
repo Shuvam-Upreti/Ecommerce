@@ -201,6 +201,28 @@ namespace Mover.Core.Services.Implementations
             }).ToList();
             return dto;
         }
+        public async Task<List<ProductDto>> SearchProductsByNameOrDescription(string searchTerm)
+        {
+            var products = await _productRepository.GetQueryable()
+                .Where(p => p.ProductName.Contains(searchTerm) || p.Description.Contains(searchTerm))
+                .ToListAsync();
+
+            var dto = products.Select(a => new ProductDto()
+            {
+                ProductId = a.ProductId,
+                ProductName = a.ProductName,
+                Description = a.Description,
+                DiscountedPrice = a.DiscountedPrice,
+                DiscountPercentage = a.DiscountPercentage,
+                OriginalPrice = a.OriginalPrice,
+                Category = a.Category?.Name,
+                ImageUrls = a.ProductImages?.Where(img => img.IsMainImage == true)
+                    .Select(img => img.ImageUrl).ToList()
+            }).ToList();
+
+            return dto;
+        }
+
 
     }
 }

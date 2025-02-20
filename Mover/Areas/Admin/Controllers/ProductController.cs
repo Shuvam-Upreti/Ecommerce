@@ -310,14 +310,16 @@ namespace Mover.Areas.Admin.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> ViewProducts([FromQuery] int? categoryId)
+        public async Task<IActionResult> ViewProducts([FromQuery] int? categoryId, [FromQuery] string? searchTerm)
         {
             try
             {
                 var categories = await _categoryService.GetAllCategories();
-                var products = categoryId is not null
-                    ? await _productService.GetProductsByCategories(new List<int> { categoryId.Value })
-                    : await _productService.GetAllProducts();
+                var products = !string.IsNullOrEmpty(searchTerm)
+             ? await _productService.SearchProductsByNameOrDescription(searchTerm)
+             : categoryId is not null
+                 ? await _productService.GetProductsByCategories(new List<int> { categoryId.Value })
+                 : await _productService.GetAllProducts();
 
                 var vm = products.Select(a => new ProductViewModel
                 {

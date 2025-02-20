@@ -319,7 +319,7 @@
                 console.log("Search Value:", searchValue);
 
                 if (searchValue) {
-                    let url = `/admin/product/ViewProducts/${encodeURIComponent(searchValue)}`;
+                    let url = `/admin/product/ViewProducts?searchTerm=${encodeURIComponent(searchValue)}`;
                     window.location.href = url; // Redirect to the search URL
                 }
             });
