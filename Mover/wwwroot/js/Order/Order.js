@@ -11,15 +11,19 @@ $(document).ready(function () {
 
         DeleteOrder(orderId);
     });
-
+    $('#searchBtn').on('click', function () {
+        let orderStatus = $('#filterOrderStatus').val();
+        console.log("Orders", orderStatus)
+        OrderGrid("#orderGrid", "OrderDetails", orderStatus);
+    });
 
 });
 
 
-function OrderGrid(onLoadElement, exportFileName) {
+function OrderGrid(onLoadElement, exportFileName, orderStatus) {
     $(function () {
         $(onLoadElement).dxDataGrid({
-            dataSource: OrderDataSorce(),
+            dataSource: OrderDataSorce(orderStatus),
             allowColumnResizing: true,
             paging: {
                 pageSize: 20
@@ -142,7 +146,7 @@ function orderActionButtons(dataObj) {
 
 
 
-function OrderDataSorce() {
+function OrderDataSorce(orderStatus) {
     let url = "/admin/order/LoadOrders";
     return new DevExpress.data.DataSource({
         paginate: true,
@@ -159,6 +163,7 @@ function OrderDataSorce() {
                     PageIndex: loadOptions.skip,
                     PageSize: loadOptions.take,
                     //Search: searchText
+                    orderStatus:  orderStatus
                 },
                 url: url,
             }).done(function (result) {

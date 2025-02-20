@@ -51,9 +51,14 @@ namespace Mover.Core.Services.Implementations
             }).ToList();
             return dto;
         }
-        public async Task<(List<OrderDto>, int TotalCount)> GetAllOrdersForGrid(FilterDto filter, UserSessionDto currentUser)
+        public async Task<(List<OrderDto>, int TotalCount)> GetAllOrdersForGrid(FilterDto filter, UserSessionDto currentUser, string? orderStatus)
         {
             var orders = _orderRepository.GetQueryable();
+            if (orderStatus is not null)
+            {
+                orders=orders.Where(a => a.OrderStatus==orderStatus);
+
+            }
             if (currentUser.Role != RolesEnum.Admin.ToString())
             {
                 orders = orders.Where(a => a.UserId == currentUser.Id);

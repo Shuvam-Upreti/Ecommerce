@@ -1,4 +1,5 @@
 ﻿<ul class="dropdown-menu" aria-labelledby="shopDropdown">
+    <li><a class="dropdown-item" href="/admin/product/viewproducts">All Products</a></li>
     @foreach (var category in Model)
     {
         <li><a class="dropdown-item" href="/admin/product/viewproducts?categoryId=@category.Id">@category.Name</a></li>

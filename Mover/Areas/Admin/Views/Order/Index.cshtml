@@ -21,7 +21,6 @@
     .modal-backdrop {
         background-color: rgba(0, 0, 0, 0.5) !important; /* Ensures backdrop is visible */
     }
- 
 </style>
 @* <h2>Orders</h2> *@
 @* 
@@ -80,11 +79,40 @@
         }
     </tbody>
 </table> *@
+
+<div class="col-12">
+    <div class="row">
+
+        <div class="col-md-5 mb-3">
+        </div>
+        <div class="col-md-1 mb-3">
+        </div>
+        <div class="col-md-2 mb-3">
+            <label for="filterOrderStatus" class="form-label">Order Status</label>
+            <select class="form-control" id="filterOrderStatus" name="filterOrderStatus">
+                <option value="">--Select Status--</option>
+                @foreach (var ordestatus in ViewBag.OrderStatus)
+                {
+                    <option value="@ordestatus.Value">@ordestatus.Text</option>
+
+                }
+            </select>
+        </div>
+
+        <!-- Search Button -->
+        <div class="col-md-4 mb-3 text-left">
+            <button class="btn btn-success" style="margin-top:22px;" id="searchBtn"><i class="fa fa-search"></i> Search</button>
+
+        </div>
+    </div>
+</div>
+
+
+
 <div class="searchBar">
     <div class="loHead">
         <span>Orders</span>
         <div class="col-12">
-         
         </div>
     </div>
 </div>
@@ -112,6 +140,7 @@
                 console.log("shown",a)
             });
         });
+   
 
     </script>
 }

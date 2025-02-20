@@ -120,7 +120,10 @@
 
                 <!-- Right Icons -->
                 <div class="nav-icons d-flex">
-                    <a href="#"><i class="fas fa-search mt-2"></i></a>
+                    <input class="searchBarBox" type="text" placeholder="Search here..." id="searchInput" />
+                    <a href="#" class="searchbutton" id="searchButton">
+                        <i class="fas fa-search mt-2"></i>
+                    </a>
                     <a href="#"><i class="fas fa-heart mt-2"></i></a>
                     <a href="/Cart/Index"><i class="fas fa-shopping-cart mt-2"></i></a>
                     <a href="#" class="btn btn-login text-white">Login</a>
@@ -307,6 +310,22 @@
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script src="~/lib/tinymce/tinymce.min.js"></script>
     <script src="~/js/jquery-confirm.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#searchButton").click(function (event) {
+                event.preventDefault(); // Prevent default anchor behavior
+
+                let searchValue = $("#searchInput").val().trim(); // Get search input value
+                console.log("Search Value:", searchValue);
+
+                if (searchValue) {
+                    let url = `/admin/product/ViewProducts/${encodeURIComponent(searchValue)}`;
+                    window.location.href = url; // Redirect to the search URL
+                }
+            });
+        });
+    </script>
+
     @RenderSection("scripts", required: false)
     @await Html.PartialAsync("_NotificationPartial")
     @await Html.PartialAsync("_ValidationScriptsPartial")

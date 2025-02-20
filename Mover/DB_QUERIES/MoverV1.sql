@@ -1,4 +1,4 @@
-﻿
+﻿--color code: #0eccb3(skyblkue) #f3a004(yellow)
 ---====//Initial migration for AspNet tables//====---
 
 --Add-Migration AddUserDetailTable -Context MoverContext

@@ -34,6 +34,13 @@ namespace Mover.Areas.Admin.Controllers
             try
             {
                 var currentUser = SessionInfo.GetCurrentUser();
+                var orderstatus = Enum.GetValues<OrderStatusEnums>().Cast<OrderStatusEnums>()
+                                .Select(a => new SelectListItem
+                                {
+                                    Value = a.ToString(),
+                                    Text = a.ToString(),
+                                }).ToList();
+                ViewBag.OrderStatus = orderstatus;
                 var orders = await _orderService.GetAllOrders(currentUser);
                 var vm = orders.Select(a => new OrderViewModel()
                 {
@@ -59,7 +66,7 @@ namespace Mover.Areas.Admin.Controllers
                 return RedirectToAction(nameof(Index));
             }
         }
-        public async Task<IActionResult> LoadOrders(FilterViewModel model)
+        public async Task<IActionResult> LoadOrders(FilterViewModel model, string? orderStatus)
         {
             try
             {
@@ -70,7 +77,7 @@ namespace Mover.Areas.Admin.Controllers
                     PageIndex = model.PageIndex
                 };
                 var currentUser = SessionInfo.GetCurrentUser();
-                var (orderList, totalCount) = await _orderService.GetAllOrdersForGrid(dto, currentUser);
+                var (orderList, totalCount) = await _orderService.GetAllOrdersForGrid(dto, currentUser,orderStatus);
                 var datas = orderList.Select(a => new OrderViewModel
                 {
                     OrderId = a.OrderId,

@@ -144,3 +144,19 @@ function ConvertJavascriptDateDigitToDateFormat(dateToConvert) {
     }
     return "";
 }
+function activateToDate() {
+    var fromDate = document.getElementById('filterDateFrom').value;
+    var toDateInput = document.getElementById('filterDateTo');
+
+    if (fromDate) {
+        // Enable the "To" date input
+        toDateInput.disabled = false;
+
+        // Set the min attribute to the selected "From" date
+        toDateInput.min = fromDate;
+    } else {
+        // If no "From" date is selected, disable the "To" date input
+        toDateInput.disabled = true;
+        toDateInput.min = "";
+    }
+}
