@@ -6,21 +6,29 @@
 }
 
 <style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+    }
+
+    body {
+        background: #f5f7fa;
+        color: #333;
+    }
     .shop-container {
-        max-width: 1400px;
+        max-width: 1200px;
         margin: 0 auto;
         padding: 20px;
     }
 
     /* Breadcrumb */
     .breadcrumb {
-        margin-bottom: 30px;
+        background: none;
+        color:#555;
+        padding: 10px 0;
         font-size: 14px;
-    }
-
-    .breadcrumb a {
-        color: #6B7280;
-        text-decoration: none;
     }
 
     /* Filter Sidebar */
@@ -59,8 +67,14 @@
     .filter-checkbox {
         width: 16px;
         height: 16px;
-        border: 1px solid #D1D5DB;
+        border: 2px solid #2563eb;
         border-radius: 3px;
+        transition: all 0.2s ease;
+    }
+
+    .filter-checkbox:checked {
+        background-color: #2563eb;
+        border-color: #2563eb;
     }
 
     /* Shop Header */
@@ -90,11 +104,18 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        transition: all 0.3s ease;
     }
 
     .view-btn.active {
-        background: #111;
+        background: #2563eb;
         color: white;
+    }
+
+    .view-btn:hover {
+        background: #1d4ed8;
+        color: white;
+        transform: translateY(-2px);
     }
 
     .results-count {
@@ -104,7 +125,7 @@
 
     .sort-select {
         padding: 8px 32px 8px 12px;
-        border: 1px solid #E5E7EB;
+        border: 1px solid #2563eb;
         border-radius: 4px;
         font-size: 14px;
         color: #111;
@@ -114,6 +135,12 @@
         background-position: right 8px center;
         background-size: 16px;
         appearance: none;
+        transition: all 0.3s ease;
+    }
+
+    .sort-select:focus {
+        outline: none;
+        box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
     }
 
     /* Product Grid */
@@ -159,6 +186,7 @@
         height: 32px;
         border-radius: 50%;
         background: white;
+        color: #2563eb;
         border: none;
         box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         display: flex;
@@ -166,11 +194,17 @@
         justify-content: center;
         cursor: pointer;
         opacity: 0;
-        transition: opacity 0.3s ease;
+        transition: all 0.3s ease;
     }
 
     .product-card:hover .wishlist-btn {
         opacity: 1;
+    }
+
+    .wishlist-btn:hover {
+        background: #2563eb;
+        color: white;
+        transform: scale(1.1);
     }
 
     .product-details {
@@ -212,17 +246,53 @@
         margin-top: 12px;
         width: 100%;
         padding: 8px;
-        background: #111;
+        background: #2563eb;
         color: white;
         border: none;
         border-radius: 4px;
         font-size: 14px;
         cursor: pointer;
-        transition: background-color 0.3s ease;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
     }
 
     .add-to-cart:hover {
-        background: #000;
+        background: #1d4ed8;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+    }
+
+    .add-to-cart:active {
+        transform: translateY(0);
+    }
+
+    /* Load More Button */
+    .load-more {
+        display: block;
+        width: 200px;
+        margin: 40px auto;
+        padding: 12px 24px;
+        background: white;
+        color: #2563eb;
+        border: 2px solid #2563eb;
+        border-radius: 6px;
+        font-size: 14px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-align: center;
+    }
+
+    .load-more:hover {
+        background: #2563eb;
+        color: white;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+    }
+
+    .load-more:active {
+        transform: translateY(0);
     }
 
     /* Pagination */
@@ -248,13 +318,14 @@
     }
 
     .page-btn.active {
-        background: #111;
+        background: #2563eb;
         color: white;
-        border-color: #111;
+        border-color: #2563eb;
     }
 
     .page-btn:hover:not(.active) {
         background: #F9FAFB;
+        color: #2563eb;
     }
 
     @@media (max-width: 768px) {
@@ -282,12 +353,9 @@
 
 <div class="shop-container">
     <!-- Breadcrumb -->
-    <!-- Breadcrumb -->
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="/">Home</a></li>
-            @* <li class="breadcrumb-item"><a href="/shop">Shop</a></li> *@
-            
         </ol>
     </nav>
 
@@ -337,62 +405,6 @@
                     </label>
                 </div>
             </div>
-@* 
-            <!-- Color Filter -->
-            <div class="filter-section">
-                <div class="filter-header">
-                    <span class="filter-title">Filter by Color</span>
-                    <i class="bi bi-chevron-down"></i>
-                </div>
-                <div class="filter-content">
-                    <label class="filter-item">
-                        <input type="checkbox" class="filter-checkbox">
-                        <span>Black</span>
-                    </label>
-                    <label class="filter-item">
-                        <input type="checkbox" class="filter-checkbox">
-                        <span>White</span>
-                    </label>
-                    <label class="filter-item">
-                        <input type="checkbox" class="filter-checkbox">
-                        <span>Red</span>
-                    </label>
-                    <label class="filter-item">
-                        <input type="checkbox" class="filter-checkbox">
-                        <span>Blue</span>
-                    </label>
-                </div>
-            </div>
-
-            <!-- Size Filter -->
-            <div class="filter-section">
-                <div class="filter-header">
-                    <span class="filter-title">Filter by Size</span>
-                    <i class="bi bi-chevron-down"></i>
-                </div>
-                <div class="filter-content">
-                    <label class="filter-item">
-                        <input type="checkbox" class="filter-checkbox">
-                        <span>XS</span>
-                    </label>
-                    <label class="filter-item">
-                        <input type="checkbox" class="filter-checkbox">
-                        <span>S</span>
-                    </label>
-                    <label class="filter-item">
-                        <input type="checkbox" class="filter-checkbox">
-                        <span>M</span>
-                    </label>
-                    <label class="filter-item">
-                        <input type="checkbox" class="filter-checkbox">
-                        <span>L</span>
-                    </label>
-                    <label class="filter-item">
-                        <input type="checkbox" class="filter-checkbox">
-                        <span>XL</span>
-                    </label>
-                </div>
-            </div> *@
         </div>
 
         <!-- Products Grid -->
@@ -442,19 +454,14 @@
                 }
             </div>
 
-          @*   <div class="pagination">
-                <button class="page-btn active">1</button>
-                <button class="page-btn">2</button>
-                <button class="page-btn">3</button>
-                <button class="page-btn">4</button>
-                <button class="page-btn">5</button>
-                <button class="page-btn">
-                    <i class="bi bi-chevron-right"></i>
-                </button>
-            </div> *@
+            <!-- Load More Button -->
+            <div class="text-center">
+                <button class="load-more">Load More Products</button>
+            </div>
         </div>
     </div>
 </div>
+
 
 @section Scripts {
     <script>
