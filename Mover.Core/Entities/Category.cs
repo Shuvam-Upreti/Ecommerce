@@ -11,5 +11,7 @@ public partial class Category
 
     public DateTime CreatedOn { get; set; }
 
+    public string? ImageUrl { get; set; }
+
     public virtual ICollection<Product> Products { get; set; } = new List<Product>();
 }

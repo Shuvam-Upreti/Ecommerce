@@ -11,6 +11,8 @@ using Microsoft.AspNetCore.Authorization;
 using Mover.Core.Enums.Roles;
 using Mover.ViewModel.Filter;
 using Mover.Core.Dto.Filter;
+using Microsoft.AspNetCore.Hosting;
+using Mover.Core.Helpers;
 
 namespace Mover.Areas.Admin.Controllers
 {
@@ -19,9 +21,15 @@ namespace Mover.Areas.Admin.Controllers
     public class CategoryController : Controller
     {
         private readonly ICategoryService _categoryService;
-        public CategoryController(ICategoryService categoryService)
+        private readonly IWebHostEnvironment _webHostEnvironment;
+        private readonly IConfiguration _configuration;
+        private readonly IFileHelper _fileHelper;
+        public CategoryController(ICategoryService categoryService, IWebHostEnvironment webHostEnvironment, IConfiguration configuration, IFileHelper fileHelper)
         {
             _categoryService = categoryService;
+            _webHostEnvironment=webHostEnvironment;
+            _configuration=configuration;
+            _fileHelper=fileHelper;
         }
         public async Task<IActionResult> Index()
         {
@@ -114,11 +122,41 @@ namespace Mover.Areas.Admin.Controllers
                 this.NotifyModelStateErrors();
                 return View(model);
             }
+            if (model.Images == null || !model.Images.Any())
+            {
+                this.NotifyInfo("Please upload at least one image.");
+                return View(model);
+            }
             try
             {
+                var savedFileNames = new List<string>();
+                var invalidFiles = new List<string>();
+                var destinationFolder = Path.Combine(
+                    _webHostEnvironment.WebRootPath,
+                    _configuration["ImageSettings:CategoryImages"]);
+
+                if (!Directory.Exists(destinationFolder))
+                {
+                    Directory.CreateDirectory(destinationFolder);
+                }
+
+                foreach (var image in model.Images)
+                {
+                    if (!_fileHelper.IsImageValid(image.FileName))
+                    {
+                        invalidFiles.Add(image.FileName);
+                        continue;
+                    }
+
+                    var fileName = await _fileHelper.SaveImageAndGetFileName(image, destinationFolder);
+                    var imagePath = Path.Combine(_configuration["ImageSettings:CategoryImages"], fileName);
+                    savedFileNames.Add(imagePath);
+                }
+
                 var dto = new CategoryDto()
                 {
-                    Name = model.Name
+                    Name = model.Name,
+                    ImageUrl = savedFileNames.FirstOrDefault(),
                 };
 
                 await _categoryService.Save(dto);
@@ -148,6 +186,7 @@ namespace Mover.Areas.Admin.Controllers
                 {
                     Id = order.Id,
                     Name = order.Name,
+                    ImageUrl=order.ImageUrl
                 };
 
                 return View(vm);
@@ -178,13 +217,18 @@ namespace Mover.Areas.Admin.Controllers
             try
             {
                 var currentUser = SessionInfo.GetCurrentUser();
+                var imagePath = Path.Combine(
+                  _webHostEnvironment.WebRootPath,
+                  _configuration["ImageSettings:CategoryImages"]);
                 var dto = new CategoryDto()
                 {
                     Id = model.Id,
-                    Name = model.Name
+                    Name = model.Name,
+                    ImageUrl=model.ImageUrl,
+                    Images=model.Images
                 };
 
-                await _categoryService.Edit(dto);
+                await _categoryService.Edit(dto,imagePath);
                 this.NotifySuccess("Sucessfully updated category");
                 return RedirectToAction(nameof(Index));
             }

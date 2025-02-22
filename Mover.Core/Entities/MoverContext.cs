@@ -51,6 +51,8 @@ public partial class MoverContext : DbContext
 
             entity.ToTable("Address");
 
+            entity.HasIndex(e => e.UserId, "IX_Address_UserID");
+
             entity.Property(e => e.AddressId).HasColumnName("AddressID");
             entity.Property(e => e.AddressLine).HasMaxLength(255);
             entity.Property(e => e.City).HasMaxLength(255);
@@ -139,6 +141,7 @@ public partial class MoverContext : DbContext
             entity.HasIndex(e => e.Name, "UQ__Category__737584F674E51C24").IsUnique();
 
             entity.Property(e => e.CreatedOn).HasDefaultValueSql("(getdate())");
+            entity.Property(e => e.ImageUrl).HasMaxLength(1);
             entity.Property(e => e.Name)
                 .HasMaxLength(100)
                 .IsUnicode(false);
@@ -149,6 +152,8 @@ public partial class MoverContext : DbContext
             entity.HasKey(e => e.InventoryId).HasName("PK__Inventor__F5FDE6D3EB3CD3A3");
 
             entity.ToTable("Inventory");
+
+            entity.HasIndex(e => e.ProductId, "IX_Inventory_ProductID");
 
             entity.Property(e => e.InventoryId).HasColumnName("InventoryID");
             entity.Property(e => e.LastStockUpdate).HasColumnType("datetime");
@@ -164,6 +169,8 @@ public partial class MoverContext : DbContext
         modelBuilder.Entity<Order>(entity =>
         {
             entity.HasKey(e => e.OrderId).HasName("PK__Orders__C3905BAFF9F5215A");
+
+            entity.HasIndex(e => e.UserId, "IX_Orders_UserID");
 
             entity.Property(e => e.OrderId).HasColumnName("OrderID");
             entity.Property(e => e.OrderDate)
@@ -192,6 +199,10 @@ public partial class MoverContext : DbContext
         {
             entity.HasKey(e => e.OrderItemId).HasName("PK__OrderIte__57ED06A113282E2F");
 
+            entity.HasIndex(e => e.OrderId, "IX_OrderItems_OrderID");
+
+            entity.HasIndex(e => e.ProductId, "IX_OrderItems_ProductID");
+
             entity.Property(e => e.OrderItemId).HasColumnName("OrderItemID");
             entity.Property(e => e.DiscountAtPurchase).HasColumnType("decimal(10, 2)");
             entity.Property(e => e.OrderId).HasColumnName("OrderID");
@@ -213,6 +224,8 @@ public partial class MoverContext : DbContext
         {
             entity.HasKey(e => e.ProductId).HasName("PK__Products__B40CC6ED17EC2106");
 
+            entity.HasIndex(e => e.CategoryId, "IX_Products_CategoryID");
+
             entity.Property(e => e.ProductId).HasColumnName("ProductID");
             entity.Property(e => e.CategoryId).HasColumnName("CategoryID");
             entity.Property(e => e.DiscountPercentage).HasColumnType("decimal(5, 2)");
@@ -228,6 +241,8 @@ public partial class MoverContext : DbContext
         modelBuilder.Entity<ProductImage>(entity =>
         {
             entity.HasKey(e => e.ImageId).HasName("PK__ProductI__7516F4EC12ADC150");
+
+            entity.HasIndex(e => e.ProductId, "IX_ProductImages_ProductID");
 
             entity.Property(e => e.ImageId).HasColumnName("ImageID");
             entity.Property(e => e.ImageUrl)
@@ -245,6 +260,10 @@ public partial class MoverContext : DbContext
         modelBuilder.Entity<ProductReview>(entity =>
         {
             entity.HasKey(e => e.ReviewId).HasName("PK__ProductR__74BC79AE4ED0D3D7");
+
+            entity.HasIndex(e => e.ProductId, "IX_ProductReviews_ProductID");
+
+            entity.HasIndex(e => e.UserId, "IX_ProductReviews_UserID");
 
             entity.Property(e => e.ReviewId).HasColumnName("ReviewID");
             entity.Property(e => e.ProductId).HasColumnName("ProductID");
@@ -269,6 +288,10 @@ public partial class MoverContext : DbContext
             entity.HasKey(e => e.CartId).HasName("PK__Shopping__51BCD797E2265125");
 
             entity.ToTable("ShoppingCart");
+
+            entity.HasIndex(e => e.ProductId, "IX_ShoppingCart_ProductID");
+
+            entity.HasIndex(e => e.UserId, "IX_ShoppingCart_UserID");
 
             entity.Property(e => e.CartId).HasColumnName("CartID");
             entity.Property(e => e.AddedAt)

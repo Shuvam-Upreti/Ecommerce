@@ -14,15 +14,21 @@ using System.Text;
 using System.Threading.Tasks;
 using Mover.Core.Exceptions;
 using Mover.Core.Dto.Filter;
+using Microsoft.Extensions.Configuration;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Mover.Core.Services.Implementations
 {
     public class CategoryService : ICategoryService
     {
         private readonly ICategoryRepository _categoryRepository;
-        public CategoryService(ICategoryRepository categoryRepository)
+        private readonly IConfiguration _configuration;
+        private readonly IFileHelper _fileHelper;
+        public CategoryService(ICategoryRepository categoryRepository, IConfiguration configuration, IFileHelper fileHelper)
         {
             _categoryRepository = categoryRepository;
+            _configuration=configuration;
+            _fileHelper=fileHelper;
         }
 
         public async Task<List<CategoryDto>> GetAllCategories()
@@ -31,6 +37,7 @@ namespace Mover.Core.Services.Implementations
             var dto = categories.Select(a => new CategoryDto()
             {
                 CreatedOn = a.CreatedOn,
+                ImageUrl = a.ImageUrl,
                 Name = a.Name,
                 Id = a.Id,
             }).ToList();
@@ -57,6 +64,7 @@ namespace Mover.Core.Services.Implementations
             {
                 Name = model.Name,
                 CreatedOn = DateTime.Now,
+                ImageUrl=model.ImageUrl
             };
 
             await _categoryRepository.InsertAsync(entity);
@@ -71,15 +79,27 @@ namespace Mover.Core.Services.Implementations
             {
                 Id = categories.Id,
                 Name = categories.Name,
-                CreatedOn = categories.CreatedOn
+                CreatedOn = categories.CreatedOn,
+                ImageUrl= categories.ImageUrl
             };
             return dto;
         }
-        public async Task Edit(CategoryDto model)
+        public async Task Edit(CategoryDto model, string imagePath)
         {
             using var tx = TransactionScopeHelper.GetInstance();
             var category = await _categoryRepository.GetByIdAsync(model.Id) ?? throw new CustomException("No Category Found");
 
+            //image upload
+            var toSaveImagePaths = _configuration["ImageSettings:CategoryImages"];
+            if (category.ImageUrl!=null)
+            {
+                await _fileHelper.DeleteImageAsync(category.ImageUrl, null);
+            }
+            if (model.Images.Count!=0)
+            {
+                var imageUrl = await _fileHelper.SaveImageAndGetFileName(model.Images.FirstOrDefault(), imagePath);
+                category.ImageUrl =toSaveImagePaths+ "\\" + imageUrl;
+            }
             category.Name = model.Name;
             category.CreatedOn = DateTime.Now;
 

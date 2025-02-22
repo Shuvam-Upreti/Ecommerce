@@ -1,34 +1,33 @@
 ﻿@using Mover.Areas.Admin.ViewModel.Product
-@using Mover.Core.Dto.Category
 @model List<ProductViewModel>
 @{
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = null;
     ViewBag.Title = "Home";
 }
 
+<!DOCTYPE html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GVeda Clone</title>
 
-
-    @* <!-- Bootstrap CSS -->
+    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Owl Carousel -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
     <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"> *@
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-        }
-
         :root {
             --primary-color: #ff9900;
             --orange-color: #0eccb3;
             /* --primary-color: #0eccb3;
-                                        --orange-color: #ff9900; */
+               --orange-color: #ff9900; */
         }
 
         /* Header Styles */
@@ -95,6 +94,25 @@
             color: white;
         }
 
+        /* Stats Section */
+        .stats-item {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .stats-circle {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: var(--orange-color);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            font-size: 24px;
+            font-weight: bold;
+        }
 
         /* Testimonials */
         .testimonial-section {
@@ -315,7 +333,7 @@
             height: 250px;
             position: relative;
             text-align: center;
-            border: 5px solid #16a085; /* Border Added */
+            border: 2px solid #16a085; /* Border Added */
             border-radius: 10px;
             overflow: hidden;
             transition: transform 0.3s ease;
@@ -344,7 +362,6 @@
             cursor: pointer;
             transition: 0.3s;
             font-size: 14px;
-            text-decoration: none;
         }
 
             .category-button:hover {
@@ -413,7 +430,6 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            align-items: flex-start;
         }
 
         .product-title {
@@ -431,11 +447,6 @@
             font-size: 1.25rem;
             font-weight: bold;
             margin-bottom: 15px;
-        }
-
-        .product-original-price {
-            color: black;
-            font-size: 0.9rem;
         }
 
         .btn-cart {
@@ -531,7 +542,7 @@
 
             .stats-circle i {
                 font-size: 28px;
-                color: #0eccb3 !important
+                color: #0eccb3;
             }
 
         .stats-content {
@@ -622,7 +633,104 @@
     </style>
 </head>
 <body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="container">
+            <div class="row align-items-center">
 
+                <div class="col-lg-2 col-md-12 text-center text-lg-start">
+                    <a class="navbar-brand" href="/home/index">
+                        <img src="/image/logo.jpg" alt="Derm Shine Logo" class="logo-img">
+                    </a>
+                </div>
+                <div class="col-lg-8 col-md-12">
+                    <div class="search-box">
+                        <input type="text" class="form-control searchBarBox" id="searchInput" placeholder="Search for Derm Shine products">
+                        <button class="search-btn searchbutton" id="searchButton">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+
+                </div>
+                <div class="col-lg-2 col-md-12 text-center text-lg-end">
+                    <a href="/Cart/Index" class="cart-icon text-white me-3">
+                        <i class="fas fa-shopping-cart"></i>
+                    </a>
+
+
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <div class="dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" id="userDropdown" role="button" data-bs-toggle="dropdown">
+                                <i class="fas fa-user-circle fa-lg"></i> @User.Identity.Name
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                                <li><a class="dropdown-item" href="/Account/Profile"><i class="fas fa-user"></i> My Profile</a></li>
+                                <li><a class="dropdown-item" href="/admin/order/index"><i class="fas fa-box"></i> My Orders</a></li>
+                                <li><a class="dropdown-item" href="/Cart/Index"><i class="fas fa-shopping-cart"></i> My Cart</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item text-danger" href="/Account/Logout"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                            </ul>
+                        </div>
+
+                        @* <a href="/Account/Logout" class="btn btn-login text-white">Logout</a>                      *@
+                    }
+                    else
+                    {
+                        <a href="/Account/Login" class="login-btn btn-login">LOGIN</a>
+                    }
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white">
+        <div class="container">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/home/index">HOME</a>
+                    </li>
+                    <li class="nav-item dropdown">
+
+
+                        <a class="nav-link dropdown-toggle" href="#" id="shopDropdown" role="button" data-bs-toggle="dropdown">
+                            SHOP
+                        </a>
+                        @await Component.InvokeAsync("Category")
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/admin/product/index">PRODUCTS</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/admin/category/index">CATEGORY</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/cart/index">CARTS</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/admin/order/index">ORDER</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/account/index">USERS</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">ABOUT</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">CONTACT</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
     <div>
 
         <!-- Main Banner -->
@@ -684,110 +792,75 @@
         <div class="container text-center">
             <h2 class="section-title">SHOP BY CATEGORY</h2>
             <div class="row justify-content-center">
-
-                @foreach (var category in ViewBag.Categories)
-                {
-                    <div class="col-md-3 col-sm-6">
-                        <div class="category-card">
-                            <img src="~/@category.ImageUrl" alt="@category.Name">
-                            <a asp-area="admin" asp-controller="product" asp-action="viewproducts" asp-route-categoryId="@category.Id" class="category-button">
-                                @category.Name
-                            </a>
-                        </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="category-card">
+                        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-ka5DbWYfTzjZIQn3OxHbK0SQ3cv4wL.png" alt="Skin Care">
+                        <button class="category-button">SKIN CARE</button>
                     </div>
-                }
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="category-card">
+                        <img src="hair-care.jpg" alt="Hair Care">
+                        <button class="category-button">HAIR CARE</button>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="category-card">
+                        <img src="personal-care.jpg" alt="Personal Care">
+                        <button class="category-button">PERSONAL CARE</button>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="category-card">
+                        <img src="tea-coffee.jpg" alt="Tea and Coffee">
+                        <button class="category-button">TEA AND COFFEE</button>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
-    <!-- Top Category Section With Carousel -->
-    @*  <section class="category-section py-5">
-        <div class="container text-center">
-            <h2 class="section-title">SHOP BY CATEGORY</h2>
 
-            <!-- Carousel Container -->
-            <div id="categoryCarousel" class="carousel slide" data-bs-interval="false">
-                <div class="carousel-inner">
-                    @if (ViewBag.Categories != null)
-                    {
-                        var categoryList = (List<CategoryDto>)ViewBag.Categories;
-                        int chunkSize = 4; // Show 4 categories per carousel slide
-                        int totalChunks = (int)Math.Ceiling((double)categoryList.Count / chunkSize);
-
-                        for (int i = 0; i < totalChunks; i++)
-                        {
-                            var categoriesChunk = categoryList.Skip(i * chunkSize).Take(chunkSize).ToList();
-                            <div class="carousel-item @(i == 0 ? "active" : "")">
-                                <div class="row g-3">
-                                    @foreach (var category in categoriesChunk)
-                                    {
-                                        <div class="col-md-3 col-6">
-                                            <div class="category-card">
-                                                <img src="~/@category.ImageUrl" alt="@category.Name" class="card-img-top">
-                                                <div class="card-body">
-                                                    <a asp-action="Category" asp-route-id="@category.Id" class="btn btn-primary category-button">
-                                                        @category.Name
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    }
-                                </div>
-                            </div>
-                        }
-                    }
-                    else
-                    {
-                        <p class="text-center">No categories available.</p>
-                    }
-                </div>
-
-                <!-- Carousel Controls -->
-                <button class="carousel-control-prev" type="button" data-bs-target="#categoryCarousel" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#categoryCarousel" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                </button>
-            </div>
-        </div>
-    </section> *@
-
-
-
-    <section class="product-section py-5">
-        <div class="container text-center">
+    <sction class="product-section py-5">
+        <div class="container">
             <h2 class="text-center mb-5 section-title">OUR PRODUCTS</h2>
 
             <div class="row g-4">
-                @foreach (var product in Model)
-                {
-                    <!-- Product -->
-                    <div class="col-12 col-sm-6 col-lg-3">
-                        <div class="product-card position-relative">
-                            @if (product.InStock <= 0)
-                            {
-                                <span class="badge-stock">Out of Stock</span>
-                            }
-                            <div class="product-image-container">
-                                <img src="@Url.Content($"~/{product.ImageUrls.FirstOrDefault()}")" alt="FH Secret Perfume" class="product-img">
-                            </div>
-                            <div class="product-content">
-                                <h2 class="product-title">@product.ProductName</h2>
-                                <div class="product-price">Rs. @product.DiscountedPrice <s class="product-original-price">Rs. @product.OriginalPrice</s></div>
-
-                                <a asp-action="Details" asp-route-id="@product.ProductId" class="btn btn-cart btn-outline-dark">
-                                    <i class="fas fa-eye"></i> VIEW DETAILS
-                                </a>
-
-                            </div>
+                <!-- Product 1 -->
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="product-card position-relative">
+                        <span class="badge-new">New</span>
+                        <div class="product-image-container">
+                            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-ka5DbWYfTzjZIQn3OxHbK0SQ3cv4wL.png" alt="FH Essence Perfume" class="product-img">
+                        </div>
+                        <div class="product-content">
+                            <h2 class="product-title">FH Essence Feminine Perfume - 100ml</h2>
+                            <div class="product-price">Rs. 4999</div>
+                            <button class="btn btn-cart">
+                                <i class="fas fa-shopping-cart"></i> ADD TO CART
+                            </button>
                         </div>
                     </div>
-                }
+                </div>
 
+                <!-- Product 2 -->
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="product-card position-relative">
+                        <span class="badge-new">New</span>
+                        <div class="product-image-container">
+                            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-ka5DbWYfTzjZIQn3OxHbK0SQ3cv4wL.png" alt="FH Adore Perfume" class="product-img">
+                        </div>
+                        <div class="product-content">
+                            <h2 class="product-title">FH Adore Feminine Perfume - 100ml</h2>
+                            <div class="product-price">Rs. 5999</div>
+                            <button class="btn btn-cart">
+                                <i class="fas fa-shopping-cart"></i> ADD TO CART
+                            </button>
+                        </div>
+                    </div>
+                </div>
 
-
-
-                @*  <div class="col-12 col-sm-6 col-lg-3">
+                <!-- Product 3 -->
+                <div class="col-12 col-sm-6 col-lg-3">
                     <div class="product-card position-relative">
                         <span class="badge-new">New</span>
                         <span class="badge-stock">Out of Stock</span>
@@ -802,7 +875,69 @@
                             </button>
                         </div>
                     </div>
-                </div>*@
+                </div>
+
+                <!-- Product 4 -->
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="product-card position-relative">
+                        <span class="badge-new">New</span>
+                        <div class="product-image-container">
+                            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-ka5DbWYfTzjZIQn3OxHbK0SQ3cv4wL.png" alt="Margman Passion Perfume" class="product-img">
+                        </div>
+                        <div class="product-content">
+                            <h2 class="product-title">Margman Passion Masculine Perfume - 100ml</h2>
+                            <div class="product-price">Rs. 4999</div>
+                            <button class="btn btn-cart">
+                                <i class="fas fa-shopping-cart"></i> ADD TO CART
+                            </button>
+                        </div>
+                    </div>
+                </div> <!-- Product 4 -->
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="product-card position-relative">
+                        <span class="badge-new">New</span>
+                        <div class="product-image-container">
+                            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-ka5DbWYfTzjZIQn3OxHbK0SQ3cv4wL.png" alt="Margman Passion Perfume" class="product-img">
+                        </div>
+                        <div class="product-content">
+                            <h2 class="product-title">Margman Passion Masculine Perfume - 100ml</h2>
+                            <div class="product-price">Rs. 4999</div>
+                            <button class="btn btn-cart">
+                                <i class="fas fa-shopping-cart"></i> ADD TO CART
+                            </button>
+                        </div>
+                    </div>
+                </div> <!-- Product 4 -->
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="product-card position-relative">
+                        <span class="badge-new">New</span>
+                        <div class="product-image-container">
+                            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-ka5DbWYfTzjZIQn3OxHbK0SQ3cv4wL.png" alt="Margman Passion Perfume" class="product-img">
+                        </div>
+                        <div class="product-content">
+                            <h2 class="product-title">Margman Passion Masculine Perfume - 100ml</h2>
+                            <div class="product-price">Rs. 4999</div>
+                            <button class="btn btn-cart">
+                                <i class="fas fa-shopping-cart"></i> ADD TO CART
+                            </button>
+                        </div>
+                    </div>
+                </div> <!-- Product 4 -->
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="product-card position-relative">
+                        <span class="badge-new">New</span>
+                        <div class="product-image-container">
+                            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-ka5DbWYfTzjZIQn3OxHbK0SQ3cv4wL.png" alt="Margman Passion Perfume" class="product-img">
+                        </div>
+                        <div class="product-content">
+                            <h2 class="product-title">Margman Passion Masculine Perfume - 100ml</h2>
+                            <div class="product-price">Rs. 4999</div>
+                            <button class="btn btn-cart">
+                                <i class="fas fa-shopping-cart"></i> ADD TO CART
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <br />
@@ -812,17 +947,17 @@
                 BROWSE ALL PRODUCTS
             </button>
         </div>
-    </section>
+    </sction>
 
 
     <!-- Stats Section -->
-    <section class="stat-section py-5">
+    <section class="stat-section">
         <div class="container">
             <div class="row justify-content-center align-items-center">
                 <div class="col-md-3 mb-3 mb-md-0">
                     <div class="stats-item">
                         <div class="stats-circle">
-                            <i class="fa-solid fa-users" style="color:#0eccb3;"></i>
+                            <i class="fa-solid fa-users"></i>
                         </div>
                         <div class="stats-content">
                             <div class="stats-number">150+</div>
@@ -833,7 +968,7 @@
                 <div class="col-md-3 mb-3 mb-md-0">
                     <div class="stats-item">
                         <div class="stats-circle">
-                            <i class="fa-solid fa-truck-fast" style="color:#0eccb3;"></i>
+                            <i class="fa-solid fa-truck-fast"></i>
                         </div>
                         <div class="stats-content">
                             <div class="stats-number">Within 24 Hr</div>
@@ -844,7 +979,7 @@
                 <div class="col-md-3 mb-3 mb-md-0">
                     <div class="stats-item">
                         <div class="stats-circle">
-                            <i class="fa-solid fa-tags" style="color:#0eccb3;"></i>
+                            <i class="fa-solid fa-tags"></i>
                         </div>
                         <div class="stats-content">
                             <div class="stats-number">Upto 10%</div>
@@ -855,7 +990,7 @@
                 <div class="col-md-3 mb-3 mb-md-0">
                     <div class="stats-item">
                         <div class="stats-circle">
-                            <i class="fa-solid fa-box" style="color:#0eccb3;"></i>
+                            <i class="fa-solid fa-box"></i>
                         </div>
                         <div class="stats-content">
                             <div class="stats-number">10+</div>
@@ -878,7 +1013,7 @@
 
                             <div class="col-md-12 about-us-text-column">
                                 <p>
-                                    [Replace this with your actual "About Us" content.  This is placeholder text.] We are a team of dedicated professionals passionate about [Your company's mission or industry].  Our goal is to [State your company's main goal or value proposition]. We believe in [Your company's core values, e.g., innovation, customer satisfaction, community impact].  With years of experience in [Your industry or area of expertise], we strive to deliver [Describe what you deliver - products, services, solutions] that exceed expectations.  We are committed to [Your commitment - e.g., quality, sustainability, ethical practices] and building long-lasting relationships with our clients and partners.  Learn more about our journey, our team, and how we can help you achieve your goals.
+                                   [Replace this with your actual "About Us" content.  This is placeholder text.] We are a team of dedicated professionals passionate about [Your company's mission or industry].  Our goal is to [State your company's main goal or value proposition]. We believe in [Your company's core values, e.g., innovation, customer satisfaction, community impact].  With years of experience in [Your industry or area of expertise], we strive to deliver [Describe what you deliver - products, services, solutions] that exceed expectations.  We are committed to [Your commitment - e.g., quality, sustainability, ethical practices] and building long-lasting relationships with our clients and partners.  Learn more about our journey, our team, and how we can help you achieve your goals.
                                 </p>
                                 <p>
                                     [You can add another paragraph here if needed to expand on your "About Us" story. For example, you might want to talk about your history, your team in more detail, or your unique approach.]
@@ -907,57 +1042,116 @@
         </div>
     </section>
 
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row g-4 py-5">
+                <div class="col-12 col-md-6 col-lg-3">
+                    <h5 class="footer-heading">About Us</h5>
+                    <p class="text-muted">We are dedicated to providing the best shopping experience with our carefully selected products.</p>
+                    <div class="social-links mt-3">
+                        <a href="#" class="me-2"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="me-2"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="me-2"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
 
+                <div class="col-12 col-md-6 col-lg-3">
+                    <h5 class="footer-heading">Quick Links</h5>
+                    <ul class="list-unstyled footer-links">
+                        <li><a href="/home/index">Home</a></li>
+                        <li><a href="@Url.Action("Shop", "Home")">Shop</a></li>
+                        <li><a href="@Url.Action("About", "Home")">About Us</a></li>
+                        <li><a href="@Url.Action("Contact", "Home")">Contact</a></li>
+                    </ul>
+                </div>
 
-    @section Scripts {
+                <div class="col-12 col-md-6 col-lg-3">
+                    <h5 class="footer-heading">Customer Service</h5>
+                    <ul class="list-unstyled footer-links">
+                        <li><a href="#">My Account</a></li>
+                        <li><a href="#">Order Tracking</a></li>
+                        <li><a href="#">Wishlist</a></li>
+                        <li><a href="#">Terms & Conditions</a></li>
+                    </ul>
+                </div>
 
-        <script>
-            $(document).ready(function(){
-                $('.main-banner').owlCarousel({
-                    items: 1,
-                    loop: true,
-                    nav: true,
-                    dots: true,
-                    autoplay: true,
-                    autoplayTimeout: 5000
-                });
+                <div class="col-12 col-md-6 col-lg-3">
+                    <h5 class="footer-heading">Newsletter</h5>
+                    <p class="text-muted">Subscribe to receive updates, access to exclusive deals, and more.</p>
+                    <form class="mt-3">
+                        <div class="input-group">
+                            <input type="email" class="form-control" placeholder="Enter your email">
+                            <button class="btn btn-primary" type="submit">Subscribe</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
 
-                $('.testimonial-carousel').owlCarousel({
-                    items: 3,
-                    loop: true,
-                    margin: 20,
-                    nav: true,
-                    dots: true,
-                    responsive: {
-                        0: {
-                            items: 1
-                        },
-                        768: {
-                            items: 2
-                        },
-                        992: {
-                            items: 3
-                        }
-                    }
-                });
+            <div class="footer-bottom py-3 border-top">
+                <div class="row">
+                    <div class="col-md-6 text-center text-md-start">
+                        <p class="mb-0">&copy; @DateTime.Now.Year - Ecommerce. All rights reserved.</p>
+                    </div>
+                    <div class="col-md-6 text-center text-md-end mt-3 mt-md-0">
+                        @* <img src="~/images/payment-methods.png" alt="Payment Methods" class="payment-methods" height="25"> *@
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('.main-banner').owlCarousel({
+                items: 1,
+                loop: true,
+                nav: true,
+                dots: true,
+                autoplay: true,
+                autoplayTimeout: 5000
             });
 
-
-            $(document).ready(function () {
-                $("#searchButton").click(function (event) {
-                    event.preventDefault(); // Prevent default anchor behavior
-
-                    let searchValue = $("#searchInput").val().trim(); // Get search input value
-                    console.log("Search Value:", searchValue);
-
-                    if (searchValue) {
-                        let url = `/admin/product/ViewProducts?searchTerm=${encodeURIComponent(searchValue)}`;
-                        window.location.href = url; // Redirect to the search URL
+            $('.testimonial-carousel').owlCarousel({
+                items: 3,
+                loop: true,
+                margin: 20,
+                nav: true,
+                dots: true,
+                responsive: {
+                    0: {
+                        items: 1
+                    },
+                    768: {
+                        items: 2
+                    },
+                    992: {
+                        items: 3
                     }
-                });
+                }
             });
+        });
 
 
-        </script>
-    }
+        $(document).ready(function () {
+            $("#searchButton").click(function (event) {
+                event.preventDefault(); // Prevent default anchor behavior
+
+                let searchValue = $("#searchInput").val().trim(); // Get search input value
+                console.log("Search Value:", searchValue);
+
+                if (searchValue) {
+                    let url = `/admin/product/ViewProducts?searchTerm=${encodeURIComponent(searchValue)}`;
+                    window.location.href = url; // Redirect to the search URL
+                }
+            });
+        });
+
+    </script>
 </body>
+</html>

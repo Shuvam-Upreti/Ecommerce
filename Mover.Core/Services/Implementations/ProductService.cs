@@ -42,6 +42,7 @@ namespace Mover.Core.Services.Implementations
                 DiscountedPrice = a.DiscountedPrice,
                 DiscountPercentage = a.DiscountPercentage,
                 OriginalPrice = a.OriginalPrice,
+                InStock=a.Inventories.FirstOrDefault().QuantityInStock,
                 Category = a.Category?.Name,
                 ImageUrls = a.ProductImages?.Where(img => img.IsMainImage == true)
                         .Select(img => img.ImageUrl).ToList()

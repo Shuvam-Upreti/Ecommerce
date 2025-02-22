@@ -21,12 +21,14 @@ namespace Mover.Controllers
         private readonly ILogger<HomeController> _logger;
         private readonly IProductService _productService;
         private readonly ICartService _cartService;
+        private readonly ICategoryService _categoryService;
 
-        public HomeController(ILogger<HomeController> logger, IProductService productService, ICartService cartService)
+        public HomeController(ILogger<HomeController> logger, IProductService productService, ICartService cartService, ICategoryService categoryService)
         {
             _logger = logger;
             _productService = productService;
             _cartService = cartService;
+            _categoryService=categoryService;
         }
 
         [HttpGet]
@@ -34,6 +36,8 @@ namespace Mover.Controllers
         {
             try
             {
+                var categories= await _categoryService.GetAllCategories();
+                ViewBag.Categories = categories;
                 var products = await _productService.GetAllProducts();
                 var vm = products.Select(a => new ProductViewModel
                 {
@@ -45,6 +49,7 @@ namespace Mover.Controllers
                     DiscountPercentage = a.DiscountPercentage,
                     OriginalPrice = a.OriginalPrice,
                     ImageUrls = a.ImageUrls,
+                    InStock=a.InStock
                 }).ToList();
                 return View(vm);
             }
@@ -143,6 +148,28 @@ namespace Mover.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> TestDashboard()
+        {
+            try
+            {
+              
+                return View();
+            }
+            catch (CustomException ex)
+            {
+                new SeriLogger().Error(ex.Message, ex);
+                this.NotifyError(ex.Message);
+                return RedirectToAction(nameof(Index));
+            }
+            catch (Exception ex)
+            {
+                new SeriLogger().Error(ex.Message, ex);
+                this.NotifyError("Something went wrong.Please try again");
+                return RedirectToAction(nameof(Index));
+            }
         }
     }
 }

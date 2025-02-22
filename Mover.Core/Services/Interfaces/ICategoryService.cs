@@ -15,7 +15,7 @@ namespace Mover.Core.Services.Interfaces
         Task<(List<CategoryDto>,int TotalCount)> GetAllCategoriesForGrid(FilterDto filter);
         Task Save(CategoryDto model);
         Task<CategoryDto> GetCategory(int id);
-        Task Edit(CategoryDto model);
+        Task Edit(CategoryDto model,string imagePath);
         Task Delete(int id);
     }
 }
