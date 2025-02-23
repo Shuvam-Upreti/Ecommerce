@@ -356,6 +356,84 @@
             background: #f2f2f2;
         }
 
+        /* Custom Carousel Indicators */
+        .custom-carousel-indicators {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+        }
+
+            .custom-carousel-indicators button {
+                width: 10px;
+                height: 10px;
+                background: white;
+                border: none;
+                border-radius: 50%;
+                cursor: pointer;
+            }
+
+                .custom-carousel-indicators button.active {
+                    background: var(--primary-color);
+                }
+
+        /* Carousel Slider Section */
+        .carousel-slider-section {
+            background: #f2f2f2;
+            padding: 50px 0;
+        }
+
+            .carousel-slider-section .owl-carousel .item {
+                margin: 10px;
+            }
+
+        .category-carousel .owl-nav {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            transform: translateY(-50%);
+        }
+
+        .category-carousel .owl-prev,
+        .category-carousel .owl-next {
+            position: absolute;
+            background: #16a085 !important;
+            color: white !important;
+            padding: 10px 15px !important;
+            border-radius: 50% !important;
+            font-size: 20px !important;
+        }
+
+        .category-carousel .owl-prev {
+            left: -20px;
+        }
+
+        .category-carousel .owl-next {
+            right: -20px;
+        }
+
+        .category-carousel .owl-dots {
+            margin-top: 20px;
+        }
+
+        .category-carousel .owl-dot span {
+            background: #ddd !important;
+        }
+
+        .category-carousel .owl-dot.active span {
+            background: #16a085 !important;
+        }
+
+        /* Adjust category card for carousel */
+        .category-carousel .category-card {
+            margin: 10px;
+            width: auto;
+            height: 250px;
+        }
+
+
         .product-card {
             background: white;
             border-radius: 15px;
@@ -637,6 +715,11 @@
 
         </div>
     </div>
+    <!-- Custom Carousel Indicators -->
+    <div class="custom-carousel-indicators">
+        <button class="owl-dot active" data-owl-target="0"></button>
+        <button class="owl-dot" data-owl-target="1"></button>
+    </div>
 
     @* Brand Section  *@
 
@@ -683,11 +766,10 @@
     <section class="category-section py-5">
         <div class="container text-center">
             <h2 class="section-title">SHOP BY CATEGORY</h2>
-            <div class="row justify-content-center">
-
+            <div class="owl-carousel category-carousel">
                 @foreach (var category in ViewBag.Categories)
                 {
-                    <div class="col-md-3 col-sm-6">
+                    <div class="item">
                         <div class="category-card">
                             <img src="~/@category.ImageUrl" alt="@category.Name">
                             <a asp-area="admin" asp-controller="product" asp-action="viewproducts" asp-route-categoryId="@category.Id" class="category-button">
@@ -913,21 +995,48 @@
 
         <script>
             $(document).ready(function(){
+                // Main Banner Carousel
                 $('.main-banner').owlCarousel({
                     items: 1,
+                    loop: true,
+                    nav: false,
+                    dots: false,
+                    autoplay: true,
+                    autoplayTimeout: 5000,
+                    onInitialized: customIndicators,
+                    onTranslated: customIndicators
+                });
+
+                // Custom Carousel Indicators
+                function customIndicators(event) {
+                    var element = event.target; // DOM element
+                    var items = event.item.count; // Number of items
+                    var item = event.item.index; // Current item index
+
+                    // Remove all existing indicators
+                    $('.custom-carousel-indicators').empty();
+
+                    // Add new indicators
+                    for (var i = 0; i < items; i++) {
+                        var className = (i === item) ? 'owl-dot active' : 'owl-dot';
+                        $('.custom-carousel-indicators').append('<button class="' + className + '" data-owl-target="' + i + '"></button>');
+                    }
+
+                    // Click event for indicators
+                    $('.custom-carousel-indicators .owl-dot').click(function() {
+                        var index = $(this).data('owl-target');
+                        $('.main-banner').trigger('to.owl.carousel', index);
+                    });
+                }
+
+                // Shop by Category Carousel
+                $('.category-section .owl-carousel').owlCarousel({
+                    items: 4,
                     loop: true,
                     nav: true,
                     dots: true,
                     autoplay: true,
-                    autoplayTimeout: 5000
-                });
-
-                $('.testimonial-carousel').owlCarousel({
-                    items: 3,
-                    loop: true,
-                    margin: 20,
-                    nav: true,
-                    dots: true,
+                    autoplayTimeout: 5000,
                     responsive: {
                         0: {
                             items: 1
@@ -936,11 +1045,44 @@
                             items: 2
                         },
                         992: {
-                            items: 3
+                            items: 4
                         }
                     }
                 });
             });
+
+            $(document).ready(function(){
+                var categoryCount = @ViewBag.Categories.Count;
+
+                $('.category-carousel').owlCarousel({
+                    loop: categoryCount > 4,
+                    margin: 20,
+                    nav: true,
+                    dots: true,
+                    autoplay: categoryCount > 4,
+                    autoplayTimeout: 5000,
+                    autoplayHoverPause: true,
+                    navText: [
+                        "<i class='fas fa-chevron-left'></i>",
+                        "<i class='fas fa-chevron-right'></i>"
+                    ],
+                    responsive: {
+                        0: {
+                            items: 1
+                        },
+                        576: {
+                            items: 2
+                        },
+                        768: {
+                            items: 3
+                        },
+                        992: {
+                            items: 4
+                        }
+                    }
+                });
+            });
+
 
 
             $(document).ready(function () {
