@@ -106,17 +106,33 @@ function ProductGrid(onLoadElement, exportFileName) {
         });
     });
 }
+//function productActionButtons(dataObj) {
+//    var html = '';
+//    var EditDetailUrl = "/admin/product/Edit?id=" + dataObj.productId;
+//    console.log(dataObj.productId);
+//    // Edit button
+//    html += '<a href="' + EditDetailUrl + '" class="glyphicon glyphicon-edit nochangeonhover" data-toggle="tooltip" title="Edit Product"></a>';
+//    html += ' |&nbsp;';
+
+//    // Delete button
+//    html += '<button type="button" id="deleteProduct" class="glyphicon glyphicon-trash nochangeonhover" data-toggle="tooltip" title="Delete Product" style="background:none; border:none; color:red;" data-product-productId="' + dataObj.productId + '"></button>';
+//    //html += '<button type="button" id="deleteProduct" class="glyphicon glyphicon-trash nochangeonhover" data-toggle="tooltip" title="Delete Product" style="background:none; border:none; color:red;" data-product-productId="' + dataObj.productId + '"></button>';
+
+//    return html;
+//}
 function productActionButtons(dataObj) {
     var html = '';
     var EditDetailUrl = "/admin/product/Edit?id=" + dataObj.productId;
     console.log(dataObj.productId);
-    // Edit button
-    html += '<a href="' + EditDetailUrl + '" class="glyphicon glyphicon-edit nochangeonhover" data-toggle="tooltip" title="Edit Product"></a>';
+
+    // Edit button using FontAwesome
+    html += '<a href="' + EditDetailUrl + '" class="nochangeonhover" data-bs-toggle="tooltip" title="Edit Product">';
+    html += '<i class="fas fa-edit"></i></a>';
     html += ' |&nbsp;';
 
-    // Delete button
-    html += '<button type="button" id="deleteProduct" class="glyphicon glyphicon-trash nochangeonhover" data-toggle="tooltip" title="Delete Product" style="background:none; border:none; color:red;" data-product-productId="' + dataObj.productId + '"></button>';
-    //html += '<button type="button" id="deleteProduct" class="glyphicon glyphicon-trash nochangeonhover" data-toggle="tooltip" title="Delete Product" style="background:none; border:none; color:red;" data-product-productId="' + dataObj.productId + '"></button>';
+    // Delete button using FontAwesome
+    html += '<button type="button" id="deleteProduct" class="nochangeonhover" data-bs-toggle="tooltip" title="Delete Product" style="background:none; border:none; color:red;" data-product-id="' + dataObj.productId + '">';
+    html += '<i class="fas fa-trash"></i></button>';
 
     return html;
 }

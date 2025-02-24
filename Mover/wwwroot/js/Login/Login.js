@@ -144,15 +144,33 @@ function UserGrid(onLoadElement, exportFileName) {
 
 
 
+//function userActionButtons(dataObj) {
+//    var html = '';
+//    var EditDetailUrl = "/Account/Edit?id=" + dataObj.id;
+//    html += '<a href="' + EditDetailUrl + '"  class="glyphicon glyphicon-edit" data-toggle="tooltip" title="Edit User"></a>';
+//    html += ' |&nbsp';
+//    html += '<a  href="#" class="glyphicon glyphicon-trash deleteUser" data-id="' + dataObj.id + '" data-toggle="tooltip" title="Delete User"></a>';
+
+//    return html;
+//}
+
 function userActionButtons(dataObj) {
     var html = '';
     var EditDetailUrl = "/Account/Edit?id=" + dataObj.id;
-    html += '<a href="' + EditDetailUrl + '"  class="glyphicon glyphicon-edit" data-toggle="tooltip" title="Edit User"></a>';
-    html += ' |&nbsp';
-    html += '<a  href="#" class="glyphicon glyphicon-trash deleteUser" data-id="' + dataObj.id + '" data-toggle="tooltip" title="Delete User"></a>';
+
+    // Edit button using FontAwesome
+    html += '<a href="' + EditDetailUrl + '" class="nochangeonhover" data-bs-toggle="tooltip" title="Edit User">';
+    html += '<i class="fas fa-edit"></i></a>';
+    html += ' |&nbsp;';
+
+    // Delete button using FontAwesome
+    html += '<a href="#" class="nochangeonhover deleteUser" data-id="' + dataObj.id + '" data-bs-toggle="tooltip" title="Delete User" style="color:red;">';
+    html += '<i class="fas fa-trash"></i></a>';
 
     return html;
 }
+
+
 $(document).on('click', '.deleteUser', function (e) {
     console.log("delete")
     e.preventDefault();

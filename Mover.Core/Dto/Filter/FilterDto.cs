@@ -10,6 +10,6 @@ namespace Mover.Core.Dto.Filter
     {
         public string? Search { get; set; }
         public int PageIndex { get; set; }
-        public int PageSize { get; set; } = 20;
+        public int PageSize { get; set; } = 3;
     }
 }

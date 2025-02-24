@@ -122,26 +122,51 @@ function OrderGrid(onLoadElement, exportFileName, orderStatus) {
         });
     });
 }
+//function orderActionButtons(dataObj) {
+//    var html = '';
+//    if (dataObj.currentUserRole == "Admin") {
+//        var EditDetailUrl = "/admin/order/editorderstatus?id=" + dataObj.orderId;
+//        // Edit button
+//        html += '<a href="' + EditDetailUrl + '" class="glyphicon glyphicon-edit nochangeonhover" data-toggle="tooltip" title="Edit Product"></a>';
+//        html += ' |&nbsp;';
+//    }
+//    var viewUrl = "/admin/order/details/" + dataObj.orderId;
+//    html += '<a href="' + viewUrl + '" class="glyphicon glyphicon-eye-open nochangeonhover" data-toggle="tooltip" title="View Detail">' +
+//        '</a>';
+//    if (dataObj.orderStatus == "Pending") {
+//        html += ' |&nbsp;';
+//        // Delete button
+//        html += '<a class="glyphicon glyphicon-trash nochangeonhover deleteOrder" data-toggle="tooltip" title="Delete Product" style="background:none; border:none; color:red;" data-order-orderId="' + dataObj.orderId + '"></a>';
+//        //html += '<button type="button" id="deleteProduct" class="glyphicon glyphicon-trash nochangeonhover" data-toggle="tooltip" title="Delete Product" style="background:none; border:none; color:red;" data-product-productId="' + dataObj.productId + '"></button>';
+//    }
+
+//    return html;
+//}
 function orderActionButtons(dataObj) {
     var html = '';
     if (dataObj.currentUserRole == "Admin") {
         var EditDetailUrl = "/admin/order/editorderstatus?id=" + dataObj.orderId;
-        // Edit button
-        html += '<a href="' + EditDetailUrl + '" class="glyphicon glyphicon-edit nochangeonhover" data-toggle="tooltip" title="Edit Product"></a>';
+        // Edit button using FontAwesome
+        html += '<a href="' + EditDetailUrl + '" class="nochangeonhover" data-bs-toggle="tooltip" title="Edit Order">';
+        html += '<i class="fas fa-edit"></i></a>';
         html += ' |&nbsp;';
     }
+
     var viewUrl = "/admin/order/details/" + dataObj.orderId;
-    html += '<a href="' + viewUrl + '" class="glyphicon glyphicon-eye-open nochangeonhover" data-toggle="tooltip" title="View Detail">' +
-        '</a>';
+    // View details button using FontAwesome
+    html += '<a href="' + viewUrl + '" class="nochangeonhover" data-bs-toggle="tooltip" title="View Detail">';
+    html += '<i class="fas fa-eye"></i></a>';
+
     if (dataObj.orderStatus == "Pending") {
         html += ' |&nbsp;';
-        // Delete button
-        html += '<a class="glyphicon glyphicon-trash nochangeonhover deleteOrder" data-toggle="tooltip" title="Delete Product" style="background:none; border:none; color:red;" data-order-orderId="' + dataObj.orderId + '"></a>';
-        //html += '<button type="button" id="deleteProduct" class="glyphicon glyphicon-trash nochangeonhover" data-toggle="tooltip" title="Delete Product" style="background:none; border:none; color:red;" data-product-productId="' + dataObj.productId + '"></button>';
+        // Delete button using FontAwesome
+        html += '<a class="nochangeonhover deleteOrder" data-bs-toggle="tooltip" title="Delete Order" style="background:none; border:none; color:red;" data-order-id="' + dataObj.orderId + '">';
+        html += '<i class="fas fa-trash"></i></a>';
     }
 
     return html;
 }
+
 
 
 

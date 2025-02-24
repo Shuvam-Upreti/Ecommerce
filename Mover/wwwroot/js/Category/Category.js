@@ -99,21 +99,37 @@ function CategoryGrid(onLoadElement, exportFileName) {
         });
     });
 }
+//function categoryActionButtons(dataObj) {
+//    var html = '';
+//    var EditDetailUrl = "/admin/category/Edit?id=" + dataObj.id;
+//    var DeleteDetailUrl = "/admin/category/Delete?id=" + dataObj.id;
+
+//    // Edit button
+//    html += '<a href="' + EditDetailUrl + '" class="glyphicon glyphicon-edit nochangeonhover" data-toggle="tooltip" title="Edit Category"></a>';
+//    html += ' |&nbsp;';
+
+//    // Delete button
+//    html += '<button type="button" id="deleteCategory" class="glyphicon glyphicon-trash nochangeonhover" data-toggle="tooltip" title="Delete Category" style="background:none; border:none; color:red;" data-category-id="' + dataObj.id + '"></button>';
+
+//    return html;
+//}
+
 function categoryActionButtons(dataObj) {
     var html = '';
     var EditDetailUrl = "/admin/category/Edit?id=" + dataObj.id;
     var DeleteDetailUrl = "/admin/category/Delete?id=" + dataObj.id;
 
-    // Edit button
-    html += '<a href="' + EditDetailUrl + '" class="glyphicon glyphicon-edit nochangeonhover" data-toggle="tooltip" title="Edit Category"></a>';
+    // Edit button using FontAwesome
+    html += '<a href="' + EditDetailUrl + '" class="nochangeonhover" data-bs-toggle="tooltip" title="Edit Category">';
+    html += '<i class="fas fa-edit"></i></a>';
     html += ' |&nbsp;';
 
-    // Delete button
-    html += '<button type="button" id="deleteCategory" class="glyphicon glyphicon-trash nochangeonhover" data-toggle="tooltip" title="Delete Category" style="background:none; border:none; color:red;" data-category-id="' + dataObj.id + '"></button>';
+    // Delete button using FontAwesome
+    html += '<button type="button" id="deleteCategory" class="nochangeonhover" data-bs-toggle="tooltip" title="Delete Category" style="background:none; border:none; color:red;" data-category-id="' + dataObj.id + '">';
+    html += '<i class="fas fa-trash"></i></button>';
 
     return html;
 }
-
 
 
 
