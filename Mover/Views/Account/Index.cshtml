@@ -2,7 +2,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "Index";
 }
-<div class="searchBar">
+@* <div class="searchBar">
     <div class="loHead">
         <span>Users</span>
         <div class="col-9">
@@ -18,8 +18,77 @@
 
 <div id="userGrid" class="panel" style="min-height:300px"></div>
 
+ *@
+<style>
+    .user-container {
+        background: #f8f9fa;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+    }
+
+    .filters-section {
+        background: white;
+        padding: 15px;
+        border-radius: 8px;
+        box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+    }
+
+        .filters-section .loHead {
+            font-size: 22px;
+            font-weight: bold;
+            color: #343a40;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
 
 
+    th {
+        background-color: #007bff;
+        color: white;
+        text-align: center;
+        padding: 10px;
+    }
+
+    td {
+        text-align: center;
+        vertical-align: middle;
+        padding: 8px;
+    }
+
+    .btn-create-user {
+        background-color: #0eccb3 !important;
+        border-color: #0eccb3 !important;
+        color: white !important;
+    }
+
+        .btn-create-user:hover {
+            background-color: #0ca98f !important;
+            border-color: #0ca98f !important;
+        }
+</style>
+<div class="user-container">
+    <div class="filters-section">
+        <div class="row d-flex justify-content-between align-items-center">
+            <!-- Products Heading -->
+            <div class="col-md-6">
+                <div class="loHead">Users</div>
+            </div>
+
+
+            <div class="col-md-6 d-flex justify-content-center">
+                <a href="@Url.Action("Create", "Account")" class="btn btn-primary btn-create-user">
+                    <i class="fa fa-plus"></i> Create new User
+                </a>
+            </div>
+        </div>
+
+        <div id="userGrid" class="panel" style="min-height:500px"></div>
+    </div>
+</div>
 
 @section scripts {
 

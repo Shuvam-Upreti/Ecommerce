@@ -80,53 +80,288 @@
     .modal-backdrop {
         background-color: rgba(0, 0, 0, 0.5) !important;
     }
+
+    /* For Customer design */
+    :root {
+        --accent-color: #0eccb3;
+        --cancel-btn-color: #ff7171;
+    }
+
+    .sidebar {
+        width: 280px;
+        border-right: 1px solid #eee;
+        height: 100vh;
+    }
+
+    /*  .main-content {
+        margin-left: 280px;
+        } */
+
+    .profile-img {
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+
+    .product-img {
+        width: 80px;
+        height: 80px;
+        object-fit: cover;
+    }
+
+    .nav-link {
+        color: #333;
+        padding: 12px 24px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+        .nav-link:hover, .nav-link.active {
+            background-color: #f8f9fa;
+        }
+
+    .search-box-order {
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 8px 16px;
+    }
+
+    .filter-btn {
+        background-color: #000;
+        color: white;
+        border-radius: 8px;
+        padding: 8px 20px;
+    }
+
+    .view-order-btn {
+        border: 1px solid #ddd;
+        color: #333;
+        background: white;
+        padding: 6px 16px;
+        border-radius: 6px;
+    }
+
+    .cancel-order-btn {
+        background-color: var(--cancel-btn-color);
+        color: white;
+        border: none;
+        padding: 6px 16px;
+        border-radius: 6px;
+    }
+
+    .review-btn {
+        background-color: var(--accent-color);
+        color: white;
+        border: none;
+        padding: 6px 16px;
+        border-radius: 6px;
+    }
+
+    .status-delivered {
+        color: #22c55e;
+        background-color: #dcfce7;
+        padding: 4px 12px;
+        border-radius: 4px;
+        display: inline-block;
+    }
+
+    .status-process {
+        color: #eab308;
+        background-color: #fef9c3;
+        padding: 4px 12px;
+        border-radius: 4px;
+        display: inline-block;
+    }
+
+    @@media (max-width: 991px) {
+        .sidebar {
+            width: 100%;
+            height: auto;
+            position: relative;
+            border-right: none;
+            border-bottom: 1px solid #eee;
+        }
+
+        .main-content {
+            margin-left: 0;
+        }
+    }
 </style>
+@if (User.IsInRole(RolesEnum.Admin.ToString()))
+{
 
-<div class="orders-container">
-    <div class="filters-section">
-        <div class="row">
-            <div class="col-md-6">
+    <div class="orders-container">
+        <div class="filters-section">
+            <div class="row">
+                <div class="col-md-6">
+                </div>
+                <div class="col-md-3">
+                    <label for="filterOrderStatus" class="form-label">Order Status</label>
+                    <select class="form-control" id="filterOrderStatus" name="filterOrderStatus">
+                        <option value="">--Select Status--</option>
+                        @foreach (var ordestatus in ViewBag.OrderStatus)
+                        {
+                            <option value="@ordestatus.Value">@ordestatus.Text</option>
+                        }
+                    </select>
+                </div>
+                <div class="col-md-3 d-flex align-items-end">
+                    <button class="btn btn-success w-45" id="searchBtn"><i class="fa fa-search"></i> Search</button>
+                </div>
 
-            </div>
-            <div class="col-md-3">
-                <label for="filterOrderStatus" class="form-label">Order Status</label>
-                <select class="form-control" id="filterOrderStatus" name="filterOrderStatus">
-                    <option value="">--Select Status--</option>
-                    @foreach (var ordestatus in ViewBag.OrderStatus)
-                    {
-                        <option value="@ordestatus.Value">@ordestatus.Text</option>
-                    }
-                </select>
-            </div>
-            <div class="col-md-3 d-flex align-items-end">
-                <button class="btn btn-success w-45" id="searchBtn"><i class="fa fa-search"></i> Search</button>
-            </div>
+                <div class="searchBar">
+                    <div class="loHead">Orders</div>
+                </div>
 
-            <div class="searchBar">
-                <div class="loHead">Orders</div>
+                <div id="orderGrid" class="panel" style="min-height:500px"></div>
             </div>
-
-            <div id="orderGrid" class="panel" style="min-height:500px"></div>
         </div>
+
+
     </div>
-
-    @* <div class="searchBar"> *@
-    @*     <div class="loHead">Orders</div> *@
-    @* </div> *@
-
-    @* <div id="orderGrid" class="panel" style="min-height:500px"></div> *@
-</div>
-
-<div class="modal fade" id="editOrderStatusModal" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-body text-center">
-                <p>Loading...</p>
+    <div class="modal fade" id="editOrderStatusModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body text-center">
+                    <p>Loading...</p>
+                </div>
             </div>
         </div>
     </div>
-</div>
+}
+else
+{
+    <div class="d-flex flex-column flex-lg-row">
+        <!-- Sidebar -->
+        <div class="sidebar p-4">
+            <div class="d-flex align-items-center gap-3 mb-4">
+                <img src="https://v0.dev/placeholder.svg" alt="Profile" class="profile-img">
+                <div>
+                    <div class="d-flex align-items-center gap-2">
+                        <span class="fw-bold">Robert Fox</span>
+                        <span>👋</span>
+                    </div>
+                </div>
+            </div>
 
+            <nav class="nav flex-column">
+                <a href="#" class="nav-link">
+                    <i class="fa fa-person"></i>
+                    Personal Information
+                </a>
+                <a href="#" class="nav-link active">
+                    <i class="fa fa-box"></i>
+                    My Orders
+                </a>
+                <a href="#" class="nav-link">
+                    <i class="fa fa-heart"></i>
+                    My Wishlists
+                </a>
+                <a href="#" class="nav-link">
+                    <i class="fa fa-geo-alt"></i>
+                    Manage Addresses
+                </a>
+                <a href="#" class="nav-link">
+                    <i class="fa fa-credit-card"></i>
+                    Saved Cards
+                </a>
+                <a href="#" class="nav-link">
+                    <i class="fa fa-bell"></i>
+                    Notifications
+                </a>
+                <a href="#" class="nav-link">
+                    <i class="fa fa-gear"></i>
+                    Settings
+                </a>
+            </nav>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content p-4 flex-grow-1">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h1 class="h4 mb-0">My Profile</h1>
+                <div class="d-flex gap-3 align-items-center">
+                    <div class="position-relative">
+                        <i class="fa fa-search position-absolute" style="left: 12px; top: 50%; transform: translateY(-50%)"></i>
+                        <input type="search" placeholder="Search" class="search-box-order ps-5">
+                    </div>
+                    <button class="filter-btn">
+                        <i class="fa fa-sliders me-2"></i>
+                        Filter
+                    </button>
+                </div>
+            </div>
+
+            <!-- Order Items -->
+            <div class="d-flex flex-column gap-4">
+                <!-- Order 1 -->
+                <div class="border rounded-3 p-4">
+                    <div class="d-flex justify-content-between align-items-start flex-wrap gap-3">
+                        <div class="d-flex gap-3">
+                            <img src="https://v0.dev/placeholder.svg" alt="Pink Dress" class="product-img rounded-3">
+                            <div>
+                                <h5>Girls Pink Moana Printed Dress</h5>
+                                <p class="text-muted mb-2">Size: S</p>
+                                <p class="text-muted mb-2">Qty: 1</p>
+                                <span class="status-delivered">Delivered</span>
+                                <p class="mt-2 mb-0">Your product has been delivered</p>
+                            </div>
+                        </div>
+                        <div class="d-flex flex-column align-items-end gap-2">
+                            <h5>$80.00</h5>
+                            <button class="view-order-btn">View Order</button>
+                            <button class="review-btn">Write A Review</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Order 2 -->
+                <div class="border rounded-3 p-4">
+                    <div class="d-flex justify-content-between align-items-start flex-wrap gap-3">
+                        <div class="d-flex gap-3">
+                            <img src="https://v0.dev/placeholder.svg" alt="Handbag" class="product-img rounded-3">
+                            <div>
+                                <h5>Women Textured Handheld Bag</h5>
+                                <p class="text-muted mb-2">Size: Regular</p>
+                                <p class="text-muted mb-2">Qty: 1</p>
+                                <span class="status-process">In Process</span>
+                                <p class="mt-2 mb-0">Your product has been Inprocess</p>
+                            </div>
+                        </div>
+                        <div class="d-flex flex-column align-items-end gap-2">
+                            <h5>$80.00</h5>
+                            <button class="view-order-btn">View Order</button>
+                            <button class="cancel-order-btn">Cancel Order</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Order 3 -->
+                <div class="border rounded-3 p-4">
+                    <div class="d-flex justify-content-between align-items-start flex-wrap gap-3">
+                        <div class="d-flex gap-3">
+                            <img src="https://v0.dev/placeholder.svg" alt="Casual Shirt" class="product-img rounded-3">
+                            <div>
+                                <h5>Tailored Cotton Casual Shirt</h5>
+                                <p class="text-muted mb-2">Size: M</p>
+                                <p class="text-muted mb-2">Qty: 1</p>
+                                <span class="status-process">In Process</span>
+                                <p class="mt-2 mb-0">Your product has been Inprocess</p>
+                            </div>
+                        </div>
+                        <div class="d-flex flex-column align-items-end gap-2">
+                            <h5>$40.00</h5>
+                            <button class="view-order-btn">View Order</button>
+                            <button class="cancel-order-btn">Cancel Order</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
 @section Scripts {
     <script src="~/js/Order/Order.js" asp-append-version="true"></script>
 

@@ -16,70 +16,44 @@
             color: #000; /* Make sure the text is visible */
         }
 
+    .category-container {
+        background: #f8f9fa;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+    } .filters-section {
+        background: white;
+        padding: 15px;
+        border-radius: 8px;
+        box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+    }
+
+    .filters-section .loHead {
+        font-size: 22px;
+        font-weight: bold;
+        color: #343a40;
+        border-bottom: 2px solid #007bff;
+        padding-bottom: 10px;
+        margin-bottom: 15px;
+    }
+
+    .btn-create-category {
+        background-color: #0eccb3 !important;
+        border-color: #0eccb3 !important;
+        color: white !important;
+    }
+
+        .btn-create-category:hover {
+            background-color: #0ca98f !important;
+            border-color: #0ca98f !important;
+        }
 </style>
 @Html.AntiForgeryToken()
 
-@* 
-<div class="container p-3">
-  @*   <div class="row">
-        <div class="col-6">
-            <h2 class="text-primary">Category List</h2>
-        </div>
 
-        <div class="col-6 text-end">
-            <a href="/admin/category/create" class="btn btn-primary">
-                <i class="fas fa-plus-circle"></i>&nbsp Create New Category
-            </a>
-
-        </div>
-        <hr />
-    </div> *@
-    @*     <table class="table table-bordered table-striped table-hover " style="width:100%">
-    <thead>
-    <tr>
-
-    <th>
-    Category Name
-    </th>
-    <th>
-    Created At
-    </th>
-    <th></th>
-    </tr>
-    </thead>
-
-    <tbody>
-    @foreach (var obj in Model)
-    {
-    <tr>
-    <td width="40%">
-    @obj.Name
-    </td>
-    <td width="20%">
-    @obj.CreatedOn
-    </td>
-    <td style="display:flex;">
-    <div class="w-50 btn-group" role="group">
-    <a asp-area="Admin" asp-controller="Category" asp-action="Edit" asp-route-id="@obj.Id" class="btn btn-primary mx-2"> <i class="bi bi-pencil-square"></i>&nbsp Edit</a>
-    </div>
-    <form method="post" asp-area="Admin" asp-controller="Category" asp-action="Delete" asp-route-id="@obj.Id">
-    <button type="submit" class="btn btn-danger mx-2">
-    <i class="bi bi-trash"></i>&nbsp Delete
-    </button>
-    </form>
-
-
-    </td>
-
-    </tr>
-    }
-
-    </tbody>
-
-    </table> 
-
-</div> *@
-<div class="searchBar">
+@* <div class="searchBar">
     <div class="loHead">
         <span>Category</span>
         <div class="col-12">
@@ -90,7 +64,26 @@
     </div>
 </div>
 <div id="categoryGrid" class="panel" style="min-height:500px"></div>
+ *@
+<div class="category-container">
+    <div class="filters-section">
+        <div class="row d-flex justify-content-between align-items-center">
+            <!-- Products Heading -->
+            <div class="col-md-6">
+                <div class="loHead">Category</div>
+            </div>
 
+
+            <div class="col-md-6 d-flex justify-content-center">
+                <a href="/admin/category/create" class="btn btn-success btn-create-category pull-right">
+                    <i class="fa fa-plus"></i> Create New category
+                </a>
+            </div>
+        </div>
+
+        <div id="categoryGrid" class="panel" style="min-height:500px"></div>
+    </div>
+</div>
 
 
 @section scripts {

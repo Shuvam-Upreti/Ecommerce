@@ -29,7 +29,7 @@ function ProductGrid(onLoadElement, exportFileName) {
                 showNavigationButtons: true,
                 showInfo: true,
                 allowedPageSizes: [20, 30, 50, 100],
-                visible: true,
+                visible: false,
             },
             grouping: {
                 contextMenuEnabled: true
@@ -46,7 +46,7 @@ function ProductGrid(onLoadElement, exportFileName) {
 
             },
             searchPanel: {
-                visible: false,
+                visible: true,
                 highlightCaseSensitive: false
             }, 
             columns: [
