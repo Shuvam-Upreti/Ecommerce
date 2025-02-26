@@ -6,118 +6,117 @@
 @{
     ViewData["Title"] = "Orders";
 }
+
 <style>
+    .orders-container {
+        background: #f8f9fa;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+    }
+
+    .filters-section {
+        background: white;
+        padding: 15px;
+        border-radius: 8px;
+        box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+    }
+
+    .searchBar .loHead {
+        font-size: 22px;
+        font-weight: bold;
+        color: #343a40;
+        border-bottom: 2px solid #007bff;
+        padding-bottom: 10px;
+        margin-bottom: 15px;
+    }
+
+    th {
+        background-color: #007bff;
+        color: white;
+        text-align: center;
+        padding: 10px;
+    }
+
+    td {
+        text-align: center;
+        vertical-align: middle;
+        padding: 8px;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+    }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #004085;
+        }
+
+    .btn-success {
+        background-color: #28a745;
+        border-color: #28a745;
+    }
+
+        .btn-success:hover {
+            background-color: #218838;
+            border-color: #1e7e34;
+        }
+
     #editOrderStatusModal .modal-content {
-        background-color: white !important; /* Ensures background is visible */
-        color: black !important; /* Makes text readable */
+        background-color: white !important;
+        color: black !important;
         border-radius: 8px;
         padding: 20px;
     }
 
     #editOrderStatusModal .modal-dialog {
-        max-width: 500px; /* Adjust width */
+        max-width: 500px;
     }
 
     .modal-backdrop {
-        background-color: rgba(0, 0, 0, 0.5) !important; /* Ensures backdrop is visible */
+        background-color: rgba(0, 0, 0, 0.5) !important;
     }
 </style>
-@* <h2>Orders</h2> *@
-@* 
-<table class="table table-bordered table-striped">
-    <thead>
-        <tr>
-            <th>Order ID</th>
-            <th>Created By</th>
-            <th>Phone Number</th>
-            <th>Total Amount</th>
-            <th>Order Date</th>
-            <th>Status</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        @if (!Model.Any())
-        {
-            <tr>
-                <td colspan="7" class="text-center">No orders available.</td>
-            </tr>
-        }
-        else
-        {
-            @foreach (var order in Model)
-            {
-                <tr>
-                    <td>@order.OrderId</td>
-                    <td>@order.CreatedBy</td>
-                    <td>@order.PhoneNumber</td>
-                    <td>@order.TotalAmount</td>
-                    <td>@order.OrderDate</td>
-                    <td>@order.OrderStatus</td>
-                    <td>
-                        @if (User.IsInRole(RolesEnum.Admin.ToString()))
-                        {
-                            <!-- Action buttons -->
-                            <a href="javascript:void(0);"
-                               data-url="@Url.Action("EditOrderStatus", "Order", new { id = order.OrderId })"
-                               class="btn btn-primary btn-sm open-edit-modal">
-                                <i class="fa fa-edit"></i> Edit
-                            </a>
-                        }
-                        <a asp-action="Details" asp-route-id="@order.OrderId" class="btn btn-sm btn-info">View</a>
-                        @if (order.OrderStatus == OrderStatusEnums.Pending.ToString())
-                        {
-                            <form method="post" asp-area="Admin" asp-controller="Order" asp-action="Delete" asp-route-id="@order.OrderId" onclick="return confirm('Are you sure you want to delete this order?');">
-                                <button type="submit" class="btn btn-danger mx-2">
-                                    <i class="bi bi-trash"></i>&nbsp Delete
-                                </button>
-                            </form>
-                        }
-                    </td>
-                </tr>
-            }
-        }
-    </tbody>
-</table> *@
 
-<div class="col-12">
-    <div class="row">
+<div class="orders-container">
+    <div class="filters-section">
+        <div class="row">
+            <div class="col-md-6">
 
-        <div class="col-md-5 mb-3">
-        </div>
-        <div class="col-md-1 mb-3">
-        </div>
-        <div class="col-md-2 mb-3">
-            <label for="filterOrderStatus" class="form-label">Order Status</label>
-            <select class="form-control" id="filterOrderStatus" name="filterOrderStatus">
-                <option value="">--Select Status--</option>
-                @foreach (var ordestatus in ViewBag.OrderStatus)
-                {
-                    <option value="@ordestatus.Value">@ordestatus.Text</option>
+            </div>
+            <div class="col-md-3">
+                <label for="filterOrderStatus" class="form-label">Order Status</label>
+                <select class="form-control" id="filterOrderStatus" name="filterOrderStatus">
+                    <option value="">--Select Status--</option>
+                    @foreach (var ordestatus in ViewBag.OrderStatus)
+                    {
+                        <option value="@ordestatus.Value">@ordestatus.Text</option>
+                    }
+                </select>
+            </div>
+            <div class="col-md-3 d-flex align-items-end">
+                <button class="btn btn-success w-45" id="searchBtn"><i class="fa fa-search"></i> Search</button>
+            </div>
 
-                }
-            </select>
-        </div>
+            <div class="searchBar">
+                <div class="loHead">Orders</div>
+            </div>
 
-        <!-- Search Button -->
-        <div class="col-md-4 mb-3 text-left">
-            <button class="btn btn-success" style="margin-top:22px;" id="searchBtn"><i class="fa fa-search"></i> Search</button>
-
+            <div id="orderGrid" class="panel" style="min-height:500px"></div>
         </div>
     </div>
+
+    @* <div class="searchBar"> *@
+    @*     <div class="loHead">Orders</div> *@
+    @* </div> *@
+
+    @* <div id="orderGrid" class="panel" style="min-height:500px"></div> *@
 </div>
 
-
-
-<div class="searchBar">
-    <div class="loHead">
-        <span>Orders</span>
-        <div class="col-12">
-        </div>
-    </div>
-</div>
-<div id="orderGrid" class="panel" style="min-height:500px"></div>
-@* Order status popup *@
 <div class="modal fade" id="editOrderStatusModal" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -129,18 +128,14 @@
 </div>
 
 @section Scripts {
-
     <script src="~/js/Order/Order.js" asp-append-version="true"></script>
 
     <script>
         $(document).on('click', '.open-edit-modal', function () {
             var url = $(this).data('url');
             $('#editOrderStatusModal .modal-content').load(url, function () {
-               var a= $('#editOrderStatusModal').modal('show');
-                console.log("shown",a)
+                $('#editOrderStatusModal').modal('show');
             });
         });
-   
-
     </script>
 }
