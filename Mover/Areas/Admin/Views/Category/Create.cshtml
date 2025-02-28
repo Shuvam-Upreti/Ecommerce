@@ -1,37 +1,101 @@
 ﻿@model Mover.Areas.Admin.ViewModel.Category.CategoryViewModel
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
-    ViewBag.Title = "Create Order";
+    ViewBag.Title = "Create Category";
 }
 
-<div class="container mt-5">
-    <div class="card shadow-lg">
-        <div class="card-header bg-secondary text-black">
-            <h5 class="mb-0">Create Order</h5>
+<style>
+    :root {
+        --primary-color: #0ca98f;
+        --text-color: #333;
+        --background-light: #F9FAFC;
+        --border-color: black;
+        --input-bg: #FFFFFF;
+        --shadow-color: rgba(0, 0, 0, 0.05);
+    }
+
+    body {
+        background-color: var(--background-light);
+        font-family: 'Arial', sans-serif;
+        color: var(--text-color);
+    }
+
+    .form-container {
+        max-width: 600px;
+        margin: 50px auto;
+        padding: 30px;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0px 2px 8px var(--shadow-color);
+        border: 1px solid var(--border-color);
+    }
+
+    .form-header {
+        font-size: 1.8rem;
+        font-weight: 700;
+        text-align: center;
+        color: var(--primary-color);
+        margin-bottom: 20px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        padding-bottom: 8px;
+        border-bottom: 3px solid var(--primary-color);
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    .form-control {
+        border-radius: 6px;
+        border: 1px solid var(--border-color);
+        padding: 10px;
+        font-size: 1rem;
+        background-color: var(--input-bg);
+        transition: all 0.2s ease-in-out;
+    }
+
+        .form-control:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0px 0px 6px var(--primary-color);
+        }
+
+    .btn-custom {
+        background: var(--primary-color);
+        color: white;
+        font-size: 0.9rem;
+        padding: 8px 16px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: 0.3s ease-in-out;
+        font-weight: 600;
+    }
+
+        .btn-custom:hover {
+            background: #0a8e76;
+        }
+</style>
+
+<div class="container form-container">
+    <div class="form-header">Create Category</div>
+    <form asp-action="Create" method="post" enctype="multipart/form-data">
+        @Html.AntiForgeryToken()
+        <div class="form-group">
+            <label for="Name" class="form-label fw-bold">Name</label>
+            @Html.TextBoxFor(model => model.Name, new { @class = "form-control", placeholder = "Enter category name" })
+            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
         </div>
-        <div class="card-body">
-            <form asp-action="Create" method="post" enctype="multipart/form-data">
-                @Html.AntiForgeryToken()
-                <div class="row">
-                    <!-- Receiver Information -->
-                    <div class="col-md-6 mb-3">
-                        <label for="Name" class="form-label fw-bold">Name</label>
-                        @Html.TextBoxFor(model => model.Name, new { @class = "form-control", placeholder = "Enter category name" })
-                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label>Images</label>
-                    <input asp-for="Images" type="file" multiple class="form-control" />
-                    <span asp-validation-for="Images" class="text-danger"></span>
-                </div>
-                <div class="mt-4 text-left">
-                    <button type="submit" class="btn btn-success btn-md px-5">Create</button>
-                    <a asp-action="Index" class="btn btn-secondary btn-md px-5 ms-3">Back to List</a>
-                </div>
-            </form>
+        <div class="form-group">
+            <label>Images</label>
+            <input asp-for="Images" type="file" multiple class="form-control" />
+            <span asp-validation-for="Images" class="text-danger"></span>
         </div>
-    </div>
+        <div class="text-center mt-3">
+            <button type="submit" class="btn btn-custom">Create</button>
+            <a asp-action="Index" class="btn btn-secondary ms-3">Back to List</a>
+        </div>
+    </form>
 </div>
 
 @section Scripts {

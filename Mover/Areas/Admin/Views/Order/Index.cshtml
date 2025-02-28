@@ -189,7 +189,7 @@
         }
     }
 </style>
-@if (User.IsInRole(RolesEnum.Admin.ToString()))
+@if (!User.IsInRole(RolesEnum.Admin.ToString()))
 {
 
     <div class="orders-container">
@@ -362,6 +362,9 @@ else
         </div>
     </div>
 }
+
+
+
 @section Scripts {
     <script src="~/js/Order/Order.js" asp-append-version="true"></script>
 

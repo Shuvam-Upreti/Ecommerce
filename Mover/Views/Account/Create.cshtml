@@ -4,87 +4,145 @@
     ViewBag.Title = "Create User";
 }
 
-<div class="container mt-5">
-    <div class="card shadow-lg">
-        <div class="card-header bg-secondary text-black">
-            <h5 class="mb-0">Create User</h5>
+<style>
+    :root {
+        --primary-color: #0ca98f;
+        --text-color: #333;
+        --background-light: #F9FAFC;
+        --border-color: black;
+        --input-bg: #FFFFFF;
+        --shadow-color: rgba(0, 0, 0, 0.05);
+    }
+
+    body {
+        background-color: var(--background-light);
+        font-family: 'Arial', sans-serif;
+        color: var(--text-color);
+    }
+
+    .form-container {
+        max-width: 900px;
+        margin: 50px auto;
+        padding: 30px;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0px 2px 8px var(--shadow-color);
+        border: 1px solid var(--border-color);
+    }
+
+    .form-header {
+        font-size: 1.8rem;
+        font-weight: 700;
+        text-align: center;
+        color: var(--primary-color);
+        margin-bottom: 20px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        padding-bottom: 8px;
+        border-bottom: 3px solid var(--primary-color);
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    .form-control {
+        border-radius: 6px;
+        border: 1px solid var(--border-color);
+        padding: 10px;
+        font-size: 1rem;
+        background-color: var(--input-bg);
+        transition: all 0.2s ease-in-out;
+    }
+
+        .form-control:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0px 0px 6px var(--primary-color);
+        }
+
+    .btn-custom {
+        background: var(--primary-color);
+        color: white;
+        font-size: 0.9rem;
+        padding: 8px 16px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: 0.3s ease-in-out;
+        font-weight: 600;
+    }
+
+        .btn-custom:hover {
+            background: #0a8e76;
+        }
+</style>
+
+<div class="container form-container">
+    <div class="form-header">Create User</div>
+    <form asp-action="Create" method="post">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="FullName" class="form-label fw-bold">Full Name</label>
+                    @Html.TextBoxFor(model => model.FullName, new { @class = "form-control", placeholder = "Enter full name" })
+                    @Html.ValidationMessageFor(model => model.FullName, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group">
+                    <label for="Password" class="form-label fw-bold">Password</label>
+                    @Html.PasswordFor(model => model.Password, new { @class = "form-control", placeholder = "Enter password" })
+                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group">
+                    <label for="Department" class="form-label fw-bold">Department</label>
+                    @Html.TextBoxFor(model => model.Department, new { @class = "form-control", placeholder = "Enter department" })
+                    @Html.ValidationMessageFor(model => model.Department, "", new { @class = "text-danger" })
+                </div>
+
+
+                <div class="form-group">
+                    <label for="PhoneNumber" class="form-label fw-bold">Phone Number</label>
+                    @Html.TextBoxFor(model => model.PhoneNumber, new { @class = "form-control", placeholder = "Enter phone number" })
+                    @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="col-md-6">
+
+                <div class="form-group">
+                    <label for="Email" class="form-label fw-bold">Email</label>
+                    @Html.TextBoxFor(model => model.Email, new { @class = "form-control", placeholder = "Enter email" })
+                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group">
+                    <label for="ConfirmPassword" class="form-label fw-bold">Confirm Password</label>
+                    @Html.PasswordFor(model => model.ConfirmPassword, new { @class = "form-control", placeholder = "Confirm password" })
+                    @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group">
+                    <label for="DateOfJoin" class="form-label fw-bold">Date of Join</label>
+                    @Html.TextBoxFor(model => model.DateOfJoin, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date", max = DateTime.Now.ToString("yyyy-MM-dd") })
+                    @Html.ValidationMessageFor(model => model.DateOfJoin, "", new { @class = "text-danger" })
+                </div>
+               
+                <div class="form-group">
+                    <label for="Role" class="form-label fw-bold">Roles</label>
+                    @Html.DropDownListFor(model => model.Role, (SelectList)ViewBag.Roles, "--Select Role--", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Role, "", new { @class = "text-danger" })
+                </div>
+            </div>
         </div>
-        <div class="card-body">
-            <form asp-action="Create" method="post">
-                <div class="row">
-                    <!-- Full Name -->
-                    <div class="col-md-6 mb-3">
-                        <label for="FullName" class="form-label fw-bold">Full Name</label>
-                        @Html.TextBoxFor(model => model.FullName, new { @class = "form-control", placeholder = "Enter full name" })
-                        @Html.ValidationMessageFor(model => model.FullName, "", new { @class = "text-danger" })
-                    </div>
 
-                    <!-- AspNetUser Email -->
-                    <div class="col-md-6 mb-3">
-                        <label for="AspUser.Email" class="form-label fw-bold">Email</label>
-                        @Html.TextBoxFor(model => model.Email, new { @class = "form-control", placeholder = "Enter email" })
-                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="row">
-                    <!-- Password -->
-                    <div class="col-md-6 mb-3">
-                        <label for="Password" class="form-label fw-bold">Password</label>
-                        @Html.PasswordFor(model => model.Password, new { @class = "form-control", placeholder = "Enter password" })
-                        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
-                    </div>
-
-                    <!-- Confirm Password -->
-                    <div class="col-md-6 mb-3">
-                        <label for="ConfirmPassword" class="form-label fw-bold">Confirm Password</label>
-                        @Html.PasswordFor(model => model.ConfirmPassword, new { @class = "form-control", placeholder = "Confirm password" })
-                        @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="row">
-                    <!-- Department -->
-                    <div class="col-md-6 mb-3">
-                        <label for="Department" class="form-label fw-bold">Department</label>
-                        @Html.TextBoxFor(model => model.Department, new { @class = "form-control", placeholder = "Enter department" })
-                        @Html.ValidationMessageFor(model => model.Department, "", new { @class = "text-danger" })
-                    </div>
-
-                    <!-- Date of Joining -->
-                    <div class="col-md-6 mb-3">
-                        <label for="DateOfJoin" class="form-label fw-bold">Date of Join</label>
-                        @Html.TextBoxFor(model => model.DateOfJoin, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date", max = DateTime.Now.ToString("yyyy-MM-dd") })
-                        @Html.ValidationMessageFor(model => model.DateOfJoin, "", new { @class = "text-danger" })
-                    </div>
-
-                </div> 
-                
-                <div class="row">
-                    <!-- Phone Number -->
-                    <div class="col-md-6 mb-3">
-                        <label for="PhoneNumber" class="form-label fw-bold">Phone Number</label>
-                        @Html.TextBoxFor(model => model.PhoneNumber, new { @class = "form-control", placeholder = "Enter phone number" })
-                        @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
-                    </div>
-                    
-                    <div class="col-md-6 mb-3">
-                        <label for="Role" class="form-label fw-bold">Roles</label>
-                        @Html.DropDownListFor(model => model.Role, (SelectList)ViewBag.Roles, "--Select Role--", new { @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.Role, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-
-                <div class="mt-4 text-left">
-                    <button type="submit" class="btn btn-success btn-md px-5">Create User</button>
-                    <a asp-action="Index" class="btn btn-secondary btn-md px-5 ms-3">Back to List</a>
-                </div>
-            </form>
+        <div class="text-center mt-3">
+            <button type="submit" class="btn btn-custom">Create User</button>
+            <a asp-action="Index" class="btn btn-secondary ms-3">Back to List</a>
         </div>
-    </div>
+    </form>
 </div>
 
 @section Scripts {
-    <partial name="_ValidationScriptsPartial" asp-append-version="true" />
+    <partial name="_ValidationScriptsPartial" />
 }
