@@ -193,52 +193,122 @@
         gap: 24px;
     }
 
+    /* Product Card - New Style */
     .product-card {
         background: white;
-        border: none;
-        border-radius: 10px;
-        overflow: hidden;
-        transition: all 0.3s ease;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        border-radius: 15px;
+        padding: 20px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        transition: transform 0.3s ease;
+        height: 500px;
+        display: flex;
+        flex-direction: column;
+        position: relative;
     }
 
         .product-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.1);
+            transform: translateY(-5px);
         }
 
-    .product-image-wrapper {
+    .badge-stock {
+        background-color: #dc3545;
+        color: white;
+        padding: 5px 10px;
+        border-radius: 4px;
+        position: absolute;
+        top: 10px;
+        right: 15px;
+        z-index: 1;
+        font-size: 12px;
+        font-weight: 500;
+    }
+
+    .product-image-container {
+        height: 70%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 20px;
         position: relative;
-        padding-top: 100%;
-        background: #f8f9fa;
-        overflow: hidden;
     }
 
     .product-image {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        transition: transform 0.5s ease;
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
     }
 
-    .product-card:hover .product-image {
-        transform: scale(1.05);
+    .product-content {
+        height: 30%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: flex-start;
     }
+
+    .product-name {
+        font-size: 1rem;
+        margin-bottom: 10px;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        line-height: 1.4;
+        text-align: left;
+    }
+
+    .product-price {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 15px;
+    }
+
+    .current-price {
+        color: #0eccb3;
+        font-size: 1.25rem;
+        font-weight: bold;
+    }
+
+    .original-price {
+        color: #6B7280;
+        font-size: 0.9rem;
+        text-decoration: line-through;
+    }
+
+    .add-to-cart {
+        background-color: #0eccb3;
+        color: white;
+        border: none;
+        width: 100%;
+        padding: 10px;
+        border-radius: 8px;
+        transition: background-color 0.3s ease;
+        margin-top: auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        font-weight: 500;
+        font-size: 14px;
+    }
+
+        .add-to-cart:hover {
+            background-color: #0bb19b;
+            color: white;
+        }
 
     .wishlist-btn {
         position: absolute;
-        top: 12px;
-        right: 12px;
+        top: 10px;
+        left: 15px;
         width: 36px;
         height: 36px;
         border-radius: 50%;
         background: white;
         color: #6c757d;
         border: none;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -246,6 +316,7 @@
         opacity: 0;
         transform: translateY(-10px);
         transition: all 0.3s ease;
+        z-index: 2;
     }
 
     .product-card:hover .wishlist-btn {
@@ -256,73 +327,7 @@
     .wishlist-btn:hover {
         background: #0eccb3;
         color: white;
-        transform: scale(1.1);
     }
-
-    .product-details {
-        padding: 20px;
-    }
-
-    .product-brand {
-        font-size: 14px;
-        color: #6c757d;
-        margin-bottom: 6px;
-        font-weight: 500;
-    }
-
-    .product-name {
-        font-size: 16px;
-        font-weight: 600;
-        color: #212529;
-        margin-bottom: 12px;
-        line-height: 1.4;
-    }
-
-    .product-price {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        margin-bottom: 16px;
-    }
-
-    .current-price {
-        font-weight: 700;
-        color: #212529;
-        font-size: 18px;
-    }
-
-    .original-price {
-        color: #adb5bd;
-        text-decoration: line-through;
-        font-size: 14px;
-    }
-
-    .add-to-cart {
-        width: 100%;
-        padding: 12px;
-        background: #0eccb3;
-        color: white;
-        border: none;
-        border-radius: 6px;
-        font-size: 14px;
-        font-weight: 600;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 8px;
-    }
-
-        .add-to-cart:hover {
-            background: #0bb19b;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 15px rgba(14, 204, 179, 0.3);
-        }
-
-        .add-to-cart:active {
-            transform: translateY(0);
-        }
 
     /* Load More Button */
     .load-more {
@@ -387,6 +392,27 @@
             border-color: #0eccb3;
         }
 
+    /* Section Title */
+    .section-title {
+        font-size: 28px;
+        font-weight: 700;
+        color: #212529;
+        position: relative;
+        padding-bottom: 15px;
+        margin-bottom: 40px;
+    }
+
+        .section-title:after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 3px;
+            background-color: #0eccb3;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
     /* Responsive adjustments */
     @@media (max-width: 992px) {
         .filter-sidebar
@@ -420,8 +446,8 @@
         width: 100%;
     }
 
-    .product-details {
-        padding: 16px;
+    .product-card {
+        height: 450px;
     }
 
     }
@@ -437,6 +463,11 @@
         padding: 15px 10px;
     }
 
+    .product-card {
+        height: 400px;
+        padding: 15px;
+    }
+
     }
 </style>
 
@@ -448,6 +479,8 @@
             <li class="breadcrumb-item active">Products</li>
         </ol>
     </nav>
+
+    <h2 class="text-center section-title">OUR PRODUCTS</h2>
 
     <div class="row">
         <!-- Filter Sidebar -->
@@ -524,14 +557,17 @@
                 @foreach (var product in Model)
                 {
                     <div class="product-card">
-                        <div class="product-image-wrapper">
+                        @if (product.InStock <= 0)
+                        {
+                            <span class="badge-stock">Out of Stock</span>
+                        }
+                        <button class="wishlist-btn">
+                            <i class="fas fa-heart"></i>
+                        </button>
+                        <div class="product-image-container">
                             <img src="@Url.Content($"~/{product.ImageUrls.FirstOrDefault()}")" class="product-image" alt="@product.ProductName">
-                            <button class="wishlist-btn">
-                                <i class="fas fa-heart"></i>
-                            </button>
                         </div>
-                        <div class="product-details">
-                            <div class="product-brand">Brand Name</div>
+                        <div class="product-content">
                             <h3 class="product-name">@product.ProductName</h3>
                             <div class="product-price">
                                 <span class="current-price">$@product.DiscountedPrice</span>
@@ -542,7 +578,7 @@
                             </div>
                             <button class="add-to-cart">
                                 <i class="fas fa-shopping-cart"></i>
-                                Add to Cart
+                                ADD TO CART
                             </button>
                         </div>
                     </div>
@@ -594,16 +630,22 @@
                         if (data.length > 0) {
                             $.each(data, function (index, product) {
                                 let imageUrl = `/${product.imageUrl}`;
+                                let outOfStockBadge = '';
+
+                                if (product.inStock <= 0) {
+                                    outOfStockBadge = '<span class="badge-stock">Out of Stock</span>';
+                                }
+
                                 $("#productList").append(`
                                     <div class="product-card">
-                                        <div class="product-image-wrapper">
+                                        ${outOfStockBadge}
+                                        <button class="wishlist-btn">
+                                            <i class="fas fa-heart"></i>
+                                        </button>
+                                        <div class="product-image-container">
                                             <img src="${imageUrl}" class="product-image" alt="${product.productName}">
-                                            <button class="wishlist-btn">
-                                                <i class="fas fa-heart"></i>
-                                            </button>
                                         </div>
-                                        <div class="product-details">
-                                            <div class="product-brand">Brand Name</div>
+                                        <div class="product-content">
                                             <h3 class="product-name">${product.productName}</h3>
                                             <div class="product-price">
                                                 <span class="current-price">$${product.discountedPrice}</span>
@@ -611,8 +653,8 @@
                                                     `<span class="original-price">$${product.originalPrice}</span>` : ''}
                                             </div>
                                             <button class="add-to-cart">
-                                                <i class="fas fa-shopping-cart"></i>
-                                                Add to Cart
+                                                <i class="fas fa-eye"></i>
+                                                VIEW DETAILS
                                             </button>
                                         </div>
                                     </div>
