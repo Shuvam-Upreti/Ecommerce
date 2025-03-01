@@ -14,27 +14,50 @@
     }
 
     body {
-        background: #f5f7fa;
+        background: #f8f9fa;
         color: #333;
     }
+
     .shop-container {
         max-width: 1200px;
         margin: 0 auto;
-        padding: 20px;
+        padding: 30px 20px;
     }
 
     /* Breadcrumb */
     .breadcrumb {
         background: none;
-        color:#555;
+        color: #555;
         padding: 10px 0;
         font-size: 14px;
+        margin-bottom: 20px;
     }
 
+    .breadcrumb-item a {
+        color: #0eccb3;
+        text-decoration: none;
+    }
+
+        .breadcrumb-item a:hover {
+            text-decoration: underline;
+        }
+
     /* Filter Sidebar */
+    .filter-sidebar {
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        padding: 20px;
+        margin-bottom: 30px;
+    }
+
     .filter-section {
         margin-bottom: 24px;
     }
+
+        .filter-section:last-child {
+            margin-bottom: 0;
+        }
 
     .filter-header {
         display: flex;
@@ -42,13 +65,13 @@
         align-items: center;
         cursor: pointer;
         padding: 12px 0;
-        border-bottom: 1px solid #E5E7EB;
+        border-bottom: 1px solid #e9ecef;
     }
 
     .filter-title {
-        font-size: 15px;
-        font-weight: 500;
-        color: #111;
+        font-size: 16px;
+        font-weight: 600;
+        color: #212529;
     }
 
     .filter-content {
@@ -58,24 +81,34 @@
     .filter-item {
         display: flex;
         align-items: center;
-        gap: 8px;
-        margin-bottom: 12px;
-        color: #4B5563;
+        gap: 10px;
+        margin-bottom: 14px;
+        color: #495057;
         font-size: 14px;
+        cursor: pointer;
     }
+
+        .filter-item:last-child {
+            margin-bottom: 0;
+        }
 
     .filter-checkbox {
-        width: 16px;
-        height: 16px;
-        border: 2px solid #2563eb;
-        border-radius: 3px;
+        width: 18px;
+        height: 18px;
+        border: 2px solid #0eccb3;
+        border-radius: 4px;
         transition: all 0.2s ease;
+        cursor: pointer;
     }
 
-    .filter-checkbox:checked {
-        background-color: #2563eb;
-        border-color: #2563eb;
-    }
+        .filter-checkbox:checked {
+            background-color: #0eccb3;
+            border-color: #0eccb3;
+        }
+
+        .filter-checkbox:focus {
+            box-shadow: 0 0 0 2px rgba(14, 204, 179, 0.25);
+        }
 
     /* Shop Header */
     .shop-header {
@@ -83,6 +116,10 @@
         justify-content: space-between;
         align-items: center;
         margin-bottom: 30px;
+        background-color: white;
+        padding: 16px 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
     }
 
     .view-options {
@@ -97,76 +134,84 @@
     }
 
     .view-btn {
-        padding: 8px;
-        border: 1px solid #E5E7EB;
+        width: 36px;
+        height: 36px;
+        border: 1px solid #e9ecef;
         background: white;
         cursor: pointer;
         display: flex;
         align-items: center;
         justify-content: center;
         transition: all 0.3s ease;
+        border-radius: 6px;
+        color: #6c757d;
     }
 
-    .view-btn.active {
-        background: #2563eb;
-        color: white;
-    }
+        .view-btn.active {
+            background: #0eccb3;
+            color: white;
+            border-color: #0eccb3;
+        }
 
-    .view-btn:hover {
-        background: #1d4ed8;
-        color: white;
-        transform: translateY(-2px);
-    }
+        .view-btn:hover {
+            background: #0eccb3;
+            color: white;
+            transform: translateY(-2px);
+            border-color: #0eccb3;
+        }
 
     .results-count {
-        color: #6B7280;
+        color: #6c757d;
         font-size: 14px;
     }
 
     .sort-select {
-        padding: 8px 32px 8px 12px;
-        border: 1px solid #2563eb;
-        border-radius: 4px;
+        padding: 10px 36px 10px 14px;
+        border: 1px solid #ced4da;
+        border-radius: 6px;
         font-size: 14px;
-        color: #111;
+        color: #212529;
         background: white;
-        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%236B7280'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%236c757d'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
         background-repeat: no-repeat;
-        background-position: right 8px center;
+        background-position: right 10px center;
         background-size: 16px;
         appearance: none;
         transition: all 0.3s ease;
     }
 
-    .sort-select:focus {
-        outline: none;
-        box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
-    }
+        .sort-select:focus {
+            outline: none;
+            border-color: #0eccb3;
+            box-shadow: 0 0 0 3px rgba(14, 204, 179, 0.25);
+        }
 
     /* Product Grid */
     .products-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
         gap: 24px;
     }
 
     .product-card {
         background: white;
-        border: 1px solid #E5E7EB;
-        border-radius: 8px;
+        border: none;
+        border-radius: 10px;
         overflow: hidden;
         transition: all 0.3s ease;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
     }
 
-    .product-card:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 4px 25px rgba(0,0,0,0.1);
-    }
+        .product-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.1);
+        }
 
     .product-image-wrapper {
         position: relative;
         padding-top: 100%;
-        background: #F9FAFB;
+        background: #f8f9fa;
+        overflow: hidden;
     }
 
     .product-image {
@@ -176,130 +221,142 @@
         width: 100%;
         height: 100%;
         object-fit: cover;
+        transition: transform 0.5s ease;
+    }
+
+    .product-card:hover .product-image {
+        transform: scale(1.05);
     }
 
     .wishlist-btn {
         position: absolute;
         top: 12px;
         right: 12px;
-        width: 32px;
-        height: 32px;
+        width: 36px;
+        height: 36px;
         border-radius: 50%;
         background: white;
-        color: #2563eb;
+        color: #6c757d;
         border: none;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
         display: flex;
         align-items: center;
         justify-content: center;
         cursor: pointer;
         opacity: 0;
+        transform: translateY(-10px);
         transition: all 0.3s ease;
     }
 
     .product-card:hover .wishlist-btn {
         opacity: 1;
+        transform: translateY(0);
     }
 
     .wishlist-btn:hover {
-        background: #2563eb;
+        background: #0eccb3;
         color: white;
         transform: scale(1.1);
     }
 
     .product-details {
-        padding: 16px;
+        padding: 20px;
     }
 
     .product-brand {
         font-size: 14px;
-        color: #6B7280;
-        margin-bottom: 4px;
+        color: #6c757d;
+        margin-bottom: 6px;
+        font-weight: 500;
     }
 
     .product-name {
-        font-size: 15px;
-        font-weight: 500;
-        color: #111;
-        margin-bottom: 8px;
+        font-size: 16px;
+        font-weight: 600;
+        color: #212529;
+        margin-bottom: 12px;
         line-height: 1.4;
     }
 
     .product-price {
         display: flex;
         align-items: center;
-        gap: 8px;
+        gap: 10px;
+        margin-bottom: 16px;
     }
 
     .current-price {
-        font-weight: 600;
-        color: #111;
+        font-weight: 700;
+        color: #212529;
+        font-size: 18px;
     }
 
     .original-price {
-        color: #6B7280;
+        color: #adb5bd;
         text-decoration: line-through;
         font-size: 14px;
     }
 
     .add-to-cart {
-        margin-top: 12px;
         width: 100%;
-        padding: 8px;
-        background: #2563eb;
+        padding: 12px;
+        background: #0eccb3;
         color: white;
         border: none;
-        border-radius: 4px;
+        border-radius: 6px;
         font-size: 14px;
+        font-weight: 600;
         cursor: pointer;
         transition: all 0.3s ease;
-        position: relative;
-        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
     }
 
-    .add-to-cart:hover {
-        background: #1d4ed8;
-        transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
-    }
+        .add-to-cart:hover {
+            background: #0bb19b;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(14, 204, 179, 0.3);
+        }
 
-    .add-to-cart:active {
-        transform: translateY(0);
-    }
+        .add-to-cart:active {
+            transform: translateY(0);
+        }
 
     /* Load More Button */
     .load-more {
         display: block;
-        width: 200px;
-        margin: 40px auto;
-        padding: 12px 24px;
+        width: 220px;
+        margin: 50px auto 20px;
+        padding: 14px 24px;
         background: white;
-        color: #2563eb;
-        border: 2px solid #2563eb;
-        border-radius: 6px;
-        font-size: 14px;
-        font-weight: 500;
+        color: #0eccb3;
+        border: 2px solid #0eccb3;
+        border-radius: 8px;
+        font-size: 15px;
+        font-weight: 600;
         cursor: pointer;
         transition: all 0.3s ease;
         text-align: center;
     }
 
-    .load-more:hover {
-        background: #2563eb;
-        color: white;
-        transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
-    }
+        .load-more:hover {
+            background: #0eccb3;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(14, 204, 179, 0.3);
+        }
 
-    .load-more:active {
-        transform: translateY(0);
-    }
+        .load-more:active {
+            transform: translateY(0);
+        }
 
     /* Pagination */
     .pagination {
         display: flex;
         justify-content: center;
-        gap: 4px;
+        gap: 8px;
         margin-top: 40px;
     }
 
@@ -309,45 +366,77 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        border: 1px solid #E5E7EB;
+        border: 1px solid #e9ecef;
         background: white;
-        color: #111;
+        color: #212529;
         font-size: 14px;
         cursor: pointer;
         transition: all 0.3s ease;
+        border-radius: 6px;
     }
 
-    .page-btn.active {
-        background: #2563eb;
-        color: white;
-        border-color: #2563eb;
+        .page-btn.active {
+            background: #0eccb3;
+            color: white;
+            border-color: #0eccb3;
+        }
+
+        .page-btn:hover:not(.active) {
+            background: #f8f9fa;
+            color: #0eccb3;
+            border-color: #0eccb3;
+        }
+
+    /* Responsive adjustments */
+    @@media (max-width: 992px) {
+        .filter-sidebar
+
+    {
+        margin-bottom: 24px;
     }
 
-    .page-btn:hover:not(.active) {
-        background: #F9FAFB;
-        color: #2563eb;
     }
 
     @@media (max-width: 768px) {
-        .products-grid {
-            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-            gap: 16px;
-        }
+        .products-grid
 
-        .shop-header {
-            flex-direction: column;
-            gap: 16px;
-            align-items: flex-start;
-        }
+    {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 16px;
+    }
 
-        .view-options {
-            width: 100%;
-            justify-content: space-between;
-        }
+    .shop-header {
+        flex-direction: column;
+        gap: 16px;
+        align-items: flex-start;
+    }
 
-        .sort-select {
-            width: 100%;
-        }
+    .view-options {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .sort-select {
+        width: 100%;
+    }
+
+    .product-details {
+        padding: 16px;
+    }
+
+    }
+
+    @@media (max-width: 576px) {
+        .products-grid
+
+    {
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    }
+
+    .shop-container {
+        padding: 15px 10px;
+    }
+
     }
 </style>
 
@@ -356,53 +445,56 @@
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="/">Home</a></li>
+            <li class="breadcrumb-item active">Products</li>
         </ol>
     </nav>
 
     <div class="row">
         <!-- Filter Sidebar -->
         <div class="col-lg-3">
-            <!-- Categories Filter -->
-            <div class="filter-section">
-                <div class="filter-header">
-                    <span class="filter-title">Product Categories</span>
-                    <i class="fas fa-chevron-down"></i>
+            <div class="filter-sidebar">
+                <!-- Categories Filter -->
+                <div class="filter-section">
+                    <div class="filter-header">
+                        <span class="filter-title">Product Categories</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="filter-content">
+                        @foreach (var category in ViewBag.Categories)
+                        {
+                            <label class="filter-item">
+                                <input type="checkbox" class="filter-checkbox category-checkbox" value="@category.Id"
+                                @(ViewBag.SelectedCategoryId != null && ViewBag.SelectedCategoryId == category.Id ? "checked" : "")>
+                                <span>@category.Name</span>
+                            </label>
+                        }
+                    </div>
                 </div>
-                <div class="filter-content">
-                    @foreach (var category in ViewBag.Categories)
-                    {
-                        <label class="filter-item">
-                            <input type="checkbox" class="filter-checkbox category-checkbox" value="@category.Id" 
-                                   @(ViewBag.SelectedCategoryId != null && ViewBag.SelectedCategoryId == category.Id ? "checked" : "")>
-                            <span>@category.Name</span>
-                        </label>
-                    }
-                </div>
-            </div>
 
-            <!-- Price Filter -->
-            <div class="filter-section">
-                <div class="filter-header">
-                    <span class="filter-title">Filter by Price</span>
-                    <i class="fas fa-chevron-down"></i>
-                </div>
-                <div class="filter-content">
-                    <label class="filter-item">
-                        <input type="checkbox" class="filter-checkbox">
-                        <span>Under $50</span>
-                    </label>
-                    <label class="filter-item">
-                        <input type="checkbox" class="filter-checkbox">
-                        <span>$50 - $100</span>
-                    </label>
-                    <label class="filter-item">
-                        <input type="checkbox" class="filter-checkbox">
-                        <span>$100 - $200</span>
-                    </label>
-                    <label class="filter-item">
-                        <input type="checkbox" class="filter-checkbox">
-                        <span>Over $200</span>
-                    </label>
+                <!-- Price Filter -->
+                <div class="filter-section">
+                    <div class="filter-header">
+                        <span class="filter-title">Filter by Price</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="filter-content">
+                        <label class="filter-item">
+                            <input type="checkbox" class="filter-checkbox">
+                            <span>Under $50</span>
+                        </label>
+                        <label class="filter-item">
+                            <input type="checkbox" class="filter-checkbox">
+                            <span>$50 - $100</span>
+                        </label>
+                        <label class="filter-item">
+                            <input type="checkbox" class="filter-checkbox">
+                            <span>$100 - $200</span>
+                        </label>
+                        <label class="filter-item">
+                            <input type="checkbox" class="filter-checkbox">
+                            <span>Over $200</span>
+                        </label>
+                    </div>
                 </div>
             </div>
         </div>
@@ -448,7 +540,10 @@
                                     <span class="original-price">$@product.OriginalPrice</span>
                                 }
                             </div>
-                            <button class="add-to-cart">Add to Cart</button>
+                            <button class="add-to-cart">
+                                <i class="fas fa-shopping-cart"></i>
+                                Add to Cart
+                            </button>
                         </div>
                     </div>
                 }
@@ -456,7 +551,9 @@
 
             <!-- Load More Button -->
             <div class="text-center">
-                <button class="load-more">Load More Products</button>
+                <button class="load-more">
+                    Load More Products
+                </button>
             </div>
         </div>
     </div>
@@ -469,7 +566,7 @@
             // Toggle filter sections
             $('.filter-header').click(function() {
                 $(this).next('.filter-content').slideToggle();
-                $(this).find('i').toggleClass('bi-chevron-up bi-chevron-down');
+                $(this).find('i').toggleClass('fa-chevron-up fa-chevron-down');
             });
 
             // Toggle view buttons
@@ -502,7 +599,7 @@
                                         <div class="product-image-wrapper">
                                             <img src="${imageUrl}" class="product-image" alt="${product.productName}">
                                             <button class="wishlist-btn">
-                                                <i class="bi bi-heart"></i>
+                                                <i class="fas fa-heart"></i>
                                             </button>
                                         </div>
                                         <div class="product-details">
@@ -510,10 +607,13 @@
                                             <h3 class="product-name">${product.productName}</h3>
                                             <div class="product-price">
                                                 <span class="current-price">$${product.discountedPrice}</span>
-                                                ${product.originalPrice > product.discountedPrice ? 
+                                                ${product.originalPrice > product.discountedPrice ?
                                                     `<span class="original-price">$${product.originalPrice}</span>` : ''}
                                             </div>
-                                            <button class="add-to-cart">Add to Cart</button>
+                                            <button class="add-to-cart">
+                                                <i class="fas fa-shopping-cart"></i>
+                                                Add to Cart
+                                            </button>
                                         </div>
                                     </div>
                                 `);
@@ -522,7 +622,7 @@
                             if (data.message === "No catergory") {
                                 window.location.href = '/admin/product/viewproducts'
                             } else {
-                                $("#productList").html("<p>No products found.</p>");
+                                $("#productList").html("<p class='text-center w-100 py-4'>No products found.</p>");
                             }
                         }
                     },
