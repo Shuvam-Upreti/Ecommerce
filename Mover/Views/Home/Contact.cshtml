@@ -1,0 +1,212 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Contact";
+}
+
+
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f8f9fa;
+    }
+
+    .contact-container {
+        padding: 50px 0;
+    }
+
+    .contact-left h1 {
+        font-size: 2.5rem;
+        color: #333;
+        margin-bottom: 5px;
+    }
+
+    .contact-left p {
+        color: #666;
+        margin-bottom: 30px;
+    }
+
+    .info-item {
+        margin-bottom: 30px;
+        display: flex;
+        align-items: flex-start;
+    }
+
+    .icon-container {
+        width: 40px;
+        color: #0eccb3;
+        font-size: 1.2rem;
+        margin-right: 10px;
+    }
+
+    .info-content h5 {
+        text-transform: uppercase;
+        font-weight: bold;
+        margin-bottom: 5px;
+        font-size: 0.9rem;
+    }
+
+    .info-content p {
+        margin-bottom: 0;
+        line-height: 1.5;
+    }
+
+    .contact-form {
+        background-color: #fff;
+        padding: 30px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    }
+
+        .contact-form h2 {
+            margin-bottom: 5px;
+            font-size: 1.8rem;
+        }
+
+        .contact-form > p {
+            margin-bottom: 25px;
+            color: #666;
+        }
+
+    .form-label {
+        margin-bottom: 5px;
+    }
+
+    .form-control {
+        margin-bottom: 15px;
+        padding: 10px;
+        border: 1px solid #ddd;
+    }
+
+    .btn-submit {
+        background-color: #0eccb3;
+        color: white;
+        border: none;
+        padding: 10px 25px;
+        border-radius: 5px;
+        font-weight: normal;
+    }
+
+        .btn-submit:hover {
+            background-color: #0bb09a;
+        }
+
+    @@media (max-width: 768px) {
+        .body{
+            display:flex;
+        }
+
+        .contact-left
+
+    {
+        margin-bottom: 40px;
+        margin-left: 40px;
+        justify-content:center;
+    }
+
+    }
+</style>
+
+<div class="container contact-container">
+    <div class="row">
+        <!-- Left Column - Contact Information -->
+        <div class="col-md-6 contact-left">
+            <h1>Contact Us</h1>
+            <p>Feel free to contact us for any question.</p>
+
+            <div class="info-item">
+                <div class="icon-container">
+                    <i class="fas fa-map-marker-alt"></i>
+                </div>
+                <div class="info-content">
+                    <h5>ADDRESS</h5>
+                    <p>
+                        123 Tech Park, Silicon Valley<br>
+                        Near Innovation Hub<br>
+                        California, USA
+                    </p>
+                </div>
+            </div>
+
+            <div class="info-item">
+                <div class="icon-container">
+                    <i class="fas fa-envelope"></i>
+                </div>
+                <div class="info-content">
+                    <h5>EMAIL</h5>
+                    <p>
+                        For official purpose:<br>
+                        contact@techsolutions.com
+                    </p>
+                    <p>
+                        For support inquiries:<br>
+                        support@techsolutions.com
+                    </p>
+                </div>
+            </div>
+
+            <div class="info-item">
+                <div class="icon-container">
+                    <i class="fas fa-phone-alt"></i>
+                </div>
+                <div class="info-content">
+                    <h5>PHONE</h5>
+                    <p>Call us at +1-555-123-4567</p>
+                </div>
+            </div>
+
+            <div class="info-item">
+                <div class="icon-container">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <div class="info-content">
+                    <h5>OPENING HOURS</h5>
+                    <p>
+                        Mon - Fri: 9AM to 6PM<br>
+                        Saturday: 10AM to 2PM<br>
+                        Sunday: Closed
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Column - Contact Form -->
+        <div class="col-md-6">
+            <div class="contact-form">
+                <h2>Drop us a line</h2>
+                <p>Send your query using the form below. We will get back to you as soon as we can.</p>
+
+                <form>
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Your Name</label>
+                        <input type="text" class="form-control" id="name">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Your Email Address</label>
+                        <input type="email" class="form-control" id="email">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="subject" class="form-label">Subject</label>
+                        <select class="form-select form-control" id="subject">
+                            <option selected>Query</option>
+                            <option>Support</option>
+                            <option>Feedback</option>
+                            <option>Partnership</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="message" class="form-label">Message</label>
+                        <textarea class="form-control" id="message" rows="5"></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-submit">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
