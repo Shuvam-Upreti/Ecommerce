@@ -47,6 +47,7 @@ namespace Mover.Core.Dto.Order
         public decimal? PriceAtPurchase { get; set; }
 
         public decimal? DiscountAtPurchase { get; set; }
+        public string? ImageUrl{ get; set; }
 
         //public List<ProductViewModel> Products { get; set; } = new List<ProductViewModel>();
     }

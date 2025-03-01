@@ -50,6 +50,13 @@ namespace Mover.Areas.Admin.Controllers
                     TotalAmount = a.TotalAmount,
                     OrderDate = a.OrderDate,
                     OrderStatus = a.OrderStatus,
+                    OrderItemsViewModel= a.OrderItemsDto.Select(a => new OrderItemViewModel()
+                    {
+                        ProductName=a.ProductName,
+                        Quantity=a.Quantity,
+                        PriceAtPurchase=a.PriceAtPurchase,
+                        ImageUrl=a.ImageUrl
+                    }).ToList()
                 }).ToList();
                 return View(vm);
             }
@@ -77,7 +84,7 @@ namespace Mover.Areas.Admin.Controllers
                     PageIndex = model.PageIndex
                 };
                 var currentUser = SessionInfo.GetCurrentUser();
-                var (orderList, totalCount) = await _orderService.GetAllOrdersForGrid(dto, currentUser,orderStatus);
+                var (orderList, totalCount) = await _orderService.GetAllOrdersForGrid(dto, currentUser, orderStatus);
                 var datas = orderList.Select(a => new OrderViewModel
                 {
                     OrderId = a.OrderId,

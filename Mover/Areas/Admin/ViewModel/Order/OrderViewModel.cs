@@ -29,7 +29,7 @@ namespace Mover.Areas.Admin.ViewModel.Order
 
         public string? CreatedBy { get; set; }
         public string? PhoneNumber { get; set; }
-    }   
+    }
     public class OrderItemViewModel
     {
         public int OrderItemId { get; set; }
@@ -44,6 +44,7 @@ namespace Mover.Areas.Admin.ViewModel.Order
         public decimal? PriceAtPurchase { get; set; }
 
         public decimal? DiscountAtPurchase { get; set; }
+        public string? ImageUrl { get; set; }
 
         //public List<ProductViewModel> Products { get; set; } = new List<ProductViewModel>();
     }

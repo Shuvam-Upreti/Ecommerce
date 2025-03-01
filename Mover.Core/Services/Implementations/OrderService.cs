@@ -48,6 +48,14 @@ namespace Mover.Core.Services.Implementations
                 TotalAmount = a.TotalAmount,
                 OrderDate = a.OrderDate,
                 OrderStatus = a.OrderStatus,
+                OrderItemsDto= a.OrderItems.Select(a => new OrderItemDto()
+                {
+                    ProductName=a.Product.ProductName,
+                    Quantity=a.Quantity,
+                    PriceAtPurchase=a.PriceAtPurchase,
+                    ImageUrl=a.Product.ProductImages.FirstOrDefault().ImageUrl
+                }).ToList()
+
             }).ToList();
             return dto;
         }
