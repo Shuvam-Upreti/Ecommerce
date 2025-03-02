@@ -306,21 +306,35 @@
         }
 
         /* Category Cards */
-        .category-card {
-            width: 250px;
-            height: 300px;
-            position: relative;
-            text-align: center;
-            border: 5px solid #16a085;
-            border-radius: 10px;
-            overflow: hidden;
-            transition: transform 0.3s ease;
-            cursor: pointer;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: space-between;
-        }
+     .category-card {
+    width: 250px;
+    height: 300px;
+    position: relative;
+    text-align: center;
+    border: 5px solid #16a085;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; /* Ensure the button stays at the bottom */
+}
+/* Category Image Wrapper */
+.category-img-wrapper {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+/* Category Image */
+.category-img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensure the image covers the area */
+    position: absolute;
+    top: 0;
+    left: 0;
+}
 
         .category-card img {
             width: 100%;
@@ -328,25 +342,31 @@
             object-fit: cover;
         }
 
-        /* Category Button */
-        .category-button {
-            background: #16a085;
-            color: white;
-            font-weight: bold;
-            text-transform: uppercase;
-            padding: 10px;
-            border: none;
-            width: 100%;
-            cursor: pointer;
-            transition: 0.3s;
-            font-size: 14px;
-            text-decoration: none;
-        }
-
-        .category-button:hover {
-            background: #12876f;
-        }
-
+       /* Category Button */
+.category-button {
+    background: #16a085;
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 10px;
+    border: none;
+    width: 100%;
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 14px;
+    text-decoration: none;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 1; /* Make sure the button stays on top of the image */
+}
+       .category-button:hover {
+    background: #12876f;
+}
+.category-carousel .item {
+    display: flex;
+    justify-content: center;
+}
         /* Product */
         .product-section {
             background: #f2f2f2;
@@ -754,27 +774,28 @@
     </section>
 
 
-    <!-- Top Category Section -->
-    <section class="category-section py-5">
-        <div class="container text-center">
-            <h2 class="section-title">SHOP BY CATEGORY</h2>
-            <div class="owl-carousel category-carousel">
+<!-- Top Category Section -->
+<section class="category-section py-5">
+    <div class="container text-center">
+        <h2 class="section-title">SHOP BY CATEGORY</h2>
+        <div class="owl-carousel category-carousel">
                 @foreach (var category in ViewBag.Categories)
                 {
                     <div class="item">
                         <div class="category-card">
-                            <img src="~/@category.ImageUrl" alt="@category.Name">
+                            <div class="category-img-wrapper">
+                                <img src="~/@category.ImageUrl" alt="@category.Name">
+                            </div>
                             <a asp-area="admin" asp-controller="product" asp-action="viewproducts" asp-route-categoryId="@category.Id" class="category-button">
                                 @category.Name
                             </a>
                         </div>
                     </div>
                 }
-            </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    
 
     <!-- Top Category Section With Carousel -->
     @*  <section class="category-section py-5">
