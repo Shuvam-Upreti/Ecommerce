@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <!-- Replace with toastr CDN -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" />
     <style>
         * {
             margin: 0;
@@ -883,9 +885,9 @@
         <br />
         <br />
         <div class="all-products-btn d-flex justify-content-center">
-            <button class="btn btn-allproducts">
+            <a href="/admin/product/viewproducts" class="btn btn-allproducts" >
                 BROWSE ALL PRODUCTS
-            </button>
+            </a>
         </div>
     </section>
 
@@ -972,11 +974,11 @@
             <div class="row">
                 <div class="col-md-6 text-center border-end">
                     <h3>Want something?</h3>
-                    <a href="#" class="cta-btn mt-1">PLACE AN ORDER</a>
+                    <a href="/admin/product/viewproducts" class="cta-btn mt-1">PLACE AN ORDER</a>
                 </div>
                 <div class="col-md-6 text-center">
                     <h3>Need help?</h3>
-                    <a href="#" class="cta-btn mt-1">GET IN TOUCH</a>
+                    <a href="/home/contact" class="cta-btn mt-1">GET IN TOUCH</a>
                 </div>
             </div>
         </div>
@@ -1090,9 +1092,10 @@
                         window.location.href = url; // Redirect to the search URL
                     }
                 });
-            });
+            }); 
 
 
-        </script>
+        </script>   <!-- Replace with toastr CDN -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     }
 </body>

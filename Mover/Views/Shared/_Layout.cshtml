@@ -1,6 +1,7 @@
 ﻿@using Mover.Core.Dto
 @using Microsoft.AspNetCore.Http
 @inject IHttpContextAccessor HttpContextAccessor
+@using Mover.Core.Enums.Roles
 @using Mover.HttpUtility
 @{
     var currentUser = SessionInfo.GetCurrentUser();
@@ -11,7 +12,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>@ViewBag.Title - Ecommerce</title>
+    <title>@ViewBag.Title - DermShine</title>
     <link rel="icon" href="~/image/logo.jpg" type="image/jpg">
 
     <!-- Bootstrap CSS -->
@@ -23,14 +24,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-
+    <!-- Replace with toastr CDN -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" />
     <link href="~/css/bootstrap-toggle.css" rel="stylesheet" />
     <link href="~/css/homepage.css" rel="stylesheet" />
 
     <link href="~/css/DevExpressCss/dx.common.css" rel="stylesheet" />
     <link href="~/css/DevExpressCss/dx.light.css" rel="stylesheet" />
 
-    <link href="~/css/toastr.min.css" rel="stylesheet" />
     <link href="~/css/jquery-confirm.min.css" rel="stylesheet" />
 
     <link rel="stylesheet" href="https://cdn3.devexpress.com/jslib/23.1.6/css/dx.material.blue.light.css">
@@ -53,7 +54,7 @@
                         <img src="/image/logo.jpg" alt="Derm Shine Logo" class="logo-img">
                     </a>
                 </div>
-                <div class="col-lg-8 col-md-12">
+                <div class="col-lg-7 col-md-12">
                     <div class="search-box">
                         <input type="text" class="form-control searchBarBox" id="searchInput" placeholder="Search for Derm Shine products">
                         <button class="search-btn searchbutton" id="searchButton">
@@ -62,7 +63,7 @@
                     </div>
 
                 </div>
-                <div class="col-lg-2 col-md-12 text-center text-lg-end">
+                <div class="col-lg-3 col-md-12 text-center text-lg-end">
                     <a href="/Cart/Index" class="cart-icon text-white me-3">
                         <i class="fas fa-shopping-cart"></i>
                     </a>
@@ -111,15 +112,19 @@
                         </a>
                         @await Component.InvokeAsync("Category")
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/account/index">USERS</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/admin/category/index">CATEGORY</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/admin/product/index">PRODUCTS</a>
-                    </li>
+                    @if (User.IsInRole(RolesEnum.Admin.ToString()))
+                    {
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="/account/index">USERS</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/admin/category/index">CATEGORY</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/admin/product/index">PRODUCTS</a>
+                        </li>
+                    }
                     <li class="nav-item">
                         <a class="nav-link" href="/cart/index">CARTS</a>
                     </li>
@@ -138,7 +143,7 @@
     </nav>
 
 
-    <div class="body-content"  id="cBody">
+    <div class="body-content" id="cBody">
         <div class="container-fluid" style="margin:0px;padding:0px;">
             <div>
                 @RenderBody()
@@ -164,7 +169,7 @@
                     <h5 class="footer-heading">Quick Links</h5>
                     <ul class="list-unstyled footer-links">
                         <li><a href="/home/index">Home</a></li>
-                        <li><a href="@Url.Action("Shop", "Home")">Shop</a></li>
+                        <li><a href="/admin/product/viewproducts">Shop</a></li>
                         <li><a href="@Url.Action("About", "Home")">About Us</a></li>
                         <li><a href="@Url.Action("Contact", "Home")">Contact</a></li>
                     </ul>
@@ -173,10 +178,10 @@
                 <div class="col-12 col-md-6 col-lg-3">
                     <h5 class="footer-heading">Customer Service</h5>
                     <ul class="list-unstyled footer-links">
-                        <li><a href="#">My Account</a></li>
-                        <li><a href="#">Order Tracking</a></li>
-                        <li><a href="#">Wishlist</a></li>
-                        <li><a href="#">Terms & Conditions</a></li>
+                        <li><a href="/account/profile">My Account</a></li>
+                        <li><a href="/admin/order/index">My Orders</a></li>
+                        <li><a href="/cart/index">My Carts</a></li>
+                        @* <li><a href="#">Terms & Conditions</a></li> *@
                     </ul>
                 </div>
 
@@ -195,7 +200,7 @@
             <div class="footer-bottom py-3 border-top">
                 <div class="row">
                     <div class="col-md-6 text-center text-md-start">
-                        <p class="mb-0">&copy; @DateTime.Now.Year - Ecommerce. All rights reserved.</p>
+                        <p class="mb-0">&copy; @DateTime.Now.Year - Dermshine. All rights reserved.</p>
                     </div>
                     <div class="col-md-6 text-center text-md-end mt-3 mt-md-0">
                         @* <img src="~/images/payment-methods.png" alt="Payment Methods" class="payment-methods" height="25"> *@
@@ -288,7 +293,7 @@
         }
     </style>
 
-     <!-- Scripts -->
+    <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
@@ -298,7 +303,7 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script src="https://cdn3.devexpress.com/jslib/23.1.6/js/dx.all.js"></script>
-    
+
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/cldrjs/0.5.0/cldr.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/cldrjs/0.5.0/cldr-event.min.js"></script>
@@ -311,7 +316,8 @@
 
 
 
-    <script src="~/js/toastr.min.js"></script>
+    <!-- Replace with toastr CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script src="~/js/respond.js"></script>
     <script src="~/js/bootbox.js"></script>
     <script src="~/js/select2.js"></script>

@@ -6,7 +6,7 @@ $(document).ready(function () {
     OrderGrid("#orderGrid", "OrderDetails");
 
     $(document).on('click', ".deleteOrder", function () {
-        var orderId = $(this).data('orderOrderid'); // This should correctly retrieve the productId
+        var orderId = $(this).data('order-id'); // This should correctly retrieve the productId
         console.log("Product ID:", orderId); // Add this log to confirm the value of productId
 
         DeleteOrder(orderId);

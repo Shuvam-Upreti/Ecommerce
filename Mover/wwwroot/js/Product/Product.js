@@ -6,8 +6,8 @@ $(document).ready(function () {
     ProductGrid("#productGrid", "ProductDetails");
 
     $(document).on('click', '#deleteProduct', function () {
-        var productId = $(this).data('productProductid'); // This should correctly retrieve the productId
-        console.log("Product ID:", productId); // Add this log to confirm the value of productId
+        var productId = $(this).data('product-id'); 
+      
 
         DeleteProduct(productId);
     });
@@ -106,24 +106,10 @@ function ProductGrid(onLoadElement, exportFileName) {
         });
     });
 }
-//function productActionButtons(dataObj) {
-//    var html = '';
-//    var EditDetailUrl = "/admin/product/Edit?id=" + dataObj.productId;
-//    console.log(dataObj.productId);
-//    // Edit button
-//    html += '<a href="' + EditDetailUrl + '" class="glyphicon glyphicon-edit nochangeonhover" data-toggle="tooltip" title="Edit Product"></a>';
-//    html += ' |&nbsp;';
 
-//    // Delete button
-//    html += '<button type="button" id="deleteProduct" class="glyphicon glyphicon-trash nochangeonhover" data-toggle="tooltip" title="Delete Product" style="background:none; border:none; color:red;" data-product-productId="' + dataObj.productId + '"></button>';
-//    //html += '<button type="button" id="deleteProduct" class="glyphicon glyphicon-trash nochangeonhover" data-toggle="tooltip" title="Delete Product" style="background:none; border:none; color:red;" data-product-productId="' + dataObj.productId + '"></button>';
-
-//    return html;
-//}
 function productActionButtons(dataObj) {
     var html = '';
     var EditDetailUrl = "/admin/product/Edit?id=" + dataObj.productId;
-    console.log(dataObj.productId);
 
     // Edit button using FontAwesome
     html += '<a href="' + EditDetailUrl + '" class="nochangeonhover" data-bs-toggle="tooltip" title="Edit Product">';
@@ -178,17 +164,15 @@ function ProductDataSorce() {
     });
 }
 function DeleteProduct(productId) {
-    console.log("cat", productId);
+   
 
     if (!productId) {
         return;
     }
 
-    console.log("Calling ShowDialog"); // Debugging line
-
     ShowDialog("Confirm Delivered", "Are you sure you want to delete the product?", "warning")
         .then((result) => {
-            console.log("Dialog result:", result); // Debugging line
+           
             if (result.isConfirmed) {
                 BlockWindow("Confirming delete...");
 

@@ -106,7 +106,7 @@
     }
 
     .color-button:hover, .color-button.active {
-        border-color: #000;
+            border-color: #0eccb3;
     }
 
     .size-buttons {
@@ -124,7 +124,7 @@
     }
 
     .size-button:hover, .size-button.active {
-        background: #000;
+        background: #0eccb3;
         color: #fff;
     }
 
@@ -151,7 +151,7 @@
 
     .btn-add-cart {
         flex: 1;
-        background: #000;
+        background: #0eccb3;
         color: #fff;
         border: none;
         padding: 12px;
@@ -192,9 +192,9 @@
     }
 
     .nav-tabs .nav-link.active {
-        color: #000;
+        color: #0eccb;
         font-weight: 600;
-        border-bottom: 2px solid #000;
+        border-bottom: 2px solid #0eccb*;
     }
 
     /* Related Products */
@@ -282,7 +282,7 @@
                             <i class="bi bi-star-fill"></i>
                         }
                     </div>
-                    <span class="review-count">5.0 (121 Reviews)</span>
+                   
                 </div>
 
                 <div class="product-price">
@@ -292,14 +292,14 @@
 
                 <p class="product-description">@Model.Description</p>
 
-                <!-- Color Selection -->
+              @*   <!-- Color Selection -->
                 <div class="color-options">
                     <h3 class="option-title">Color</h3>
                     <div class="color-buttons">
                         <button type="button" class="color-button active" style="background-color: #e74c3c;"></button>
                         <button type="button" class="color-button" style="background-color: #3498db;"></button>
                         <button type="button" class="color-button" style="background-color: #f1c40f;"></button>
-                        <button type="button" class="color-button" style="background-color: #000;"></button>
+                        <button type="button" class="color-button" style="background-color: #0eccb;"></button>
                         <button type="button" class="color-button" style="background-color: #2ecc71;"></button>
                     </div>
                 </div>
@@ -315,7 +315,7 @@
                         <button type="button" class="size-button">XXL</button>
                     </div>
                 </div>
-
+ *@
                 <!-- Quantity and Actions -->
                 <div class="quantity-wrapper">
                     <button type="button" class="btn btn-outline-secondary" onclick="decrementQuantity()">-</button>
@@ -339,19 +339,19 @@
             <li class="nav-item">
                 <a class="nav-link active" data-bs-toggle="tab" href="#description">Descriptions</a>
             </li>
-            <li class="nav-item">
+           @*  <li class="nav-item">
                 <a class="nav-link" data-bs-toggle="tab" href="#additional">Additional Information</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" data-bs-toggle="tab" href="#reviews">Reviews</a>
-            </li>
+            </li> *@
         </ul>
 
         <div class="tab-content">
             <div class="tab-pane fade show active" id="description">
                 <p>@Model.Description</p>
             </div>
-            <div class="tab-pane fade" id="additional">
+          @*   <div class="tab-pane fade" id="additional">
                 <div class="row">
                     <div class="col-md-6">
                         <p><strong>Color:</strong> Red, Blue, Orange, Black, Green, Yellow</p>
@@ -361,7 +361,7 @@
             </div>
             <div class="tab-pane fade" id="reviews">
                 <!-- Add reviews content here -->
-            </div>
+            </div> *@
         </div>
     </div>
 

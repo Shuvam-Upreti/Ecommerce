@@ -1,0 +1,109 @@
+﻿@using Mover.ViewModel.User
+@model UserDetailViewModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "User Profile";
+}
+
+<style>
+    :root {
+        --primary-color: #0ca98f;
+        --text-color: #333;
+        --background-light: #F9FAFC;
+        --border-color: black;
+        --input-bg: #FFFFFF;
+        --shadow-color: rgba(0, 0, 0, 0.05);
+    }
+
+    body {
+        background-color: var(--background-light);
+        font-family: 'Arial', sans-serif;
+        color: var(--text-color);
+    }
+
+    .profile-container {
+        max-width: 700px;
+        margin: 50px auto;
+        padding: 30px;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0px 2px 8px var(--shadow-color);
+        border: 1px solid var(--border-color);
+        text-align: center;
+    }
+
+    .profile-header {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: var(--primary-color);
+        margin-bottom: 20px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        padding-bottom: 8px;
+        border-bottom: 3px solid var(--primary-color);
+    }
+
+    .profile-info {
+        margin: 15px 0;
+        font-size: 1.2rem;
+        font-weight: 500;
+    }
+
+    .profile-label {
+        font-weight: bold;
+        color: var(--primary-color);
+    }
+
+    .btn-edit {
+        background: var(--primary-color);
+        color: white;
+        font-size: 1rem;
+        padding: 8px 16px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: 0.3s ease-in-out;
+        font-weight: 600;
+        text-decoration: none;
+    }
+
+        .btn-edit:hover {
+            background: #0a8e76;
+        }
+</style>
+
+<div class="container profile-container">
+    <input type="hidden" asp-for="Id" value=@Model.Id />
+    <div class="profile-header">User Profile</div>
+
+    <div class="profile-info">
+        <span class="profile-label">Full Name:</span> @Model.FullName
+    </div>
+    <div class="profile-info">
+        <span class="profile-label">Email:</span> @Model.Email
+    </div>
+    <div class="profile-info">
+        <span class="profile-label">Phone Number:</span> @Model.PhoneNumber
+    </div>
+
+
+    <div class="mt-4">
+        @* <a asp-action="EditProfile" asp-route-id="@Model.Id" class="btn btn-edit">Edit Profile</a> *@
+        <a class="btn btn-edit" id="editProfileBtn">Edit Profile</a>
+
+        <a asp-area="" asp-controller="Home" asp-action="Index" class="btn btn-secondary ms-3">Back</a>
+    </div>
+</div>
+@section Scripts {
+
+    <script>
+        document.getElementById("editProfileBtn").addEventListener("click", function () {
+            Swal.fire({
+                title: "Please contact administrator to edit information.!",
+                icon: "info",
+                draggable: true
+            });
+        });
+    </script>
+}

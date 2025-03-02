@@ -90,6 +90,54 @@ namespace Mover.Controllers
             }
             return RedirectToAction(nameof(Index));
         }
+
+
+        [HttpPost]
+        public async Task<IActionResult> CreateAjax(UserDetailViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                // Return errors in JSON format if the model is not valid
+                return Json(new { success = false, message = "Please fill all required fields correctly." });
+            }
+
+            try
+            {
+                var dto = new UserDetailDto()
+                {
+                    FullName = model.FullName,
+                    UserName = model.FullName,
+                    DateOfJoin = model.DateOfJoin,
+                    Department = model.Department,
+                    Email = model.Email,
+                    PhoneNumber = model.PhoneNumber,
+                    Role = model.Role,
+                    Password = model.Password,
+                };
+
+                // Assuming _userService.Create returns void or Task
+                await _userService.Create(dto);
+
+                // Return a success message in JSON format
+                return Json(new { success = true, message = "User created successfully!" });
+            }
+            catch (CustomException ex)
+            {
+                new SeriLogger().Error(ex.Message, ex);
+
+                // Return error message in JSON format
+                return Json(new { success = false, message = ex.Message });
+            }
+            catch (Exception ex)
+            {
+                new SeriLogger().Error(ex.Message, ex);
+
+                // Return a generic error message in JSON format
+                return Json(new { success = false, message = "Something went wrong." });
+            }
+        }
+
+
         [Authorize(Roles = RolesConstant.Admin)]
         public async Task<IActionResult> Edit(int id)
         {
@@ -363,6 +411,38 @@ namespace Mover.Controllers
             HttpContext.Session.Remove("UserDetail");
 
             return RedirectToAction("Login", "Account");
+        }
+        [Authorize]
+        public async Task<ActionResult> Profile()
+        {
+            try
+            {
+                var currentUser = SessionInfo.GetCurrentUser().Id;
+
+                var userDetails= await _userService.GetUser(currentUser);
+                var dto = new UserDetailViewModel()
+                {
+                    Id = userDetails.Id,
+                    AspUserId = userDetails.AspUserId,
+                    Email = userDetails.Email,
+                    FullName = userDetails.FullName,
+                    PhoneNumber = userDetails.PhoneNumber
+                };
+                return View(dto);
+            }
+            catch (CustomException ex)
+            {
+                new SeriLogger().Error(ex.Message, ex);
+                this.NotifyError(ex.Message);
+                return View("Index","Home");
+            }
+            catch (Exception ex)
+            {
+                new SeriLogger().Error(ex.Message, ex);
+                this.NotifyError("Something went wrong");
+                return View("Index", "Home");
+            }
+          
         }
     }
 }

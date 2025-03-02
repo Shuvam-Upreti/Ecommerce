@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Mover.Core.Enums.Roles;
+using System.ComponentModel.DataAnnotations;
 
 namespace Mover.ViewModel.User
 {
@@ -11,8 +12,8 @@ namespace Mover.ViewModel.User
         public string FullName { get; set; }
         public string PhoneNumber { get; set; }
         public DateTime DateOfJoin { get; set; }
-        public string? Department { get; set; }
-        public string Role { get; set; }
+        public string? Department { get; set; } = RolesEnum.Customer.ToString();
+        public string Role { get; set; } = RolesEnum.Customer.ToString();
         public List<string>? Roles { get; set; }
         public string Email { get; set; }
 
@@ -25,5 +26,5 @@ namespace Mover.ViewModel.User
         [DataType(DataType.Password)]
         [Compare("Password", ErrorMessage = "Passwords do not match.")]
         public string ConfirmPassword { get; set; }
-    } 
+    }
 }

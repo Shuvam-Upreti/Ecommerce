@@ -205,7 +205,7 @@
     }
     }
 </style>
-@if (!User.IsInRole(RolesEnum.Admin.ToString()))
+@if (User.IsInRole(RolesEnum.Admin.ToString()))
 {
 
     <div class="orders-container">
@@ -251,54 +251,16 @@ else
 {
     <div class="d-flex flex-column flex-lg-row">
         <!-- Sidebar -->
-        <div class="sidebar p-4">
-            <div class="d-flex align-items-center gap-3 mb-4">
-                <img src="https://v0.dev/placeholder.svg" alt="Profile" class="profile-img">
-                <div>
-                    <div class="d-flex align-items-center gap-2">
-                        <span class="fw-bold">Robert Fox</span>
-                        <span>👋</span>
-                    </div>
-                </div>
-            </div>
-
-            <nav class="nav flex-column">
-                <a href="#" class="nav-link">
-                    <i class="fa fa-person"></i>
-                    Personal Information
-                </a>
-                <a href="#" class="nav-link active">
-                    <i class="fa fa-box"></i>
-                    My Orders
-                </a>
-                <a href="#" class="nav-link">
-                    <i class="fa fa-heart"></i>
-                    My Wishlists
-                </a>
-                <a href="#" class="nav-link">
-                    <i class="fa fa-geo-alt"></i>
-                    Manage Addresses
-                </a>
-                <a href="#" class="nav-link">
-                    <i class="fa fa-credit-card"></i>
-                    Saved Cards
-                </a>
-                <a href="#" class="nav-link">
-                    <i class="fa fa-bell"></i>
-                    Notifications
-                </a>
-                <a href="#" class="nav-link">
-                    <i class="fa fa-gear"></i>
-                    Settings
-                </a>
-            </nav>
-        </div>
+       
 
         <!-- Main Content -->
         <div class="main-content p-4 flex-grow-1">
-            <div class="d-flex justify-content-between align-items-center mb-4">
+            <div class="d-flex justify-content-betqween align-items-center mb-4">
                 <h1 class="h4 mb-0">My Orders</h1>
-                <div class="d-flex gap-3 align-items-center">
+                    <div class="col-md-7">
+
+                    </div>
+                <div class="d-flex gap-3 align-items-center pull-right">
                     <div class="position-relative">
                         <i class="fa fa-search position-absolute" style="left: 12px; top: 50%; transform: translateY(-50%)"></i>
                         <input type="search" placeholder="Search" class="search-box-order ps-5">

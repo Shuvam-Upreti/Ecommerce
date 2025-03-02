@@ -4,8 +4,94 @@
     Layout = "~/Views/Shared/_LayoutLogin.cshtml";
     ViewBag.Title = "Log in";
 }
+<style>
+    /* Hide the default number input arrows */
+    input[type=number]::-webkit-inner-spin-button,
+    input[type=number]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
 
-<div class="login-container">
+    input[type=number] {
+        -moz-appearance: textfield; /* Hide arrows in Firefox */
+    }
+
+</style>
+<div class="container">
+
+    <div class="form-box login">
+
+        @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, true, new { @class = "login-form" }))
+        {
+            @Html.AntiForgeryToken()
+
+            <h1>Login</h1>
+
+            <div class="input-box" style="width:100%">
+                @Html.TextBoxFor(m => m.Username, new { placeholder = "Username", @class = "form-control", style = "width: 100%;" })
+                <i class='bx bxs-user'></i>
+                <span class="text-danger">@Html.ValidationMessageFor(m => m.Username)</span>
+            </div>
+
+            <div class="input-box">
+                @Html.PasswordFor(m => m.Password, new { placeholder = "Password", @class = "form-control", style = "width: 100%;" })
+                <i class='bx bxs-lock-alt'></i>
+                <span class="text-danger">@Html.ValidationMessageFor(m => m.Password)</span>
+            </div>
+
+            <div class="forgot-link">
+                <a href="/Account/ForgotPassword">Forgot Password?</a>
+            </div>
+
+            <button type="submit" class="btn">Login</button>
+
+            <div class="form-group text-danger">
+                @Html.ValidationSummary(true)
+            </div>
+        }
+    </div>
+
+    <div class="form-box register">
+        @using (Html.BeginForm("Create", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, true, new { @class = "registration-form", id = "registerForm" }))
+        {
+            <h1>Registration</h1>
+            <div class="input-box">
+                <input type="text" id="FullName" name="FullName" placeholder="Full Name" required>
+                <i class='bx bxs-user'></i>
+            </div>
+            <div class="input-box">
+                <input type="email" id="Email" name="Email" placeholder="Email" required>
+                <i class='bx bxs-envelope'></i>
+            </div>
+            <div class="input-box">
+                <input type="password" id="Password" name="Password" placeholder="Password" required>
+                <i class='bx bxs-lock-alt'></i>
+            </div>
+            <div class="input-box">
+                <input type="text" id="phoneInput" name="PhoneNumber" placeholder="Phone Number" required maxlength="10">
+                <i class='bx bxs-phone'></i>
+            </div>
+            <button type="submit" class="btn">Register</button>
+        }
+    </div>
+
+
+    <div class="toggle-box">
+        <div class="toggle-panel toggle-left">
+            <h1>Hello, Welcome!</h1>
+            <p>Don't have an account?</p>
+            <button class="btn register-btn">Register</button>
+        </div>
+
+        <div class="toggle-panel toggle-right">
+            <h1>Welcome Back!</h1>
+            <p>Already have an account?</p>
+            <button class="btn login-btn">Login</button>
+        </div>
+    </div>
+</div>
+
+@* <div class="login-container">
     <div class="login-form-container">
         <h1>Log in</h1>
         @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, true, new { @class = "login-form" }))
@@ -30,10 +116,8 @@
             </div>
         }
     </div>
-    @* <div class="login-info-container"> *@
-    @*     <h3>A Complete Delivery Solution</h3> *@
-    @* </div> *@
-</div>
+
+</div> *@
 
 <script>
     $(document).ready(function () {
@@ -46,6 +130,59 @@
             let returnUrl = allQueryString.replace("ReturnUrl=", "");
             $('#return-url-input').val(returnUrl);
         }
+
+
+            $("#registerForm").submit(function (event) {
+        event.preventDefault(); // Prevent default form submission
+
+        // Manually get the values of the form inputs using their IDs
+        var formData = {
+            FullName: $("#FullName").val(),
+            Email: $("#Email").val(),
+            Password: $("#Password").val(),
+            ConfirmPassword: $("#Password").val(),
+            PhoneNumber: $("#phoneInput").val()
+        };
+
+        // Send the data to the server using AJAX
+        $.ajax({
+            type: "POST",
+            url: "/Account/CreateAjax", // Your controller's action method
+            data: formData, // Send the manually collected data
+           success: function (response) {
+                if (response.success) {
+                    toastr.success(response.message);
+                    window.location.href = '/account/login';
+                } else {
+                    toastr.error(response.message);
+                }
+            },
+            error: function (xhr, status, error) {
+                // Log the error and display it in toastr
+                console.log("Error response:", xhr.responseText);
+                var errorMessage = xhr.responseText || "An error occurred while processing your request.";
+                toastr.error(errorMessage); // Display the error message in toastr
+            }
+        });
+    });
+
+
+    });
+
+        const container = document.querySelector('.container');
+    const registerBtn = document.querySelector('.register-btn');
+    const loginBtn = document.querySelector('.login-btn');
+
+    registerBtn.addEventListener('click', () => {
+        container.classList.add('active');
+    })
+
+    loginBtn.addEventListener('click', () => {
+        container.classList.remove('active');
+    })
+      document.getElementById("phoneInput").addEventListener("input", function (e) {
+        // Remove any non-allowed characters
+        this.value = this.value.replace(/[^1234567890]/g, '');
     });
 </script>
 <script src="~/js/login/login.js" asp-append-version="true"></script>

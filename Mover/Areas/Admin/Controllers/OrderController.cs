@@ -278,6 +278,7 @@ namespace Mover.Areas.Admin.Controllers
             try
             {
                 await _orderService.Delete(id);
+                this.NotifyError("Order canceled suessfully.");
                 return RedirectToAction(nameof(Index));
             }
             catch (CustomException ex)

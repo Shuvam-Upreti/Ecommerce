@@ -67,7 +67,7 @@ function UserGrid(onLoadElement, exportFileName) {
 
             },
             searchPanel: {
-                visible: false,
+                visible: true,
                 highlightCaseSensitive: false
             },
             columns: [
@@ -172,22 +172,32 @@ function userActionButtons(dataObj) {
 
 
 $(document).on('click', '.deleteUser', function (e) {
-    console.log("delete")
     e.preventDefault();
     var userId = $(this).data('id');
-    $.ajax({
-        url: '/Account/Delete',
-        type: 'POST',
-        data: { id: userId },
-        success: function () {
-            toastr.success("Sucessfully deleted user");
-            window.location.href = '/Account/Index'
-        },
-        error: function () {
-            toastr.error("Failed to delete the user.");
-        }
-    })
+
+    ShowDialog("Confirm Delete", "Are you sure you want to delete this user?", "warning")
+        .then((result) => {
+            if (result.isConfirmed) {
+                BlockWindow("Deleting user...");
+
+                $.ajax({
+                    url: '/Account/Delete',
+                    type: 'POST',
+                    data: { id: userId },
+                    success: function () {
+                        UnBlockWindow();
+                        toastr.success("User deleted successfully!");
+                        window.location.href = '/Account/Index';
+                    },
+                    error: function () {
+                        UnBlockWindow();
+                        toastr.error("Failed to delete the user.");
+                    }
+                });
+            }
+        });
 });
+
 function UserDataSorce() {
     let url = "/Account/LoadUser";
     return new DevExpress.data.DataSource({

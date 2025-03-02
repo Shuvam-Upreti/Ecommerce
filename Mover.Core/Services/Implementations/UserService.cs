@@ -85,6 +85,7 @@ namespace Mover.Core.Services.Implementations
             var user = await _userDetailRepo.GetByIdAsync(id) ?? throw new CustomException("No user found.");
             var model = new UserDetailDto
             {
+                Id = user.Id,
                 FullName = user.FullName,
                 DateOfJoin = user.DateOfJoin,
                 Department = user.Department,
