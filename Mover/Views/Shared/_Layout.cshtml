@@ -128,9 +128,12 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/cart/index">CARTS</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/admin/order/index">ORDER</a>
-                    </li>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" href="/admin/order/index">ORDER</a>
+                        </li>
+                    }
                     <li class="nav-item">
                         <a class="nav-link" href="/home/about">ABOUT</a>
                     </li>

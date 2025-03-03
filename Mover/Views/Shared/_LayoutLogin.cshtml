@@ -288,9 +288,33 @@
         }
 
         }
+
+
+
+        .nav-login {
+            position: absolute;
+            top: 10px; /* Distance from the top */
+            font-size: large; /* Set the font size to large */
+            font-weight: bold; /* Optional: Make the font bold */
+        }
+
+            .nav-login:nth-child(1) {
+                right: 200px; /* Distance from the right for the first link */
+            }
+
+            .nav-login:nth-child(2) {
+                right: 120px; /* Distance from the right for the second link */
+            }
+
+            .nav-login:nth-child(3) {
+                right: 30px; /* Distance from the right for the third link */
+            }
     </style>
 </head>
 <body>
+    <a href="/home/index" class="nav-login">Home</a>
+    <a href="/home/index" class="nav-login">About</a>
+    <a href="/home/index" class="nav-login">Contact</a>
     @*<div class="header clearfix1" id="header">
     <a href="@Xmart.Implementation.Helper.LinkUtils.AppName/">
     <img src="~/Content/@Xmart.Implementation.Models.Report.Common.BankInformation.Logo" class="logo" />

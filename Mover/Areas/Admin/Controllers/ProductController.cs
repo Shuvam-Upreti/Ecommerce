@@ -310,6 +310,7 @@ namespace Mover.Areas.Admin.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public async Task<IActionResult> ViewProducts([FromQuery] int? categoryId, [FromQuery] string? searchTerm)
         {
             try
@@ -352,6 +353,7 @@ namespace Mover.Areas.Admin.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public async Task<IActionResult> GetProductsByCategories([FromQuery] List<int> categoryIds)
         {
             try
