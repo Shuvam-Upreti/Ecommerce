@@ -16,5 +16,6 @@ namespace Mover.Core.Services.Interfaces
         Task Create(UserDetailDto model);
         Task<bool> UpdateUser(UserDetailDto dto);
         Task<bool> DeleteUser(int userId);
+        Task UpdateUserProfile(UserDetailDto model);
     }
 }

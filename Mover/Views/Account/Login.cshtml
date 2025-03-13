@@ -40,10 +40,10 @@
                 <span class="text-danger">@Html.ValidationMessageFor(m => m.Password)</span>
             </div>
 
-            <div class="forgot-link">
+          @*   <div class="forgot-link">
                 <a href="/Account/ForgotPassword">Forgot Password?</a>
             </div>
-
+ *@
             <button type="submit" class="btn">Login</button>
 
             <div class="form-group text-danger">
@@ -166,8 +166,6 @@
             }
         });
     });
-
-
     });
 
         const container = document.querySelector('.container');

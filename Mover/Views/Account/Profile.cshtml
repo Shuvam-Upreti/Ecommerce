@@ -74,7 +74,7 @@
 </style>
 
 <div class="container profile-container">
-    <input type="hidden" asp-for="Id" value=@Model.Id />
+    <input type="hidden" asp-for="Id" value="@Model.Id" />
     <div class="profile-header">User Profile</div>
 
     <div class="profile-info">
@@ -87,22 +87,93 @@
         <span class="profile-label">Phone Number:</span> @Model.PhoneNumber
     </div>
 
-
     <div class="mt-4">
-        @* <a asp-action="EditProfile" asp-route-id="@Model.Id" class="btn btn-edit">Edit Profile</a> *@
         <a class="btn btn-edit" id="editProfileBtn">Edit Profile</a>
-
         <a asp-area="" asp-controller="Home" asp-action="Index" class="btn btn-secondary ms-3">Back</a>
     </div>
 </div>
+
+<!-- Edit Profile Modal -->
+<div class="modal fade" id="editProfileModal" tabindex="-1" aria-labelledby="editProfileModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Edit Profile</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form id="editProfileForm">
+                    <input type="hidden" id="userIdHidden" value="@Model.Id">
+                    <div class="mb-3">
+                        <label class="form-label">Full Name</label>
+                        <input type="text" class="form-control" id="fullName" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Email</label>
+                        <input type="email" class="form-control" id="email" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Phone Number</label>
+                        <input type="text" class="form-control" id="phoneNumber" required>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-edit" id="saveProfileBtn">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 @section Scripts {
 
     <script>
-        document.getElementById("editProfileBtn").addEventListener("click", function () {
-            Swal.fire({
-                title: "Please contact administrator to edit information.!",
-                icon: "info",
-                draggable: true
+        $(document).ready(function () {
+            // Show modal with existing values
+            $("#editProfileBtn").click(function () {
+                $("#fullName").val("@Model.FullName");
+                $("#email").val("@Model.Email");
+                $("#phoneNumber").val("@Model.PhoneNumber");
+                $("#editProfileModal").modal("show");
+            });
+
+            // Save profile changes
+            $("#saveProfileBtn").click(function () {
+                var userId = $("#userIdHidden").val();
+                var fullName = $("#fullName").val();
+                var email = $("#email").val();
+                var phone = $("#phoneNumber").val();
+
+                // Check if any fields are empty
+                if (!fullName || !email || !phone) {
+                    Swal.fire("Error", "All fields are required.", "error");
+                    return;
+                }
+
+                // Send data to server
+                $.ajax({
+                    url: "/Account/UpdateProfile",
+                    type: "POST",
+                    data: JSON.stringify({ Id: userId, FullName: fullName, Email: email, PhoneNumber: phone }),
+                    contentType: "application/json",
+                    success: function (response) {
+                        if (response.success) {
+                            $("#displayFullName").text(fullName);
+                            $("#displayEmail").text(email);
+                            $("#displayPhone").text(phone);
+                             Swal.fire("Success", "Profile updated successfully!", "success").then(function() {
+                                location.reload();
+                             });
+                            $("#editProfileModal").modal("hide");
+                        } else {
+                            Swal.fire("Error", response.message, "error");
+                        }
+                    },
+                    error: function () {
+                        Swal.fire("Error", "Something went wrong. Please try again.", "error");
+                    }
+                });
             });
         });
     </script>

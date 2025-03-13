@@ -193,5 +193,31 @@ namespace Mover.Core.Services.Implementations
             return userDetail;
 
         }
+
+        public async Task UpdateUserProfile(UserDetailDto model)
+        {
+            using var tx = TransactionScopeHelper.GetInstance();
+
+            var userDetail = await _userDetailRepo.GetByIdAsync(model.Id)
+                ?? throw new CustomException("User details not found");
+
+            var user = _userRepository.GetQueryable().Where(a => a.Id==userDetail.AspUserId).FirstOrDefault()
+                ?? throw new CustomException("User not found");
+
+            userDetail.FullName = model.FullName;
+
+
+            user.Email = model.Email;
+            user.NormalizedEmail = model.Email.ToUpper(); 
+            user.PhoneNumber = model.PhoneNumber;
+            user.UserName = model.Email;
+            user.NormalizedUserName = model.Email.ToUpper(); 
+
+            // Step 5: Save updates
+            _userDetailRepo.Update(userDetail);
+            _userRepository.Update(user);
+
+            tx.Complete();
+        }
     }
 }

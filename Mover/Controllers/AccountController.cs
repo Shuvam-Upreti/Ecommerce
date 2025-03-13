@@ -444,6 +444,36 @@ namespace Mover.Controllers
             }
           
         }
+
+        [HttpPost]
+        public async Task<IActionResult> UpdateProfile([FromBody] UserDetailViewModel model)
+        {
+            if (model == null || model.Id == 0)
+                return Json(new { success = false, message = "Invalid user details" });
+
+            try
+            {
+                var dto = new UserDetailDto()
+                {
+                    Id = model.Id,
+                    FullName = model.FullName,
+                    Email = model.Email,
+                    PhoneNumber = model.PhoneNumber,                 
+                };
+                await _userService.UpdateUserProfile(dto);
+                return Json(new { success = true });
+            }
+            catch (CustomException ex)
+            {
+                new SeriLogger().Error(ex.Message, ex);
+                return Json(new { success = false, message = ex.Message });
+            }
+            catch (Exception ex)
+            {
+                new SeriLogger().Error(ex.Message, ex);
+                return Json(new { success = false, message = "Something went wrong. Please try again." });
+            }
+        }
     }
 }
 
