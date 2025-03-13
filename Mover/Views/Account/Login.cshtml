@@ -15,8 +15,106 @@
     input[type=number] {
         -moz-appearance: textfield; /* Hide arrows in Firefox */
     }
+    /* Media queries for responsiveness */
+    /* @@media (max-width: 1024px) { */
+    /*     /* Adjustments for tablets in landscape mode */ */
+    /*     .container { */
+    /*         flex-direction: column; */
+    /*         align-items: center; */
+    /*         padding: 20px; */
+    /*     } */
 
+    /*     .form-box { */
+    /*         width: 90%; */
+    /*         max-width: 400px; */
+    /*         margin-bottom: 30px; */
+    /*     } */
+
+    /*     .toggle-box { */
+    /*         width: 90%; */
+    /*         max-width: 400px; */
+    /*     } */
+
+    /*     .toggle-panel { */
+    /*         width: 100%; */
+    /*         margin: 15px 0; */
+    /*     } */
+    /* } */
+
+    @@media (max-width: 768px) {
+        .container
+
+    {
+        flex-direction: column;
+        align-items: center;
+        padding: 20px 10px;
+    }
+
+    .form-box {
+        width: 95%;
+        max-width: 360px;
+        padding: 20px;
+    }
+
+    .input-box input, .btn {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    .toggle-box {
+        width: 95%;
+        max-width: 360px;
+        margin-top: 20px;
+        flex-direction: column;
+    }
+
+    .toggle-panel {
+        width: 100%;
+        margin: 10px 0;
+    }
+
+    }
+
+    @@media (max-width: 480px) {
+        .form-box
+
+    {
+        width: 98%;
+        max-width: 320px;
+        margin: 5px;
+        padding: 15px;
+    }
+
+    .input-box input, .btn {
+        font-size: 12px;
+        padding: 8px;
+    }
+
+    .toggle-panel {
+        padding: 12px;
+    }
+
+    }
+
+    @@media (max-width: 320px) {
+        .form-box
+
+    {
+        width: 98%;
+        max-width: 280px;
+        padding: 10px;
+    }
+
+    .input-box input, .btn {
+        font-size: 11px;
+        padding: 7px;
+    }
+
+    }
+   
 </style>
+
+
 
 <div class="container">
 
