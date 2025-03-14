@@ -5,274 +5,394 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "Shopping Cart";
 }
-
 <style>
+/* Base Styles */
+.cart-container {
+    max-width: 1200px;
+    margin: 50px auto;
+    padding: 0 20px;
+}
+
+.cart-header {
+    margin-bottom: 30px;
+}
+
+.cart-title {
+    font-size: 32px;
+    font-weight: 600;
+    color: #18181B;
+}
+
+.cart-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 15px;
+}
+
+.cart-table th {
+    font-size: 14px;
+    color: #666;
+    font-weight: 500;
+    padding: 10px;
+    text-align: left;
+    border: none;
+}
+
+.cart-item {
+    background: white;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.cart-item:hover {
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.cart-item td {
+    padding: 20px;
+    vertical-align: middle;
+    border: none;
+}
+
+.product-image {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.product-name {
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+.product-size {
+    font-size: 14px;
+    color: #666;
+}
+
+.quantity-control {
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 5px;
+}
+
+.quantity-btn {
+    background: none;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.quantity-btn:hover {
+    color: #007bff;
+}
+
+.quantity-input {
+    width: 40px;
+    text-align: center;
+    border: none;
+    padding: 0 5px;
+}
+
+.remove-btn {
+    background: none;
+    border: none;
+    color: #dc3545;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.remove-btn:hover {
+    color: #c82333;
+}
+
+.cart-summary {
+    background: white;
+    border-radius: 8px;
+    padding: 30px;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.summary-label {
+    color: #666;
+}
+
+.summary-value {
+    font-weight: 500;
+}
+
+.discount-input {
+    display: flex;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.discount-code {
+    flex: 1;
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.apply-btn {
+    background: #18181B;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.apply-btn:hover {
+    background: #333;
+}
+
+.checkout-btn {
+    display: block;
+    text-decoration: none;
+    text-align: center;
+    width: 100%;
+    background: #0eccb3;
+    color: white;
+    border: none;
+    padding: 15px;
+    border-radius: 8px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.checkout-btn:hover {
+    background: #0eccb3;
+}
+
+.cart-item {
+    border-bottom: 1px solid #eee;
+    padding: 20px 0;
+}
+
+/* Subtotal Product Cards */
+.subtotal-product {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.subtotal-product:last-child {
+    border-bottom: none;
+}
+
+.subtotal-product-image {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.subtotal-product-info {
+    flex: 1;
+}
+
+.subtotal-product-name {
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 4px;
+}
+
+.subtotal-product-size {
+    font-size: 12px;
+    color: #666;
+}
+
+.subtotal-product-price {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.cart-summary {
+    background: white;
+    border-radius: 8px;
+    padding: 30px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.summary-products {
+    margin-bottom: 25px;
+}
+
+.summary-divider {
+    height: 1px;
+    background: #eee;
+    margin: 20px 0;
+}
+
+/* Mobile responsiveness */
+s/* Mobile responsiveness */
+@@media (max-width: 768px) {
     .cart-container {
-        max-width: 1200px;
-        margin: 50px auto;
-        padding: 0 20px;
+        padding: 20px;
     }
 
-    .cart-header {
-        margin-bottom: 30px;
+    .cart-table thead {
+        display: none;
     }
-
-    .cart-title {
-        font-size: 32px;
-        font-weight: 600;
-        color: #18181B;
-    }
-
-    .cart-table {
-        width: 100%;
-        border-collapse: separate;
-        border-spacing: 0 15px;
-    }
-
-        .cart-table th {
-            font-size: 14px;
-            color: #666;
-            font-weight: 500;
-            padding: 10px;
-            text-align: left;
-            border: none;
-        }
 
     .cart-item {
-        background: white;
-        border-radius: 8px;
-        transition: all 0.3s ease;
+        display: grid;
+        grid-template-columns: 80px 1fr 100px;
+        gap: 15px;
+        margin-bottom: 20px;
+        padding: 15px 0;
     }
 
-        .cart-item:hover {
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-        }
+    .cart-item td {
+        display: block;
+        padding: 8px 15px;
+    }
 
-        .cart-item td {
-            padding: 20px;
-            vertical-align: middle;
-            border: none;
-        }
-
-    .product-image {
-        width: 80px;
-        height: 80px;
-        object-fit: cover;
-        border-radius: 8px;
+    .cart-item td:first-child {
+        grid-row: 1 / span 4;
+        align-self: start;
     }
 
     .product-name {
         font-size: 16px;
-        font-weight: 500;
-        margin-bottom: 5px;
+        margin-bottom: 10px;
     }
 
     .product-size {
         font-size: 14px;
-        color: #666;
     }
 
     .quantity-control {
-        display: inline-flex;
+        display: flex;
         align-items: center;
         border: 1px solid #ddd;
         border-radius: 8px;
-        padding: 5px;
+        overflow: hidden;
     }
 
     .quantity-btn {
-        background: none;
+        width: 30px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #f8f9fa;
         border: none;
-        padding: 5px 10px;
-        cursor: pointer;
-        transition: all 0.3s ease;
+        font-size: 16px;
     }
 
-        .quantity-btn:hover {
-            color: #007bff;
-        }
-
     .quantity-input {
-        width: 40px;
+        width: 30px;
+        height: 30px;
         text-align: center;
         border: none;
-        padding: 0 5px;
+        font-size: 14px;
     }
 
     .remove-btn {
-        background: none;
-        border: none;
-        color: #dc3545;
-        cursor: pointer;
-        transition: all 0.3s ease;
+        margin-top: 10px;
+        font-size: 14px;
     }
 
-        .remove-btn:hover {
-            color: #c82333;
-        }
-
     .cart-summary {
-        background: white;
-        border-radius: 8px;
-        padding: 30px;
+        margin-top: 30px;
+        padding: 20px;
     }
 
     .summary-row {
-        display: flex;
-        justify-content: space-between;
-        margin-bottom: 15px;
+        font-size: 16px;
     }
-
-    .summary-label {
-        color: #666;
-    }
-
-    .summary-value {
-        font-weight: 500;
-    }
-
-    .discount-input {
-        display: flex;
-        gap: 10px;
-        margin: 20px 0;
-    }
-
-    .discount-code {
-        flex: 1;
-        padding: 10px 15px;
-        border: 1px solid #ddd;
-        border-radius: 8px;
-    }
-
-    .apply-btn {
-        background: #18181B;
-        color: white;
-        border: none;
-        padding: 10px 20px;
-        border-radius: 8px;
-        cursor: pointer;
-        transition: all 0.3s ease;
-    }
-
-        .apply-btn:hover {
-            background: #333;
-        }
 
     .checkout-btn {
-        display: block;
-        text-decoration: none;
-        text-align: center;
-        width: 100%;
-        background: #0eccb3;
-        color: white;
-        border: none;
+        font-size: 16px;
         padding: 15px;
-        border-radius: 8px;
-        font-weight: 500;
-        cursor: pointer;
-        transition: all 0.3s ease;
     }
 
-        .checkout-btn:hover {
-            background: #0eccb3;
-        }
+    /* Fix price and product name collision */
+    .cart-item td:nth-child(2) {
+        min-width: 150px;
+    }
 
+    /* Adjust increment/decrement buttons */
+    .quantity-control {
+        margin-top: 10px;
+    }
+}
+
+@@media (max-width: 576px) {
+    .cart-title {
+        font-size: 24px;
+    }
+
+    .product-image {
+        width: 70px;
+        height: 70px;
+    }
+
+    .quantity-btn, .quantity-input {
+        width: 25px;
+        height: 25px;
+        font-size: 14px;
+    }
+
+    .summary-row {
+        font-size: 14px;
+    }
+
+    /* Additional adjustments for small screens */
     .cart-item {
-        border-bottom: 1px solid #eee;
-        padding: 20px 0;
+        grid-template-columns: 70px 1fr 80px;
     }
 
-    /* Subtotal Product Cards */
-    .subtotal-product {
-        display: flex;
-        align-items: center;
-        gap: 15px;
-        padding: 15px 0;
-        border-bottom: 1px solid #eee;
+    .product-name {
+        font-size: 14px;
+    }
+}
+
+@@media (max-width: 375px) {
+    .cart-title {
+        font-size: 20px;
     }
 
-        .subtotal-product:last-child {
-            border-bottom: none;
-        }
-
-    .subtotal-product-image {
+    .product-image {
         width: 60px;
         height: 60px;
-        object-fit: cover;
-        border-radius: 8px;
     }
 
-    .subtotal-product-info {
-        flex: 1;
-    }
-
-    .subtotal-product-name {
-        font-size: 14px;
-        font-weight: 500;
-        margin-bottom: 4px;
-    }
-
-    .subtotal-product-size {
+    .quantity-btn, .quantity-input {
+        width: 20px;
+        height: 20px;
         font-size: 12px;
-        color: #666;
     }
 
-    .subtotal-product-price {
-        font-size: 14px;
-        font-weight: 500;
+    .product-name {
+        font-size: 12px;
     }
 
-    .cart-summary {
-        background: white;
-        border-radius: 8px;
-        padding: 30px;
-        box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    .summary-row {
+        font-size: 12px;
     }
 
-    .summary-products {
-        margin-bottom: 25px;
+    /* Additional adjustments for very small screens */
+    .cart-item {
+        grid-template-columns: 60px 1fr 70px;
     }
-
-    .summary-divider {
-        height: 1px;
-        background: #eee;
-        margin: 20px 0;
-    }
-
-    @@media (max-width: 768px) {
-        .cart-table thead {
-            display: none;
-        }
-
-        .cart-item {
-            display: grid;
-            grid-template-columns: 80px 1fr;
-            gap: 15px;
-            margin-bottom: 15px;
-        }
-
-            .cart-item td {
-                display: block;
-                padding: 5px 15px;
-            }
-
-                .cart-item td:first-child {
-                    grid-row: 1 / span 4;
-                }
-
-        .product-price, .quantity-control, .subtotal {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-            .product-price::before,
-            .quantity-control::before,
-            .subtotal::before {
-                content: attr(data-label);
-                font-weight: 500;
-            }
-    }
+}
 </style>
 
 <div class="cart-container">
@@ -308,7 +428,7 @@
                                         <img src="@Url.Content($"~/{item.ImageUrls.FirstOrDefault()}")" class="product-image" alt="@item.ProductName">
                                         <div>
                                             <h3 class="product-name">@item.ProductName</h3>
-                                         </div>
+                                        </div>
                                     </div>
                                 </td>
                                 <td data-label="Price">$@item.ProductPrice</td>
@@ -333,18 +453,10 @@
 
             <div class="col-lg-4">
                 <div class="cart-summary">
-
-                    @* <div class="summary-divider"></div> *@
-
                     <div class="summary-row">
                         <span class="summary-label"><b>Subtotal</b></span>
                         <span class="summary-value">$@ViewBag.TotalPrice</span>
                     </div>
-
-                  @*   <div class="discount-input">
-                        <input type="text" class="discount-code" placeholder="Enter Discount Code">
-                        <button class="apply-btn">Apply</button>
-                    </div> *@
 
                     <div class="summary-row">
                         <span class="summary-label">Delivery Charge</span>
