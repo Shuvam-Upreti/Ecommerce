@@ -294,6 +294,213 @@
                 margin-top: 1rem;
             }
         }
+        /* Complete Responsive Design Overhaul */
+
+        /* ===== Top Bar Responsive Styles ===== */
+        /* Mobile Responsive Top-Bar CSS */
+
+        /* For mobile devices */
+        /* Mobile Responsive Adjustments */
+        /* Keep top bar elements in a single line across all screen sizes */
+
+        /* Medium screens */
+        @@media (max-width: 991px) {
+            .top-bar .row
+
+        {
+            flex-wrap: nowrap;
+            align-items: center;
+        }
+
+        .top-bar .col-lg-2,
+        .top-bar .col-lg-7,
+        .top-bar .col-lg-3 {
+            padding: 0 5px;
+            flex: 0 0 auto;
+        }
+
+        .top-bar .col-lg-2 {
+            width: 15%;
+        }
+
+        .top-bar .col-lg-7 {
+            width: 60%;
+        }
+
+        .top-bar .col-lg-3 {
+            width: 25%;
+            text-align: right;
+        }
+
+        .logo-img {
+            max-height: 40px;
+            width: auto;
+        }
+
+        .search-box {
+            display: flex;
+        }
+
+        .searchBarBox {
+            height: 38px;
+            font-size: 14px;
+            padding: 0 10px;
+        }
+
+        .search-btn {
+            height: 38px;
+            width: 38px;
+            padding: 0;
+        }
+
+        .cart-icon, .login-btn {
+            margin-left: 5px;
+            font-size: 14px;
+            padding: 6px 10px;
+        }
+
+        /* Fix dropdown positioning */
+        .dropdown-menu {
+            right: 0;
+            left: auto;
+        }
+
+        }
+
+        /* Small screens */
+        @@media (max-width: 767px) {
+            .top-bar
+
+        {
+            padding: 8px 0;
+        }
+
+        .top-bar .col-lg-2 {
+            width: 20%;
+        }
+
+        .top-bar .col-lg-7 {
+            width: 50%;
+        }
+
+        .top-bar .col-lg-3 {
+            width: 30%;
+        }
+
+        .logo-img {
+            max-height: 35px;
+        }
+
+        .searchBarBox {
+            height: 35px;
+            font-size: 14px;
+            padding: 0 8px;
+        }
+
+        .search-btn {
+            height: 35px;
+            width: 35px;
+        }
+
+        .cart-icon, .login-btn {
+            margin-left: 5px;
+            font-size: 14px;
+            padding: 4px 8px;
+        }
+
+        /* Hide user name, show only icon */
+        .dropdown-toggle::after {
+            display: none;
+        }
+
+        .btn-login span {
+            display: none;
+        }
+
+        }
+
+        /* Extra small screens */
+        @@media (max-width: 575px) {
+            .top-bar
+
+        {
+            padding: 5px 0;
+        }
+
+        .top-bar .container {
+            padding: 0 5px;
+        }
+
+        .top-bar .col-lg-2 {
+            width: 15%;
+        }
+
+        .top-bar .col-lg-7 {
+            width: 55%;
+        }
+
+        .top-bar .col-lg-3 {
+            width: 30%;
+        }
+
+        .logo-img {
+            max-height: 30px;
+        }
+
+        .searchBarBox {
+            height: 30px;
+            font-size: 12px;
+            padding: 0 5px;
+        }
+
+        .search-btn {
+            height: 30px;
+            width: 30px;
+        }
+
+            .search-btn i {
+                font-size: 12px;
+            }
+
+        .cart-icon, .login-btn {
+            margin-left: 3px;
+            font-size: 12px;
+            padding: 3px 5px;
+        }
+
+            /* Optimize space for very small screens */
+            .cart-icon .fa-shopping-cart,
+            .login-btn .fa-user-circle {
+                margin-right: 0;
+            }
+
+            /* Further reduce text where possible */
+            .login-btn:not(.dropdown-toggle) {
+                padding: 3px 6px;
+                font-size: 11px;
+            }
+
+        }
+
+        /* Additional CSS to ensure text doesn't break lines */
+        @@media (max-width: 767px) {
+            .login-btn
+
+        {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 100%;
+        }
+
+        /* Fix dropdown menu position */
+        .dropdown-menu {
+            min-width: 200px;
+            transform: translateX(30%);
+        }
+
+        }
+        
     </style>
 
     <!-- Scripts -->
