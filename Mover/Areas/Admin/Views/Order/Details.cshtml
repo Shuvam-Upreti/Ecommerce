@@ -5,42 +5,186 @@
     ViewData["Title"] = "Order Details";
 }
 
-<h2 class="mb-4">Order Details</h2>
+<style>
+    .gradient-header {
+        background: linear-gradient(135deg, #0bb09a, #0eccb3);
+        color: white;
+        padding: 15px;
+        border-radius: 8px;
+        margin-bottom: 2rem;
+    }
 
-<div class="card">
+    .order-card {
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        margin-bottom: 2rem;
+        border: none;
+    }
+
+        .order-card .card-body {
+            padding: 2rem;
+        }
+
+    .order-detail {
+        display: flex;
+        align-items: center;
+        margin: 1rem 0;
+        gap: 1rem;
+    }
+
+        .order-detail i {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(11, 176, 154, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #0bb09a;
+            font-size: 1.2rem;
+        }
+
+    .order-table {
+        margin-top: 2rem;
+    }
+
+        .order-table th {
+            background: rgba(11, 176, 154, 0.05);
+            border: none;
+            font-weight: 600;
+        }
+
+        .order-table td {
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .order-table tr:nth-child(even) {
+            background-color: rgba(11, 176, 154, 0.02);
+        }
+
+        .order-table tr:hover {
+            background-color: rgba(11, 176, 154, 0.05);
+        }
+
+    .btn-custom {
+        background: linear-gradient(135deg, #0bb09a, #0eccb3);
+        border: none;
+        color: white;
+        font-weight: 600;
+        padding: 0.6rem 1.2rem;
+        border-radius: 8px;
+        transition: transform 0.2s;
+    }
+
+        .btn-custom:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(11, 176, 154, 0.3);
+        }
+
+    @@media (max-width: 768px) {
+        .order-detail
+
+    {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    }
+</style>
+
+<div class="gradient-header">
+    <h1 class="mb-0">Order Details</h1>
+</div>
+
+<div class="order-card card">
     <div class="card-body">
-        <h4 class="card-title">Order #@Model.OrderId</h4>
-        <p><strong>Created By:</strong> @Model.CreatedBy</p>
-        <p><strong>Phone Number:</strong> @Model.PhoneNumber</p>
-        <p><strong>Total Amount:</strong> $@Model.TotalAmount</p>
-        <p><strong>Order Date:</strong> @Model.OrderDate</p>
-        <p><strong>Order Status:</strong> @Model.OrderStatus</p>
-        <p><strong>Payment Status:</strong> @Model.PaymentStatus</p>
-        <p><strong>Shipping Address:</strong> @Model.ShippingAddressLine, @Model.ShippingCity, @Model.ShippingState, @Model.ShippingZipCode</p>
+        <div class="text-center mb-4">
+            <h3 class="card-title mb-0">Order #@Model.OrderId</h3>
+            <p class="text-muted">Order Information</p>
+        </div>
+
+        <div class="order-detail">
+            <i class="bi bi-person"></i>
+            <div>
+                <strong>Created By:</strong> @Model.CreatedBy
+            </div>
+        </div>
+
+        <div class="order-detail">
+            <i class="bi bi-telephone"></i>
+            <div>
+                <strong>Phone Number:</strong> @Model.PhoneNumber
+            </div>
+        </div>
+
+        <div class="order-detail">
+            <i class="bi bi-currency-dollar"></i>
+            <div>
+                <strong>Total Amount:</strong> $@Model.TotalAmount
+            </div>
+        </div>
+
+        <div class="order-detail">
+            <i class="bi bi-calendar"></i>
+            <div>
+                <strong>Order Date:</strong> @Model.OrderDate
+            </div>
+        </div>
+
+        <div class="order-detail">
+            <i class="bi bi-box-seam"></i>
+            <div>
+                <strong>Order Status:</strong>
+                <span class="badge bg-@(Model.OrderStatus == "Completed" ? "success" : Model.OrderStatus == "Processing" ? "warning" : "danger")">
+                    @Model.OrderStatus
+                </span>
+            </div>
+        </div>
+
+        <div class="order-detail">
+            <i class="bi bi-wallet"></i>
+            <div>
+                <strong>Payment Status:</strong>
+                <span class="badge bg-@(Model.PaymentStatus == "Paid" ? "success" : "danger")">
+                    @Model.PaymentStatus
+                </span>
+            </div>
+        </div>
+
+        <div class="order-detail">
+            <i class="bi bi-geo-alt"></i>
+            <div>
+                <strong>Shipping Address:</strong>
+                @Model.ShippingAddressLine, @Model.ShippingCity,
+                @Model.ShippingState, @Model.ShippingZipCode
+            </div>
+        </div>
     </div>
 </div>
 
-<h3 class="mt-4">Order Items</h3>
-<table class="table table-bordered">
-    <thead>
-        <tr>
-            <th>Product Name</th>
-            <th>Quantity</th>
-            <th>Price at Purchase</th>
-            <th>Discount at Purchase</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model.OrderItemsViewModel)
-        {
+<div class="order-table">
+    <h3 class="mb-3">Order Items</h3>
+    <table class="table table-hover">
+        <thead>
             <tr>
-                <td>@item.ProductName</td>
-                <td>@item.Quantity</td>
-                <td>$@item.PriceAtPurchase</td>
-                <td>$@item.DiscountAtPurchase</td>
+                <th>Product Name</th>
+                <th>Quantity</th>
+                <th>Price at Purchase</th>
+                <th>Discount at Purchase</th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.OrderItemsViewModel)
+            {
+                <tr>
+                    <td>@item.ProductName</td>
+                    <td>@item.Quantity</td>
+                    <td>$@item.PriceAtPurchase</td>
+                    <td>$@item.DiscountAtPurchase</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
 
-<a href="@Url.Action("Index")" class="btn btn-secondary">Back to Orders</a>
+<a href="@Url.Action("Index")" class="btn btn-custom">Back to Orders</a>
