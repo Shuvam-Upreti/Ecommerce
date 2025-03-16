@@ -1,4 +1,4 @@
-﻿@using Mover.Areas.Admin.ViewModel.Product
+﻿﻿@using Mover.Areas.Admin.ViewModel.Product
 @using Mover.Core.Dto.Category
 @model List<ProductViewModel>
 @{
@@ -117,7 +117,7 @@
         }
 
         .cta-btn {
-            background: #16a085;
+            background: #cc0000;
             color: white;
             padding: 10px 30px;
             border-radius: 5px;
@@ -191,7 +191,6 @@
         }
 
         .footer .btn-primary {
-            background-color: #16a085;
             border-radius: 0 4px 4px 0;
         }
 
@@ -288,7 +287,6 @@
             .brand-card {
                 min-height: 100px;
                 padding: 15px;
-                margin:5px;
             }
 
             .brand-logo {
@@ -712,104 +710,55 @@
                 }
             }
         }
-
-        
-        /* Main Banner Responsive */
-            @@media (max-width: 768px) {
-            .main-banner
-
-        {
-            height: 400px !important;
-        }
-
-        .custom-carousel-indicators {
-            bottom: 10px !important;
-        }
-
-        }
-
-        /* Stats Section Responsive */
-            @@media (max-width: 768px) {
-            .stat-section .row
-
-        {
-            flex-direction: column;
-        }
-
-        .stat-section .col-md-3 {
-            margin-bottom: 20px;
-        }
-
-        .stats-number {
-            font-size: 22px !important;
-        }
-
-        .stats-label {
-            font-size: 12px !important;
-        }
-
-        }
-
-            @@media (max-width: 576px) {
-            .main-banner
-
-        {
-            height: 300px !important;
-        }
-
-        .stats-circle {
-            width: 50px !important;
-            height: 50px !important;
-        }
-
-            .stats-circle i {
-                font-size: 20px !important;
-            }
-
-        }
-  
     </style>
 </head>
 
 <body>
 
+    <div>
 
+        <!-- Main Banner -->
+        <div class="main-banner owl-carousel" style="overflow:hidden;height:82vh;">
+            <div class="item">
+                <img src="/image/banner1.jpg" style="width:fit-content;" alt="Skincare Products" class="w-100">
 
-    <!-- Main Banner -->
-    <div class="main-banner owl-carousel" style="overflow:hidden;height:82vh;">
-        <div class="item">
-            <img src="/image/banner1.jpg" style="width:fit-content;" alt="Skincare Products" class="w-100">
+            </div>
+            <div class="item">
+                <img src="/image/banner2.webp" alt="Skincare Products" class="w-100">
+            </div>
 
         </div>
-        <div class="item">
-            <img src="/image/banner2.webp" alt="Skincare Products" class="w-100 h-auto">
-        </div>
-
-    <div class="custom-carousel-indicators position-absolute bottom-0 start-50 translate-middle">
+    </div>
+    <!-- Custom Carousel Indicators -->
+    <div class="custom-carousel-indicators">
         <button class="owl-dot active" data-owl-target="0"></button>
         <button class="owl-dot" data-owl-target="1"></button>
     </div>
-    </div>
-    <!-- Custom Carousel Indicators -->
 
-    <!-- Brand Section  -->
+    @* Brand Section  *@
+
     <section class="brands-section">
         <div class="container text-center">
             <h2 class="section-title">OUR BRANDS</h2>
             <div class="row justify-content-center">
+
+                <!-- Brand  -->
+                @*<div class="col-6 col-md-3">
+                    <div class="brand-card small-box">
+                        <img src="/image/brand1.png" alt="Brand 1" class="brand-logo">
+                    </div>
+                </div> *@
                 <div class="col-6 col-md-3">
                     <div class="brand-card small-box position-relative">
                         <span class="coming-soon">Brand Name</span>
                         <p class="brand-name">BRAND 1</p>
                     </div>
-                </div>
-                <div class="col-6 col-md-3">
+                </div>  <div class="col-6 col-md-3">
                     <div class="brand-card small-box position-relative">
                         <span class="coming-soon">Brand Name</span>
                         <p class="brand-name">BRAND 2</p>
                     </div>
-                </div>
-                <div class="col-6 col-md-3">
+                </div>  <div class="col-6 col-md-3">
                     <div class="brand-card small-box position-relative">
                         <span class="coming-soon">Brand Name</span>
                         <p class="brand-name">BRAND 3</p>
@@ -821,9 +770,11 @@
                         <p class="brand-name">BRAND 4</p>
                     </div>
                 </div>
+
             </div>
         </div>
     </section>
+
 
     <!-- Top Category Section -->
     <section class="category-section py-5">
@@ -846,6 +797,62 @@
             </div>
         </div>
     </section>
+
+
+    <!-- Top Category Section With Carousel -->
+    @*  <section class="category-section py-5">
+        <div class="container text-center">
+            <h2 class="section-title">SHOP BY CATEGORY</h2>
+
+            <!-- Carousel Container -->
+            <div id="categoryCarousel" class="carousel slide" data-bs-interval="false">
+                <div class="carousel-inner">
+                    @if (ViewBag.Categories != null)
+                    {
+                        var categoryList = (List<CategoryDto>)ViewBag.Categories;
+                        int chunkSize = 4; // Show 4 categories per carousel slide
+                        int totalChunks = (int)Math.Ceiling((double)categoryList.Count / chunkSize);
+
+                        for (int i = 0; i < totalChunks; i++)
+                        {
+                            var categoriesChunk = categoryList.Skip(i * chunkSize).Take(chunkSize).ToList();
+                            <div class="carousel-item @(i == 0 ? "active" : "")">
+                                <div class="row g-3">
+                                    @foreach (var category in categoriesChunk)
+                                    {
+                                        <div class="col-md-3 col-6">
+                                            <div class="category-card">
+                                                <img src="~/@category.ImageUrl" alt="@category.Name" class="card-img-top">
+                                                <div class="card-body">
+                                                    <a asp-action="Category" asp-route-id="@category.Id" class="btn btn-primary category-button">
+                                                        @category.Name
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        <p class="text-center">No categories available.</p>
+                    }
+                </div>
+
+                <!-- Carousel Controls -->
+                <button class="carousel-control-prev" type="button" data-bs-target="#categoryCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#categoryCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                </button>
+            </div>
+        </div>
+    </section> *@
+
+
 
     <section class="product-section py-5">
         <div class="container text-center">
@@ -876,6 +883,26 @@
                         </div>
                     </div>
                 }
+
+
+
+
+                @*  <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="product-card position-relative">
+                        <span class="badge-new">New</span>
+                        <span class="badge-stock">Out of Stock</span>
+                        <div class="product-image-container">
+                            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-ka5DbWYfTzjZIQn3OxHbK0SQ3cv4wL.png" alt="FH Secret Perfume" class="product-img">
+                        </div>
+                        <div class="product-content">
+                            <h2 class="product-title">FH Secret Unisex Perfume - 100ml</h2>
+                            <div class="product-price">Rs. 4999</div>
+                            <button class="btn btn-cart disabled" disabled>
+                                <i class="fas fa-shopping-cart"></i> ADD TO CART
+                            </button>
+                        </div>
+                    </div>
+                </div>*@
             </div>
         </div>
         <br />
@@ -886,6 +913,7 @@
             </a>
         </div>
     </section>
+
 
     <!-- Stats Section -->
     <section class="stat-section py-5">
@@ -947,6 +975,7 @@
                 <div class="col-md-10">
                     <div class="about-us-card">
                         <div class="row align-items-center">
+
                             <div class="col-md-12 about-us-text-column">
                                 <p>
                                     [Replace this with your actual "About Us" content.  This is placeholder text.] We are a team of dedicated professionals passionate about [Your company's mission or industry].  Our goal is to [State your company's main goal or value proposition]. We believe in [Your company's core values, e.g., innovation, customer satisfaction, community impact].  With years of experience in [Your industry or area of expertise], we strive to deliver [Describe what you deliver - products, services, solutions] that exceed expectations.  We are committed to [Your commitment - e.g., quality, sustainability, ethical practices] and building long-lasting relationships with our clients and partners.  Learn more about our journey, our team, and how we can help you achieve your goals.
@@ -978,10 +1007,10 @@
         </div>
     </section>
 
+
+
     @section Scripts {
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+
         <script>
             $(document).ready(function(){
                 // Main Banner Carousel
@@ -992,22 +1021,8 @@
                     dots: false,
                     autoplay: true,
                     autoplayTimeout: 5000,
-                    responsiveClass:true,
-                    responsive:{
-                        0:{
-                            items:1,
-                            nav:true
-                        },
-                        600:{
-                            items:1,
-                            nav:false
-                        },
-                        1000:{
-                            items:1,
-                            nav:true,
-                            loop:false
-                        }
-                    }
+                    onInitialized: customIndicators,
+                    onTranslated: customIndicators
                 });
 
                 // Custom Carousel Indicators
@@ -1033,19 +1048,22 @@
                 }
 
                 // Shop by Category Carousel
-                $('.category-carousel').owlCarousel({
-                    loop:true,
-                    margin:10,
-                    nav:true,
-                    responsive:{
-                        0:{
-                            items:1
+                $('.category-section .owl-carousel').owlCarousel({
+                    items: 4,
+                    loop: true,
+                    nav: true,
+                    dots: true,
+                    autoplay: true,
+                    autoplayTimeout: 5000,
+                    responsive: {
+                        0: {
+                            items: 1
                         },
-                        600:{
-                            items:3
+                        768: {
+                            items: 2
                         },
-                        1000:{
-                            items:4
+                        992: {
+                            items: 4
                         }
                     }
                 });
@@ -1099,8 +1117,8 @@
                 });
             });
 
-        </script>
-        <!-- Replace with toastr CDN -->
+
+        </script>   <!-- Replace with toastr CDN -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     }
 </body>
