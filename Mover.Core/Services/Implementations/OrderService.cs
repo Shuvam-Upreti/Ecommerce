@@ -150,7 +150,8 @@ namespace Mover.Core.Services.Implementations
                     Quantity = a.Quantity,
                     OrderItemId=a.OrderItemId,
                     ProductId=a.ProductId,
-                    ProductName=a.Product?.ProductName
+                    ProductName=a.Product?.ProductName,
+                    ImageUrl = a.Product?.ProductImages?.FirstOrDefault()?.ImageUrl
                 }).ToList()
             };
             return dto;

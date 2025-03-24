@@ -251,7 +251,8 @@ namespace Mover.Areas.Admin.Controllers
                         Quantity = a.Quantity,
                         OrderItemId = a.OrderItemId,
                         ProductId = a.ProductId,
-                        ProductName=a.ProductName
+                        ProductName=a.ProductName,
+                        ImageUrl=a.ImageUrl
                     }).ToList()
                 };
 
