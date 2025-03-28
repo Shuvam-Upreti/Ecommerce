@@ -15,135 +15,125 @@
     input[type=number] {
         -moz-appearance: textfield; /* Hide arrows in Firefox */
     }
-    /* Media queries for responsiveness */
-    /* @@media (max-width: 1024px) { */
-    /*     /* Adjustments for tablets in landscape mode */ */
-    /*     .container { */
-    /*         flex-direction: column; */
-    /*         align-items: center; */
-    /*         padding: 20px; */
-    /*     } */
 
-    /*     .form-box { */
-    /*         width: 90%; */
-    /*         max-width: 400px; */
-    /*         margin-bottom: 30px; */
-    /*     } */
-
-    /*     .toggle-box { */
-    /*         width: 90%; */
-    /*         max-width: 400px; */
-    /*     } */
-
-    /*     .toggle-panel { */
-    /*         width: 100%; */
-    /*         margin: 15px 0; */
-    /*     } */
-    /* } */
-
+    /* Media Queries for Responsive Design */
     @@media (max-width: 768px) {
         .container
 
     {
-        flex-direction: column;
-        align-items: center;
-        padding: 20px 10px;
+        margin-top: 60px;
+        min-height: 500px;
+        transition: all 0.5s ease;
     }
 
-    .form-box {
-        width: 95%;
-        max-width: 360px;
-        padding: 20px;
-    }
-
-    .input-box input, .btn {
-        font-size: 14px;
-        padding: 10px;
+    .form-box.login,
+    .form-box.register {
+        width: 100%;
+        padding: 15px;
+        transition: all 0.5s ease;
     }
 
     .toggle-box {
-        width: 95%;
-        max-width: 360px;
-        margin-top: 20px;
-        flex-direction: column;
+        display: none;
     }
 
-    .toggle-panel {
-        width: 100%;
-        margin: 10px 0;
+    .container.active .form-box.register {
+        transform: translateX(0);
+        opacity: 1;
+        z-index: 5;
+        transition: all 0.5s ease;
     }
 
     }
 
     @@media (max-width: 480px) {
-        .form-box
+        .container
 
     {
-        width: 98%;
-        max-width: 320px;
-        margin: 5px;
-        padding: 15px;
+        margin-top: 50px;
+        width: 300px;
+        min-height: 450px;
+        transition: all 0.5s ease;
     }
 
-    .input-box input, .btn {
-        font-size: 12px;
-        padding: 8px;
-    }
+        .form-box.login,
+        .form-box.register {
+            width: 100%;
+            padding: 15px;
+            transition: all 0.5s ease;
+        }
 
-    .toggle-panel {
-        padding: 12px;
-    }
+        .toggle-box {
+            display: none;
+        }
 
-    }
+        .container.active .form-box.register {
+            transform: translateX(0);
+            opacity: 1;
+            z-index: 5;
+            transition: all 0.5s ease;
+        }
 
-    @@media (max-width: 320px) {
-        .form-box
-
-    {
-        width: 98%;
-        max-width: 280px;
+    .form-box {
         padding: 10px;
     }
 
-    .input-box input, .btn {
-        font-size: 11px;
-        padding: 7px;
+    h1 {
+        font-size: 24px;
+    }
+
+    .input-box input {
+        padding: 10px 15px;
+    }
+
+    .btn {
+        padding: 10px 25px;
     }
 
     }
-   
+
+    /* Touch Device Optimization */
+    @@media (hover: none) and (pointer: coarse) {
+        .btn
+
+    {
+        padding: 15px 30px;
+    }
+
+    .input-box input {
+        padding: 15px 20px;
+    }
+
+    }
+
+    /* Reduced Motion */
+    @@media (prefers-reduced-motion: reduce) {
+        .form-box, .toggle-box, .toggle-panel
+
+    {
+        transition: none;
+    }
+
+    }
 </style>
 
-
-
 <div class="container">
-
     <div class="form-box login">
-
         @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, true, new { @class = "login-form" }))
         {
             @Html.AntiForgeryToken()
-
             <h1>Login</h1>
-
             <div class="input-box" style="width:100%">
                 @Html.TextBoxFor(m => m.Username, new { placeholder = "Username", @class = "form-control", style = "width: 100%;" })
                 <i class='bx bxs-user'></i>
                 <span class="text-danger">@Html.ValidationMessageFor(m => m.Username)</span>
             </div>
-
             <div class="input-box">
                 @Html.PasswordFor(m => m.Password, new { placeholder = "Password", @class = "form-control", style = "width: 100%;" })
                 <i class='bx bxs-lock-alt'></i>
                 <span class="text-danger">@Html.ValidationMessageFor(m => m.Password)</span>
             </div>
-
-          @*   <div class="forgot-link">
-                <a href="/Account/ForgotPassword">Forgot Password?</a>
-            </div>
- *@
             <button type="submit" class="btn">Login</button>
-
             <div class="form-group text-danger">
                 @Html.ValidationSummary(true)
             </div>
@@ -174,14 +164,12 @@
         }
     </div>
 
-
     <div class="toggle-box">
         <div class="toggle-panel toggle-left">
             <h1>Hello, Welcome!</h1>
             <p>Don't have an account?</p>
             <button class="btn register-btn">Register</button>
         </div>
-
         <div class="toggle-panel toggle-right">
             <h1>Welcome Back!</h1>
             <p>Already have an account?</p>
@@ -189,34 +177,6 @@
         </div>
     </div>
 </div>
-
-@* <div class="login-container">
-    <div class="login-form-container">
-        <h1>Log in</h1>
-        @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, true, new { @class = "login-form" }))
-        {
-            @Html.AntiForgeryToken()
-            <div class="form-group">
-                @Html.TextBoxFor(m => m.Username, new { placeholder = "Username", @class = "form-control" })
-                <span class="text-danger">@Html.ValidationMessageFor(m => m.Username)</span>
-            </div>
-            <div class="form-group">
-                @Html.PasswordFor(m => m.Password, new { placeholder = "Password", @class = "form-control" })
-                <span class="text-danger">@Html.ValidationMessageFor(m => m.Password)</span>
-            </div>
-            <div class="form-group">
-                <input type="submit" class="btn btn-primary btn-block" value="Login" />
-            </div>
-            <div class="form-group text-center">
-                <a href="/Account/ForgotPassword" class="forgot-password">Forgot Password?</a>
-            </div>
-            <div class="form-group text-danger">
-                @Html.ValidationSummary(true)
-            </div>
-        }
-    </div>
-
-</div> *@
 
 <script>
     $(document).ready(function () {
@@ -230,56 +190,51 @@
             $('#return-url-input').val(returnUrl);
         }
 
+        $("#registerForm").submit(function (event) {
+            event.preventDefault();
 
-            $("#registerForm").submit(function (event) {
-        event.preventDefault(); // Prevent default form submission
+            var formData = {
+                FullName: $("#FullName").val(),
+                Email: $("#Email").val(),
+                Password: $("#Password").val(),
+                ConfirmPassword: $("#Password").val(),
+                PhoneNumber: $("#phoneInput").val()
+            };
 
-        // Manually get the values of the form inputs using their IDs
-        var formData = {
-            FullName: $("#FullName").val(),
-            Email: $("#Email").val(),
-            Password: $("#Password").val(),
-            ConfirmPassword: $("#Password").val(),
-            PhoneNumber: $("#phoneInput").val()
-        };
-
-        // Send the data to the server using AJAX
-        $.ajax({
-            type: "POST",
-            url: "/Account/CreateAjax", // Your controller's action method
-            data: formData, // Send the manually collected data
-           success: function (response) {
-                if (response.success) {
-                    toastr.success(response.message);
-                    window.location.href = '/account/login';
-                } else {
-                    toastr.error(response.message);
+            $.ajax({
+                type: "POST",
+                url: "/Account/CreateAjax",
+                data: formData,
+                success: function (response) {
+                    if (response.success) {
+                        toastr.success(response.message);
+                        window.location.href = '/account/login';
+                    } else {
+                        toastr.error(response.message);
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.log("Error response:", xhr.responseText);
+                    var errorMessage = xhr.responseText || "An error occurred while processing your request.";
+                    toastr.error(errorMessage);
                 }
-            },
-            error: function (xhr, status, error) {
-                // Log the error and display it in toastr
-                console.log("Error response:", xhr.responseText);
-                var errorMessage = xhr.responseText || "An error occurred while processing your request.";
-                toastr.error(errorMessage); // Display the error message in toastr
-            }
+            });
         });
-    });
-    });
 
         const container = document.querySelector('.container');
-    const registerBtn = document.querySelector('.register-btn');
-    const loginBtn = document.querySelector('.login-btn');
+        const registerBtn = document.querySelector('.register-btn');
+        const loginBtn = document.querySelector('.login-btn');
 
-    registerBtn.addEventListener('click', () => {
-        container.classList.add('active');
-    })
+        registerBtn.addEventListener('click', () => {
+            container.classList.add('active');
+        });
 
-    loginBtn.addEventListener('click', () => {
-        container.classList.remove('active');
-    })
-      document.getElementById("phoneInput").addEventListener("input", function (e) {
-        // Remove any non-allowed characters
-        this.value = this.value.replace(/[^1234567890]/g, '');
+        loginBtn.addEventListener('click', () => {
+            container.classList.remove('active');
+        });
+
+        document.getElementById("phoneInput").addEventListener("input", function (e) {
+            this.value = this.value.replace(/[^1234567890]/g, '');
+        });
     });
 </script>
-<script src="~/js/login/login.js" asp-append-version="true"></script>
