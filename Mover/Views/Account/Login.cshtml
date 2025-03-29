@@ -34,7 +34,7 @@
     }
 
     .toggle-box {
-        display: none;
+        display: flex;
     }
 
     .container.active .form-box.register {
@@ -64,7 +64,7 @@
         }
 
         .toggle-box {
-            display: none;
+            display: flex;
         }
 
         .container.active .form-box.register {
@@ -93,26 +93,26 @@
     }
 
     /* Touch Device Optimization */
-    @@media (hover: none) and (pointer: coarse) {
-        .btn
+    /* @@media (hover: none) and (pointer: coarse) { */
+    /*     .btn */
 
-    {
-        padding: 15px 30px;
-    }
+    /* { */
+    /*     padding: 15px 30px; */
+    /* } */
 
-    .input-box input {
-        padding: 15px 20px;
-    }
+    /* .input-box input { */
+    /*     padding: 15px 20px; */
+    /* } */
 
-    }
+    /* } */
 
-    /* Reduced Motion */
-    @@media (prefers-reduced-motion: reduce) {
-        .form-box, .toggle-box, .toggle-panel
+    /* /* Reduced Motion */ */
+    /* @@media (prefers-reduced-motion: reduce) { */
+    /*     .form-box, .toggle-box, .toggle-panel */
 
-    {
-        transition: none;
-    }
+    /* { */
+    /*     transition: none; */
+    /* } */
 
     }
 </style>
