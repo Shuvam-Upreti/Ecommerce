@@ -37,7 +37,10 @@
         .logo-img {
             max-height: 40px;
         }
-
+        
+        .owl-carousel .owl-item img{
+            height:320px;
+        }
         .search-box {
             position: relative;
             max-width: 500px;
@@ -88,7 +91,7 @@
         }
 
             .main-banner .item {
-                height: 82vh;
+                /* height: 82vh; */
                 width: 100%;
                 display: flex;
                 align-items: center;
@@ -106,6 +109,12 @@
                     margin: 0;
                     padding: 0;
                 }
+
+        .category-card {
+            height:370px;
+            margin-left:90px;
+            /* overflow:hidden; */
+        }
 
         /* Brand Section */
         .brands-section {
@@ -225,6 +234,21 @@
             display: block;
         }
 
+        .btn-all-products {
+            background-color: #0eccb3 !important;
+            color: white !important;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-block;
+            transition: background 0.3s ease;
+        }
+
+            .btn-all-products:hover {
+                background-color: #0bb89e !important;
+            }
+
         /* Responsive Styles */
         @@media (max-width: 1200px) {
             .brand-card
@@ -319,6 +343,10 @@
             height: 40%;
         }
 
+            .category-card{
+                margin-left:60px;
+            }
+
         .product-title {
             font-size: 0.9rem;
             height: 2.4em;
@@ -327,17 +355,20 @@
         }
 
         @@media (max-width: 576px) {
-            .main-banner
+        /*     .main-banner */
 
-        {
-            height: 50vh;
+        /* { */
+        /*     height: 50vh; */
 
-        }
+        /* } */
 
-        .main-banner .item {
-            height: 50vh;
-            width:fit-content;
-        }
+         .main-banner .item img {
+                    
+                    /* height: 350px !important; */
+                    /* width:fit-content; */
+                    /* height: fit-content !important; */
+                     object-fit: inherit;                 }
+
 
         .brand-card {
             min-height: 80px;
@@ -412,21 +443,48 @@
             padding-left: 15px;
         }
 
+        /* .col-12 { */
+        /*     display: flex; */
+        /*     justify-content: center; */
+        /*     align-items: center; */
+        /* } */
+
+        .stats-item {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .stats-circle {
+            font-size: 2rem; /* Adjusting icon size for mobile */
+        }
+
+        .stats-number {
+            font-size: 1.2rem; /* Adjusting text size for mobile */
+        }
+
+        .stats-label {
+            font-size: 0.9rem; /* Smaller font for labels on mobile */
+        }
+
+        .cta-btn {
+            margin: 40px 0;
+        }
+
     </style>
-</head>
+</head> 
 
 <body>
 
     <div>
 
         <!-- Main Banner -->
-        <div class="main-banner owl-carousel" style="overflow:hidden;height:82vh;">
+        <div class="main-banner owl-carousel" style="overflow:hidden;">
             <div class="item">
                 <img src="/image/banner1.jpg" style="width:fit-content;" alt="Skincare Products" class="w-100">
 
             </div>
             <div class="item">
-                <img src="/image/banner2.webp" alt="Skincare Products" class="w-100">
+                <img src="/image/banner2.webp" style="width:fit-content;" alt="Skincare Products" class="w-100">
             </div>
 
         </div>
@@ -610,7 +668,7 @@
         <br />
         <br />
         <div class="all-products-btn d-flex justify-content-center">
-            <a href="/admin/product/viewproducts" class="btn btn-allproducts">
+            <a href="/admin/product/viewproducts" class="btn btn-all-products">
                 BROWSE ALL PRODUCTS
             </a>
         </div>
@@ -621,8 +679,9 @@
     <section class="stat-section py-5">
         <div class="container">
             <div class="row justify-content-center align-items-center">
-                <div class="col-md-3 mb-3 mb-md-0">
-                    <div class="stats-item">
+                <!-- First stat item -->
+                <div class="col-12 col-sm-6 col-md-3 mb-3 mb-md-0">
+                    <div class="stats-item text-center">
                         <div class="stats-circle">
                             <i class="fa-solid fa-users" style="color:#0eccb3;"></i>
                         </div>
@@ -632,8 +691,10 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3 mb-3 mb-md-0">
-                    <div class="stats-item">
+
+                <!-- Second stat item -->
+                <div class="col-12 col-sm-6 col-md-3 mb-3 mb-md-0">
+                    <div class="stats-item text-center">
                         <div class="stats-circle">
                             <i class="fa-solid fa-truck-fast" style="color:#0eccb3;"></i>
                         </div>
@@ -643,8 +704,10 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3 mb-3 mb-md-0">
-                    <div class="stats-item">
+
+                <!-- Third stat item -->
+                <div class="col-12 col-sm-6 col-md-3 mb-3 mb-md-0">
+                    <div class="stats-item text-center">
                         <div class="stats-circle">
                             <i class="fa-solid fa-tags" style="color:#0eccb3;"></i>
                         </div>
@@ -654,8 +717,10 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3 mb-3 mb-md-0">
-                    <div class="stats-item">
+
+                <!-- Fourth stat item -->
+                <div class="col-12 col-sm-6 col-md-3 mb-3 mb-md-0">
+                    <div class="stats-item text-center">
                         <div class="stats-circle">
                             <i class="fa-solid fa-box" style="color:#0eccb3;"></i>
                         </div>
@@ -668,6 +733,9 @@
             </div>
         </div>
     </section>
+
+
+
 
     <section class="about-us-section py-5">
         <div class="container">
