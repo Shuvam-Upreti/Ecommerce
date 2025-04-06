@@ -37,6 +37,8 @@ builder.Services.ConfigureApplicationCookie(options =>
 });
 
 RegisterServices(builder.Services);
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddScoped<GetGuestIdOrSessionUser>();
 
 builder.Services.Configure<IdentityOptions>(options =>
 {
@@ -120,6 +122,7 @@ app.Use(async (context, next) =>
 });
 
 app.UseMiddleware<ExceptionHandlingMiddleware>();
+app.UseMiddleware<GuestIdMiddleware>();
 
 app.MapControllerRoute(
     name: "MyArea",

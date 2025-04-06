@@ -22,13 +22,14 @@ namespace Mover.Controllers
         private readonly IProductService _productService;
         private readonly ICartService _cartService;
         private readonly ICategoryService _categoryService;
-
-        public HomeController(ILogger<HomeController> logger, IProductService productService, ICartService cartService, ICategoryService categoryService)
+        private readonly GetGuestIdOrSessionUser _userHelper;
+        public HomeController(ILogger<HomeController> logger, IProductService productService, ICartService cartService, ICategoryService categoryService, GetGuestIdOrSessionUser userHelper)
         {
             _logger = logger;
             _productService = productService;
             _cartService = cartService;
             _categoryService=categoryService;
+            _userHelper=userHelper;
         }
 
         [HttpGet]
@@ -36,7 +37,7 @@ namespace Mover.Controllers
         {
             try
             {
-                var categories= await _categoryService.GetAllCategories();
+                var categories = await _categoryService.GetAllCategories();
                 ViewBag.Categories = categories;
                 var products = await _productService.GetAllProducts();
                 var vm = products.Select(a => new ProductViewModel
@@ -67,7 +68,6 @@ namespace Mover.Controllers
             }
         }
         [HttpGet]
-        [Authorize]
         public async Task<IActionResult> Details(int id)
         {
             try
@@ -101,7 +101,7 @@ namespace Mover.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize]
+    
         public async Task<IActionResult> AddToCart(CartViewModel model)
         {
             if (!ModelState.IsValid)
@@ -111,14 +111,16 @@ namespace Mover.Controllers
             }
             try
             {
-                var currentUser = SessionInfo.GetCurrentUser();
+                var (guestId, currentUser) = await _userHelper.GetGuestIdOrSessionUserId();
+
                 var dto = new CartDto()
                 {
                     ProductId = model.ProductId,
                     ProductName = model.ProductName,
                     Quantity = model.Quantity,
                     TotalPrice = model.TotalPrice,
-                    CreatedBy = currentUser.Id,
+                    CreatedBy = currentUser?.Id??null,
+                    GuestId = guestId??null,
                 };
 
                 await _cartService.Save(dto);
@@ -155,7 +157,7 @@ namespace Mover.Controllers
         {
             try
             {
-              
+
                 return View();
             }
             catch (CustomException ex)

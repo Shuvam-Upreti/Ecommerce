@@ -20,20 +20,21 @@ using static Mover.Core.Enums.Orders.OrderStatus;
 namespace Mover.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [Authorize]
     public class OrderController : Controller
     {
         private readonly IOrderService _orderService;
-        public OrderController(IOrderService orderService)
+        private readonly GetGuestIdOrSessionUser _userHelper;
+        public OrderController(IOrderService orderService, GetGuestIdOrSessionUser userHelper)
         {
             _orderService = orderService;
+            _userHelper=userHelper;
         }
         [HttpGet]
         public async Task<IActionResult> Index()
         {
             try
             {
-                var currentUser = SessionInfo.GetCurrentUser();
+                var (guestId, currentUser) = await _userHelper.GetGuestIdOrSessionUserId();
                 var orderstatus = Enum.GetValues<OrderStatusEnums>().Cast<OrderStatusEnums>()
                                 .Select(a => new SelectListItem
                                 {
@@ -41,7 +42,7 @@ namespace Mover.Areas.Admin.Controllers
                                     Text = a.ToString(),
                                 }).ToList();
                 ViewBag.OrderStatus = orderstatus;
-                var orders = await _orderService.GetAllOrders(currentUser);
+                var orders = await _orderService.GetAllOrders(currentUser,guestId);
                 var vm = orders.Select(a => new OrderViewModel()
                 {
                     OrderId = a.OrderId,
@@ -83,8 +84,8 @@ namespace Mover.Areas.Admin.Controllers
                     PageSize = model.PageSize,
                     PageIndex = model.PageIndex
                 };
-                var currentUser = SessionInfo.GetCurrentUser();
-                var (orderList, totalCount) = await _orderService.GetAllOrdersForGrid(dto, currentUser, orderStatus);
+                var (guestId, currentUser) = await _userHelper.GetGuestIdOrSessionUserId();
+                var (orderList, totalCount) = await _orderService.GetAllOrdersForGrid(dto, currentUser, orderStatus,guestId);
                 var datas = orderList.Select(a => new OrderViewModel
                 {
                     OrderId = a.OrderId,
@@ -121,13 +122,23 @@ namespace Mover.Areas.Admin.Controllers
                 this.NotifyModelStateErrors();
                 return RedirectToAction("Summary", "Cart", new { area = "" });
             }
+
+            if (model.ShippingDetails?.ShippingCity==null||model.ShippingDetails.ShippingState==null||model.ShippingDetails.ShippingAddressLine==null||model.ShippingDetails.PhoneNumber==null)
+            {
+                this.NotifyInfo("Address and phone number cannot be null.");
+                return RedirectToAction("Summary", "Cart", new { area = "" });
+            }
             try
             {
 
-                var currentUser = SessionInfo.GetCurrentUser();
+                var (guestId, currentUser) = await _userHelper.GetGuestIdOrSessionUserId();
+
                 var dto = new OrderDto()
                 {
-                    UserId = currentUser.Id,
+                    UserId = currentUser?.Id,
+                    GuestId=guestId,
+                    PhoneNumber=model.ShippingDetails.PhoneNumber,
+                    GuestEmail=model.ShippingDetails.GuestEmail,
                     OrderDate = DateTime.Now,
                     ShippingAddressLine = model.ShippingDetails.ShippingAddressLine,
                     ShippingCity = model.ShippingDetails.ShippingCity,

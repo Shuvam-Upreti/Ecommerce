@@ -12,9 +12,10 @@ namespace Mover.Core.Dto.Carts
 		public int ProductId { get; set; }
 
 		public string? ProductName { get; set; }
+		public string? GuestId { get; set; }
 
 		public int Quantity { get; set; }
-		public int CreatedBy { get; set; }
+		public int? CreatedBy { get; set; }
 		public decimal? ProductPrice { get; set; }
 		public decimal TotalPrice { get; set; }
 		public decimal? DiscountPercentage { get; set; }
@@ -28,6 +29,7 @@ namespace Mover.Core.Dto.Carts
 	public class ShippingDto
     {
         public string? CreaterName { get; set; }
+        public string? PhoneNumber { get; set; }
         public string? ShippingAddressLine { get; set; }
 
         public string? ShippingCity { get; set; }

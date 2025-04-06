@@ -12,10 +12,10 @@ namespace Mover.Core.Services.Interfaces
 {
     public interface ICartService
     {
-        Task<List<CartDto>> GetAllCarts(int userId);
+        Task<List<CartDto>> GetAllCarts(int? userId,string? guestId);
         Task Save(CartDto model);
         Task IncreaseCount(int cartId);
         Task DecreaseCount(int cartId);
-        Task<SummaryDto> GetSummary(UserSessionDto currentUser);
+        Task<SummaryDto> GetSummary(UserSessionDto? currentUser,string? guestId);
     }
 }

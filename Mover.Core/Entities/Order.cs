@@ -25,6 +25,12 @@ public partial class Order
 
     public string? ShippingZipCode { get; set; }
 
+    public string? GuestId { get; set; }
+
+    public string? GuestEmail { get; set; }
+
+    public string? PhoneNumber { get; set; }
+
     public virtual ICollection<OrderItem> OrderItems { get; set; } = new List<OrderItem>();
 
     public virtual UserDetail? User { get; set; }

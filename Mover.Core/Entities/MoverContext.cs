@@ -141,7 +141,7 @@ public partial class MoverContext : DbContext
             entity.HasIndex(e => e.Name, "UQ__Category__737584F674E51C24").IsUnique();
 
             entity.Property(e => e.CreatedOn).HasDefaultValueSql("(getdate())");
-            entity.Property(e => e.ImageUrl).HasMaxLength(1);
+            entity.Property(e => e.ImageUrl).HasMaxLength(4000);
             entity.Property(e => e.Name)
                 .HasMaxLength(100)
                 .IsUnicode(false);
@@ -182,6 +182,9 @@ public partial class MoverContext : DbContext
             entity.Property(e => e.PaymentStatus)
                 .HasMaxLength(50)
                 .HasDefaultValue("Pending");
+            entity.Property(e => e.PhoneNumber)
+                .HasMaxLength(15)
+                .IsUnicode(false);
             entity.Property(e => e.ShippingAddressLine).HasMaxLength(255);
             entity.Property(e => e.ShippingCity).HasMaxLength(255);
             entity.Property(e => e.ShippingState).HasMaxLength(255);
@@ -306,6 +309,7 @@ public partial class MoverContext : DbContext
 
             entity.HasOne(d => d.User).WithMany(p => p.ShoppingCarts)
                 .HasForeignKey(d => d.UserId)
+                .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("FK_ShoppingCart_UserDetail");
         });
 

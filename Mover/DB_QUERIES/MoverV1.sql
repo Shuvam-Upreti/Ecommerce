@@ -248,3 +248,21 @@ ON DELETE CASCADE;
 
 
 ALTER TABLE Category ALTER COLUMN ImageUrl NVARCHAR(4000);
+
+
+--For Guest login
+alter table Orders
+add GuestId nvarchar(max);
+
+alter table Orders
+add GuestEmail nvarchar(max);
+
+alter table ShoppingCart
+add GuestId nvarchar(max);
+
+ALTER TABLE [EcommerceDb].[dbo].[ShoppingCart]
+ALTER COLUMN [UserID] INT NULL;
+
+
+  alter table Orders
+  add PhoneNumber varchar(15) null;

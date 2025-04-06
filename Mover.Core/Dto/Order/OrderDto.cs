@@ -11,6 +11,8 @@ namespace Mover.Core.Dto.Order
         public int OrderId { get; set; }
 
         public int? UserId { get; set; }
+        public string? GuestId { get; set; }
+        public string? GuestEmail { get; set; }
 
         public DateTime? OrderDate { get; set; }
 

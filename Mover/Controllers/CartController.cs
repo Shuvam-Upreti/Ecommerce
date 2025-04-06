@@ -11,21 +11,22 @@ using Mover.ViewModel.Carts;
 
 namespace Mover.Controllers
 {
-    [Authorize]
+
     public class CartController : Controller
     {
         private readonly ICartService _cartService;
-
-        public CartController(ICartService cartService)
+        private readonly GetGuestIdOrSessionUser _userHelper;
+        public CartController(ICartService cartService, GetGuestIdOrSessionUser userHelper)
         {
             _cartService = cartService;
+            _userHelper=userHelper;
         }
         public async Task<IActionResult> Index()
         {
             try
             {
-                var currentUserId = SessionInfo.GetCurrentUser().Id;
-                var carts = await _cartService.GetAllCarts(currentUserId);
+                var (guestId, currentUser) = await _userHelper.GetGuestIdOrSessionUserId();
+                var carts = await _cartService.GetAllCarts(currentUser?.Id, guestId);
                 ViewBag.TotalPrice = carts?.FirstOrDefault()?.TotalPrice ?? 0;
 
                 var vm = carts?.Select(a => new CartViewModel
@@ -94,14 +95,16 @@ namespace Mover.Controllers
         {
             try
             {
-                var currentUser = SessionInfo.GetCurrentUser();
-                var summary = await _cartService.GetSummary(currentUser);
+                var (guestId, currentUser) = await _userHelper.GetGuestIdOrSessionUserId();
+
+                var summary = await _cartService.GetSummary(currentUser, guestId);
 
                 var vm = new SummaryViewModel
                 {
                     ShippingDetails = summary.ShippingDetails == null ? null : new ShippingViewModel
                     {
                         CreaterName = summary.ShippingDetails.CreaterName,
+                        PhoneNumber = summary.ShippingDetails.PhoneNumber,
                         ShippingAddressLine = summary.ShippingDetails.ShippingAddressLine,
                         ShippingCity = summary.ShippingDetails.ShippingCity,
                         ShippingState = summary.ShippingDetails.ShippingState,

@@ -30,6 +30,8 @@ namespace Mover.ViewModel.Carts
     public class ShippingViewModel
     {
         public string? CreaterName { get; set; }
+        public string? GuestEmail { get; set; }
+        public string? PhoneNumber { get; set; }
         public string? ShippingAddressLine { get; set; }
 
         public string? ShippingCity { get; set; }

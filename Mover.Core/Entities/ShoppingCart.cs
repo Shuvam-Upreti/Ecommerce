@@ -7,7 +7,7 @@ public partial class ShoppingCart
 {
     public int CartId { get; set; }
 
-    public int UserId { get; set; }
+    public int? UserId { get; set; }
 
     public int ProductId { get; set; }
 
@@ -15,7 +15,9 @@ public partial class ShoppingCart
 
     public DateTime AddedAt { get; set; }
 
+    public string? GuestId { get; set; }
+
     public virtual Product Product { get; set; } = null!;
 
-    public virtual UserDetail User { get; set; } = null!;
+    public virtual UserDetail? User { get; set; }
 }

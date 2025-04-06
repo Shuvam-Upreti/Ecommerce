@@ -72,7 +72,7 @@
                     {
                         <div class="dropdown d-inline-block">
                             <a href="#" class="login-btn btn-login dropdown-toggle" id="userDropdown" role="button" data-bs-toggle="dropdown">
-                                <i class="fas fa-user-circle fa-lg"></i> @User.Identity.Name
+                                <i class="fas fa-user-circle fa-lg"></i> @currentUser.FullName
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
                                 <li><a class="dropdown-item" href="/Account/Profile"><i class="fas fa-user"></i> My Profile</a></li>
@@ -128,12 +128,12 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/cart/index">CARTS</a>
                     </li>
-                    @if (User.Identity.IsAuthenticated)
-                    {
+@*                     @if (User.Identity.IsAuthenticated)
+                    { *@
                         <li class="nav-item">
                             <a class="nav-link" href="/admin/order/index">ORDER</a>
                         </li>
-                    }
+                    @* } *@
                     <li class="nav-item">
                         <a class="nav-link" href="/home/about">ABOUT</a>
                     </li>

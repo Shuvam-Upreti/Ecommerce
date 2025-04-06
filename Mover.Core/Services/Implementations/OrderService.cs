@@ -31,13 +31,21 @@ namespace Mover.Core.Services.Implementations
             _cartRepository = cartRepository;
         }
 
-        public async Task<List<OrderDto>> GetAllOrders(UserSessionDto currentUser)
+        public async Task<List<OrderDto>> GetAllOrders(UserSessionDto currentUser, string? guestId)
         {
             var orders = _orderRepository.GetQueryable();
-            if (currentUser.Role != RolesEnum.Admin.ToString())
+            if (currentUser==null&&guestId is not null)
             {
-                orders = orders.Where(a => a.UserId == currentUser.Id);
+                orders = orders.Where(a => a.GuestId == guestId);
+            }
+            else
+            {
 
+                if (currentUser.Role != RolesEnum.Admin.ToString())
+                {
+                    orders = orders.Where(a => a.UserId == currentUser.Id);
+
+                }
             }
             orders = orders.OrderByDescending(a => a.OrderDate);
             var dto = orders.Select(a => new OrderDto()
@@ -59,7 +67,7 @@ namespace Mover.Core.Services.Implementations
             }).ToList();
             return dto;
         }
-        public async Task<(List<OrderDto>, int TotalCount)> GetAllOrdersForGrid(FilterDto filter, UserSessionDto currentUser, string? orderStatus)
+        public async Task<(List<OrderDto>, int TotalCount)> GetAllOrdersForGrid(FilterDto filter, UserSessionDto currentUser, string? orderStatus, string? guestId)
         {
             var orders = _orderRepository.GetQueryable();
             if (orderStatus is not null)
@@ -67,11 +75,22 @@ namespace Mover.Core.Services.Implementations
                 orders=orders.Where(a => a.OrderStatus==orderStatus);
 
             }
-            if (currentUser.Role != RolesEnum.Admin.ToString())
-            {
-                orders = orders.Where(a => a.UserId == currentUser.Id);
 
+            if (currentUser==null&&guestId is not null)
+            {
+                orders = orders.Where(a => a.GuestId == guestId);
             }
+            else
+            {
+
+                if (currentUser.Role != RolesEnum.Admin.ToString())
+                {
+                    orders = orders.Where(a => a.UserId == currentUser.Id);
+
+                }
+            }
+
+
             orders = orders.OrderByDescending(a => a.OrderDate);
             int totalCount = await orders.CountAsync();
             var pagedData = orders.Skip(filter.PageIndex).Take(filter.PageSize);
@@ -93,6 +112,9 @@ namespace Mover.Core.Services.Implementations
             var entity = new Order
             {
                 UserId = model.UserId,
+                GuestId = model.GuestId,
+                PhoneNumber = model.PhoneNumber,
+                GuestEmail = model.GuestEmail,
                 OrderDate = model.OrderDate,
                 ShippingAddressLine = model.ShippingAddressLine,
                 ShippingCity = model.ShippingCity,
@@ -109,7 +131,7 @@ namespace Mover.Core.Services.Implementations
             };
 
             await _orderRepository.InsertAsync(entity);
-            var carts = await _cartRepository.GetQueryable().Where(a => a.UserId == model.UserId).ToListAsync();
+            var carts = await _cartRepository.GetQueryable().Where(a => a.UserId == model.UserId|| a.GuestId == model.GuestId).ToListAsync();
             _cartRepository.DeleteRange(carts);
             tx.Complete();
 

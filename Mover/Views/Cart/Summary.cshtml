@@ -244,7 +244,7 @@
                                     @Model.ShippingDetails.ShippingAddressLine<br>
                                     @Model.ShippingDetails.ShippingCity, @Model.ShippingDetails.ShippingState @Model.ShippingDetails.ShippingZipCode
                                 </p>
-
+                                <span class="address-phone"> @Model.ShippingDetails.PhoneNumber</span>
                             </div>
 
                         }
@@ -257,7 +257,17 @@
                             <label class="form-label">Name</label>
                             <input type="text" name="ShippingDetails.CreaterName" class="form-control" placeholder="Enter Name">
                         </div>
-
+                        <div class="form-group">
+                            <label class="form-label">Phone Number</label>
+                            <input type="text" name="ShippingDetails.PhoneNumber" class="form-control" placeholder="Enter Number" required>
+                        </div>
+                        @if (!User.Identity.IsAuthenticated)
+                        {
+                            <div class="form-group">
+                                <label class="form-label">Name</label>
+                                <input type="text" name="ShippingDetails.GuestEmail" class="form-control" placeholder="Enter Email" required>
+                            </div>
+                        }
                         <div class="form-group">
                             <label class="form-label">Address Line</label>
                             <input type="text" name="ShippingDetails.ShippingAddressLine" class="form-control" placeholder="Flat, House no., Building, Company, Apartment">
@@ -348,6 +358,7 @@
             // Create new address card from form data
             const form = document.querySelector('.new-address-form');
             const name = form.querySelector('[name="ShippingDetails.CreaterName"]').value;
+            const phonenumber = form.querySelector('[name="ShippingDetails.PhoneNumber"]').value;
             const address = form.querySelector('[name="ShippingDetails.ShippingAddressLine"]').value;
             const city = form.querySelector('[name="ShippingDetails.ShippingCity"]').value;
             const state = form.querySelector('[name="ShippingDetails.ShippingState"]').value;
@@ -359,6 +370,7 @@
                     <input type="radio" name="selectedAddress" class="address-radio" value="new">
                     <h3 class="address-name">${name}</h3>
                     <p class="address-details">${address}<br>${city}, ${state} ${zip}</p>
+                     <span class="address-phone" style="display:none;">${phonenumber}</span>
                     <div class="card-actions">
                         <a href="#" class="action-btn">
                             <i class="bi bi-pencil"></i> Edit
@@ -421,18 +433,19 @@
                     // Extract details from the selected card
                     const name = selectedCard.querySelector(".address-name")?.textContent.trim() || "";
                     const addressDetails = selectedCard.querySelector(".address-details")?.innerHTML.trim().split("<br>") || ["", ""];
-
+                  
                     const shippingAddress = addressDetails[0]?.trim() || "";
                     const cityStateZip = addressDetails[1]?.trim() || "";
                     const [city, stateZip] = cityStateZip.split(",");
                     const [state, zip] = stateZip ? stateZip.trim().split(" ") : ["", ""];
-
+                     const phone = selectedCard.querySelector(".address-phone")?.textContent.trim() || "";
                     // Update hidden fields for form submission
                     document.querySelector("input[name='ShippingDetails.CreaterName']").value = name;
                     document.querySelector("input[name='ShippingDetails.ShippingAddressLine']").value = shippingAddress;
                     document.querySelector("input[name='ShippingDetails.ShippingCity']").value = city?.trim();
                     document.querySelector("input[name='ShippingDetails.ShippingState']").value = state?.trim();
                     document.querySelector("input[name='ShippingDetails.ShippingZipCode']").value = zip?.trim();
+                    document.querySelector("input[name='ShippingDetails.PhoneNumber']").value = phone;
                 }
             }
 

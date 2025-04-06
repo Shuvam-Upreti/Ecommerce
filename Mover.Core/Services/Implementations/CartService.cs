@@ -26,9 +26,21 @@ namespace Mover.Core.Services.Implementations
             _cartRepository = cartRepository;
         }
 
-        public async Task<List<CartDto>> GetAllCarts(int userId)
+        public async Task<List<CartDto>> GetAllCarts(int? userId, string? guestId)
         {
-            var carts = await _cartRepository.GetQueryable().Where(a => a.UserId == userId).ToListAsync();
+            var cartsQuery = _cartRepository.GetQueryable();
+
+            if (userId.HasValue)
+            {
+                cartsQuery = cartsQuery.Where(a => a.UserId == userId);
+            }
+            else if (!string.IsNullOrEmpty(guestId))
+            {
+                cartsQuery = cartsQuery.Where(a => a.GuestId == guestId);
+            }
+
+            var carts = await cartsQuery.ToListAsync();
+
             decimal totalPrice = carts.Sum(a => a.Quantity * (a.Product.DiscountedPrice ?? 0));
             var dto = carts.Select(a => new CartDto()
             {
@@ -80,6 +92,7 @@ namespace Mover.Core.Services.Implementations
                 ProductId = model.ProductId,
                 Quantity = model.Quantity,
                 UserId = model.CreatedBy,
+                GuestId = model.GuestId,
                 AddedAt = DateTime.Now
             };
 
@@ -97,21 +110,34 @@ namespace Mover.Core.Services.Implementations
                 .FirstOrDefaultAsync()
                 ?? throw new CustomException($"No cart found with ID {cartId}.");
         }
-        public async Task<SummaryDto> GetSummary(UserSessionDto currentUser)
+        public async Task<SummaryDto> GetSummary(UserSessionDto? currentUser, string? guestId)
         {
-            var summary = await _cartRepository.GetQueryable().Where(a => a.UserId == currentUser.Id).ToListAsync();
-            var firstCart= summary.FirstOrDefault();
+            //var summary = await _cartRepository.GetQueryable().Where(a => a.UserId == currentUser.Id).ToListAsync();
+            var summary = _cartRepository.GetQueryable();
+
+            if (currentUser is not null)
+            {
+                summary = summary.Where(a => a.UserId == currentUser.Id);
+            }
+            else if (!string.IsNullOrEmpty(guestId))
+            {
+                summary = summary.Where(a => a.GuestId == guestId);
+            }
+            var carts = await summary.ToListAsync();
+
+            var firstCart = summary.FirstOrDefault();
             var dto = new SummaryDto()
             {
                 ShippingDetails = firstCart == null
             ? null
             : new ShippingDto
             {
-                CreaterName = firstCart.User.FullName,
-                ShippingAddressLine = firstCart.User.Addresses?.FirstOrDefault()?.AddressLine, 
-                ShippingCity = firstCart.User.Addresses?.FirstOrDefault()?.City, 
-                ShippingState = firstCart.User.Addresses?.FirstOrDefault()?.State,
-                ShippingZipCode = firstCart.User.Addresses?.FirstOrDefault()?.ZipCode 
+                CreaterName = firstCart?.User?.FullName??"Guest",
+                PhoneNumber=firstCart?.User?.AspUser?.PhoneNumber,
+                ShippingAddressLine = firstCart?.User?.Addresses?.FirstOrDefault()?.AddressLine,
+                ShippingCity = firstCart?.User?.Addresses?.FirstOrDefault()?.City,
+                ShippingState = firstCart?.User?.Addresses?.FirstOrDefault()?.State,
+                ShippingZipCode = firstCart?.User?.Addresses?.FirstOrDefault()?.ZipCode
             },
                 CartDto = summary.Select(a => new CartDto
                 {
