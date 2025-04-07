@@ -145,6 +145,7 @@ namespace Mover.Areas.Admin.Controllers
                     ShippingZipCode = model.ShippingDetails.ShippingZipCode,
                     TotalAmount = model.SummaryTotalPrice,
                     ShippingState = model.ShippingDetails.ShippingState,
+                    CreatedBy=model.ShippingDetails.CreaterName,
                     OrderItemsDto = model.CartViewModel.Select(a => new OrderItemDto
                     {
                         ProductId = a.ProductId,

@@ -51,7 +51,7 @@ namespace Mover.Core.Services.Implementations
             var dto = orders.Select(a => new OrderDto()
             {
                 OrderId = a.OrderId,
-                CreatedBy = a.User.FullName,
+                CreatedBy = a.User.FullName??a.CreaterName,
                 PhoneNumber = a.User.AspUser.PhoneNumber,
                 TotalAmount = a.TotalAmount,
                 OrderDate = a.OrderDate,
@@ -97,7 +97,7 @@ namespace Mover.Core.Services.Implementations
             var dto = pagedData.Select(a => new OrderDto()
             {
                 OrderId = a.OrderId,
-                CreatedBy = a.User.FullName,
+                CreatedBy = a.User.FullName??a.CreaterName,
                 PhoneNumber = a.User.AspUser.PhoneNumber,
                 TotalAmount = a.TotalAmount,
                 OrderDate = a.OrderDate,
@@ -121,6 +121,7 @@ namespace Mover.Core.Services.Implementations
                 ShippingZipCode = model.ShippingZipCode,
                 TotalAmount = model.TotalAmount,
                 ShippingState = model.ShippingState,
+                CreaterName = model.CreatedBy,
                 OrderItems = model.OrderItemsDto.Select(item => new OrderItem
                 {
                     ProductId = item.ProductId,
@@ -155,8 +156,8 @@ namespace Mover.Core.Services.Implementations
             var dto = new OrderDto()
             {
                 OrderId = order.OrderId,
-                CreatedBy = order.User?.FullName,
-                PhoneNumber = order.User?.AspUser.PhoneNumber,
+                CreatedBy = order.User?.FullName??order.CreaterName,
+                PhoneNumber = order.User?.AspUser.PhoneNumber ?? order.PhoneNumber,
                 TotalAmount = order.TotalAmount,
                 OrderDate = order.OrderDate,
                 OrderStatus = order.OrderStatus,

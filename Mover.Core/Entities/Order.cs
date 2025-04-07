@@ -31,6 +31,8 @@ public partial class Order
 
     public string? PhoneNumber { get; set; }
 
+    public string? CreaterName { get; set; }
+
     public virtual ICollection<OrderItem> OrderItems { get; set; } = new List<OrderItem>();
 
     public virtual UserDetail? User { get; set; }

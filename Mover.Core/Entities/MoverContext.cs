@@ -173,6 +173,7 @@ public partial class MoverContext : DbContext
             entity.HasIndex(e => e.UserId, "IX_Orders_UserID");
 
             entity.Property(e => e.OrderId).HasColumnName("OrderID");
+            entity.Property(e => e.CreaterName).IsUnicode(false);
             entity.Property(e => e.OrderDate)
                 .HasDefaultValueSql("(getdate())")
                 .HasColumnType("datetime");

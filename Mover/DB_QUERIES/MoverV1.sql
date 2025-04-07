@@ -266,3 +266,6 @@ ALTER COLUMN [UserID] INT NULL;
 
   alter table Orders
   add PhoneNumber varchar(15) null;
+
+  alter table Orders 
+add CreaterName varchar(max) null;
