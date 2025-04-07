@@ -10,7 +10,7 @@
     <link href="~/css/site.css" rel="stylesheet" />
     <link href="~/css/main-login.css" rel="stylesheet" />
     <link rel="icon" href="~/image/logo.jpg" type="image/jpg">
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>    
     <style>
         @@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
@@ -152,7 +152,7 @@
             }
 
         .toggle-box {
-            position: absolute;
+            /* position: absolute; */
             width: 100%;
             height: 100%;
         }
@@ -225,8 +225,27 @@
 
         {
             height: calc(100vh - 40px);
+            margin-top:40px;
         }
 
+            .container {
+                flex-direction: column;
+                padding: 20px 10px;
+            }
+
+            .form-box {
+                max-width: 100%;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+
+            .nav-container {
+                position: static;
+                justify-content: center;
+                margin-bottom: 10px;
+            }
         .form-box {
             bottom: 0;
             width: 100%;
@@ -235,6 +254,7 @@
 
         .container.active .form-box {
             right: 0;
+            
             bottom: 30%;
         }
 
@@ -293,6 +313,8 @@
 
         .nav-login {
             position: absolute;
+align-items:center;
+justify-content: center;
             top: 10px; /* Distance from the top */
             font-size: large; /* Set the font size to large */
             font-weight: bold; /* Optional: Make the font bold */
@@ -312,9 +334,11 @@
     </style>
 </head>
 <body>
+    <div class=" nav-container">
     <a href="/home/index" class="nav-login">Home</a>
     <a href="/home/index" class="nav-login">About</a>
     <a href="/home/index" class="nav-login">Contact</a>
+</div>
     @*<div class="header clearfix1" id="header">
     <a href="@Xmart.Implementation.Helper.LinkUtils.AppName/">
     <img src="~/Content/@Xmart.Implementation.Models.Report.Common.BankInformation.Logo" class="logo" />
