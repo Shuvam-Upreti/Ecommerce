@@ -17,6 +17,8 @@
         * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
         }
 
         :root {
@@ -29,55 +31,55 @@
         }
 
         /* Header Styles */
-        .top-bar {
-            background-color: var(--orange-color);
-            padding: 10px 0;
-        }
+        /* .top-bar { */
+        /*     background-color: var(--orange-color); */
+        /*     padding: 10px 0; */
+        /* } */
 
-        .logo-img {
-            max-height: 40px;
-        }
+        /* .logo-img { */
+        /*     max-height: 40px; */
+        /* } */
         
         .owl-carousel .owl-item img{
             height:320px;
         }
-        .search-box {
-            position: relative;
-            max-width: 500px;
-            margin: 0 auto;
-        }
+        /* .search-box { */
+        /*     position: relative; */
+        /*     max-width: 500px; */
+        /*     margin: 0 auto; */
+        /* } */
 
-            .search-box input {
-                border-radius: 25px;
-                padding-right: 40px;
-                border: none;
-            }
+        /*     .search-box input { */
+        /*         border-radius: 25px; */
+        /*         padding-right: 40px; */
+        /*         border: none; */
+        /*     } */
 
-            .search-box .search-btn {
-                position: absolute;
-                right: 15px;
-                top: 50%;
-                transform: translateY(-50%);
-                background: none;
-                border: none;
-                color: #666;
-            }
+        /*     .search-box .search-btn { */
+        /*         position: absolute; */
+        /*         right: 15px; */
+        /*         top: 50%; */
+        /*         transform: translateY(-50%); */
+        /*         background: none; */
+        /*         border: none; */
+        /*         color: #666; */
+        /*     } */
 
-        .nav-link {
-            color: #333 !important;
-            font-weight: 500;
-            padding: 0.5rem 1rem !important;
-            font-size: 14px;
-        }
+        /* .nav-link { */
+        /*     color: #333 !important; */
+        /*     font-weight: 500; */
+        /*     /* padding: 0.5rem 1rem !important; */ */
+        /*     font-size: 14px; */
+        /* } */
 
-        .login-btn {
-            background-color: white;
-            color: var(--orange-color);
-            border-radius: 20px;
-            padding: 5px 20px;
-            font-weight: 600;
-            text-decoration: none;
-        }
+        /* .login-btn { */
+        /*     background-color: white; */
+        /*     color: var(--orange-color); */
+        /*     border-radius: 20px; */
+        /*     padding: 5px 20px; */
+        /*     font-weight: 600; */
+        /*     text-decoration: none; */
+        /* } */
 
         /* Main Banner */
         .main-banner {
@@ -246,8 +248,15 @@
         }
 
             .btn-all-products:hover {
-                background-color: #0bb89e !important;
+                background-color: #0096c7 !important; /* Darker teal on hover */
+                border-color: #0096c7;
             }
+
+        /* Hover effect for the button */
+        .product-content:hover .btn-cart {
+            background-color: #0096c7; /* Darker teal on hover */
+            border-color: #0096c7;
+        }
 
         /* Responsive Styles */
         @@media (max-width: 1200px) {
@@ -546,7 +555,7 @@
                             <div class="category-img-wrapper">
                                 <img src="~/@category.ImageUrl" alt="@category.Name">
                             </div>
-                            <a asp-area="admin" asp-controller="product" asp-action="viewproducts" asp-route-categoryId="@category.Id" class="category-button">
+                            <a style="text-decoration:none" asp-area="admin" asp-controller="product" asp-action="viewproducts" asp-route-categoryId="@category.Id" class="category-button">
                                 @category.Name
                             </a>
                         </div>
