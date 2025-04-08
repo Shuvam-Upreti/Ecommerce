@@ -16,7 +16,7 @@
 }
 
 .logo-img {
-    max-height: 40px;
+    max-height: 80px;
 }
 
 .search-box {
@@ -197,6 +197,9 @@ body {
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
+    .logo-img {
+        max-height: 55px!important;
+    }
     .footer-bottom {
         text-align: center;
     }
@@ -293,6 +296,10 @@ body {
 
     .brand-logo {
         max-height: 40px;
+    }
+
+    .logo-img {
+        max-height: 30px;
     }
 }
 
