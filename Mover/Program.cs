@@ -82,7 +82,12 @@ builder.Services.AddResponseCompression(options =>
     options.EnableForHttps = true;
     options.MimeTypes = ResponseCompressionDefaults.MimeTypes.Concat(new[] { "image/jpeg", "image/png", "image/jpg" });
 });
-builder.Services.AddSession();
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(SessionInfo.SessionTimeOutInMinutes);
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
 builder.Services.Configure<GzipCompressionProviderOptions>(options =>
 {
     options.Level = System.IO.Compression.CompressionLevel.Optimal;

@@ -22,7 +22,7 @@ namespace Mover.Core.Helpers
         }
         public bool IsImageValid(string file_name)
         {
-            var allowedExtensions = new[] { ".jpeg", ".png", ".jpg", ".gif" };
+            var allowedExtensions = new[] { ".jpeg", ".png", ".jpg", ".gif", ".webp" };
             var extension = Path.GetExtension(file_name).ToLower();
             if (!allowedExtensions.Contains(extension))
                 return false;
@@ -77,7 +77,8 @@ namespace Mover.Core.Helpers
         }
         public async Task DeleteImageAsync(string imageUrl,string imagePath)
         {
-            var filePath = Path.Combine(_hostingEnvironment.WebRootPath, imageUrl);
+            var relativeImagePath = imageUrl.TrimStart('/');
+            var filePath = Path.Combine(_hostingEnvironment.WebRootPath, relativeImagePath);
 
             // Check if the file exists
             if (File.Exists(filePath))

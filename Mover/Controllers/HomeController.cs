@@ -1,8 +1,10 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Mover.Areas.Admin.ViewModel.Product;
+using Mover.Core.Dto.Appsetting;
 using Mover.Core.Dto.Carts;
 using Mover.Core.Dto.Category;
+using Mover.Core.Enums.Appsetting;
 using Mover.Core.Exceptions;
 using Mover.Core.Services.Implementations;
 using Mover.Core.Services.Interfaces;
@@ -10,6 +12,7 @@ using Mover.Extension;
 using Mover.HttpUtility;
 using Mover.Logging;
 using Mover.Models;
+using Mover.ViewModel.Banner;
 using Mover.ViewModel.Carts;
 using System.Diagnostics;
 
@@ -22,14 +25,16 @@ namespace Mover.Controllers
         private readonly IProductService _productService;
         private readonly ICartService _cartService;
         private readonly ICategoryService _categoryService;
+        private readonly IAppsettingsService _appsettingService;
         private readonly GetGuestIdOrSessionUser _userHelper;
-        public HomeController(ILogger<HomeController> logger, IProductService productService, ICartService cartService, ICategoryService categoryService, GetGuestIdOrSessionUser userHelper)
+        public HomeController(ILogger<HomeController> logger, IProductService productService, ICartService cartService, ICategoryService categoryService, GetGuestIdOrSessionUser userHelper, IAppsettingsService appsettingService)
         {
             _logger = logger;
             _productService = productService;
             _cartService = cartService;
             _categoryService=categoryService;
             _userHelper=userHelper;
+            _appsettingService=appsettingService;
         }
 
         [HttpGet]
@@ -39,6 +44,9 @@ namespace Mover.Controllers
             {
                 var categories = await _categoryService.GetAllCategories();
                 ViewBag.Categories = categories;
+                var banner = await _appsettingService.GetAppsettingByKey(AppsettingEnum.BannerImage.ToString());
+                ViewBag.Banner = (banner != null && banner.Any())
+                         ? banner.Select(a => a.Value).ToList(): new List<string>();
                 var products = await _productService.GetAllProducts();
                 var vm = products.Select(a => new ProductViewModel
                 {
@@ -203,6 +211,38 @@ namespace Mover.Controllers
             {
 
                 return View();
+            }
+            catch (CustomException ex)
+            {
+                new SeriLogger().Error(ex.Message, ex);
+                this.NotifyError(ex.Message);
+                return RedirectToAction(nameof(Index));
+            }
+            catch (Exception ex)
+            {
+                new SeriLogger().Error(ex.Message, ex);
+                this.NotifyError("Something went wrong.Please try again");
+                return RedirectToAction(nameof(Index));
+            }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddBanner(BannerViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                this.NotifyModelStateErrors();
+                return View(model);
+            }
+            try
+            {
+                var dto = new BannerDto()
+                {
+                    ImageUrl = model.ImageUrl,
+                    Image=model.Image,
+                };
+                await _appsettingService.SaveBanner(dto);
+                return RedirectToAction(nameof(Index));
             }
             catch (CustomException ex)
             {

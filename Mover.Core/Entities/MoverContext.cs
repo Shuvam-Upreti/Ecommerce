@@ -13,6 +13,8 @@ public partial class MoverContext : DbContext
 
     public virtual DbSet<Address> Addresses { get; set; }
 
+    public virtual DbSet<Appsetting> Appsettings { get; set; }
+
     public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
 
     public virtual DbSet<AspNetRoleClaim> AspNetRoleClaims { get; set; }
@@ -64,6 +66,11 @@ public partial class MoverContext : DbContext
                 .HasForeignKey(d => d.UserId)
                 .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("FK_Address_UserDetail");
+        });
+
+        modelBuilder.Entity<Appsetting>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__Appsetti__3214EC0758C555B0");
         });
 
         modelBuilder.Entity<AspNetRole>(entity =>

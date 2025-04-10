@@ -269,3 +269,11 @@ ALTER COLUMN [UserID] INT NULL;
 
   alter table Orders 
 add CreaterName varchar(max) null;
+
+
+create table Appsettings
+(
+	Id int primary key identity(1,1),
+	[Key] nvarchar(max),
+	[Value] nvarchar(max)
+);

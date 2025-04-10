@@ -1,0 +1,207 @@
+﻿@using Mover.ViewModel.Banner
+@model List<BannerViewModel>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Banner Images";
+}
+
+<style>
+    .banner-container {
+        background: #f8f9fa;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+    }
+
+    .loHead {
+        font-size: 22px;
+        font-weight: bold;
+        color: #343a40;
+        border-bottom: 2px solid #007bff;
+        padding-bottom: 10px;
+        margin-bottom: 15px;
+    }
+
+    .banner-image {
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .delete-btn {
+        position: absolute;
+        top: 0;
+        right: 0;
+        margin: 10px;
+        z-index: 1;
+    }
+
+        /* Make the delete button look better in small screen sizes */
+        .delete-btn i {
+            font-size: 18px;
+        }
+
+    /* Responsive design for the banner images */
+    @@media (max-width: 768px) {
+        .banner-container {
+            padding: 15px;
+        }
+
+        .loHead {
+            font-size: 20px;
+        }
+
+        .banner-image {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .col-md-4 {
+            flex: 0 0 100%;
+            max-width: 100%;
+        }
+    }
+
+    @@media (max-width: 576px) {
+        .loHead {
+            font-size: 18px;
+        }
+
+        .col-md-4 {
+            flex: 0 0 100%;
+            max-width: 100%;
+        }
+    }
+</style>
+
+@Html.AntiForgeryToken()
+<div class="banner-container">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <div class="loHead">Banner Images</div>
+        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addBannerModal"> <i class="fa fa-plus"></i>Add Banner</button>
+    </div>
+
+    <div class="row">
+        @if (Model != null && Model.Any())
+        {
+            foreach (var banner in Model)
+            {
+                <div class="col-12 col-sm-6 col-md-4 mb-4 position-relative">
+                    <div class="image-container position-relative">
+                        <img src="@banner.ImageUrl" alt="Banner Image" class="banner-image w-100" />
+                        <button type="button" class="btn btn-danger btn-sm delete-btn position-absolute top-0 end-0" onclick="confirmDelete('@banner.Id', '@banner.ImageUrl')">
+                            <i class="fa fa-trash"></i>
+                        </button>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <div class="col-12">
+                <p>No banner images found.</p>
+            </div>
+        }
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="addBannerModal" tabindex="-1" aria-labelledby="addBannerModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form method="post" enctype="multipart/form-data" asp-action="AddOrUpdateBanner" asp-controller="Appsetting">
+
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addBannerModalLabel">Add New Banner</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="Image" class="form-label">Banner Image</label>
+                        <input type="file" class="form-control" name="Image" required />
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-success">Upload</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <script>
+        // Function to confirm and delete the banner using Swal
+        function confirmDelete(bannerId, imageUrl) {
+            // Show the SweetAlert confirmation dialog
+            Swal.fire({
+                title: 'Are you sure?',
+                text: 'You will not be able to recover this banner!',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // If confirmed, call the deleteBanner function to make the AJAX request
+                    deleteBanner(bannerId, imageUrl);
+                }
+            });
+        }
+
+        // Function to handle the banner deletion via AJAX
+        function deleteBanner(bannerId, imageUrl) {
+            // Block the UI with a loading spinner (if needed)
+            BlockWindow("Deleting banner...");
+
+            // Send the AJAX request to delete the banner
+            $.ajax({
+                url: '/Admin/Appsetting/DeleteBanner', // Replace with your correct endpoint
+                type: 'POST',
+                data: {
+                    id: bannerId,
+                    imageUrl: imageUrl
+                },
+                success: function(response) {
+                    // Unblock UI after deletion
+                    UnBlockWindow();
+
+                    if (response.success) {
+                        // If deletion is successful, show a success message and reload
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Deleted!',
+                            text: 'The banner has been deleted.',
+                            timer: 1500,
+                            showConfirmButton: false
+                        }).then(() => {
+                            location.reload(); // Reload to reflect changes
+                        });
+                    } else {
+                        // If there was an error, show a failure message
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'There was an error deleting the banner.',
+                        });
+                    }
+                },
+                error: function(xhr, status, error) {
+                    // Handle any unexpected error
+                    UnBlockWindow();
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: 'An error occurred: ' + error,
+                    });
+                }
+            });
+        }
+    </script>
+}
+

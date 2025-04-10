@@ -1,0 +1,128 @@
+﻿@{
+    ViewData["Title"] = "Admin Settings";
+}
+<style>
+    /* General Styles */
+    .card {
+        max-width: 400px; /* Increased card width */
+        margin: auto;
+        border-radius: 20px;
+        overflow: hidden;
+        transition: transform 0.3s ease-in-out;
+    }
+
+        .card:hover {
+            transform: translateY(-10px); /* Subtle hover effect */
+        }
+
+    .card-header {
+        background-color: #f8f9fa; /* Light background for header */
+        border-bottom: 2px solid #e1e1e1;
+    }
+
+    .card-body {
+        padding: 2rem;
+        text-align: center;
+    }
+
+    h4 {
+        color: #333;
+        font-size: 1.5rem;
+    }
+
+    .btn {
+        font-size: 1.1rem; /* Adjust button font size */
+        padding: 1rem;
+        border-radius: 10px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .btn-outline-primary {
+        border-color: #0eccb3;
+        color: #0eccb3;
+    }
+
+        .btn-outline-primary:hover {
+            background-color: #0eccb3;
+            color: white;
+        }
+
+    .btn-outline-secondary {
+        border-color: #777;
+        color: #777;
+    }
+
+        .btn-outline-secondary:hover {
+            background-color: #777;
+            color: white;
+        }
+
+    /* Responsive Styles */
+    @@media (max-width: 768px) {
+        .card {
+            width: 90%;
+            max-width: 500px; /* Increase card width slightly on mobile */
+        }
+
+        h4 {
+            font-size: 1.3rem;
+        }
+
+        .btn-lg {
+            font-size: 16px;
+            padding: 1rem;
+        }
+
+        .container {
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+    }
+
+    /* Additional responsiveness for smaller devices */
+    @@media (max-width: 576px) {
+        h1 {
+            font-size: 1.8rem; /* Smaller font size for header */
+        }
+
+        .btn-lg {
+            font-size: 14px;
+            padding: 0.8rem;
+        }
+
+        .card {
+            width: 95%;
+            max-width: 100%;
+        }
+
+        .card-body {
+            padding: 1.5rem;
+        }
+    }
+
+    /* For large screen devices (desktop) */
+    @@media (min-width: 1200px) {
+        .card {
+            width: 450px;
+        }
+    }
+</style>
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <!-- Card for Settings -->
+        <div class="col-md-6 col-lg-4">
+            <div class="card shadow-lg border-light rounded" style="max-width: 100%; border-radius: 15px;">
+                <div class="card-header text-center">
+                    <h4 class="mb-0" style="border-bottom: 3px solid #0eccb3; padding-bottom: 10px; font-size: 1.5rem;">Settings</h4>
+                </div>
+                <div class="card-body">
+                    <p class="text-center mb-4" style="font-size: 1.1rem; color: #555;">Manage your application settings, including banners and more.</p>
+                    <a href="@Url.Action("Banner", "AppSetting")" class="btn btn-outline-primary btn-lg btn-block mb-3">Banner Settings</a>
+                    <a href="@Url.Action("AboutSettings", "AppSetting")" class="btn btn-outline-secondary btn-lg btn-block">About Settings</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
