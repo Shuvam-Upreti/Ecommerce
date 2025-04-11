@@ -12,7 +12,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <!-- Replace with toastr CDN -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" />
     <style>
         * {
@@ -31,55 +30,6 @@
             --card-shadow: rgba(0, 0, 0, 0.1);
         }
 
-        /* Header Styles */
-        /* .top-bar { */
-        /*     background-color: var(--orange-color); */
-        /*     padding: 10px 0; */
-        /* } */
-
-        /* .logo-img { */
-        /*     max-height: 40px; */
-        /* } */
-
-        .owl-carousel .owl-item img {
-            height: 320px;
-        }
-        /* .search-box { */
-        /*     position: relative; */
-        /*     max-width: 500px; */
-        /*     margin: 0 auto; */
-        /* } */
-
-        /*     .search-box input { */
-        /*         border-radius: 25px; */
-        /*         padding-right: 40px; */
-        /*         border: none; */
-        /*     } */
-
-        /*     .search-box .search-btn { */
-        /*         position: absolute; */
-        /*         right: 15px; */
-        /*         top: 50%; */
-        /*         transform: translateY(-50%); */
-        /*         background: none; */
-        /*         border: none; */
-        /*         color: #666; */
-        /*     } */
-
-        /* .nav-link { */
-        /*     color: #333 !important; */
-        /*     font-weight: 500; */
-        /*     /* padding: 0.5rem 1rem !important; */ */
-        /*     font-size: 14px; */
-        /* } */
-        /* .login-btn { */
-        /*     background-color: white; */
-        /*     color: var(--orange-color); */
-        /*     border-radius: 20px; */
-        /*     padding: 5px 20px; */
-        /*     font-weight: 600; */
-        /*     text-decoration: none; */
-        /* } */
         /* Main Banner */
         .main-banner {
             position: relative;
@@ -92,7 +42,6 @@
         }
 
         .main-banner .item {
-            /* height: 82vh; */
             width: 100%;
             display: flex;
             align-items: center;
@@ -101,20 +50,19 @@
             padding: 0;
         }
 
-            .main-banner .item img {
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-                object-position: center;
-                display: block;
-                margin: 0;
-                padding: 0;
-            }
+        .main-banner .item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            display: block;
+            margin: 0;
+            padding: 0;
+        }
 
         .category-card {
             height: 370px;
             margin-left: 90px;
-            /* overflow:hidden; */
         }
 
         /* Brand Section */
@@ -140,9 +88,9 @@
             transition: transform 0.3s ease;
         }
 
-            .brand-card:hover {
-                transform: translateY(-5px);
-            }
+        .brand-card:hover {
+            transform: translateY(-5px);
+        }
 
         .brand-logo {
             max-width: 100%;
@@ -246,14 +194,13 @@
             transition: background 0.3s ease;
         }
 
-            .btn-all-products:hover {
-                background-color: #0096c7 !important; /* Darker teal on hover */
-                border-color: #0096c7;
-            }
+        .btn-all-products:hover {
+            background-color: #0096c7 !important;
+            border-color: #0096c7;
+        }
 
-        /* Hover effect for the button */
         .product-content:hover .btn-cart {
-            background-color: #0096c7; /* Darker teal on hover */
+            background-color: #0096c7;
             border-color: #0096c7;
         }
 
@@ -273,8 +220,6 @@
             .main-banner {
                 height: 70vh;
             }
-
-
 
             .brand-card {
                 min-height: 100px;
@@ -307,9 +252,9 @@
                 height: 60vh;
             }
 
-                .main-banner .item {
-                    height: 60vh;
-                }
+            .main-banner .item {
+                height: 60vh;
+            }
 
             .brand-card {
                 min-height: 90px;
@@ -351,19 +296,10 @@
             }
         }
 
-        @@media (max-width: 768px) {
-            /*     .main-banner */
-            /* { */
-            /*     height: 50vh; */
-            /* } */
-
+        @@media (max-width: 576px) {
             .main-banner .item img {
-                /* height: 350px !important; */
-                /* width:fit-content; */
-                /* height: fit-content !important; */
                 object-fit: inherit;
             }
-
 
             .brand-card {
                 min-height: 80px;
@@ -415,55 +351,26 @@
             }
         }
 
-        /* Container Fixes */
-        .container {
-            width: 100%;
-            max-width: 100%;
-            padding-right: 15px;
-            padding-left: 15px;
-            margin-right: auto;
-            margin-left: auto;
-        }
-
-        .row {
-            margin-right: -15px;
-            margin-left: -15px;
-            display: flex;
-            flex-wrap: wrap;
-        }
-
-        .col-6, .col-md-3 {
-            padding-right: 15px;
-            padding-left: 15px;
-        }
-
-        /* .col-12 { */
-        /*     display: flex; */
-        /*     justify-content: center; */
-        /*     align-items: center; */
-        /* } */
-
         .stats-item {
             flex-direction: column;
             align-items: center;
         }
 
         .stats-circle {
-            font-size: 2rem; /* Adjusting icon size for mobile */
+            font-size: 2rem;
         }
 
         .stats-number {
-            font-size: 1.2rem; /* Adjusting text size for mobile */
+            font-size: 1.2rem;
         }
 
         .stats-label {
-            font-size: 0.9rem; /* Smaller font for labels on mobile */
+            font-size: 0.9rem;
         }
 
         .cta-btn {
             margin: 40px 0;
         }
-
     </style>
 </head>
 

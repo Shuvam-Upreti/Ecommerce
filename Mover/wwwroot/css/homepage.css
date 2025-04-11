@@ -16,10 +16,13 @@
 .top-bar {
     background-color: var(--orange-color);
     padding: 10px 0;
+    display: flex !important;
+   
 }
 
 .logo-img {
     max-height: 80px;
+   
 }
 
 .search-box {
