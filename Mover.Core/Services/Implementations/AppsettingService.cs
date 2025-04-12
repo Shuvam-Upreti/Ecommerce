@@ -41,7 +41,26 @@ namespace Mover.Core.Services.Implementations
             {
                 Id=a.Id,
                 Key = a.Key,
-                Value = a.Value
+                Value = a.Value,
+                Page= a.Page
+            }).ToList();
+
+            return dto;
+        } 
+        public async Task<List<AppsettingDto>> GetAppsettingByPage(string page)
+        {
+            var appsetting = await _appsettingsRepository.GetQueryable().Where(x => x.Page == page).ToListAsync();
+            if (appsetting == null)
+            {
+                throw new CustomException("Appsetting not found");
+            }
+
+            var dto = appsetting.Select(a => new AppsettingDto()
+            {
+                Id=a.Id,
+                Key = a.Key,
+                Value = a.Value,
+                Page=a.Page
             }).ToList();
 
             return dto;
@@ -55,7 +74,8 @@ namespace Mover.Core.Services.Implementations
                 var model = new Appsetting()
                 {
                     Key = dto.Key,
-                    Value = dto.Value
+                    Value = dto.Value,
+                    Page = dto.Page
                 };
                 await _appsettingsRepository.InsertAsync(model);
             }
@@ -64,6 +84,7 @@ namespace Mover.Core.Services.Implementations
 
                 appsetting.Key = dto.Key;
                 appsetting.Value = dto.Value;
+                appsetting.Page = AppsettingEnum.BannerImage.ToString();
                 _appsettingsRepository.Update(appsetting);
             }
             tx.Complete();

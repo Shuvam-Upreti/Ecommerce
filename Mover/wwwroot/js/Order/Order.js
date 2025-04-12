@@ -110,7 +110,7 @@ function OrderGrid(onLoadElement, exportFileName, orderStatus) {
             onOptionChanged: function (e) {
                 if (e.fullName === "paging.pageIndex") {
                     pageIndex = e.value;
-                    OrderDataSorce();
+                    OrderDataSorce(orderStatus);
                 }
             },
             onSelectionChanged: function (selectedItems) {
@@ -144,18 +144,26 @@ function OrderGrid(onLoadElement, exportFileName, orderStatus) {
 //}
 function orderActionButtons(dataObj) {
     var html = '';
-    if (dataObj.currentUserRole == "Admin") {
-        var EditDetailUrl = "/admin/order/editorderstatus?id=" + dataObj.orderId;
-        // Edit button using FontAwesome
-        html += '<a href="' + EditDetailUrl + '" class="nochangeonhover" data-bs-toggle="tooltip" title="Edit Order">';
-        html += '<i class="fas fa-edit"></i></a>';
-        html += ' |&nbsp;';
+    //if (dataObj.currentUserRole == "Admin") {
+    //    var EditDetailUrl = "/admin/order/editorderstatus?id=" + dataObj.orderId;
+    //    // Edit button using FontAwesome
+    //    html += '<a href="' + EditDetailUrl + '" class="nochangeonhover" data-bs-toggle="tooltip" title="Edit Order">';
+    //    html += '<i class="fas fa-edit"></i></a>';
+    //    html += ' |&nbsp;';
+    //}
+        if (dataObj.currentUserRole == "Admin") {
+            var EditDetailUrl = "/admin/order/editorderstatus?id=" + dataObj.orderId;
+
+            html += '<a href="#" class="open-edit-modal nochangeonhover" data-bs-toggle="tooltip"';
+            html += ' data-url="' + EditDetailUrl + '" title="Edit Order">';
+            html += '<i class="fas fa-edit"></i></a> |&nbsp;';
     }
 
     var viewUrl = "/admin/order/details/" + dataObj.orderId;
     // View details button using FontAwesome
     html += '<a href="' + viewUrl + '" class="nochangeonhover" data-bs-toggle="tooltip" title="View Detail">';
     html += '<i class="fas fa-eye"></i></a>';
+
 
     if (dataObj.orderStatus == "Pending") {
         html += ' |&nbsp;';
@@ -168,6 +176,13 @@ function orderActionButtons(dataObj) {
 }
 
 
+$(document).on('click', '.open-edit-modal', function (e) {
+    e.preventDefault(); // <-- THIS is important
+    var url = $(this).data('url');
+    $('#editOrderStatusModal .modal-content').load(url, function () {
+        $('#editOrderStatusModal').modal('show');
+    });
+});
 
 
 

@@ -95,6 +95,7 @@ namespace Mover.Areas.Admin.Controllers
                 {
                     Id = dto.Id,
                     Key = AppsettingEnum.BannerImage.ToString(),
+                    Page = AppsettingEnum.BannerImage.ToString(),
                     Value = imageUrl
                 };
 

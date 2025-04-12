@@ -1,4 +1,7 @@
-﻿namespace Mover.Middleware
+﻿using Mover.HttpUtility;
+using System.Security.Claims;
+
+namespace Mover.Middleware
 {
     public class GuestIdMiddleware
     {
@@ -21,6 +24,13 @@
                     Secure = true,
                     SameSite = SameSiteMode.Strict
                 });
+            }
+            var currentUser = SessionInfo.GetCurrentUser();
+            if (currentUser == null && context.User.Identity?.IsAuthenticated == true)
+            {
+               
+                var anonymousIdentity = new ClaimsIdentity(); 
+                context.User = new ClaimsPrincipal(anonymousIdentity);
             }
 
             await _next(context);

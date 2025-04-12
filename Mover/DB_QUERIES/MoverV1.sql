@@ -277,3 +277,17 @@ create table Appsettings
 	[Key] nvarchar(max),
 	[Value] nvarchar(max)
 );
+
+alter table Appsettings
+  add [Page] nvarchar(max);
+
+
+INSERT INTO AppSettings ([Key], [Value], [Page]) VALUES
+('AboutUs', 'Innovating for a better tomorrow with cutting-edge solutions', 'AboutUsPage'),
+('HappyClients', '150+', 'AboutUsPage'),
+('ProductCount', '10+', 'AboutUsPage'),
+('DiscountPercentage', '10%', 'AboutUsPage'),
+('SupportAvailability', '24/7', 'AboutUsPage'),
+('CoreValueInnovation', 'Constantly pushing boundaries to create cutting-edge solutions that transform lives.', 'AboutUsPage'),
+('CoreValueQuality', 'Maintaining the highest standards in every product and service we deliver.', 'AboutUsPage'),
+('CoreValueCare', 'Putting our customers'' well-being at the heart of everything we do.', 'AboutUsPage');

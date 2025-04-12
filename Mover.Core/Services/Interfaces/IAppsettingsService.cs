@@ -14,6 +14,7 @@ namespace Mover.Core.Services.Interfaces
     public interface IAppsettingsService
     {
         Task<List<AppsettingDto>> GetAppsettingByKey(string key);
+        Task<List<AppsettingDto>> GetAppsettingByPage(string page);
         Task SaveOrUpdate(AppsettingDto dto);
         Task SaveBanner(BannerDto dto);
         Task<bool> Delete(int id, string imageUrl);

@@ -8,6 +8,11 @@ namespace Mover.Core.Enums.Appsetting
 {
     public enum AppsettingEnum
     {
+        //page
+        AboutUsPage,
+
+
+        //content
         BannerImage,
         AboutUs,
         HappyClients,

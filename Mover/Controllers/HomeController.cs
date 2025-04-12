@@ -12,6 +12,7 @@ using Mover.Extension;
 using Mover.HttpUtility;
 using Mover.Logging;
 using Mover.Models;
+using Mover.ViewModel.Appsetting;
 using Mover.ViewModel.Banner;
 using Mover.ViewModel.Carts;
 using System.Diagnostics;
@@ -48,6 +49,10 @@ namespace Mover.Controllers
                 ViewBag.Banner = (banner != null && banner.Any())
                          ? banner.Select(a => a.Value).ToList(): new List<string>();
                 var products = await _productService.GetAllProducts();
+
+                var aboutUs = await _appsettingService.GetAppsettingByKey(AppsettingEnum.AboutUs.ToString());
+                ViewBag.AboutUs = aboutUs != null && aboutUs.Any() ? aboutUs.FirstOrDefault().Value : string.Empty;
+
                 var vm = products.Select(a => new ProductViewModel
                 {
                     ProductId = a.ProductId,
@@ -187,8 +192,9 @@ namespace Mover.Controllers
         {
             try
             {
-
-                return View();
+                var about = await _appsettingService.GetAppsettingByPage(AppsettingEnum.AboutUsPage.ToString());
+                var viewModel = await FilterByPage(about);
+                return View(viewModel);
             }
             catch (CustomException ex)
             {
@@ -202,6 +208,23 @@ namespace Mover.Controllers
                 this.NotifyError("Something went wrong.Please try again");
                 return RedirectToAction(nameof(Index));
             }
+        }
+        private async Task<AboutUsViewModel> FilterByPage(List<AppsettingDto> dto)
+        {
+            var aboutUsViewModel = new AboutUsViewModel();
+
+            // Filter and map the data from AppsettingDto to AboutUsViewModel using Enum values
+            aboutUsViewModel.Title = dto.FirstOrDefault(x => x.Key == AppsettingEnum.AboutUs.ToString())?.Value ?? string.Empty;
+            aboutUsViewModel.AboutUs = dto.FirstOrDefault(x => x.Key == AppsettingEnum.AboutUs.ToString())?.Value ?? string.Empty;
+            aboutUsViewModel.HappyClients = dto.FirstOrDefault(x => x.Key == AppsettingEnum.HappyClients.ToString())?.Value ?? string.Empty;
+            aboutUsViewModel.ProductCount = dto.FirstOrDefault(x => x.Key == AppsettingEnum.ProductCount.ToString())?.Value ?? string.Empty;
+            aboutUsViewModel.DiscountPercentage = dto.FirstOrDefault(x => x.Key == AppsettingEnum.DiscountPercentage.ToString())?.Value ?? string.Empty;
+            aboutUsViewModel.SupportAvailability = dto.FirstOrDefault(x => x.Key == AppsettingEnum.SupportAvailability.ToString())?.Value ?? string.Empty;
+            aboutUsViewModel.CoreValueInnovation = dto.FirstOrDefault(x => x.Key == AppsettingEnum.CoreValueInnovation.ToString())?.Value ?? string.Empty;
+            aboutUsViewModel.CoreValueQuality = dto.FirstOrDefault(x => x.Key == AppsettingEnum.CoreValueQuality.ToString())?.Value ?? string.Empty;
+            aboutUsViewModel.CoreValueCare = dto.FirstOrDefault(x => x.Key == AppsettingEnum.CoreValueCare.ToString())?.Value ?? string.Empty;
+
+            return aboutUsViewModel;
         }
 
         [HttpGet]

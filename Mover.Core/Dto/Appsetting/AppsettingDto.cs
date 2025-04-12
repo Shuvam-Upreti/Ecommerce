@@ -13,5 +13,6 @@ namespace Mover.Core.Dto.Appsetting
         public string? Key { get; set; }
 
         public string? Value { get; set; }
+        public string? Page { get; set; }
     }
 }
