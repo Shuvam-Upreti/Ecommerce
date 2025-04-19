@@ -322,20 +322,22 @@
                                         </div>
                                     </div>
                                 </td>
-                                <td data-label="Price">$@item.ProductPrice</td>
+                                <td data-label="Price">Rs.@item.ProductPrice</td>
                                 <td data-label="Quantity">
                                     <div class="quantity-control">
                                         <a asp-action="decrementitemcount" asp-route-id="@item.CartId" class="quantity-btn">-</a>
-                                        <input type="text" class="quantity-input" value="@item.Quantity" readonly>
+                                        <input type="text" class="quantity-input" value="@item.Quantity" >
                                         <a asp-action="incrementitemcount" asp-route-id="@item.CartId" class="quantity-btn">+</a>
                                     </div>
                                 </td>
-                                <td data-label="Subtotal">$@(item.ProductPrice * item.Quantity)</td>
+                                <td data-label="Subtotal">Rs.@(item.ProductPrice * item.Quantity)</td>
                                 <td>
                                     <a asp-action="remove" asp-route-cartId="@item.CartId" class="remove-btn">
-                                        <i class="bi bi-trash"></i>
+                                        <i class="fa fa-trash"></i>
                                     </a>
                                 </td>
+
+
                             </tr>
                         }
                     </tbody>
@@ -345,16 +347,16 @@
                 <div class="cart-summary">
                     <div class="summary-row">
                         <span class="summary-label"><b>Subtotal</b></span>
-                        <span class="summary-value">$@ViewBag.TotalPrice</span>
+                        <span class="summary-value">Rs.@ViewBag.TotalPrice</span>
                     </div>
                     <div class="summary-row">
                         <span class="summary-label">Delivery Charge</span>
-                        <span class="summary-value">$5.00</span>
+                        <span class="summary-value">Rs.5.00</span>
                     </div>
                     <div class="summary-divider"></div>
                     <div class="summary-row">
                         <span class="summary-label"><b>Grand Total</b></span>
-                        <span class="summary-value">$@(ViewBag.TotalPrice + 5)</span>
+                        <span class="summary-value">Rs.@(ViewBag.TotalPrice + 5)</span>
                     </div>
                     <a asp-action="Summary" class="checkout-btn mt-4">Proceed to Checkout</a>
                 </div>
