@@ -140,5 +140,109 @@ namespace Mover.Areas.Admin.Controllers
             }
         }
 
+        public async Task<IActionResult> BrandSettings()
+        {
+            try
+            {
+                var banner = await _appsettingService.GetAppsettingByKey(AppsettingEnum.BrandImage.ToString());
+                var vm = banner.Select(a => new BannerViewModel()
+                {
+                    Id = a.Id,
+                    ImageUrl = a.Value,
+
+                }).ToList();
+                return View(vm);
+
+            }
+            catch (CustomException ex)
+            {
+                new SeriLogger().Error(ex.Message, ex);
+                this.NotifyError(ex.Message);
+                return View();
+            }
+            catch (Exception ex)
+            {
+                new SeriLogger().Error(ex.Message, ex);
+                this.NotifyError("Something went wrong.Please try again");
+                return View();
+            }
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> AddOrUpdateBrandImage(BannerDto dto)
+        {
+            try
+            {
+                if (dto.Image == null || dto.Image.Length == 0)
+                {
+                    this.NotifyError("Please select an image to upload.");
+                    return RedirectToAction("Banner");
+                }
+
+                if (!_fileHelper.IsImageValid(dto.Image.FileName))
+                {
+                    this.NotifyError("Invalid image file type. Allowed types: .jpeg, .png, .jpg, .gif, .webp");
+                    return RedirectToAction("BrandSetinga");
+                }
+
+                // Save image in wwwroot/uploads/banner
+                var destinationFolder = Path.Combine(_hostingEnvironment.WebRootPath, "uploads/brands");
+                if (!Directory.Exists(destinationFolder))
+                {
+                    Directory.CreateDirectory(destinationFolder);
+                }
+
+                var savedFileName = await _fileHelper.SaveImageAndGetFileName(dto.Image, destinationFolder);
+                var imageUrl = $"/uploads/brands/{savedFileName}";
+
+                // Prepare AppsettingDto for saving
+                var settingDto = new AppsettingDto
+                {
+                    Id = dto.Id,
+                    Key = AppsettingEnum.BrandImage.ToString(),
+                    Page = AppsettingEnum.BrandImage.ToString(),
+                    Value = imageUrl
+                };
+
+                await _appsettingService.SaveOrUpdate(settingDto);
+                this.NotifySuccess("Banner image saved successfully.");
+            }
+            catch (CustomException ex)
+            {
+                new SeriLogger().Error(ex.Message, ex);
+                this.NotifyError(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                new SeriLogger().Error(ex.Message, ex);
+                this.NotifyError("Something went wrong. Please try again.");
+            }
+
+            return RedirectToAction("BrandSettings");
+        }
+        [HttpPost]
+        public async Task<IActionResult> DeleteBrandImage(int id, string imageUrl)
+        {
+            try
+            {
+
+                var isDeleted = await _appsettingService.Delete(id, imageUrl);
+
+                if (isDeleted)
+                {
+                    return Json(new { success = true });
+                }
+                else
+                {
+                    return Json(new { success = false, message = "Error deleting the brand image." });
+                }
+            }
+            catch (Exception ex)
+            {
+                // Log the exception
+                new SeriLogger().Error(ex.Message, ex);
+                return Json(new { success = false, message = "Something went wrong. Please try again." });
+            }
+        }
     }
 }

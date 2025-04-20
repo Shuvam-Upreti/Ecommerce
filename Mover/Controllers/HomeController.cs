@@ -51,7 +51,11 @@ namespace Mover.Controllers
                 var products = await _productService.GetAllProducts();
 
                 var aboutUs = await _appsettingService.GetAppsettingByKey(AppsettingEnum.AboutUs.ToString());
-                ViewBag.AboutUs = aboutUs != null && aboutUs.Any() ? aboutUs.FirstOrDefault().Value : string.Empty;
+                ViewBag.AboutUs = aboutUs != null && aboutUs.Any() ? aboutUs.FirstOrDefault().Value : string.Empty; 
+
+                var brandImage = await _appsettingService.GetAppsettingByKey(AppsettingEnum.BrandImage.ToString());
+                ViewBag.BrandImage = (brandImage != null && brandImage.Any())
+                         ? brandImage.Select(a => a.Value).ToList() : new List<string>();
 
                 var vm = products.Select(a => new ProductViewModel
                 {

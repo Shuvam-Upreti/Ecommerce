@@ -21,6 +21,9 @@ namespace Mover.Core.Enums.Appsetting
         SupportAvailability,
         CoreValueInnovation,
         CoreValueQuality,
-        CoreValueCare
+        CoreValueCare,
+
+            //brand
+            BrandImage
     }
 }
