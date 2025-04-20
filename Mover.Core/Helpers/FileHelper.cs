@@ -75,7 +75,7 @@ namespace Mover.Core.Helpers
             return $@"{destinationPath}\{image_name}";
 
         }
-        public async Task DeleteImageAsync(string imageUrl,string imagePath)
+        public async Task DeleteImageAsync(string imageUrl, string imagePath)
         {
             var relativeImagePath = imageUrl.TrimStart('/');
             var filePath = Path.Combine(_hostingEnvironment.WebRootPath, relativeImagePath);
@@ -94,10 +94,7 @@ namespace Mover.Core.Helpers
                     throw new CustomException($"Error deleting image: {ex.Message}");
                 }
             }
-            else
-            {
-                throw new CustomException("Image not found on server.");
-            }
+
         }
     }
 }

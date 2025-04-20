@@ -42,7 +42,7 @@ namespace Mover.Areas.Admin.Controllers
                                     Text = a.ToString(),
                                 }).ToList();
                 ViewBag.OrderStatus = orderstatus;
-                var orders = await _orderService.GetAllOrders(currentUser,guestId);
+                var orders = await _orderService.GetAllOrders(currentUser, guestId);
                 var vm = orders.Select(a => new OrderViewModel()
                 {
                     OrderId = a.OrderId,
@@ -85,7 +85,7 @@ namespace Mover.Areas.Admin.Controllers
                     PageIndex = model.PageIndex
                 };
                 var (guestId, currentUser) = await _userHelper.GetGuestIdOrSessionUserId();
-                var (orderList, totalCount) = await _orderService.GetAllOrdersForGrid(dto, currentUser, orderStatus,guestId);
+                var (orderList, totalCount) = await _orderService.GetAllOrdersForGrid(dto, currentUser, orderStatus, guestId);
                 var datas = orderList.Select(a => new OrderViewModel
                 {
                     OrderId = a.OrderId,
@@ -114,6 +114,12 @@ namespace Mover.Areas.Admin.Controllers
                 return View();
             }
         }
+
+        public IActionResult CreateOrder()
+        {
+            return PartialView("~/Areas/Admin/Views/Order/Partial/_CreateOrder.cshtml");
+        }
+
         [HttpPost]
         public async Task<IActionResult> PlaceOrder(SummaryViewModel model)
         {

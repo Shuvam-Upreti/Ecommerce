@@ -52,7 +52,7 @@ namespace Mover.Core.Services.Implementations
             {
                 OrderId = a.OrderId,
                 CreatedBy = a.User.FullName??a.CreaterName,
-                PhoneNumber = a.User.AspUser.PhoneNumber,
+                PhoneNumber = a.User.AspUser.PhoneNumber??a.PhoneNumber,
                 TotalAmount = a.TotalAmount,
                 OrderDate = a.OrderDate,
                 OrderStatus = a.OrderStatus,
