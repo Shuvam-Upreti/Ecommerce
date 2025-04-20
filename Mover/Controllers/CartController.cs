@@ -90,6 +90,52 @@ namespace Mover.Controllers
             }
 
         }
+        [HttpPost]
+        public async Task<IActionResult> UpdateItemCount(int cartId, int quantity)
+        {
+            try
+            {
+                if (quantity < 1)
+                {
+                    quantity = 1; 
+                }
+                await _cartService.SetItemCount(cartId, quantity);
+                return RedirectToAction(nameof(Index));
+            }
+            catch (CustomException ex)
+            {
+                new SeriLogger().Error(ex.Message, ex);
+                this.NotifyInfo(ex.Message);
+                return RedirectToAction(nameof(Index));
+            }
+            catch (Exception ex)
+            {
+                new SeriLogger().Error(ex.Message, ex);
+                this.NotifyError(ex.Message);
+                return RedirectToAction(nameof(Index));
+            }
+        }
+        public async Task<IActionResult> Remove(int cartId)
+        {
+            try
+            {
+                await _cartService.RemoveCartItem(cartId);
+                return RedirectToAction(nameof(Index));
+            }
+            catch (CustomException ex)
+            {
+                new SeriLogger().Error(ex.Message, ex);
+                this.NotifyInfo(ex.Message);
+                return RedirectToAction(nameof(Index));
+            }
+            catch (Exception ex)
+            {
+                new SeriLogger().Error(ex.Message, ex);
+                this.NotifyError(ex.Message);
+                return RedirectToAction(nameof(Index));
+            }
+        }
+
         [HttpGet]
         public async Task<IActionResult> Summary()
         {

@@ -82,6 +82,25 @@ namespace Mover.Core.Services.Implementations
             tx.Complete();
 
         }
+        public async Task SetItemCount(int cartId, int quantity)
+        {
+            if (quantity < 1)
+                throw new CustomException("Quantity must be at least 1");
+
+            using var tx = TransactionScopeHelper.GetInstance();
+            var cart = await GetCartById(cartId);
+            cart.Quantity = quantity;
+            _cartRepository.Update(cart);
+            tx.Complete();
+        }
+        public async Task RemoveCartItem(int cartId)
+        {
+            var cartItem = await GetCartById(cartId);
+            if (cartItem != null)
+            {
+                await _cartRepository.DeleteAsync(cartItem);
+            }
+        }
 
         public async Task Save(CartDto model)
         {

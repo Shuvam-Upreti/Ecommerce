@@ -13,278 +13,272 @@
         box-sizing: border-box;
         font-family: "Poppins", sans-serif;
     }
-/* Base Styles */
-.cart-container {
-    max-width: 1200px;
-    margin: 50px auto;
-    padding: 0 20px;
-}
-
-.cart-header {
-    margin-bottom: 30px;
-}
-
-.cart-title {
-    font-size: 32px;
-    font-weight: 600;
-    color: #18181B;
-}
-
-.cart-table {
-    width: 100%;
-    border-collapse: separate;
-    border-spacing: 0 15px;
-}
-
-.cart-table th {
-    font-size: 14px;
-    color: #666;
-    font-weight: 500;
-    padding: 10px;
-    text-align: left;
-    border: none;
-}
-
-.cart-item {
-    background: white;
-    border-radius: 8px;
-    transition: all 0.3s ease;
-    border-bottom: 1px solid #eee;
-    padding: 20px 0;
-}
-
-.cart-item:hover {
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-}
-
-.cart-item td {
-    /* padding: 20px; */
-    vertical-align: middle;
-    border: none;
-}
-
-.product-image {
-    width: 80px;
-    height: 80px;
-    object-fit: cover;
-    border-radius: 8px;
-}
-
-.product-name {
-    font-size: 16px;
-    font-weight: 500;
-    margin-bottom: 5px;
-}
-
-.product-size {
-    font-size: 14px;
-    color: #666;
-}
-
-.quantity-control {
-    display: inline-flex;
-    align-items: center;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 5px;
-}
-
-.quantity-btn {
-    background: none;
-    border: none;
-    padding: 5px 10px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.quantity-btn:hover {
-    color: #007bff;
-}
-
-.quantity-input {
-    width: 40px;
-    text-align: center;
-    border: none;
-    padding: 0 5px;
-}
-
-.remove-btn {
-    background: none;
-    border: none;
-    color: #dc3545;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.remove-btn:hover {
-    color: #c82333;
-}
-
-.cart-summary {
-    background: white;
-    border-radius: 8px;
-    padding: 30px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-}
-
-.summary-row {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 15px;
-}
-
-.summary-label {
-    color: #666;
-}
-
-.summary-value {
-    font-weight: 500;
-}
-
-.discount-input {
-    display: flex;
-    gap: 10px;
-    margin: 20px 0;
-}
-
-.discount-code {
-    flex: 1;
-    padding: 10px 15px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-}
-
-.apply-btn {
-    background: #18181B;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.apply-btn:hover {
-    background: #333;
-}
-
-.checkout-btn {
-    display: block;
-    text-decoration: none;
-    text-align: center;
-    width: 100%;
-    background: #0eccb3;
-    color: white;
-    border: none;
-    padding: 15px;
-    border-radius: 8px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.checkout-btn:hover {
-            background-color: #0096c7; /* Darker teal on hover */
-            border-color: #0096c7;
-}
-
-/* Mobile responsiveness */
-@@media (max-width: 768px) {
+    /* Base Styles */
     .cart-container {
-        /* padding: 20px; */
+        max-width: 1200px;
+        margin: 50px auto;
+        padding: 0 20px;
     }
 
-    .cart-table thead {
-        display: none; /* Hide table headers on mobile */
+    .cart-header {
+        margin-bottom: 30px;
     }
+
+    .cart-title {
+        font-size: 32px;
+        font-weight: 600;
+        color: #18181B;
+    }
+
+    .cart-table {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0 15px;
+    }
+
+        .cart-table th {
+            font-size: 14px;
+            color: #666;
+            font-weight: 500;
+            padding: 10px;
+            text-align: left;
+            border: none;
+        }
 
     .cart-item {
-        display: grid;
-        grid-template-columns: 160px 1fr; /* Two columns: image, details */
-        gap: 15px;
-        margin-bottom: 20px;
-        padding: 15px 0;
+        background: white;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+        border-bottom: 1px solid #eee;
+        padding: 20px 0;
     }
 
-    .cart-item td {
-        display: flex; 
-        justify-content: center;
-        align-items:center;
-        /* flex-direction:column; */
-        
-      /* Stack elements vertically */
-       
-    }
+        .cart-item:hover {
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .cart-item td {
+            /* padding: 20px; */
+            vertical-align: middle;
+            border: none;
+        }
 
     .product-image {
-        grid-row: 1 / span 2; /* Keep the image in the first column */
-        align-self: center;
+        width: 80px;
+        height: 80px;
+        object-fit: cover;
+        border-radius: 8px;
     }
 
     .product-name {
         font-size: 16px;
-        margin-bottom: 10px;
+        font-weight: 500;
+        margin-bottom: 5px;
     }
 
     .product-size {
         font-size: 14px;
-        margin-top:5px;
+        color: #666;
     }
 
     .quantity-control {
-        display: flex;
+        display: inline-flex;
         align-items: center;
         border: 1px solid #ddd;
         border-radius: 8px;
-        overflow: hidden;
+        padding: 5px;
     }
 
     .quantity-btn {
-        width: 90px;
-        height: 30px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: #f8f9fa;
+        background: none;
         border: none;
-        font-size: 16px;
+        padding: 5px 10px;
+        cursor: pointer;
+        transition: all 0.3s ease;
     }
+
+        .quantity-btn:hover {
+            color: #007bff;
+        }
 
     .quantity-input {
-        width: 25px;
-        height: 30px;
+        width: 40px;
         text-align: center;
         border: none;
-        font-size: 12px;
+        padding: 0 5px;
     }
 
-    .remove-btn { */
-        margin-top: 10px; 
-        font-size: 14px; 
-     }
+    .remove-btn {
+        background: none;
+        border: none;
+        color: #dc3545;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+        .remove-btn:hover {
+            color: #c82333;
+        }
 
     .cart-summary {
-        margin-top: 30px;
-        padding: 20px;
+        background: white;
+        border-radius: 8px;
+        padding: 30px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
     }
 
     .summary-row {
-        font-size: 16px;
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 15px;
     }
+
+    .summary-label {
+        color: #666;
+    }
+
+    .summary-value {
+        font-weight: 500;
+    }
+
+    .discount-input {
+        display: flex;
+        gap: 10px;
+        margin: 20px 0;
+    }
+
+    .discount-code {
+        flex: 1;
+        padding: 10px 15px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+    }
+
+    .apply-btn {
+        background: #18181B;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+        .apply-btn:hover {
+            background: #333;
+        }
 
     .checkout-btn {
-        font-size: 16px;
+        display: block;
+        text-decoration: none;
+        text-align: center;
+        width: 100%;
+        background: #0eccb3;
+        color: white;
+        border: none;
         padding: 15px;
+        border-radius: 8px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.3s ease;
     }
 
-    /* Adjust increment/decrement buttons */
-    .quantity-control {
-        margin-top: 15px;
+        .checkout-btn:hover {
+            background-color: #0096c7; /* Darker teal on hover */
+            border-color: #0096c7;
+        }
+
+    /* Mobile responsiveness */
+    @@media (max-width: 768px) {
+        .cart-container {
+            /* padding: 20px; */
+        }
+
+        .cart-table thead {
+            display: none; /* Hide table headers on mobile */
+        }
+
+        .cart-item {
+            display: grid;
+            grid-template-columns: 160px 1fr; /* Two columns: image, details */
+            gap: 15px;
+            margin-bottom: 20px;
+            padding: 15px 0;
+        }
+
+            .cart-item td {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                /* flex-direction:column; */
+                /* Stack elements vertically */
+            }
+
+        .product-image {
+            grid-row: 1 / span 2; /* Keep the image in the first column */
+            align-self: center;
+        }
+
+        .product-name {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .product-size {
+            font-size: 14px;
+            margin-top: 5px;
+        }
+
+        .quantity-control {
+            display: flex;
+            align-items: center;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .quantity-btn {
+            width: 90px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f8f9fa;
+            border: none;
+            font-size: 16px;
+        }
+
+        .quantity-input {
+            width: 25px;
+            height: 30px;
+            text-align: center;
+            border: none;
+            font-size: 12px;
+        }
+
+        .remove-btn {
+            */ margin-top: 10px;
+            font-size: 14px;
+        }
+
+        .cart-summary {
+            margin-top: 30px;
+            padding: 20px;
+        }
+
+        .summary-row {
+            font-size: 16px;
+        }
+
+        .checkout-btn {
+            font-size: 16px;
+            padding: 15px;
+        }
+        /* Adjust increment/decrement buttons */
+        .quantity-control {
+            margin-top: 15px;
+        }
     }
-}
-
-
-
 
 </style>
 
@@ -326,13 +320,26 @@
                                 <td data-label="Quantity">
                                     <div class="quantity-control">
                                         <a asp-action="decrementitemcount" asp-route-id="@item.CartId" class="quantity-btn">-</a>
-                                        <input type="text" class="quantity-input" value="@item.Quantity" >
+                                        @* <input type="text" class="quantity-input" value="@item.Quantity" > *@
+                                        <form asp-action="UpdateItemCount" method="post" class="quantity-form" style="display:inline;">
+                                            <input type="hidden" name="cartId" value="@item.CartId" />
+                                            <input type="number"
+                                                   name="quantity"
+                                                   class="quantity-input"
+                                                   value="@item.Quantity"
+                                                   min="1"
+                                                    style="width: 60px;"
+                                                   oninput="delaySubmit(this.form)"
+                                                   onblur="delaySubmit(this.form)" />
+                                        </form>
+
                                         <a asp-action="incrementitemcount" asp-route-id="@item.CartId" class="quantity-btn">+</a>
                                     </div>
                                 </td>
                                 <td data-label="Subtotal">Rs.@(item.ProductPrice * item.Quantity)</td>
                                 <td>
-                                    <a asp-action="remove" asp-route-cartId="@item.CartId" class="remove-btn">
+
+                                    <a asp-action="Remove" asp-route-cartId="@item.CartId" class="remove-btn">
                                         <i class="fa fa-trash"></i>
                                     </a>
                                 </td>
@@ -364,3 +371,22 @@
         </div>
     }
 </div>
+
+@section Scripts {
+    <script>
+        let submitTimer;
+
+        function delaySubmit(form) {
+            if (submitTimer) clearTimeout(submitTimer);
+
+            submitTimer = setTimeout(() => {
+                const input = form.querySelector('input[name="quantity"]');
+                if (!input.value || input.value < 1) {
+                    input.value = 1; // default if empty or invalid
+                }
+                form.submit();
+            }, 2000); // 2000ms = 2 seconds
+        }
+    </script>
+
+                        }

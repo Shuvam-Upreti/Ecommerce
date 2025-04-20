@@ -16,6 +16,8 @@ namespace Mover.Core.Services.Interfaces
         Task Save(CartDto model);
         Task IncreaseCount(int cartId);
         Task DecreaseCount(int cartId);
+        Task SetItemCount(int cartId, int quantity);
+        Task RemoveCartItem(int cartId);
         Task<SummaryDto> GetSummary(UserSessionDto? currentUser, string? guestId);
     }
 }
