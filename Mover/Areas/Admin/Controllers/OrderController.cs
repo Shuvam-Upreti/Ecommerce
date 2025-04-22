@@ -129,7 +129,7 @@ namespace Mover.Areas.Admin.Controllers
                 return RedirectToAction("Summary", "Cart", new { area = "" });
             }
 
-            if (model.ShippingDetails?.ShippingCity==null||model.ShippingDetails.ShippingState==null||model.ShippingDetails.ShippingAddressLine==null||model.ShippingDetails.PhoneNumber==null)
+            if (model.ShippingDetails.ShippingAddressLine==null||model.ShippingDetails.PhoneNumber==null)
             {
                 this.NotifyInfo("Address and phone number cannot be null.");
                 return RedirectToAction("Summary", "Cart", new { area = "" });

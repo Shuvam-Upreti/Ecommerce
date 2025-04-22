@@ -232,9 +232,9 @@
             <div class="col-lg-8">
                 <div class="address-section">
                     <h1 class="section-title">Shipping Address</h1>
-                    <p class="address-instruction">Is the address you'd like to use displayed below? If so, click the corresponding radio button. Or you can enter a new delivery address.</p>
+                    @* <p class="address-instruction">Is the address you'd like to use displayed below? If so, click the corresponding radio button. Or you can enter a new delivery address.</p> *@
 
-                    <div class="address-cards">
+       @*              <div class="address-cards">
                         @if (Model.ShippingDetails != null)
                         {
                             <div class="address-card">
@@ -242,20 +242,20 @@
                                 <h3 class="address-name">@Model.ShippingDetails.CreaterName</h3>
                                 <p class="address-details">
                                     @Model.ShippingDetails.ShippingAddressLine<br>
-                                    @Model.ShippingDetails.ShippingCity, @Model.ShippingDetails.ShippingState @Model.ShippingDetails.ShippingZipCode
+                                     @Model.ShippingDetails.ShippingCity, @Model.ShippingDetails.ShippingState @Model.ShippingDetails.ShippingZipCode 
                                 </p>
                                 <span class="address-phone"> @Model.ShippingDetails.PhoneNumber</span>
                             </div>
 
                         }
-                    </div>
+                    </div> *@
 
                     <div class="new-address-form">
-                        <h2 class="section-title">Add a new address</h2>
+                        @* <h2 class="section-title">Add a new address</h2> *@
 
                         <div class="form-group">
                             <label class="form-label">Name</label>
-                            <input type="text" name="ShippingDetails.CreaterName" class="form-control" placeholder="Enter Name">
+                            <input type="text" name="ShippingDetails.CreaterName" class="form-control" placeholder="Enter Name" required>
                         </div>
                         <div class="form-group">
                             <label class="form-label">Phone Number</label>
@@ -270,10 +270,10 @@
                         }
                         <div class="form-group">
                             <label class="form-label">Address Line</label>
-                            <input type="text" name="ShippingDetails.ShippingAddressLine" class="form-control" placeholder="Flat, House no., Building, Company, Apartment">
+                            <input type="text" name="ShippingDetails.ShippingAddressLine" class="form-control" placeholder="Flat, House no., Building, Company, Apartment" required>
                         </div>
 
-                        <div class="form-group">
+                       @*  <div class="form-group">
                             <label class="form-label">City</label>
                             <input type="text" name="ShippingDetails.ShippingCity" class="form-control" placeholder="Enter City">
                         </div>
@@ -286,9 +286,9 @@
                         <div class="form-group">
                             <label class="form-label">Zip Code</label>
                             <input type="text" name="ShippingDetails.ShippingZipCode" class="form-control" placeholder="Enter Zip Code">
-                        </div>
+                        </div> *@
 
-                        <button type="button" class="submit-btn" onclick="addNewAddress()">Add New Address</button>
+                        @* <button type="button" class="submit-btn" onclick="addNewAddress()">Add New Address</button> *@
                     </div>
                 </div>
             </div>
