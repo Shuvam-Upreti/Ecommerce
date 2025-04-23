@@ -74,7 +74,7 @@ namespace Mover.Areas.Admin.Controllers
                 return RedirectToAction(nameof(Index));
             }
         }
-        public async Task<IActionResult> LoadOrders(FilterViewModel model, string? orderStatus)
+        public async Task<IActionResult> LoadOrders(FilterViewModel model, string? orderStatus, string? filterDateFrom, string? filterDateTo, string? searchInput)
         {
             try
             {
@@ -85,7 +85,7 @@ namespace Mover.Areas.Admin.Controllers
                     PageIndex = model.PageIndex
                 };
                 var (guestId, currentUser) = await _userHelper.GetGuestIdOrSessionUserId();
-                var (orderList, totalCount) = await _orderService.GetAllOrdersForGrid(dto, currentUser, orderStatus, guestId);
+                var (orderList, totalCount) = await _orderService.GetAllOrdersForGrid(dto, currentUser, orderStatus, guestId, filterDateFrom, filterDateTo, searchInput);
                 var datas = orderList.Select(a => new OrderViewModel
                 {
                     OrderId = a.OrderId,

@@ -67,7 +67,7 @@ namespace Mover.Core.Services.Implementations
             }).ToList();
             return dto;
         }
-        public async Task<(List<OrderDto>, int TotalCount)> GetAllOrdersForGrid(FilterDto filter, UserSessionDto currentUser, string? orderStatus, string? guestId)
+        public async Task<(List<OrderDto>, int TotalCount)> GetAllOrdersForGrid(FilterDto filter, UserSessionDto currentUser, string? orderStatus, string? guestId, string? filterDateFrom, string? filterDateTo, string? searchInput)
         {
             var orders = _orderRepository.GetQueryable();
             if (orderStatus is not null)
@@ -89,7 +89,19 @@ namespace Mover.Core.Services.Implementations
 
                 }
             }
-
+            if (!string.IsNullOrEmpty(filterDateFrom) && DateTime.TryParse(filterDateFrom, out DateTime fromDate) && !string.IsNullOrEmpty(filterDateTo) && DateTime.TryParse(filterDateTo, out DateTime toDate))
+            {
+                orders = orders.Where(a => a.OrderDate.Value.Date >= fromDate.Date && a.OrderDate.Value.Date <= toDate.Date);
+            }
+            if (!string.IsNullOrEmpty(searchInput))
+            {
+                orders = orders.Where(a =>
+                    (a.User.FullName != null && a.User.FullName.Contains(searchInput)) ||
+                    (a.CreaterName != null && a.CreaterName.Contains(searchInput)) ||
+                    (a.PhoneNumber != null && a.PhoneNumber.Contains(searchInput)) ||
+                    (a.User.AspUser.PhoneNumber != null && a.User.AspUser.PhoneNumber.Contains(searchInput))
+                );
+            }
 
             orders = orders.OrderByDescending(a => a.OrderDate);
             int totalCount = await orders.CountAsync();
@@ -97,8 +109,8 @@ namespace Mover.Core.Services.Implementations
             var dto = pagedData.Select(a => new OrderDto()
             {
                 OrderId = a.OrderId,
-                CreatedBy = a.User.FullName??a.CreaterName,
-                PhoneNumber = a.User.AspUser.PhoneNumber,
+                CreatedBy = a.CreaterName??a.User.FullName,
+                PhoneNumber = a.PhoneNumber??a.User.AspUser.PhoneNumber,
                 TotalAmount = a.TotalAmount,
                 OrderDate = a.OrderDate,
                 OrderStatus = a.OrderStatus,

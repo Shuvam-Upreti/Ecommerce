@@ -14,7 +14,7 @@ namespace Mover.Core.Services.Interfaces
     public interface IOrderService
     {
         Task<List<OrderDto>> GetAllOrders(UserSessionDto currentUser,string? guestId);
-        Task<(List<OrderDto>, int TotalCount)> GetAllOrdersForGrid(FilterDto filter, UserSessionDto currentUser, string? orderStatus,string? guestId);
+        Task<(List<OrderDto>, int TotalCount)> GetAllOrdersForGrid(FilterDto filter, UserSessionDto currentUser, string? orderStatus,string? guestId, string? filterDateFrom, string? filterDateTo, string? searchInput);
         Task Save(OrderDto model);
         Task UpdateOrderStatus(OrderStatusDto model);
         Task<OrderDto> GetOrderById(int orderId);

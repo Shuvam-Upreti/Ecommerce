@@ -323,7 +323,7 @@
                 <div class="order-summary">
                     <div class="summary-row">
                         <span>Subtotal</span>
-                        <span>$@Model.SummaryTotalPrice.ToString("F2")</span>
+                        <span>Rs. @Model.SummaryTotalPrice.ToString("F2")</span>
                     </div>
 
                     @*  <div class="discount-section">
@@ -341,7 +341,7 @@
                     <div class="summary-row">
                         <input type="hidden" name="SummaryTotalPrice" value="@(Model.SummaryTotalPrice + 50)" />
                         <strong>Grand Total</strong>
-                        <strong>$@(Model.SummaryTotalPrice + 50)</strong>
+                        <strong>Rs. @(Model.SummaryTotalPrice + 50)</strong>
                     </div>
 
                     <button type="submit" class="submit-btn">Place Order</button>

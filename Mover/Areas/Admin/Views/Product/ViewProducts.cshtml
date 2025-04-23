@@ -566,10 +566,10 @@
                         <div class="product-content">
                             <h3 class="product-name">@product.ProductName</h3>
                             <div class="product-price">
-                                <span class="current-price">$@product.DiscountedPrice</span>
+                                <span class="current-price">Rs. @product.DiscountedPrice</span>
                                 @if (product.OriginalPrice > product.DiscountedPrice)
                                 {
-                                    <span class="original-price">$@product.OriginalPrice</span>
+                                    <span class="original-price">Rs. @product.OriginalPrice</span>
                                 }
                             </div>
                             <a asp-area="" asp-controller="Home" asp-action="Details" asp-route-id="@product.ProductId" class="btn btn-cart btn-outline-dark">

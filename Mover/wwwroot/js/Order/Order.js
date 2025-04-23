@@ -6,24 +6,25 @@ $(document).ready(function () {
     OrderGrid("#orderGrid", "OrderDetails");
 
     $(document).on('click', ".deleteOrder", function () {
-        var orderId = $(this).data('order-id'); // This should correctly retrieve the productId
-        console.log("Product ID:", orderId); // Add this log to confirm the value of productId
+        var orderId = $(this).data('order-id'); 
 
         DeleteOrder(orderId);
     });
     $('#searchBtn').on('click', function () {
         let orderStatus = $('#filterOrderStatus').val();
-        console.log("Orders", orderStatus)
-        OrderGrid("#orderGrid", "OrderDetails", orderStatus);
+        let filterDateFrom = $('#filterDateFrom').val();
+        let filterDateTo = $('#filterDateTo').val();
+        let searchInput = $('#searchInputOrder').val();
+        OrderGrid("#orderGrid", "OrderDetails", orderStatus, filterDateFrom, filterDateTo, searchInput);
     });
 
 });
 
 
-function OrderGrid(onLoadElement, exportFileName, orderStatus) {
+function OrderGrid(onLoadElement, exportFileName, orderStatus, filterDateFrom, filterDateTo, searchInput) {
     $(function () {
         $(onLoadElement).dxDataGrid({
-            dataSource: OrderDataSorce(orderStatus),
+            dataSource: OrderDataSorce(orderStatus, filterDateFrom, filterDateTo, searchInput),
             allowColumnResizing: true,
             paging: {
                 pageSize: 20
@@ -110,7 +111,7 @@ function OrderGrid(onLoadElement, exportFileName, orderStatus) {
             onOptionChanged: function (e) {
                 if (e.fullName === "paging.pageIndex") {
                     pageIndex = e.value;
-                    OrderDataSorce(orderStatus);
+                    OrderDataSorce(orderStatus, filterDateFrom, filterDateTo, searchInput);
                 }
             },
             onSelectionChanged: function (selectedItems) {
@@ -186,8 +187,9 @@ $(document).on('click', '.open-edit-modal', function (e) {
 
 
 
-function OrderDataSorce(orderStatus) {
+function OrderDataSorce(orderStatus, filterDateFrom, filterDateTo, searchInput) {
     let url = "/admin/order/LoadOrders";
+   
     return new DevExpress.data.DataSource({
         paginate: true,
         load: function (loadOptions) {
@@ -203,7 +205,10 @@ function OrderDataSorce(orderStatus) {
                     PageIndex: loadOptions.skip,
                     PageSize: loadOptions.take,
                     //Search: searchText
-                    orderStatus:  orderStatus
+                    orderStatus:  orderStatus,
+                    filterDateFrom: filterDateFrom,
+                    filterDateTo: filterDateTo,
+                    searchInput: searchInput
                 },
                 url: url,
             }).done(function (result) {

@@ -218,9 +218,22 @@
     <div class="orders-container">
         <div class="filters-section">
             <div class="row">
-                <div class="col-md-3">
+                
+
+                <div class="col-md-1 mb-3">
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-2 mb-3">
+                    <label for="filterDateFrom" class="form-label">From</label>
+                    <input type="date" class="form-control" id="filterDateFrom" max="@DateTime.Now.ToString("yyyy-MM-dd")" onchange="activateToDate()">
+                </div>
+
+                <!-- Date To Filter -->
+                <div class="col-md-2 mb-3">
+                    <label for="filterDateTo" class="form-label">To</label>
+                    <input type="date" class="form-control" id="filterDateTo" disabled max="@DateTime.Now.ToString("yyyy-MM-dd")">
+                </div>
+
+                <div class="col-md-2">
                     <label for="filterOrderStatus" class="form-label">Order Status</label>
                     <select class="form-control" id="filterOrderStatus" name="filterOrderStatus">
                         <option value="">--Select Status--</option>
@@ -230,7 +243,11 @@
                         }
                     </select>
                 </div>
-                <div class="col-md-3 d-flex align-items-end">
+                <div class="col-md-2">
+                    <label for="searchInput" class="form-label">Search</label>
+                    <input class="form-control" id="searchInputOrder" placeholder="Enter Name/Phone No." />
+                </div>
+                <div class="col-md-3 mb-3 d-flex align-items-end">
                     <button class="btn btn-success w-45" id="searchBtn"><i class="fa fa-search"></i> Search</button>
                 </div>
               @*   <div class="col-md-3 d-flex align-items-end">
