@@ -552,19 +552,22 @@
             <div class="products-grid" id="productList">
                 @foreach (var product in Model)
                 {
-                    <div class="product-card">
+                    <div class="product-card"
+                         onclick="window.location.href='@Url.Action("Details", "Home", new { area = "", id = product.ProductId })'"
+                         style="cursor: pointer;">
+
                         @if (product.InStock <= 0)
                         {
                             <span class="badge-stock">Out of Stock</span>
                         }
-                        @*   <button class="wishlist-btn">
-                            <i class="fas fa-heart"></i>
-                        </button> *@
+
                         <div class="product-image-container">
                             <img src="@Url.Content($"~/{product.ImageUrls.FirstOrDefault()}")" class="product-image" alt="@product.ProductName">
                         </div>
+
                         <div class="product-content">
                             <h3 class="product-name">@product.ProductName</h3>
+
                             <div class="product-price">
                                 <span class="current-price">$@product.DiscountedPrice</span>
                                 @if (product.OriginalPrice > product.DiscountedPrice)
@@ -572,13 +575,16 @@
                                     <span class="original-price">$@product.OriginalPrice</span>
                                 }
                             </div>
-                            <a asp-area="" asp-controller="Home" asp-action="Details" asp-route-id="@product.ProductId" class="btn btn-cart btn-outline-dark">
+
+                            <a asp-area="" asp-controller="Home" asp-action="Details" asp-route-id="@product.ProductId"
+                               class="btn btn-cart btn-outline-dark"
+                               onclick="event.stopPropagation();">
                                 <i class="fas fa-eye"></i> VIEW DETAILS
                             </a>
-
                         </div>
                     </div>
-                }
+
+}
             </div>
 
             <!-- Load More Button -->
