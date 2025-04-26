@@ -1,5 +1,118 @@
 ﻿@model Mover.ViewModel.Carts.SummaryViewModel
 
+<style>
+/* Modal Styling */
+.modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-dialog {
+    max-width: 500px;
+    margin: 1.75rem auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.modal-content {
+    background-color: #f9f9f9;
+    border: none;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+/* Close Button Styling */
+.modal-header {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+        /* Custom Close Button Styling */
+        .modal-header .btn-close {
+            background: none; /* Remove default close button background */
+            border: none; /* Remove default border */
+            font-size: 1.5rem; /* Adjust size of the Font Awesome icon */
+            color: #333; /* Icon color */
+            opacity: 1; /* Ensure full visibility */
+            transition: transform 0.3s ease, color 0.3s ease; /* Smooth hover effects */
+        }
+
+            .modal-header .btn-close:hover {
+                color: #ff6f61; /* Change color on hover */
+                transform: scale(1.2); /* Slightly enlarge on hover */
+            }
+
+            .modal-header .btn-close::before {
+                content: "\f00d"; /* Unicode for Font Awesome "fa-close" icon */
+                font-family: "Font Awesome 6 Free"; /* Use Font Awesome font */
+                font-weight: 900; /* Ensure the icon is bold (required for FA free version) */
+            }
+
+/* Form Styling */
+#createOrderForm {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+#createOrderForm .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+#createOrderForm label {
+    font-weight: bold;
+    color: #333;
+}
+
+#createOrderForm input,
+#createOrderForm select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: border-color 0.3s ease;
+}
+
+#createOrderForm input:focus,
+#createOrderForm select:focus {
+    border-color: #0eccb3;
+    outline: none;
+    box-shadow: 0 0 5px rgba(14, 204, 179, 0.5);
+}
+
+hr {
+    border: none;
+    border-top: 1px solid #ddd;
+    margin: 20px 0;
+}
+
+h5 {
+    font-size: 18px;
+    color: #0eccb3;
+    margin-bottom: 15px;
+}
+
+/* Submit Button Styling */
+#createOrderForm button[type="submit"] {
+    background-color: #0eccb3;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#createOrderForm button[type="submit"]:hover {
+    background-color: #0096c7;
+}
+</style>
+
 <form id="createOrderForm">
     <div class="form-group">
         <label>Select Product</label>
