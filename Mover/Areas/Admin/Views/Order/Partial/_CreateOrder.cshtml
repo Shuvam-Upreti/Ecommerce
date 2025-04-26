@@ -1,9 +1,90 @@
-﻿<form id="createOrderForm">
-    <div class="form-group">
-        <label for="ProductName">Product Name</label>
-        <input type="text" class="form-control" id="ProductName" name="ProductName" required>
-    </div>
-    <!-- Add more fields as needed -->
+﻿@model Mover.ViewModel.Carts.SummaryViewModel
 
-    <button type="submit" class="btn btn-primary">Submit</button>
+<form id="createOrderForm">
+    <div class="form-group">
+        <label>Select Product</label>
+        <select class="form-control" id="productDropdown" name="CartViewModel[0].ProductId" required>
+            <option value="">-- Select Product --</option>
+            @for (int i = 0; i < Model.CartViewModel.Count; i++)
+            {
+                <option value="@Model.CartViewModel[i].ProductId"
+                        data-price="@Model.CartViewModel[i].ProductPrice"
+                        data-discount="@Model.CartViewModel[i].DiscountPercentage"
+                        data-name="@Model.CartViewModel[i].ProductName">
+                    @Model.CartViewModel[i].ProductName - Rs.@Model.CartViewModel[i].ProductPrice
+                </option>
+            }
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label>Quantity</label>
+        <input type="number" class="form-control" name="CartViewModel[0].Quantity" value="1" min="1" required />
+    </div>
+
+    <!-- Hidden Inputs Bound to ViewModel -->
+    <input type="hidden" name="CartViewModel[0].ProductPrice" id="productPrice" value="0" />
+    <input type="hidden" name="CartViewModel[0].DiscountPercentage" id="productDiscount" value="0" />
+    <input type="hidden" name="CartViewModel[0].ProductName" id="productName" />
+    <input type="hidden" name="SummaryTotalPrice" id="summaryTotal" value="0" />
+
+    <hr />
+    <h5>Shipping Info</h5>
+
+    <div class="form-group">
+        <label>Phone Number</label>
+        <input type="text" class="form-control" name="ShippingDetails.PhoneNumber" required />
+    </div>
+
+    <div class="form-group">
+        <label>Guest Email</label>
+        <input type="email" class="form-control" name="ShippingDetails.GuestEmail" required />
+    </div>
+
+    <div class="form-group">
+        <label>Shipping Address</label>
+        <input type="text" class="form-control" name="ShippingDetails.ShippingAddressLine" required />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Place Order</button>
 </form>
+
+<script>
+    $('#productDropdown').on('change', function () {
+        const selected = $(this).find(':selected');
+        const price = selected.data('price');
+        const discount = selected.data('discount');
+        const name = selected.data('name');
+
+        $('#productPrice').val(price);
+        $('#productDiscount').val(discount);
+        $('#productName').val(name);
+
+        const qty = $('input[name="CartViewModel[0].Quantity"]').val();
+        $('#summaryTotal').val(price * qty);
+    });
+
+    $('input[name="CartViewModel[0].Quantity"]').on('input', function () {
+        const price = parseFloat($('#productPrice').val()) || 0;
+        const qty = parseInt($(this).val()) || 1;
+        $('#summaryTotal').val(price * qty);
+    });
+
+    $('#createOrderForm').submit(function (e) {
+        e.preventDefault();
+        const formData = $(this).serialize();
+
+        $.ajax({
+            type: "POST",
+            url: "/Cart/PlaceOrder",
+            data: formData,
+            success: function () {
+                $('#createOrderModal').modal('hide');
+                location.reload();
+            },
+            error: function () {
+                alert('Error placing order.');
+            }
+        });
+    });
+</script>

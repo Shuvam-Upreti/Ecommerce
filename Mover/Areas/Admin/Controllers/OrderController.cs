@@ -22,12 +22,14 @@ namespace Mover.Areas.Admin.Controllers
     [Area("Admin")]
     public class OrderController : Controller
     {
+        private readonly IProductService _productService;
         private readonly IOrderService _orderService;
         private readonly GetGuestIdOrSessionUser _userHelper;
-        public OrderController(IOrderService orderService, GetGuestIdOrSessionUser userHelper)
+        public OrderController(IOrderService orderService, GetGuestIdOrSessionUser userHelper, IProductService productService)
         {
             _orderService = orderService;
             _userHelper=userHelper;
+            _productService=productService;
         }
         [HttpGet]
         public async Task<IActionResult> Index()
@@ -115,9 +117,23 @@ namespace Mover.Areas.Admin.Controllers
             }
         }
 
-        public IActionResult CreateOrder()
+        public async Task<IActionResult> CreateOrder()
         {
-            return PartialView("~/Areas/Admin/Views/Order/Partial/_CreateOrder.cshtml");
+            var products = await _productService.GetAllProducts(); 
+
+            var summaryVm = new SummaryViewModel
+            {
+                CartViewModel = products.Select(p => new CartViewModel
+                {
+                    ProductId = p.ProductId,
+                    ProductName = p.ProductName,
+                    ProductPrice = p.DiscountedPrice,
+                    DiscountPercentage = p.DiscountPercentage,
+                    Quantity = 0 
+                }).ToList()
+            };
+
+            return PartialView("~/Areas/Admin/Views/Order/Partial/_CreateOrder.cshtml", summaryVm);
         }
 
         [HttpPost]
