@@ -145,7 +145,8 @@ namespace Mover.Core.Services.Implementations
 
             await _orderRepository.InsertAsync(entity);
             var carts = await _cartRepository.GetQueryable().Where(a => a.UserId == model.UserId|| a.GuestId == model.GuestId).ToListAsync();
-            _cartRepository.DeleteRange(carts);
+            if (carts.Count>0)
+                _cartRepository.DeleteRange(carts);
             tx.Complete();
 
         }
