@@ -472,14 +472,14 @@
                 @foreach (var category in ViewBag.Categories)
                 {
                     <div class="item">
-                        <div class="category-card">
+                        <a style="text-decoration: none;" asp-area="admin" asp-controller="product" asp-action="viewproducts" asp-route-categoryId="@category.Id" class="category-card d-block">
                             <div class="category-img-wrapper">
                                 <img src="~/@category.ImageUrl" alt="@category.Name">
                             </div>
-                            <a style="text-decoration:none" asp-area="admin" asp-controller="product" asp-action="viewproducts" asp-route-categoryId="@category.Id" class="category-button">
+                            <div class="category-button">
                                 @category.Name
-                            </a>
-                        </div>
+                            </div>
+                        </a>
                     </div>
                 }
             </div>

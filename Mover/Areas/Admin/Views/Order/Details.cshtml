@@ -478,6 +478,12 @@
                         <span class="label">Phone Number:</span>
                         <span class="value">@Model.PhoneNumber</span>
                     </div>
+                    <div class="info-row">
+                        <span class="label">Shipping Address:</span>
+                        
+                            <span class="value">@Model.ShippingAddressLine</span>
+                        
+                    </div>
                 </div>
 
                 <div class="info-group">
@@ -500,12 +506,7 @@
                     </div> *@
                 </div>
 
-                <div class="info-group">
-                    <h2>Shipping Address</h2>
-                    <div class="address-box">
-                        <p>@Model.ShippingAddressLine, @Model.ShippingCity, @Model.ShippingState, @Model.ShippingZipCode</p>
-                    </div>
-                </div>
+              >
             </div>
 
             <div class="order-items">
@@ -513,12 +514,16 @@
                 <div class="items-grid">
                     @foreach (var item in Model.OrderItemsViewModel)
                     {
+                       
                         <div class="item-card">
-                            <div class="item-image">
-                                <img src="~/@item.ImageUrl" alt="@item.ProductName">
-                            </div>
+                          
                             <div class="item-details">
-                                <h3>@item.ProductName</h3>
+                                <h3>
+                                    <a href="/Home/Details/@item.ProductId" style="text-decoration: none; color: inherit;">
+                                        @item.ProductName
+                                    </a>
+                                </h3>
+
                                 <div class="item-meta">
                                     <div class="meta-group">
                                         <span class="meta-label">Quantity</span>
@@ -541,6 +546,7 @@
                                 </div>
                             </div>
                         </div>
+                      
                     }
                 </div>
             </div>
