@@ -117,7 +117,7 @@ namespace Mover.Controllers
             }
         }
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
     
         public async Task<IActionResult> AddToCart(CartViewModel model)
         {
