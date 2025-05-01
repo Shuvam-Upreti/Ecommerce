@@ -357,13 +357,13 @@
                         <span class="summary-value">Rs.@ViewBag.TotalPrice</span>
                     </div>
                     <div class="summary-row">
-                        <span class="summary-label">Delivery Charge</span>
-                        <span class="summary-value">Rs.5.00</span>
+                        <span class="summary-label">Delivery Charge inside valley Rs100 and outside valley it may vary </span>
+                        @* <span class="summary-value">Rs.5.00</span> *@
                     </div>
                     <div class="summary-divider"></div>
                     <div class="summary-row">
                         <span class="summary-label"><b>Grand Total</b></span>
-                        <span class="summary-value">Rs.@(ViewBag.TotalPrice + 5)</span>
+                        <span class="summary-value">Rs.@(ViewBag.TotalPrice )</span>
                     </div>
                     <a asp-action="Summary" class="checkout-btn mt-4">Proceed to Checkout</a>
                 </div>
