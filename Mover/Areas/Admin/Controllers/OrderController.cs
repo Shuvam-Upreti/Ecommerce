@@ -96,6 +96,7 @@ namespace Mover.Areas.Admin.Controllers
                     TotalAmount = a.TotalAmount,
                     OrderDate = a.OrderDate,
                     OrderStatus = a.OrderStatus,
+                    ShippingAddressLine=a.ShippingAddressLine,
                     CurrentUserRole = currentUser.Role
 
                 }).ToList();

@@ -41,6 +41,26 @@ namespace Mover.Core.Services.Implementations
                 Description = a.Description,
                 DiscountedPrice = a.DiscountedPrice,
                 DiscountPercentage = a.DiscountPercentage,
+                IsFeatured=a.IsFeatured,
+                OriginalPrice = a.OriginalPrice,
+                InStock=a.Inventories.FirstOrDefault().QuantityInStock,
+                Category = a.Category?.Name,
+                ImageUrls = a.ProductImages?.Where(img => img.IsMainImage == true)
+                        .Select(img => img.ImageUrl).ToList()
+            }).ToList();
+            return dto;
+        } 
+        public async Task<List<ProductDto>> GetAllFeaturedProducts()
+        {
+            var products = await _productRepository.GetQueryable().Where(a=>a.IsFeatured).ToListAsync();
+            var dto = products.Select(a => new ProductDto()
+            {
+                ProductId = a.ProductId,
+                ProductName = a.ProductName,
+                Description = a.Description,
+                DiscountedPrice = a.DiscountedPrice,
+                DiscountPercentage = a.DiscountPercentage,
+                IsFeatured=a.IsFeatured,
                 OriginalPrice = a.OriginalPrice,
                 InStock=a.Inventories.FirstOrDefault().QuantityInStock,
                 Category = a.Category?.Name,
@@ -62,6 +82,7 @@ namespace Mover.Core.Services.Implementations
                 Description = a.Description,
                 DiscountedPrice = a.DiscountedPrice,
                 DiscountPercentage = a.DiscountPercentage,
+                IsFeatured=a.IsFeatured,
                 OriginalPrice = a.OriginalPrice
             }).ToList();
             return (dto, totalCount);
@@ -77,7 +98,8 @@ namespace Mover.Core.Services.Implementations
                 OriginalPrice = model.OriginalPrice,
                 DiscountedPrice = model.DiscountedPrice,
                 DiscountPercentage = model.DiscountPercentage,
-                CategoryId = model.CategoryId
+                CategoryId = model.CategoryId,
+                IsFeatured=model.IsFeatured
             };
 
             // Add images to the ProductImages collection
@@ -113,6 +135,7 @@ namespace Mover.Core.Services.Implementations
                 OriginalPrice = product.OriginalPrice,
                 DiscountedPrice = product.DiscountedPrice,
                 DiscountPercentage = product.DiscountPercentage,
+                IsFeatured=product.IsFeatured,
                 CategoryId = product.CategoryId,
                 InStock = product.Inventories.Select(a => a.QuantityInStock).FirstOrDefault(),
                 ImageUrls = product.ProductImages.Select(img => img.ImageUrl).ToList()
@@ -163,6 +186,7 @@ namespace Mover.Core.Services.Implementations
             product.Description = productDto.Description;
             product.OriginalPrice = productDto.OriginalPrice;
             product.DiscountedPrice = productDto.DiscountedPrice;
+            product.IsFeatured=productDto.IsFeatured;
             product.DiscountPercentage = productDto.DiscountPercentage;
             if (inventories is not null)
             {

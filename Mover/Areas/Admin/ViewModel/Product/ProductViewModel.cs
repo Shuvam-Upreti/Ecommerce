@@ -19,6 +19,7 @@ namespace Mover.Areas.Admin.ViewModel.Product
 
         public string? Category { get; set; }
         public int? CategoryId { get; set; }
+        public bool IsFeatured { get; set; } = false;
         [Required]
         public List<IFormFile> Images{ get; set; } = new List<IFormFile>();
 

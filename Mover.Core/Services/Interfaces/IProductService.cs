@@ -13,6 +13,7 @@ namespace Mover.Core.Services.Interfaces
     public interface IProductService
     {
         Task<List<ProductDto>> GetAllProducts();
+        Task<List<ProductDto>> GetAllFeaturedProducts();
         Task<(List<ProductDto>, int TotalCount)> GetAllProductsForGrid(FilterDto filter);
         Task Save(ProductDto model);
         Task<ProductDto> GetProduct(int id);

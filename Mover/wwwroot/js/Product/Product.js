@@ -69,6 +69,10 @@ function ProductGrid(onLoadElement, exportFileName) {
                     dataField: "category",
                 },
                 {
+                    caption: "IsFeatured",
+                    dataField: "isFeatured",
+                },
+                {
                     caption: "Action",
                     width:"100px",    
                     cellTemplate: function (element, info) {

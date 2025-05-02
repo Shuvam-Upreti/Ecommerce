@@ -48,7 +48,7 @@ namespace Mover.Controllers
                 var banner = await _appsettingService.GetAppsettingByKey(AppsettingEnum.BannerImage.ToString());
                 ViewBag.Banner = (banner != null && banner.Any())
                          ? banner.Select(a => a.Value).ToList(): new List<string>();
-                var products = await _productService.GetAllProducts();
+                var products = await _productService.GetAllFeaturedProducts();
 
                 var aboutUs = await _appsettingService.GetAppsettingByKey(AppsettingEnum.AboutUs.ToString());
                 ViewBag.AboutUs = aboutUs != null && aboutUs.Any() ? aboutUs.FirstOrDefault().Value : string.Empty; 

@@ -19,6 +19,8 @@ public partial class Product
 
     public int? CategoryId { get; set; }
 
+    public bool IsFeatured { get; set; }
+
     public virtual Category? Category { get; set; }
 
     public virtual ICollection<Inventory> Inventories { get; set; } = new List<Inventory>();

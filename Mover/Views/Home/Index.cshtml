@@ -548,7 +548,7 @@
 
     <section class="product-section py-5">
         <div class="container text-center">
-            <h2 class="text-center mb-5 section-title">OUR PRODUCTS</h2>
+            <h2 class="text-center mb-5 section-title">FEATURED PRODUCTS</h2>
 
             <div class="row g-4">
                 @foreach (var product in Model)
@@ -857,11 +857,11 @@
                                    'RequestVerificationToken': $('input[name="__RequestVerificationToken"]').val() // For AntiForgery
                                },
                                success: function () {
-                                   alert('Product added to cart successfully!');
+                                   toastr.success('Product added to cart successfully!');
                                    // optionally: update cart count badge
                                },
                                error: function () {
-                                   alert('Failed to add product to cart. Please try again.');
+                                   toastr.error('Failed to add product to cart. Please try again.');
                                }
                            });
                        });

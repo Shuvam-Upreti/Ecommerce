@@ -291,3 +291,8 @@ INSERT INTO AppSettings ([Key], [Value], [Page]) VALUES
 ('CoreValueInnovation', 'Constantly pushing boundaries to create cutting-edge solutions that transform lives.', 'AboutUsPage'),
 ('CoreValueQuality', 'Maintaining the highest standards in every product and service we deliver.', 'AboutUsPage'),
 ('CoreValueCare', 'Putting our customers'' well-being at the heart of everything we do.', 'AboutUsPage');
+
+
+
+  alter table Products
+  add IsFeatured bit default 0 not null;

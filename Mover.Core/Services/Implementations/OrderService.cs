@@ -114,6 +114,7 @@ namespace Mover.Core.Services.Implementations
                 TotalAmount = a.TotalAmount,
                 OrderDate = a.OrderDate,
                 OrderStatus = a.OrderStatus,
+                ShippingAddressLine=a.ShippingAddressLine
             }).ToList();
             return (dto, totalCount);
         }

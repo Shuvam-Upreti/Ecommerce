@@ -66,8 +66,11 @@ function OrderGrid(onLoadElement, exportFileName, orderStatus, filterDateFrom, f
                 },
                 {
                     caption: "Phone Number",
-
                     dataField: "phoneNumber"
+                },
+                {
+                    caption: "Address",
+                    dataField: "shippingAddressLine"
                 },
                 {
                     caption: "Total Amount",

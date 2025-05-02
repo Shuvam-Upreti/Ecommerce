@@ -44,6 +44,7 @@ namespace Mover.Areas.Admin.Controllers
                     Description = a.Description,
                     ProductName = a.ProductName,
                     DiscountedPrice = a.DiscountedPrice,
+                    IsFeatured=a.IsFeatured,
                     Category = a.Category,
                     DiscountPercentage = a.DiscountPercentage,
                     OriginalPrice = a.OriginalPrice
@@ -83,6 +84,7 @@ namespace Mover.Areas.Admin.Controllers
                     DiscountedPrice = a.DiscountedPrice,
                     Category = a.Category,
                     DiscountPercentage = a.DiscountPercentage,
+                    IsFeatured=a.IsFeatured,
                     OriginalPrice = a.OriginalPrice
                 }).ToList();
                 var result = Json(new { data = datas, totalCount = totalCount });
@@ -180,7 +182,8 @@ namespace Mover.Areas.Admin.Controllers
                     DiscountPercentage = model.DiscountPercentage,
                     CategoryId = model.CategoryId,
                     ImageUrls = savedFileNames,
-                    InStock = model.InStock
+                    InStock = model.InStock,
+                    IsFeatured=model.IsFeatured
                 };
 
                 await _productService.Save(dto);
@@ -216,7 +219,9 @@ namespace Mover.Areas.Admin.Controllers
                     DiscountedPrice = product.DiscountedPrice,
                     DiscountPercentage = product.DiscountPercentage,
                     CategoryId = product.CategoryId,
+                    IsFeatured=product.IsFeatured,
                     InStock = product.InStock,
+                    
                     // If product has images, map them to the view model
                     ImageUrls = product.ImageUrls
                 };
@@ -261,6 +266,7 @@ namespace Mover.Areas.Admin.Controllers
                     OriginalPrice = model.OriginalPrice,
                     DiscountedPrice = model.DiscountedPrice,
                     InStock = model.InStock,
+                    IsFeatured=model.IsFeatured,
                     DiscountPercentage = model.DiscountPercentage,
                     CategoryId = model.CategoryId,
                     ImageUrls = model.ImageUrls, // Existing images

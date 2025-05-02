@@ -23,6 +23,7 @@ namespace Mover.Core.Dto.Product
         public decimal? DiscountPercentage { get; set; }
 
         public string? Category { get; set; }
+        public bool IsFeatured { get; set; }
         public int? CategoryId { get; set; }
 
         // Image URLs of the existing product
