@@ -106,16 +106,24 @@ namespace Mover.Core.Services.Implementations
         {
             using var tx = TransactionScopeHelper.GetInstance();
 
-            var entity = new ShoppingCart()
-            {
-                ProductId = model.ProductId,
-                Quantity = model.Quantity,
-                UserId = model.CreatedBy,
-                GuestId = model.GuestId,
-                AddedAt = DateTime.Now
-            };
+            var existingCartOfProductAndUserOrGuest = await _cartRepository.GetQueryable().Where(a => a.ProductId==model.ProductId &&(a.UserId==model.CreatedBy||a.GuestId==model.GuestId)).FirstOrDefaultAsync();
 
-            await _cartRepository.InsertAsync(entity);
+            if (existingCartOfProductAndUserOrGuest is null)
+            {
+                var entity = new ShoppingCart()
+                {
+                    ProductId = model.ProductId,
+                    Quantity = model.Quantity,
+                    UserId = model.CreatedBy,
+                    GuestId = model.GuestId,
+                    AddedAt = DateTime.Now
+                };
+                await _cartRepository.InsertAsync(entity);
+            }
+            else
+            {
+                await SetItemCount(existingCartOfProductAndUserOrGuest.CartId, (existingCartOfProductAndUserOrGuest.Quantity+model.Quantity));
+            }
 
             tx.Complete();
 

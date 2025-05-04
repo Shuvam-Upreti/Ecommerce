@@ -332,14 +332,15 @@
                     </div> *@
 
                     <div class="summary-row">
-                        <span>Delivery Charge inside valley Rs100 outside valley it may vary.</span>
+                        @* <span>Delivery Charge inside valley Rs100 outside valley it may vary.</span> *@
+                        <span>Excluding Delivery Charge </span>
                         @* <span>Rs. 50.00</span> *@
                     </div>
 
                     <hr>
 
                     <div class="summary-row">
-                        <input type="hidden" name="SummaryTotalPrice" value="@(Model.SummaryTotalPrice + 50)" />
+                        <input type="hidden" name="SummaryTotalPrice" value="@(Model.SummaryTotalPrice)" />
                         <strong>Grand Total</strong>
                         <strong>Rs. @(Model.SummaryTotalPrice)</strong>
                     </div>
