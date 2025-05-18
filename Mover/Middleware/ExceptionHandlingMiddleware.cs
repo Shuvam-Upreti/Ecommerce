@@ -18,7 +18,10 @@ namespace Mover.Middleware
         {
             try
             {
+                new SeriLogger().Information(context.Response.ToString());
+                new SeriLogger().Information("Hello");
                 await _next(context);
+                new SeriLogger().Information("Hello2");
             }
             catch (Exception ex)
             {

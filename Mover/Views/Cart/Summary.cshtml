@@ -342,7 +342,7 @@
                     <div class="summary-row">
                         <input type="hidden" name="SummaryTotalPrice" value="@(Model.SummaryTotalPrice)" />
                         <strong>Grand Total</strong>
-                        <strong>Rs. @(Model.SummaryTotalPrice)</strong>
+                        <strong>Rs. @Model.SummaryTotalPrice.ToString("F2")</strong>
                     </div>
 
                     <button type="submit" class="submit-btn">Place Order</button>

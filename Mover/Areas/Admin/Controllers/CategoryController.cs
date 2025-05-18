@@ -117,11 +117,14 @@ namespace Mover.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(CategoryViewModel model)
         {
+            new SeriLogger().Information("Hit method");
             if (!ModelState.IsValid)
             {
                 this.NotifyModelStateErrors();
                 return View(model);
             }
+            new SeriLogger().Information("Hit1 method");
+
             if (model.Images == null || !model.Images.Any())
             {
                 this.NotifyInfo("Please upload at least one image.");
@@ -129,6 +132,8 @@ namespace Mover.Areas.Admin.Controllers
             }
             try
             {
+                new SeriLogger().Information("Hit2 method");
+
                 var savedFileNames = new List<string>();
                 var invalidFiles = new List<string>();
                 var destinationFolder = Path.Combine(
@@ -137,29 +142,45 @@ namespace Mover.Areas.Admin.Controllers
 
                 if (!Directory.Exists(destinationFolder))
                 {
+                    new SeriLogger().Information("Hit3 method");
+
                     Directory.CreateDirectory(destinationFolder);
                 }
 
                 foreach (var image in model.Images)
                 {
+                    new SeriLogger().Information("Hit4 method");
+
                     if (!_fileHelper.IsImageValid(image.FileName))
                     {
+                        new SeriLogger().Information("Hit5 method");
+
                         invalidFiles.Add(image.FileName);
                         continue;
                     }
+                    new SeriLogger().Information("Hit5 method");
 
                     var fileName = await _fileHelper.SaveImageAndGetFileName(image, destinationFolder);
+                    new SeriLogger().Information("Hit6 method");
+
                     var imagePath = Path.Combine(_configuration["ImageSettings:CategoryImages"], fileName);
+                    new SeriLogger().Information("Hit7 method");
+
                     savedFileNames.Add(imagePath);
+                    new SeriLogger().Information("Hit8 method");
+
                 }
 
-                var dto = new CategoryDto()
+                    var dto = new CategoryDto()
                 {
                     Name = model.Name,
                     ImageUrl = savedFileNames.FirstOrDefault(),
                 };
+                new SeriLogger().Information("Hit9 method");
 
                 await _categoryService.Save(dto);
+                new SeriLogger().Information("Hit10 method");
+
                 this.NotifySuccess("Sucessfully created category");
                 return RedirectToAction(nameof(Index));
             }

@@ -81,14 +81,14 @@ namespace Mover.Areas.Admin.Controllers
                 }
 
                 // Save image in wwwroot/uploads/banner
-                var destinationFolder = Path.Combine(_hostingEnvironment.WebRootPath, "uploads/banner");
+                var destinationFolder = Path.Combine(_hostingEnvironment.WebRootPath, "uploads/bannerimagerepo");
                 if (!Directory.Exists(destinationFolder))
                 {
                     Directory.CreateDirectory(destinationFolder);
                 }
 
                 var savedFileName = await _fileHelper.SaveImageAndGetFileName(dto.Image, destinationFolder);
-                var imageUrl = $"/uploads/banner/{savedFileName}";
+                var imageUrl = $"/uploads/bannerimagerepo/{savedFileName}";
 
                 // Prepare AppsettingDto for saving
                 var settingDto = new AppsettingDto
@@ -186,14 +186,14 @@ namespace Mover.Areas.Admin.Controllers
                 }
 
                 // Save image in wwwroot/uploads/banner
-                var destinationFolder = Path.Combine(_hostingEnvironment.WebRootPath, "uploads/brands");
+                var destinationFolder = Path.Combine(_hostingEnvironment.WebRootPath, "uploads/brandsimagerepo");
                 if (!Directory.Exists(destinationFolder))
                 {
                     Directory.CreateDirectory(destinationFolder);
                 }
 
                 var savedFileName = await _fileHelper.SaveImageAndGetFileName(dto.Image, destinationFolder);
-                var imageUrl = $"/uploads/brands/{savedFileName}";
+                var imageUrl = $"/uploads/brandsimagerepo/{savedFileName}";
 
                 // Prepare AppsettingDto for saving
                 var settingDto = new AppsettingDto
