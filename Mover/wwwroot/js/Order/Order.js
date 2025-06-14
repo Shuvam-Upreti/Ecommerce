@@ -20,6 +20,64 @@ $(document).ready(function () {
 
 });
 
+$('#printSelectedRowsBtn').on('click', function () {
+    const grid = $("#orderGrid").dxDataGrid('instance');
+    const selectedData = grid.getSelectedRowsData();
+
+    if (selectedData.length === 0) {
+        toastr.info("Please select at least one row to print.");
+        return;
+    }
+
+    // Create an HTML table
+    let tableHtml = '<h2>Selected Orders</h2><table border="1" cellspacing="0" cellpadding="8" style="width:100%; font-family:Arial; font-size:12px;">';
+    tableHtml += `
+        <tr>
+            <th>Order ID</th>
+            <th>Created By</th>
+            <th>Phone Number</th>
+            <th>Address</th>
+            <th>Total Amount</th>
+            <th>Order Date</th>
+            <th>Order Status</th>
+        </tr>`;
+
+    selectedData.forEach(row => {
+        tableHtml += `
+            <tr>
+                <td>${row.orderId}</td>
+                <td>${row.createdBy}</td>
+                <td>${row.phoneNumber}</td>
+                <td>${row.shippingAddressLine}</td>
+                <td>${row.totalAmount}</td>
+                <td>${ConvertJavascriptDateDigitToDateFormat(row.orderDate)}</td>
+                <td>${row.orderStatus}</td>
+            </tr>`;
+    });
+
+    tableHtml += '</table>';
+
+    // Open print window
+    const printWindow = window.open('', '', 'width=1000,height=800');
+    printWindow.document.write(`
+        <html>
+        <head>
+            <title>Print Selected Orders</title>
+        </head>
+        <body>
+            ${tableHtml}
+        </body>
+        </html>
+    `);
+    printWindow.document.close();
+    printWindow.focus();
+
+    // Wait for content to render before printing
+    setTimeout(() => {
+        printWindow.print();
+        printWindow.close();
+    }, 500);
+});
 
 function OrderGrid(onLoadElement, exportFileName, orderStatus, filterDateFrom, filterDateTo, searchInput) {
     $(function () {

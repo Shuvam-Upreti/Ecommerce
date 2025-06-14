@@ -101,8 +101,8 @@
     }
 
     /*  .main-content {
-        margin-left: 280px;
-        } */
+            margin-left: 280px;
+            } */
 
     .profile-img {
         width: 45px;
@@ -218,7 +218,7 @@
     <div class="orders-container">
         <div class="filters-section">
             <div class="row">
-                
+
 
                 <div class="col-md-2 mb-3">
                     <label for="filterDateFrom" class="form-label">From</label>
@@ -245,18 +245,23 @@
                     <label for="searchInput" class="form-label">Search</label>
                     <input class="form-control" id="searchInputOrder" placeholder="Enter Name/Phone No." />
                 </div>
-                <div class="col-md-2 mb-3 d-flex align-items-end">
+                <div class="col-md-1 mb-3 d-flex align-items-end">
                     <button class="btn btn-success w-45" id="searchBtn"><i class="fa fa-search"></i> Search</button>
                 </div>
                 <div class="col-md-2 mb-3 d-flex align-items-end">
                     <button class="btn btn-success w-45" id="createOrderBtn"><i class="fa fa-plus"></i> Create Order</button>
                 </div>
- 
+                <div class="col-md-1 mb-3 d-flex align-items-end">
+                    <button class="btn btn-success w-45" id="printSelectedRowsBtn"><i class="fa fa-print"></i> Print</button>
+                </div>
+
+
                 <div class="searchBar">
                     <div class="loHead">Orders</div>
                 </div>
 
                 <div id="orderGrid" class="panel" style="min-height:500px"></div>
+
             </div>
         </div>
 
@@ -277,7 +282,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="createOrderLabel">Create Order</h5>
-                    
+
                 </div>
                 <div class="modal-body" id="createOrderContent">
 
