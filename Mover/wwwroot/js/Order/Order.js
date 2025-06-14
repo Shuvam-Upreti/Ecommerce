@@ -241,7 +241,7 @@ function DeleteOrder(orderId) {
 
     console.log("Calling ShowDialog"); // Debugging line
 
-    ShowDialog("Confirm Delivered", "Are you sure you want to delete the order?", "warning")
+    ShowDialog("Confirm Delete", "Are you sure you want to delete the order?", "warning")
         .then((result) => {
             console.log("Dialog result:", result); // Debugging line
             if (result.isConfirmed) {

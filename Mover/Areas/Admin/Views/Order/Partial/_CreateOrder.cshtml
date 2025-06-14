@@ -1,6 +1,6 @@
 ﻿@model Mover.ViewModel.Carts.SummaryViewModel
 
-<style>
+@* <style>
 /* Modal Styling */
 .modal {
     display: flex;
@@ -112,6 +112,25 @@ h5 {
     background-color: #0096c7;
 }
 </style>
+ *@
+
+ <style>
+    /* Select2 default size fix */
+    .select2-container--default .select2-selection--single {
+        height: 38px !important;
+        padding: 6px 12px;
+        border: 1px solid #ced4da;
+        border-radius: 4px;
+    }
+
+    /* Make sure dropdown is above everything */
+    .select2-container--open {
+        z-index: 9999;
+    }
+
+
+ </style>
+
 
 <form id="createOrderForm">
     <div class="form-group">
@@ -130,6 +149,8 @@ h5 {
         </select>
     </div>
 
+
+
     <div class="form-group">
         <label>Quantity</label>
         <input type="number" class="form-control" name="CartViewModel[0].Quantity" value="1" min="1" required />
@@ -144,6 +165,10 @@ h5 {
     <hr />
     <h5>Shipping Info</h5>
 
+    <div class="form-group">
+        <label>Name</label>
+        <input type="text" class="form-control" name="ShippingDetails.CreaterName" required />
+    </div> 
     <div class="form-group">
         <label>Phone Number</label>
         <input type="text" class="form-control" name="ShippingDetails.PhoneNumber" required />
@@ -163,6 +188,8 @@ h5 {
 </form>
 
 <script>
+    
+
     $('#productDropdown').on('change', function () {
         const selected = $(this).find(':selected');
         const price = selected.data('price');
@@ -200,4 +227,5 @@ h5 {
             }
         });
     });
+
 </script>
