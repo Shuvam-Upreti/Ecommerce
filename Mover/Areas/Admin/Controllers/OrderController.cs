@@ -15,6 +15,8 @@ using Mover.HttpUtility;
 using Mover.Logging;
 using Mover.ViewModel.Carts;
 using Mover.ViewModel.Filter;
+using Newtonsoft.Json;
+using System.Text;
 using static Mover.Core.Enums.Orders.OrderStatus;
 
 namespace Mover.Areas.Admin.Controllers
@@ -25,11 +27,14 @@ namespace Mover.Areas.Admin.Controllers
         private readonly IProductService _productService;
         private readonly IOrderService _orderService;
         private readonly GetGuestIdOrSessionUser _userHelper;
-        public OrderController(IOrderService orderService, GetGuestIdOrSessionUser userHelper, IProductService productService)
+        private readonly IConfiguration Configuration;
+
+        public OrderController(IOrderService orderService, GetGuestIdOrSessionUser userHelper, IProductService productService, IConfiguration configuration)
         {
             _orderService = orderService;
             _userHelper=userHelper;
             _productService=productService;
+            Configuration=configuration;
         }
         [HttpGet]
         public async Task<IActionResult> Index()
@@ -330,5 +335,46 @@ namespace Mover.Areas.Admin.Controllers
                 return RedirectToAction(nameof(Index));
             }
         }
+
+        [HttpPost]
+        public async Task<IActionResult> SendOrderToLogisticsBulk([FromBody] List<OrderViewModel> orders)
+        {
+            try
+            {
+                foreach (var model in orders)
+                {
+                    var order = new
+                    {
+                        ReceiverName = model.CreatedBy,
+                        ReceiverPhoneNumber = model.PhoneNumber,
+                        Amount = model.TotalAmount,
+                        DeliveryAddress = model.ShippingAddressLine
+                    };
+
+                    string apiUrl = Configuration["LogisticsApi:CreateOrderUrl"];
+
+                    using var httpClient = new HttpClient();
+                    var json = JsonConvert.SerializeObject(order);
+                    var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+                    var response = await httpClient.PostAsync(apiUrl, content);
+
+                    if (!response.IsSuccessStatusCode)
+                    {
+                        var error = await response.Content.ReadAsStringAsync();
+                        new SeriLogger().Information($"Failed to send order for {model.CreatedBy}: {error}");
+                        return BadRequest($"Failed to send one or more orders.");
+                    }
+                }
+
+                return Ok("All orders sent successfully.");
+            }
+            catch (Exception ex)
+            {
+                new SeriLogger().Error(ex.Message, ex);
+                return StatusCode(500, "Internal error occurred.");
+            }
+        }
+
     }
 }

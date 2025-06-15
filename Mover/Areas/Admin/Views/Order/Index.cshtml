@@ -219,13 +219,11 @@
         <div class="filters-section">
             <div class="row">
 
-
                 <div class="col-md-2 mb-3">
                     <label for="filterDateFrom" class="form-label">From</label>
                     <input type="date" class="form-control" id="filterDateFrom" max="@DateTime.Now.ToString("yyyy-MM-dd")" onchange="activateToDate()">
                 </div>
 
-                <!-- Date To Filter -->
                 <div class="col-md-2 mb-3">
                     <label for="filterDateTo" class="form-label">To</label>
                     <input type="date" class="form-control" id="filterDateTo" disabled max="@DateTime.Now.ToString("yyyy-MM-dd")">
@@ -241,32 +239,46 @@
                         }
                     </select>
                 </div>
+
                 <div class="col-md-2">
                     <label for="searchInput" class="form-label">Search</label>
                     <input class="form-control" id="searchInputOrder" placeholder="Enter Name/Phone No." />
                 </div>
+
                 <div class="col-md-1 mb-3 d-flex align-items-end">
-                    <button class="btn btn-success w-45" id="searchBtn"><i class="fa fa-search"></i> Search</button>
-                </div>
-                <div class="col-md-2 mb-3 d-flex align-items-end">
-                    <button class="btn btn-success w-45" id="createOrderBtn"><i class="fa fa-plus"></i> Create Order</button>
-                </div>
-                <div class="col-md-1 mb-3 d-flex align-items-end">
-                    <button class="btn btn-success w-45" id="printSelectedRowsBtn"><i class="fa fa-print"></i> Print</button>
+                    <button class="btn btn-success w-100" id="searchBtn">
+                        <i class="fa fa-search"></i> Search
+                    </button>
                 </div>
 
+                <div class="col-md-2 mb-3 d-flex align-items-end">
+                    <button class="btn btn-primary w-100" id="createOrderBtn">
+                        <i class="fa fa-plus"></i> Create Order
+                    </button>
+                </div>
+
+                <div class="col-md-1 mb-3 d-flex align-items-end">
+                    <button class="btn btn-secondary w-100" id="printSelectedRowsBtn">
+                        <i class="fa fa-print"></i> Print
+                    </button>
+                </div>
+
+                <!-- ✅ New Send to Logistics Button -->
+                <div class="col-md-2 mb-3 d-flex align-items-end">
+                    <button class="btn btn-warning w-100" id="sendToLogisticsBtn">
+                        <i class="fa fa-truck"></i> Send to Logistics
+                    </button>
+                </div>
 
                 <div class="searchBar">
                     <div class="loHead">Orders</div>
                 </div>
 
                 <div id="orderGrid" class="panel" style="min-height:500px"></div>
-
             </div>
         </div>
-
-
     </div>
+
     <div class="modal fade" id="editOrderStatusModal" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">

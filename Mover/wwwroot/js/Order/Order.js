@@ -30,16 +30,15 @@ $('#printSelectedRowsBtn').on('click', function () {
     }
 
     // Create an HTML table
-    let tableHtml = '<h2>Selected Orders</h2><table border="1" cellspacing="0" cellpadding="8" style="width:100%; font-family:Arial; font-size:12px;">';
+    let tableHtml = '<h2>Orders</h2><table border="1" cellspacing="0" cellpadding="8" style="width:100%; font-family:Arial; font-size:12px;">';
     tableHtml += `
         <tr>
             <th>Order ID</th>
-            <th>Created By</th>
+            <th>Name</th>
             <th>Phone Number</th>
             <th>Address</th>
             <th>Total Amount</th>
             <th>Order Date</th>
-            <th>Order Status</th>
         </tr>`;
 
     selectedData.forEach(row => {
@@ -51,13 +50,12 @@ $('#printSelectedRowsBtn').on('click', function () {
                 <td>${row.shippingAddressLine}</td>
                 <td>${row.totalAmount}</td>
                 <td>${ConvertJavascriptDateDigitToDateFormat(row.orderDate)}</td>
-                <td>${row.orderStatus}</td>
+            
             </tr>`;
     });
 
     tableHtml += '</table>';
 
-    // Open print window
     const printWindow = window.open('', '', 'width=1000,height=800');
     printWindow.document.write(`
         <html>
@@ -119,7 +117,7 @@ function OrderGrid(onLoadElement, exportFileName, orderStatus, filterDateFrom, f
                     dataField: "orderId"
                 },
                 {
-                    caption: "Created By",
+                    caption: "Name",
                     dataField: "createdBy"
                 },
                 {
@@ -297,11 +295,8 @@ function DeleteOrder(orderId) {
         return;
     }
 
-    console.log("Calling ShowDialog"); // Debugging line
-
     ShowDialog("Confirm Delete", "Are you sure you want to delete the order?", "warning")
         .then((result) => {
-            console.log("Dialog result:", result); // Debugging line
             if (result.isConfirmed) {
                 BlockWindow("Confirming delete...");
 
@@ -324,4 +319,43 @@ function DeleteOrder(orderId) {
             }
         });
 }
+
+$('#sendToLogisticsBtn').on('click', function () {
+    const grid = $("#orderGrid").dxDataGrid('instance');
+    const selectedData = grid.getSelectedRowsData();
+
+    if (selectedData.length === 0) {
+        toastr.info("Please select at least one order.");
+        return;
+    }
+
+    const orderList = selectedData.map(row => ({
+        OrderId: row.orderId,
+        CreatedBy: row.createdBy,
+        PhoneNumber: row.phoneNumber,
+        TotalAmount: row.totalAmount,
+        ShippingAddressLine: row.shippingAddressLine
+    }));
+
+    $('#sendToLogisticsBtn').prop('disabled', true).text("Sending...");
+
+    $.ajax({
+        url: '/admin/order/SendOrderToLogisticsBulk',
+        type: 'POST',
+        data: JSON.stringify(orderList),
+        contentType: 'application/json',
+        success: function (response) {
+            toastr.success("All selected orders sent successfully.");
+            $('#sendToLogisticsBtn').prop('disabled', false).text("Send Selected to Logistics");
+            // Optionally: refresh or reload grid
+            $("#orderGrid").dxDataGrid("instance").refresh();
+        },
+        error: function (xhr) {
+            toastr.error("Failed to send one or more orders.");
+            $('#sendToLogisticsBtn').prop('disabled', false).text("Send Selected to Logistics");
+            console.error(xhr.responseText);
+        }
+    });
+});
+
 

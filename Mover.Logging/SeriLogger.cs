@@ -13,6 +13,7 @@ namespace Mover.Logging
         private static readonly ILogger _logger = new LoggerConfiguration()
             .Enrich.FromLogContext()
             .WriteTo.File(new JsonFormatter(), $"Logs/ErrorLog-{DateTime.Now:yyyyMMdd}.json", restrictedToMinimumLevel: Serilog.Events.LogEventLevel.Error)
+            .WriteTo.File(new JsonFormatter(), $"Logs/ErrorLog-{DateTime.Now:yyyyMMdd}.json", restrictedToMinimumLevel: Serilog.Events.LogEventLevel.Information)
             .CreateLogger();
 
 
