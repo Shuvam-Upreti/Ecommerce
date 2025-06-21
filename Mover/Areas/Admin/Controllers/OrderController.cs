@@ -312,6 +312,54 @@ namespace Mover.Areas.Admin.Controllers
                 return RedirectToAction(nameof(Index));
             }
         }
+        
+        public async Task<IActionResult> DetailTest(int id)
+        {
+            try
+            {
+                var order = await _orderService.GetOrderById(id);
+
+                var vm = new OrderViewModel()
+                {
+                    OrderId = order.OrderId,
+                    CreatedBy = order.CreatedBy,
+                    PhoneNumber = order.PhoneNumber,
+                    TotalAmount = order.TotalAmount,
+                    OrderDate = order.OrderDate,
+                    OrderStatus = order.OrderStatus,
+                    ShippingAddressLine = order.ShippingAddressLine,
+                    ShippingCity = order.ShippingCity,
+                    ShippingZipCode = order.ShippingZipCode,
+                    PaymentStatus = order.PaymentStatus,
+                    ShippingState = order.ShippingState,
+                    OrderItemsViewModel = order.OrderItemsDto.Select(a => new OrderItemViewModel()
+                    {
+                        DiscountAtPurchase = a.DiscountAtPurchase,
+                        PriceAtPurchase = a.PriceAtPurchase,
+                        Quantity = a.Quantity,
+                        OrderItemId = a.OrderItemId,
+                        ProductId = a.ProductId,
+                        ProductName=a.ProductName,
+                        ImageUrl=a.ImageUrl
+                    }).ToList()
+                };
+
+                return View(vm);
+
+            }
+            catch (CustomException ex)
+            {
+                new SeriLogger().Error(ex.Message, ex);
+                this.NotifyInfo(ex.Message);
+                return RedirectToAction(nameof(Index));
+            }
+            catch (Exception ex)
+            {
+                new SeriLogger().Error(ex.Message, ex);
+                this.NotifyError("Something went wrong.Please try again");
+                return RedirectToAction(nameof(Index));
+            }
+        }
 
         [HttpPost]
         public async Task<IActionResult> Delete(int id)

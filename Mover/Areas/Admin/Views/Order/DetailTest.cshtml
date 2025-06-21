@@ -1,0 +1,747 @@
+﻿@using Mover.Areas.Admin.ViewModel.Order
+@model OrderViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Order Details";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Management</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
+        body {
+            background: #f8fafc;
+            color: #1e293b;
+            line-height: 1.6;
+        }
+
+        /* Ensure navbar styles don't get overridden */
+        .navbar, .nav, .navigation, header {
+            /* Preserve existing navbar styles */
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 15px;
+        }
+
+        .page-header {
+            background: white;
+            padding: 15px 20px;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            margin-bottom: 15px;
+        }
+
+            .page-header h1 {
+                font-size: clamp(18px, 4vw, 24px);
+                font-weight: 600;
+                color: #1e293b;
+            }
+
+        /* Customer Info Bar - Highly Responsive */
+        .customer-info-bar {
+            background: #475569;
+            color: white;
+            padding: 12px 15px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .customer-info-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: clamp(11px, 2.5vw, 14px);
+            min-width: 0;
+            flex: 1 1 auto;
+        }
+
+        .customer-info-label {
+            font-weight: 500;
+            opacity: 0.9;
+            white-space: nowrap;
+        }
+
+        .customer-info-value {
+            font-weight: 600;
+            word-break: break-word;
+        }
+
+        /* Order Items Section - Fully Responsive */
+        .order-items-section {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+
+        .section-header {
+            background: #64748b;
+            color: white;
+            padding: 12px 15px;
+            font-weight: 600;
+            font-size: clamp(14px, 3vw, 16px);
+        }
+
+        .table-container {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .items-table {
+            width: 100%;
+            min-width: 800px; /* Reduced from 1200px since we removed columns */
+            border-collapse: collapse;
+        }
+
+            .items-table th {
+                background: #475569;
+                color: white;
+                padding: 12px 8px;
+                text-align: center;
+                font-size: clamp(10px, 2.2vw, 12px);
+                font-weight: 600;
+                border-right: 1px solid #64748b;
+                white-space: nowrap;
+            }
+
+                .items-table th:last-child {
+                    border-right: none;
+                }
+
+            .items-table td {
+                padding: 12px 8px;
+                text-align: center;
+                border-bottom: 1px solid #e2e8f0;
+                border-right: 1px solid #e2e8f0;
+                font-size: clamp(11px, 2.2vw, 13px);
+                white-space: nowrap;
+            }
+
+                .items-table td:last-child {
+                    border-right: none;
+                }
+
+            .items-table tbody tr:hover {
+                background: #f8fafc;
+            }
+
+        .product-name {
+            text-align: left !important;
+            max-width: 250px;
+            white-space: normal !important;
+            word-break: break-word;
+            min-width: 200px;
+        }
+
+        .product-link {
+            color: #2563eb;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+            .product-link:hover {
+                text-decoration: underline;
+            }
+
+        .status-badge {
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: clamp(9px, 2vw, 11px);
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .status-pending {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        /* Highly Responsive Action Buttons */
+        .action-buttons {
+            display: flex;
+            gap: clamp(2px, 1vw, 4px);
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .action-btn {
+            width: clamp(28px, 6vw, 32px);
+            height: clamp(28px, 6vw, 32px);
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: clamp(11px, 2.5vw, 14px);
+            transition: all 0.2s ease;
+        }
+
+            .action-btn:hover {
+                transform: scale(1.05);
+            }
+
+        .btn-edit {
+            background: #10b981;
+            color: white;
+        }
+
+        .btn-view {
+            background: #3b82f6;
+            color: white;
+        }
+
+        .btn-delete {
+            background: #ef4444;
+            color: white;
+        }
+
+        .btn-info {
+            background: #f59e0b;
+            color: white;
+        }
+
+        /* Layout: Payment Left, Bill Details Right - Responsive */
+        .bottom-section {
+            display: grid;
+            grid-template-columns: 1fr 350px;
+            gap: 20px;
+            align-items: start;
+        }
+
+        /* Payment Section - Simplified */
+        .payment-section {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            padding: 15px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
+            margin-bottom: 15px;
+        }
+
+        .form-group-inline {
+            display: flex;
+            flex-direction: column;
+        }
+
+            .form-group-inline label {
+                font-weight: 500;
+                margin-bottom: 4px;
+                font-size: clamp(12px, 2.5vw, 13px);
+            }
+
+            .form-group-inline select,
+            .form-group-inline input {
+                padding: 8px 10px;
+                border: 1px solid #d1d5db;
+                border-radius: 4px;
+                font-size: clamp(12px, 2.5vw, 13px);
+            }
+
+        .textarea-group {
+            margin-top: 12px;
+        }
+
+            .textarea-group textarea {
+                width: 100%;
+                min-height: 70px;
+                padding: 8px;
+                border: 1px solid #d1d5db;
+                border-radius: 4px;
+                resize: vertical;
+                font-size: clamp(12px, 2.5vw, 13px);
+            }
+
+        /* Pricing Card - Right Side */
+        .pricing-card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            position: sticky;
+            top: 20px;
+        }
+
+        .pricing-form {
+            padding: 15px;
+        }
+
+        .form-group {
+            margin-bottom: 12px;
+        }
+
+            .form-group label {
+                display: block;
+                margin-bottom: 4px;
+                font-weight: 500;
+                font-size: clamp(12px, 2.5vw, 13px);
+                color: #374151;
+            }
+
+        .form-control {
+            width: 100%;
+            padding: 8px 10px;
+            border: 1px solid #d1d5db;
+            border-radius: 4px;
+            font-size: clamp(12px, 2.5vw, 13px);
+            background: #f9fafb;
+        }
+
+            .form-control:focus {
+                outline: none;
+                border-color: #3b82f6;
+                background: white;
+            }
+
+            .form-control:disabled {
+                background: #f3f4f6;
+                color: #6b7280;
+            }
+
+        .pricing-summary {
+            background: #f8fafc;
+            padding: 12px;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 6px;
+            font-size: clamp(12px, 2.5vw, 13px);
+        }
+
+            .summary-row.total {
+                font-weight: 600;
+                font-size: clamp(13px, 2.8vw, 14px);
+                color: #1e293b;
+                border-top: 1px solid #d1d5db;
+                padding-top: 6px;
+                margin-top: 8px;
+            }
+
+        .save-btn {
+            width: 100%;
+            background: #10b981;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 12px;
+            font-size: clamp(13px, 2.8vw, 14px);
+        }
+
+            .save-btn:hover {
+                background: #059669;
+            }
+
+        /* Back Button */
+        .back-button-container {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .btn-custom {
+            display: inline-block;
+            background-color: #10ccb4;
+            color: white;
+            font-size: clamp(14px, 3vw, 16px);
+            font-weight: 600;
+            text-decoration: none;
+            padding: 12px 24px;
+            border-radius: 9999px;
+            transition: background-color 0.3s ease;
+        }
+
+            .btn-custom:hover {
+                background-color: #0ea9a1;
+            }
+
+        /* Responsive Design - Key Breakpoint at 1240px */
+        @@media (max-width: 1240px) {
+            .bottom-section
+
+        {
+            grid-template-columns: 1fr;
+            gap: 15px;
+        }
+
+        /* Full-width Bill Section with Columns */
+        .pricing-card {
+            position: static;
+            max-width: none;
+            width: 100%;
+        }
+
+        .pricing-form {
+            padding: 20px;
+        }
+
+        /* Organize bill fields in columns for full-width layout */
+        .pricing-fields-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .pricing-summary {
+            margin-top: 15px;
+        }
+
+        }
+
+        @@media (max-width: 768px) {
+            .container
+
+        {
+            padding: 10px;
+        }
+
+        .customer-info-bar {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 8px;
+            padding: 10px;
+        }
+
+        .customer-info-item {
+            width: 100%;
+            justify-content: space-between;
+        }
+
+        .form-row {
+            grid-template-columns: 1fr;
+            gap: 10px;
+        }
+
+        .pricing-fields-grid {
+            grid-template-columns: 1fr;
+            gap: 12px;
+        }
+
+        .items-table {
+            min-width: 600px;
+        }
+
+        .action-buttons {
+            gap: 3px;
+        }
+
+        .action-btn {
+            min-width: 30px;
+            min-height: 30px;
+        }
+
+        }
+
+        @@media (max-width: 480px) {
+            .page-header
+
+        {
+            padding: 10px 15px;
+        }
+
+        .section-header {
+            padding: 10px 12px;
+        }
+
+        .pricing-form,
+        .payment-section {
+            padding: 12px;
+        }
+
+        .customer-info-bar {
+            padding: 8px 10px;
+        }
+
+        .items-table {
+            min-width: 500px;
+        }
+
+        .product-name {
+            min-width: 150px;
+            max-width: 180px;
+        }
+
+        }
+
+        @@media (max-width: 360px) {
+            .container
+
+        {
+            padding: 8px;
+        }
+
+        .items-table {
+            min-width: 450px;
+        }
+
+        .action-btn {
+            min-width: 28px;
+            min-height: 28px;
+            font-size: 11px;
+        }
+
+        .pricing-fields-grid {
+            gap: 10px;
+        }
+
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Page Header -->
+        <div class="page-header">
+            <h1>Order Management - #@Model.OrderId</h1>
+        </div>
+
+        <!-- Customer Info Bar -->
+        <div class="customer-info-bar">
+            <div class="customer-info-item">
+                <span class="customer-info-label">Customer:</span>
+                <span class="customer-info-value">@Model.CreatedBy</span>
+            </div>
+            <div class="customer-info-item">
+                <span class="customer-info-label">Phone:</span>
+                <span class="customer-info-value">@Model.PhoneNumber</span>
+            </div>
+            <div class="customer-info-item">
+                <span class="customer-info-label">Order Date:</span>
+                <span class="customer-info-value">@Model.OrderDate</span>
+            </div>
+            <div class="customer-info-item">
+                <span class="customer-info-label">Status:</span>
+                <span class="customer-info-value">@Model.OrderStatus</span>
+            </div>
+            <div class="customer-info-item">
+                <span class="customer-info-label">Address:</span>
+                <span class="customer-info-value">@Model.ShippingAddressLine</span>
+            </div>
+        </div>
+
+        <!-- Order Items Table -->
+        <div class="order-items-section">
+            <div class="section-header">Order Items</div>
+            <div class="table-container">
+                <table class="items-table">
+                    <thead>
+                        <tr>
+                            <th>S.N</th>
+                            <th>Item</th>
+                            <th>Quantity</th>
+                            <th>Unit Price (NRs.)</th>
+                            <th>Dis Price (NRs.)</th>
+                            <th>SubTotal (NRs.)</th>
+                            <th>SubTotal With Dis</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (int i = 0; i < Model.OrderItemsViewModel.Count; i++)
+                        {
+                            var item = Model.OrderItemsViewModel[i];
+                            <tr>
+                                <td>@(i + 1)</td>
+                                <td class="product-name">
+                                    <a href="/Home/Details/@item.ProductId" target="_blank" class="product-link">
+                                        @item.ProductName
+                                    </a>
+                                </td>
+                                <td>@item.Quantity</td>
+                                <td>@item.PriceAtPurchase</td>
+                                <td>@item.PriceAtPurchase</td>
+                                <td>@item.PriceAtPurchase</td>
+                                <td>@item.PriceAtPurchase</td>
+                                <td><span class="status-badge status-pending">Pending</span></td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="action-btn btn-edit" title="Edit">✏️</button>
+                                        <button class="action-btn btn-view" title="View">👁️</button>
+                                        <button class="action-btn btn-delete" title="Delete">🗑️</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Bottom Section: Payment Left, Bill Details Right -->
+        <div class="bottom-section">
+            <!-- Left Section: Payment Only -->
+            <div class="payment-section">
+                <div class="section-header">Payment Method</div>
+                <div class="form-row">
+                    <div class="form-group-inline">
+                        <label for="paymentMethod">Payment Method:</label>
+                        <select id="paymentMethod" class="form-control">
+                            <option>Cash On Delivery</option>
+                            <option>Online Payment</option>
+                            <option>Bank Transfer</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="textarea-group">
+                    <div class="form-group-inline">
+                        <label for="remarks">Remarks</label>
+                        <textarea id="remarks" class="form-control" placeholder="Enter remarks..."></textarea>
+                    </div>
+                </div>
+
+                <div class="textarea-group">
+                    <div class="form-group-inline">
+                        <label for="shippingAddress">Shipping Address:</label>
+                        <textarea id="shippingAddress" class="form-control">@Model.ShippingAddressLine</textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Section: Bill Details -->
+            <div class="pricing-card">
+                <div class="section-header">Bill Details</div>
+                <form class="pricing-form" id="pricingForm">
+                    <div class="pricing-fields-grid">
+                        <div class="form-group">
+                            <label for="productDiscount">Product Discount</label>
+                            <input type="number" id="productDiscount" class="form-control" value="0" step="0.01">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="subTotal">Sub-Total</label>
+                            <input type="number" id="subTotal" class="form-control" value="@Model.TotalAmount" disabled>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="subTotalDiscount">SubTotal Discount</label>
+                            <input type="number" id="subTotalDiscount" class="form-control" value="0" step="0.01">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="shippingCost">Shipping Cost</label>
+                            <input type="number" id="shippingCost" class="form-control" value="0" step="0.01">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="orderTotal">Order Total</label>
+                            <input type="number" id="orderTotal" class="form-control" value="@Model.TotalAmount" disabled>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="totalDiscount">Total Discount</label>
+                            <input type="number" id="totalDiscount" class="form-control" value="0" step="0.01">
+                        </div>
+                    </div>
+
+                    <div class="pricing-summary">
+                        <div class="summary-row total">
+                            <span>Total:</span>
+                            <span id="finalTotal">Rs. @Model.TotalAmount</span>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="save-btn">Save Changes</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Back Button -->
+        <div class="back-button-container">
+            <a href="@Url.Action("Index")" class="btn-custom">Back to Orders</a>
+        </div>
+    </div>
+
+    <script>
+        // Calculate totals dynamically
+        function calculateTotals() {
+            const subTotal = parseFloat(document.getElementById('subTotal').value) || 0;
+            const productDiscount = parseFloat(document.getElementById('productDiscount').value) || 0;
+            const subTotalDiscount = parseFloat(document.getElementById('subTotalDiscount').value) || 0;
+            const shippingCost = parseFloat(document.getElementById('shippingCost').value) || 0;
+            const totalDiscount = parseFloat(document.getElementById('totalDiscount').value) || 0;
+
+            const orderTotal = subTotal - productDiscount - subTotalDiscount + shippingCost;
+            const finalTotal = orderTotal - totalDiscount;
+
+            document.getElementById('orderTotal').value = orderTotal.toFixed(2);
+            document.getElementById('finalTotal').textContent = `Rs. ${finalTotal.toFixed(2)}`;
+        }
+
+        // Add event listeners for real-time calculation
+        ['productDiscount', 'subTotalDiscount', 'shippingCost', 'totalDiscount'].forEach(id => {
+            document.getElementById(id).addEventListener('input', calculateTotals);
+        });
+
+        // Handle form submission with AJAX
+        document.getElementById('pricingForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const formData = {
+                orderId: '@Model.OrderId',
+                productDiscount: parseFloat(document.getElementById('productDiscount').value) || 0,
+                subTotalDiscount: parseFloat(document.getElementById('subTotalDiscount').value) || 0,
+                shippingCost: parseFloat(document.getElementById('shippingCost').value) || 0,
+                totalDiscount: parseFloat(document.getElementById('totalDiscount').value) || 0,
+                paymentMethod: document.getElementById('paymentMethod').value,
+                remarks: document.getElementById('remarks').value,
+                shippingAddress: document.getElementById('shippingAddress').value
+            };
+
+            // AJAX call to controller
+            fetch('@Url.Action("UpdateOrderDetails", "Order")', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'RequestVerificationToken': document.querySelector('input[name="__RequestVerificationToken"]')?.value
+                },
+                body: JSON.stringify(formData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('Order updated successfully!');
+                } else {
+                    alert('Error updating order: ' + data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An error occurred while updating the order.');
+            });
+        });
+
+        // Initialize calculations on page load
+        calculateTotals();
+    </script>
+</body>
+</html>
