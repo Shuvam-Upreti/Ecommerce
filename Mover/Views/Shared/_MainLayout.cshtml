@@ -1,4 +1,4 @@
-﻿ @using Mover.Core.Dto
+﻿@using Mover.Core.Dto
 @using Mover.HttpUtility
 @{
     var currentUser = SessionInfo.GetCurrentUser();
@@ -15,7 +15,7 @@
     <link href="~/css/site.css" rel="stylesheet" />
     <link href="~/css/bootstrap-toggle.css" rel="stylesheet" />
     <link href="~/css/select2.css" rel="stylesheet" />
-    <link href="~/css/bootstrap-select.min.css rel="stylesheet" />
+    <link href="~/css/bootstrap-select.min.css" rel="stylesheet" />
     <link href="~/css/DevExpressCss/dx.common.css" rel="stylesheet" />
     <link href="~/css/DevExpressCss/dx.light.css" rel="stylesheet" />
     <link href="~/lib/fontawesome/css/all.min.css" rel="stylesheet" />
@@ -28,8 +28,6 @@
     @RenderSection("styles", false)
 </head>
 <body>
-    @* @Html.Hidden("hdnLoadingImage", "<img src=" + Url.Content("~/images/progress.gif") + " alt='processing'/> <br /><label>{}</label>")
-    @* <input type="hidden" id="nepali-text-font" value="@nepaliTextFont" /> *@
 
     <nav class="navbar navbar-fixed-top" id="header">
         <button type="button" id="sidebarCollapse" class="sideArrow">
