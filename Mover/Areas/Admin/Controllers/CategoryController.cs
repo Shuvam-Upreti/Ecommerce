@@ -116,6 +116,7 @@ namespace Mover.Areas.Admin.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(CategoryViewModel model)
+        
         {
             if (!ModelState.IsValid)
             {
@@ -130,7 +131,7 @@ namespace Mover.Areas.Admin.Controllers
             }
             try
             {
-                new SeriLogger().Information("Hit2 method");
+                new SeriLogger().Error("Test1", new Exception());
 
                 var savedFileNames = new List<string>();
                 var invalidFiles = new List<string>();
@@ -140,56 +141,60 @@ namespace Mover.Areas.Admin.Controllers
 
                 if (!Directory.Exists(destinationFolder))
                 {
-                    new SeriLogger().Information("Hit3 method");
+                    new SeriLogger().Error("Test2", new Exception());
 
                     Directory.CreateDirectory(destinationFolder);
                 }
 
                 foreach (var image in model.Images)
                 {
-                    new SeriLogger().Information("Hit4 method");
+                    new SeriLogger().Error("Test3",new Exception());
 
                     if (!_fileHelper.IsImageValid(image.FileName))
                     {
-                        new SeriLogger().Information("Hit5 method");
+                        new SeriLogger().Error("Test4", new Exception());
 
                         invalidFiles.Add(image.FileName);
                         continue;
                     }
-                    new SeriLogger().Information("Hit5 method");
+                    new SeriLogger().Error("Test5", new Exception());
 
                     var fileName = await _fileHelper.SaveImageAndGetFileName(image, destinationFolder);
-                    new SeriLogger().Information("Hit6 method");
+                    new SeriLogger().Error("Test6", new Exception());
 
                     var imagePath = Path.Combine(_configuration["ImageSettings:CategoryImages"], fileName);
-                    new SeriLogger().Information("Hit7 method");
+                    new SeriLogger().Error("Test7", new Exception());
 
                     savedFileNames.Add(imagePath);
-                    new SeriLogger().Information("Hit8 method");
+                    new SeriLogger().Error("Test8", new Exception());
 
                 }
 
-                    var dto = new CategoryDto()
+                var dto = new CategoryDto()
                 {
                     Name = model.Name,
                     ImageUrl = savedFileNames.FirstOrDefault(),
                 };
-                new SeriLogger().Information("Hit9 method");
+                new SeriLogger().Error("Test9", new Exception());
 
                 await _categoryService.Save(dto);
-                new SeriLogger().Information("Hit10 method");
+                new SeriLogger().Error("Test10", new Exception());
 
                 this.NotifySuccess("Sucessfully created category");
                 return RedirectToAction(nameof(Index));
             }
             catch (CustomException ex)
             {
+                new SeriLogger().Error("Test11", new Exception());
+
                 new SeriLogger().Error(ex.Message, ex);
                 this.NotifyError(ex.Message);
                 return View(model);
             }
             catch (Exception ex)
             {
+                new SeriLogger().Error("Test12", new Exception());
+
                 new SeriLogger().Error(ex.Message, ex);
                 this.NotifyError("Something went wrong.Please try again");
                 return View(model);
