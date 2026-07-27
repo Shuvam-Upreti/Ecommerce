@@ -117,13 +117,11 @@ namespace Mover.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(CategoryViewModel model)
         {
-            new SeriLogger().Information("Hit method");
             if (!ModelState.IsValid)
             {
                 this.NotifyModelStateErrors();
                 return View(model);
             }
-            new SeriLogger().Information("Hit1 method");
 
             if (model.Images == null || !model.Images.Any())
             {
