@@ -114,7 +114,7 @@ namespace Mover.Areas.Admin.Controllers
             }
         }
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(CategoryViewModel model)
         
         {
